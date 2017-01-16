@@ -79,7 +79,12 @@
     </div>
 </nav>
 <div class="container">
-    @yield('content')
+    <div class="col-sm-8">
+        @yield('content')
+    </div>
+    <div class="col-sm-4">
+        Reclamur
+    </div>
 </div>
 </body>
 </html>
