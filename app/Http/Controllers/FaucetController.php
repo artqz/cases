@@ -9,7 +9,7 @@ class FaucetController extends Controller
     public function index ()
     {
 
-        echo '<a href="/test/create">hello people</a>';
+        return view('faucet.index');
 
     }
 }
