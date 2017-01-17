@@ -1,24 +1,43 @@
 @extends('app')
 
 @section('content')
-    <div style="background-color:#3C803F; color: white;" id="features">
+    <div style="background-color:#c86f45; color: white;" id="features">
         <div class="container">
             <div class="col-sm-6">
-                <img src="public/img/icons/test.jpg" alt="FREE BITCOINS EVERY HOUR">
-                <h3>FREE BITCOINS EVERY HOUR</h3>
-                Try your luck every hour playing our simple game and you could win up to $200 in free bitcoins!
+                <div style="position: relative;">
+                    <img src="images/icons/stopwatch.png" style="width:70px; height:70px; position:absolute; top:20px; left:0px;" alt="stopwatch">
+                </div>
+                <div style="position: relative; margin-left:90px">
+                    <h3>FREE BITCOINS EVERY HOUR</h3>
+                    Try your luck every hour playing our simple game and you could win up to $200 in free bitcoins!
+                </div>
             </div>
             <div class="col-sm-6">
-                <h3>PROVABLY FAIR HI-LO GAME</h3>
-                Multiply your bitcoins playing a simple HI-LO game that is designed to be provably fair by using a combination of math and cryptography. Win big HI-LO jackpot prizes up to 1 bitcoin every time you play.
+                <div style="position: relative;">
+                    <img src="images/icons/rocket.png" style="width:70px; height:70px; position:absolute; top:20px; left:0px;" alt="stopwatch">
+                </div>
+                <div style="position: relative; margin-left:90px">
+                    <h3>PROVABLY FAIR HI-LO GAME</h3>
+                    Multiply your bitcoins playing a simple HI-LO game that is designed to be provably fair by using a combination of math and cryptography. Win big HI-LO jackpot prizes up to 1 bitcoin every time you play.
+                </div>
             </div>
             <div class="col-sm-6">
-                <h3>FREE WEEKLY LOTTERY</h3>
-                Win big prizes with our weekly lottery for which you get free tickets every time you or someone referred by you plays the free bitcoin game.
+                <div style="position: relative;">
+                    <img src="images/icons/trophy.png" style="width:70px; height:70px; position:absolute; top:20px; left:0px;" alt="stopwatch">
+                </div>
+                <div style="position: relative; margin-left:90px">
+                    <h3>FREE WEEKLY LOTTERY</h3>
+                    Win big prizes with our weekly lottery for which you get free tickets every time you or someone referred by you plays the free bitcoin game.
+                </div>
             </div>
             <div class="col-sm-6">
-                <h3>GENEROUS REFERRAL PROGRAM</h3>
-                Refer your friends after signing up, and get 50% of whatever they win in addition to getting free lottery tickets every time they play.
+                <div style="position: relative;">
+                    <img src="images/icons/diagram.png" style="width:70px; height:70px; position:absolute; top:20px; left:0px;" alt="stopwatch">
+                </div>
+                <div style="position: relative; margin-left:90px">
+                    <h3>GENEROUS REFERRAL PROGRAM</h3>
+                    Refer your friends after signing up, and get 50% of whatever they win in addition to getting free lottery tickets every time they play.
+                </div>
             </div>
         </div>
         <br>
