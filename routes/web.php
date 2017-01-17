@@ -10,9 +10,10 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-
-Route::get('/', 'FaucetController@index');
-
+Route::get('/', function () {
+    return view('pages.start');
+});
+Route::get('faucet', 'FaucetController@index');
 Route::get('help', function () {
     return view('pages.help');
 });

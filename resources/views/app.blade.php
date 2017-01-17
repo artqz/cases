@@ -78,13 +78,6 @@
         </div>
     </div>
 </nav>
-<div class="container">
-    <div class="col-sm-8">
-        @yield('content')
-    </div>
-    <div class="col-sm-4">
-        <img src="//banners.mellowads.com/ads/F603C43841E7.gif" id="BannerAdImage" alt="Mellow Ads" width="300" height="250">
-    </div>
-</div>
+@yield('content')
 </body>
 </html>
