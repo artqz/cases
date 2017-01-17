@@ -54,8 +54,8 @@
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="position: relative; padding-left: 50px;">
-                            <img src="/uploads/avatars/{{ Auth::user()->avatar }}" style="width:32px; height:32px; position:absolute; top:10px; left:10px; border-radius:50%;">
-                            {{ Auth::user()->name }} <span class="caret"></span>
+                            <img src="https://secure.gravatar.com/avatar/{{ Auth::user()->email_hash }}?s=32&d=identicon" style="width:32px; height:32px; position:absolute; top:10px; left:10px; border-radius:50%;">
+                            {{ Auth::user()->email }} <span class="caret"></span>
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
@@ -79,5 +79,8 @@
     </div>
 </nav>
 @yield('content')
+    <script src="/js/app.js"></script>
+@yield('scripts')
+<script>
 </body>
 </html>

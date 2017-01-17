@@ -24,4 +24,6 @@ Route::get('contact', function () {
 Route::get('test', 'TestController@index');
 Route::get('test/create', 'TestController@store');
 
+//Auth
+Auth::routes();
 
