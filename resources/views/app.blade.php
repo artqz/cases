@@ -83,7 +83,7 @@
         @yield('content')
     </div>
     <div class="col-sm-4">
-        Reclamur
+        <img src="//banners.mellowads.com/ads/F603C43841E7.gif" id="BannerAdImage" alt="Mellow Ads" width="300" height="250">
     </div>
 </div>
 </body>

@@ -13,5 +13,14 @@
 
 Route::get('/', 'FaucetController@index');
 
+Route::get('help', function () {
+    return view('pages.help');
+});
+Route::get('contact', function () {
+    return view('pages.contact');
+});
+
 Route::get('test', 'TestController@index');
 Route::get('test/create', 'TestController@store');
+
+
