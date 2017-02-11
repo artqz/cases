@@ -67,6 +67,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'email_hash' => md5($data['email']),
             'password' => bcrypt($data['password']),
+            'user_ref_id' => $data['ref_id'],
         ]);
     }
 }

@@ -10,10 +10,14 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-Route::get('/', function () {
-    return view('pages.start');
+Route::get('/', 'PagesController@index');
+//Route::get('referral/{id}/', 'PagesController@index');
+Route::get('referral/{id}/', function ($id) {
+    $cookie = Cookie::make('ref_id', $id, 60);
+    return redirect('/')->withCookie($cookie);
 });
 Route::get('faucet', 'FaucetController@index');
+Route::post('faucet/play', 'FaucetController@store')->middleware('auth');
 Route::get('help', function () {
     return view('pages.help');
 });
@@ -26,4 +30,5 @@ Route::get('test/create', 'TestController@store');
 
 //Auth
 Auth::routes();
+
 

@@ -20,6 +20,7 @@
                         <h4 style="text-align:center;">CREATE AN ACCOUNT</h4>
                         <form role="form" method="POST" action="{{ url('/register') }}">
                             {{ csrf_field() }}
+                            <input id="ref_id" type="hidden" class="form-control" name="ref_id" value="{{ $ref }}" required>
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                 <label for="email">Email</label>
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
@@ -77,16 +78,19 @@
             <div class="col-sm-4" style="text-align:center;">
                 <br>
                 <div>REGISTERED USERS</div>
+                <div>{{ $users }}</div>
                 <br>
             </div>
             <div class="col-sm-4" style="text-align:center;">
                 <br>
                 <div>GAMES PLAYED</div>
+                <div>{{ $plays }}</div>
                 <br>
             </div>
             <div class="col-sm-4" style="text-align:center;">
                 <br>
                 <div>RIPPLE WON BY USERS</div>
+                <div>0</div>
                 <br>
             </div>
         </div>
@@ -95,7 +99,7 @@
         <div class="container">
             <div class="col-sm-6">
                 <div style="position: relative;">
-                    <img src="images/icons/stopwatch.png" style="width:70px; height:70px; position:absolute; top:20px; left:0px;" alt="stopwatch">
+                    <img src="/images/icons/stopwatch.png" style="width:70px; height:70px; position:absolute; top:20px; left:0px;" alt="stopwatch">
                 </div>
                 <div style="position: relative; margin-left:90px">
                     <h3>FREE BITCOINS EVERY HOUR</h3>
@@ -104,7 +108,7 @@
             </div>
             <div class="col-sm-6">
                 <div style="position: relative;">
-                    <img src="images/icons/rocket.png" style="width:70px; height:70px; position:absolute; top:20px; left:0px;" alt="stopwatch">
+                    <img src="/images/icons/rocket.png" style="width:70px; height:70px; position:absolute; top:20px; left:0px;" alt="stopwatch">
                 </div>
                 <div style="position: relative; margin-left:90px">
                     <h3>PROVABLY FAIR HI-LO GAME</h3>
@@ -113,7 +117,7 @@
             </div>
             <div class="col-sm-6">
                 <div style="position: relative;">
-                    <img src="images/icons/trophy.png" style="width:70px; height:70px; position:absolute; top:20px; left:0px;" alt="stopwatch">
+                    <img src="/images/icons/trophy.png" style="width:70px; height:70px; position:absolute; top:20px; left:0px;" alt="stopwatch">
                 </div>
                 <div style="position: relative; margin-left:90px">
                     <h3>FREE WEEKLY LOTTERY</h3>
@@ -122,7 +126,7 @@
             </div>
             <div class="col-sm-6">
                 <div style="position: relative;">
-                    <img src="images/icons/diagram.png" style="width:70px; height:70px; position:absolute; top:20px; left:0px;" alt="stopwatch">
+                    <img src="/images/icons/diagram.png" style="width:70px; height:70px; position:absolute; top:20px; left:0px;" alt="stopwatch">
                 </div>
                 <div style="position: relative; margin-left:90px">
                     <h3>GENEROUS REFERRAL PROGRAM</h3>

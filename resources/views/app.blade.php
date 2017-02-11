@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+    @yield('style')
 
     <!-- Scripts -->
     <script>
@@ -80,7 +81,9 @@
 </nav>
 @yield('content')
     <script src="/js/app.js"></script>
+    <script src="/js/fuckadblock.js"></script>
+
 @yield('scripts')
-<script>
+
 </body>
 </html>
