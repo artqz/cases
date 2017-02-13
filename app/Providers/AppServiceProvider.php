@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Validator::extend('is_link_steam', function($attribute, $value, $parameters, $validator) {
+            if(parse_url($value)['host'] == 'store.steampowered.com'){
+                if ( explode('/', trim(parse_url($value)['path'], '/'))[0] == 'app')  {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        });
     }
 
     /**
