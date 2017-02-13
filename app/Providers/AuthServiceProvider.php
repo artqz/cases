@@ -26,8 +26,4 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
     }
-    public function show(){
-        $this->authorize('show'); // <---- вот это важная строчка
-        return view('/');
-    }
 }

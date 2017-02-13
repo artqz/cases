@@ -16,6 +16,17 @@ Route::get('referral/{id}/', function ($id) {
     $cookie = Cookie::make('ref_id', $id, 60);
     return redirect('/')->withCookie($cookie);
 });
+Route::get('phpinfo', function () {
+    phpinfo();
+});
+Route::get('games/{id}/', 'GamesController@index');
+Route::get('shop', 'ShopController@index');
+Route::get('shop/game/{id}/gift/create', 'GiftsController@create');
+Route::post('shop/game/{id}/gift/create', 'GiftsController@store');
+Route::get('shop/game/create', 'GamesController@create');
+Route::post('shop/game/create', 'GamesController@store');
+Route::get('shop/games', 'GamesController@index');
+Route::get('shop/game/{id}', 'GamesController@show');
 Route::get('faucet', 'FaucetController@index');
 Route::post('faucet/play', 'FaucetController@store')->middleware('auth');
 Route::get('help', function () {
