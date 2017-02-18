@@ -19,6 +19,7 @@ class CreateItemsTable extends Migration
             $table->string('name');
             $table->text('icon_url_large');
             $table->float('price');
+            $table->integer('user_id');
             $table->string('hashcode');
             $table->integer('status');
             $table->timestamps();

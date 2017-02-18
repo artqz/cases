@@ -37,8 +37,12 @@ class User extends Authenticatable
         return $this->hasMany('App\Theme');
     }
 
-    public function items()
+    /*public function items()
     {
         return $this->belongsToMany('App\Item', 'user_item');
+    }*/
+    public function items()
+    {
+        return $this->hasMany('App\Item');
     }
 }

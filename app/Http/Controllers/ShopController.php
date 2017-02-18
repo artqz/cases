@@ -11,7 +11,8 @@ use DB;
 class ShopController extends Controller
 {
     public function index () {
-        return view('shop.index');
+        $items = Item::where('status', 0)->get();
+        return view('shop.index', compact('items'));
     }
 
     public function create_game () {
@@ -46,8 +47,9 @@ class ShopController extends Controller
 
     public function index_items (SteamHelper $steam) {
         $items = Item::where('status', 0)->get();
+        $last_buy_items = Item::where('status', 1)->get();
 
-        return view('shop.items.index', compact('items'));
+        return view('shop.items.index', compact('items','last_buy_items'));
     }
     public function create_item () {
         return view('shop.items.create');
@@ -66,10 +68,8 @@ class ShopController extends Controller
 
     }
     public function buy_item ($id_item) {
-        $item = Item::where('id', $id_item)->update(['status' => 1, 'hashcode' => md5(\Auth::id() + $id_item)]);
-        $item = Item::where('id', $id_item)->first();
-        //dd($item);
-        $item->users()->attach(\Auth::id());
+        $item = Item::where('id', $id_item)->update(['status' => 1, 'hashcode' => md5(\Auth::id() + $id_item), 'user_id' => \Auth::id()]);
+
         return redirect('/shop/items');
     }
 }
