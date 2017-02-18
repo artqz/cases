@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email_hash');
             $table->string('password');
             $table->integer('user_ref_id');
+            $table->float('clicks');
             $table->rememberToken();
             $table->timestamps();
         });

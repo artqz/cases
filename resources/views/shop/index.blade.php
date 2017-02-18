@@ -1,23 +1,42 @@
 @extends('app')
 
 @section('content')
-    <div class="container">
+    <div>
+        {!! Breadcrumbs::render('shop') !!}
         <h1>Магазин</h1>
         <h2>Игры</h2>
-        ...
+        <div class="items-list row">
+            @foreach($games as $game)
+                <div class="col-xs-6 col-sm-3 col-md-3">
+                    <div class="items-item">
+                        <div class="item-name">{{ $game->name }}</div>
+                        <img src="{{ $game->header_image }}" alt="{{ $game->name }}">
+                        <div class="item-price">Цена: {{ $game->price }} Клик.</div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <div class="col-md-12 row">
+            <a class="btn btn-sm btn-success" href="{{ url('shop/games') }}">Посмотреть все игры</a>
+        </div>
+        <br><br>
         <h2>Вещи</h2>
-        <ul class="items-list">
+        <div class="items-list row">
             @foreach($items as $item)
-                <li class="col-xs-6 col-sm-3 col-md-3">
+                <div class="col-xs-6 col-sm-3 col-md-3">
                     <div class="items-item">
                         <div class="item-name">{{ $item->name }}</div>
                         <img src="http://steamcommunity-a.akamaihd.net/economy/image/{{ $item->icon_url_large }}" alt="{{ $item->name }}">
                         <div class="item-price">Цена: {{ $item->price }} Клик.</div>
                         <div class="clearfix"></div>
                     </div>
-                </li>
+                </div>
             @endforeach
-        </ul>
+        </div>
+        <div class="col-md-12 row">
+            <a class="btn btn-sm btn-success" href="{{ url('shop/items') }}">Посмотреть все вещи</a>
+        </div>
     </div>
 @endsection
 
@@ -28,9 +47,7 @@
             cursor: no-drop;
         }
         .items-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+
         }
         .items-item {
             margin-bottom: 15px;

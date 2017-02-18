@@ -2,36 +2,22 @@
 
 @section('content')
     <div>
-        {!! Breadcrumbs::render('items') !!}
-        <h1>Вещи</h1>
+        {!! Breadcrumbs::render('games') !!}
+        <h1>Игры</h1>
         <div class="items-list row">
-            @foreach($items as $item)
+            @foreach($games as $game)
                 <div class="col-xs-6 col-sm-3 col-md-3">
                     <div class="items-item">
-                        <div class="item-name">{{ $item->name }}</div>
-                        <img src="http://steamcommunity-a.akamaihd.net/economy/image/{{ $item->icon_url_large }}" alt="{{ $item->name }}">
-                        <div class="item-price">Цена: {{ $item->price }} Клик.</div>
-                        <div class="pull-right"><a href="{{ url('/shop/items/'. $item->id .'/buy-item') }}" class="btn btn-xs btn-default">Купить</a></div>
+                        <div class="item-name">{{ $game->name }}</div>
+                        <img src="{{ $game->header_image }}" alt="{{ $game->name }}">
+                        <div class="item-price">Цена: {{ $game->price }} Клик.</div>
+                        <div class="pull-right"><a href="{{ url('/shop/games/'. $game->id .'/buy-game') }}" class="btn btn-xs btn-default">Купить</a></div>
                         <div class="clearfix"></div>
                     </div>
                 </div>
             @endforeach
         </div>
         <div class="clearfix"></div>
-        <h2>Последние купленные вещи</h2>
-        <ul class="last-buy-items-list">
-        @foreach($last_buy_items as $last_buy_item)
-            <li class="last-buy-items-item">
-                <span class="item-buy-name"><img src="http://steamcommunity-a.akamaihd.net/economy/image/{{ $last_buy_item->icon_url_large }}" alt="{{ $last_buy_item->name }}"> {{ $last_buy_item->name }}</span>
-                    @if($last_buy_item->status == 1)<span class="label label-default">Ожидание выдачи</span>@elseif($last_buy_item->status == 2)<span class="label label-success">Выдано</span>@endif
-                <div class="pull-right">
-                    <span class="item-user"><img src="https://secure.gravatar.com/avatar/{{ $last_buy_item->user->email_hash }}?s=32&d=identicon"> {{ $last_buy_item->user->name }}</span>
-                    <span class="item-date">{{ $last_buy_item->updated_at }}</span>
-                </div>
-                <div class="clearfix"></div>
-            </li>
-        @endforeach
-        </ul>
     </div>
 @endsection
 

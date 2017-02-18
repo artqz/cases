@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Game;
 use App\Helpers\SteamHelper;
 use App\Item;
 use App\User;
@@ -11,14 +12,15 @@ use DB;
 class ShopController extends Controller
 {
     public function index () {
-        $items = Item::where('status', 0)->get();
-        return view('shop.index', compact('items'));
+        $games = Game::where('status', 0)->orderBy('price', 'desc')->limit(4)->get();
+        $items = Item::where('status', 0)->orderBy('price', 'desc')->limit(4)->get();
+        return view('shop.index', compact('games', 'items'));
     }
 
-    public function create_game () {
+    public function create_game1 () {
         return view('shop.create_game');
     }
-    public function store_game (Request $request, SteamHelper $steam) {
+    public function store_game1 (Request $request, SteamHelper $steam) {
         $this->validate($request, [
             'link_app' => 'required|max:255|is_link_steam',
             'link_gift' => 'required',
@@ -41,12 +43,12 @@ class ShopController extends Controller
 
     }
 
-    public function show_game ($id) {
+    public function show_game1 ($id) {
         return view('shop.show');
     }
 
     public function index_items (SteamHelper $steam) {
-        $items = Item::where('status', 0)->get();
+        $items = Item::where('status', 0)->orderBy('price', 'desc')->paginate(20);
         $last_buy_items = Item::where('status', 1)->get();
 
         return view('shop.items.index', compact('items','last_buy_items'));
@@ -68,8 +70,35 @@ class ShopController extends Controller
 
     }
     public function buy_item ($id_item) {
-        $item = Item::where('id', $id_item)->update(['status' => 1, 'hashcode' => md5(\Auth::id() + $id_item), 'user_id' => \Auth::id()]);
+        $item = Item::where('id', $id_item)->update(['status' => 1, 'hashcode' => md5(\Auth::id() + $id_item +time()), 'user_id' => \Auth::id()]);
 
         return redirect('/shop/items');
+    }
+
+    public function index_games (SteamHelper $steam) {
+        $games = Game::where('status', 0)->orderBy('price', 'desc')->paginate(20);
+        $last_buy_games = Game::where('status', 1)->get();
+
+        return view('shop.games.index', compact('games','last_buy_games'));
+    }
+    public function create_game () {
+        return view('shop.games.create');
+    }
+    public function store_game (Request $request, SteamHelper $steam) {
+        $this->validate($request, [
+            'game_id' => 'required',
+            'price' => 'required',
+        ]);
+
+        $steam->addGameToDB($request->input('game_id'), $request->input('price'));
+
+        return redirect('shop/games');
+
+
+    }
+    public function buy_game ($id_game) {
+        $item = Game::where('id', $id_game)->update(['status' => 2, 'hashcode' => md5(\Auth::id() + $id_game +time()), 'user_id' => \Auth::id()]);
+
+        return redirect('/shop/games');
     }
 }
