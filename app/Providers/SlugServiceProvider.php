@@ -3,9 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Helpers\SteamHelper;
+use App\Helpers\SlugHelper;
 
-class SteamServiceProvider extends ServiceProvider
+class SlugServiceProvider extends ServiceProvider
 {
     public function boot()
     {
@@ -16,7 +16,7 @@ class SteamServiceProvider extends ServiceProvider
     {
         $this->app->bind('App\Helpers\Contracts', function(){
 
-            return new SteamHelper();
+            return new SlugHelper();
 
         });
     }
@@ -24,7 +24,7 @@ class SteamServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            'App\Helpers\Contracts\SteamContract',
+            'App\Helpers\Contracts\SlugContract',
         ];
     }
         

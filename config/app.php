@@ -163,6 +163,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         App\Providers\SteamServiceProvider::class,
+        App\Providers\SlugServiceProvider::class,
 
         /*
          * Package Service Providers...

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\SteamHelper;
+use App\Item;
+use App\User;
 use Illuminate\Http\Request;
 use DB;
 
@@ -40,5 +42,34 @@ class ShopController extends Controller
 
     public function show_game ($id) {
         return view('shop.show');
+    }
+
+    public function index_items (SteamHelper $steam) {
+        $items = Item::where('status', 0)->get();
+
+        return view('shop.items.index', compact('items'));
+    }
+    public function create_item () {
+        return view('shop.items.create');
+    }
+    public function store_item (Request $request, SteamHelper $steam) {
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'game_id' => 'required',
+            'price' => 'required',
+        ]);
+
+        $steam->addItemToDB($request->input('game_id'), $request->input('name'), $request->input('price'));
+
+        return redirect('/shop/items');
+
+
+    }
+    public function buy_item ($id_item) {
+        $item = Item::where('id', $id_item)->update(['status' => 1, 'hashcode' => md5(\Auth::id() + $id_item)]);
+        $item = Item::where('id', $id_item)->first();
+        //dd($item);
+        $item->users()->attach(\Auth::id());
+        return redirect('/shop/items');
     }
 }

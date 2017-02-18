@@ -13,10 +13,12 @@ class GiftsController extends Controller
         return view('gifts.create', compact('game_id'));
     }
     public function store (Request $request, $id) {
+
         $gift = Gift::create([
-            'link' => $request['link_gift'],
+            'type' => $request['type_gift'],
+            'link_gift' => $request['link_gift'],
+            'code_gift' => $request['code_gift'],
             'pay' => 0,
-            'game_id' => 0,
         ]);
 
         $gift->games()->attach($id);

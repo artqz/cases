@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Gift extends Model
 {
     protected $fillable = [
-        'game_id', 'link', 'pay',
+        'type', 'link_gift', 'code_gift', 'pay',
     ];
 
     public function games()

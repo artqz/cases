@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGiftsTable extends Migration
+class CreateItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateGiftsTable extends Migration
      */
     public function up()
     {
-        Schema::create('gifts', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('type');
-            $table->string('link_gift');
-            $table->string('code_gift');
-            $table->integer('pay');
+            $table->integer('appid');
+            $table->string('name');
+            $table->text('icon_url_large');
+            $table->float('price');
+            $table->string('hashcode');
+            $table->integer('status');
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ class CreateGiftsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('gifts');
+        Schema::drop('items');
     }
 }
