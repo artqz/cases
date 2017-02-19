@@ -36,6 +36,20 @@
                     </div>
                 </div>
 
+                <div class="form-group{{ $errors->has('data') ? ' has-error' : '' }}">
+                    <label for="data" class="col-md-4 control-label">Сылка на гифт или ключ</label>
+
+                    <div class="col-md-6">
+                        <input id="data" type="text" class="form-control" name="data" value="{{ old('data') }}" required autofocus>
+
+                        @if ($errors->has('data'))
+                            <span class="help-block">
+                                    <strong>{{ $errors->first('data') }}</strong>
+                                </span>
+                        @endif
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
                         <button type="submit" class="btn btn-primary">

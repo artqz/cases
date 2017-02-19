@@ -19,6 +19,7 @@ class CreateGamesTable extends Migration
             $table->string('name');
             $table->text('header_image');
             $table->float('price');
+            $table->text('data');
             $table->integer('user_id');
             $table->string('hashcode');
             $table->integer('status');

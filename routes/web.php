@@ -12,7 +12,8 @@
 */
 Route::get('/', 'PagesController@index');
 //Route::get('referral/{id}/', 'PagesController@index');
-Route::get('referral/{id}/', function ($id) {
+Route::get('referral', 'PagesController@index_referral');
+Route::get('r/{id}/', function ($id) {
     $cookie = Cookie::make('ref_id', $id, 60);
     return redirect('/')->withCookie($cookie);
 });
@@ -27,7 +28,7 @@ Route::get('phpinfo', function () {
     $data = json_decode($result);
     dd($data);
 });
-Route::get('games/{id}/', 'GamesController@index');
+
 Route::get('shop', 'ShopController@index');
 Route::get('shop/items', 'ShopController@index_items');
 Route::get('shop/items/update-items', 'ShopController@update_items')->middleware('auth', 'userId');
@@ -40,14 +41,6 @@ Route::get('shop/games/create-game', 'ShopController@create_game')->middleware('
 Route::post('shop/games/create-game', 'ShopController@store_game')->middleware('auth', 'userId');
 Route::get('shop/games/{id_post}/buy-game', 'ShopController@buy_game')->middleware('auth');
 //---
-/*
-Route::get('shop/game/{id}/gift/create', 'GiftsController@create')->middleware('auth', 'userId');
-Route::post('shop/game/{id}/gift/create', 'GiftsController@store')->middleware('auth', 'userId');
-Route::get('shop/game/create', 'GamesController@create');
-Route::post('shop/game/create', 'GamesController@store');
-Route::get('shop/games', 'GamesController@index');
-Route::get('shop/game/{id}', 'GamesController@show');
-*/
 //forum
 Route::get('discuss', 'DiscussController@index');
 Route::get('/discuss/create-channel', 'DiscussController@create_channel')->middleware('auth', 'userId');
@@ -68,14 +61,9 @@ Route::get('/discuss/channels/{slug_channel}/{slug_theme}/{id_post}/edit-post', 
 Route::post('/discuss/channels/{slug_channel}/{slug_theme}/{id_post}/edit-post', 'DiscussController@update_post')->middleware('auth');
 Route::get('/discuss/channels/{slug_channel}/{slug_theme}/{id_post}/delete-post', 'DiscussController@delete_post')->middleware('auth', 'userId');
 //---
-Route::get('faucet', 'FaucetController@index');
-Route::post('faucet/play', 'FaucetController@store')->middleware('auth');
-Route::get('help', function () {
-    return view('pages.help');
-});
-Route::get('contact', function () {
-    return view('pages.contact');
-});
+Route::get('faucet', 'FaucetController@index')->middleware('auth');
+Route::get('faucet/get-click', 'FaucetController@get_click')->middleware('auth');
+Route::get('profile', 'PagesController@index_profile')->middleware('auth');
 
 Route::get('test', 'TestController@index');
 Route::get('test/create', 'TestController@store');

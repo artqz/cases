@@ -93,6 +93,9 @@
 
     <script src="/js/app.js"></script>
     <script src="/js/fuckadblock.js"></script>
+<script>
+    $('div.alert').not('.alert-important').delay(3000).slideUp(200);
+</script>
 
 @yield('scripts')
 

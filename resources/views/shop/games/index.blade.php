@@ -2,15 +2,16 @@
 
 @section('content')
     <div>
+        @include('layouts.flash')
         {!! Breadcrumbs::render('games') !!}
         <h1>Игры</h1>
-        <div class="items-list row">
+        <div class="games-list row">
             @foreach($games as $game)
                 <div class="col-xs-6 col-sm-3 col-md-3">
-                    <div class="items-item">
-                        <div class="item-name">{{ $game->name }}</div>
+                    <div class="games-item">
+                        <div class="game-name">{{ $game->name }}</div>
                         <img src="{{ $game->header_image }}" alt="{{ $game->name }}">
-                        <div class="item-price">Цена: {{ $game->price }} Клик.</div>
+                        <div class="game-price">Цена: {{ $game->price }} Клик.</div>
                         <div class="pull-right"><a href="{{ url('/shop/games/'. $game->id .'/buy-game') }}" class="btn btn-xs btn-default">Купить</a></div>
                         <div class="clearfix"></div>
                     </div>
@@ -18,6 +19,7 @@
             @endforeach
         </div>
         <div class="clearfix"></div>
+        <div>{{$games->links()}}</div>
     </div>
 @endsection
 
@@ -28,10 +30,10 @@
 
 @section('style')
     <style>
-        .items-list {
+        .games-list {
 
         }
-        .items-item {
+        .games-item {
             margin-bottom: 15px;
             display: block;
             color: #777;
@@ -40,36 +42,39 @@
             background-color: white;
             position:relative;
         }
-        .items-item img {
+        .games-item img {
             width: 100%;
         }
-        .item-name {
+        .game-name {
             color: #a04eb4;
             margin-bottom: 7px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
-        .item-price {
+        .game-price {
             margin-top: 15px;
             font-size: 11px;
             color: #b2b2b2;
         }
 
-        .last-buy-items-list {
+        .last-buy-games-list {
             list-style: none;
             padding: 0;
             margin: 0;
         }
 
-        .item-date {
+        .game-date {
             font-size: 10px;
             color: #b2b2b2;
         }
-        .item-buy-name {
+        .game-buy-name {
             padding-left: 25px;
             color: #a04eb4;
             margin-bottom: 7px;
             position: relative;
         }
-        .item-buy-name img {
+        .game-buy-name img {
             width:20px;
             height:20px;
             position:absolute;
@@ -83,7 +88,7 @@
             margin-bottom: 7px;
             position: relative;
         }
-        .item-user img {
+        .game-user img {
             width:20px;
             height:20px;
             position:absolute;
@@ -91,7 +96,7 @@
             left:0px;
             border-radius:50%;
         }
-        .last-buy-items-item {
+        .last-buy-games-item {
             margin-bottom: 15px;
             display: block;
             color: #777;

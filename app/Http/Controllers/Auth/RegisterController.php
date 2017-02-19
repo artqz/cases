@@ -62,12 +62,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $user = User::where('id', $data['ref_id'])->first();
+        if ($user) {
+            $user_ref_id = $user->id;
+        }
+        else {
+            $user_ref_id = 0;
+        }
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'email_hash' => md5($data['email']),
             'password' => bcrypt($data['password']),
-            'user_ref_id' => $data['ref_id'],
+            'user_ref_id' => $user_ref_id,
         ]);
     }
 }

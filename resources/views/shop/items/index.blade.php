@@ -2,6 +2,7 @@
 
 @section('content')
     <div>
+        @include('layouts.flash')
         {!! Breadcrumbs::render('items') !!}
         <h1>Вещи</h1>
         <div class="items-list row">
@@ -18,20 +19,8 @@
             @endforeach
         </div>
         <div class="clearfix"></div>
-        <h2>Последние купленные вещи</h2>
-        <ul class="last-buy-items-list">
-        @foreach($last_buy_items as $last_buy_item)
-            <li class="last-buy-items-item">
-                <span class="item-buy-name"><img src="http://steamcommunity-a.akamaihd.net/economy/image/{{ $last_buy_item->icon_url_large }}" alt="{{ $last_buy_item->name }}"> {{ $last_buy_item->name }}</span>
-                    @if($last_buy_item->status == 1)<span class="label label-default">Ожидание выдачи</span>@elseif($last_buy_item->status == 2)<span class="label label-success">Выдано</span>@endif
-                <div class="pull-right">
-                    <span class="item-user"><img src="https://secure.gravatar.com/avatar/{{ $last_buy_item->user->email_hash }}?s=32&d=identicon"> {{ $last_buy_item->user->name }}</span>
-                    <span class="item-date">{{ $last_buy_item->updated_at }}</span>
-                </div>
-                <div class="clearfix"></div>
-            </li>
-        @endforeach
-        </ul>
+        <div>{{$items->links()}}</div>
+
     </div>
 @endsection
 
@@ -60,6 +49,9 @@
         .item-name {
             color: #a04eb4;
             margin-bottom: 7px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .item-price {
             margin-top: 15px;

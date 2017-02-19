@@ -6,6 +6,18 @@ Breadcrumbs::register('home', function($breadcrumbs)
     $breadcrumbs->push('Главная', url('/'));
 });
 
+Breadcrumbs::register('faucet', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Кликер', url('faucet'));
+});
+
+Breadcrumbs::register('referral', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Реферальная система', url('referral'));
+});
+
 Breadcrumbs::register('discuss', function($breadcrumbs)
 {
     $breadcrumbs->parent('home');
