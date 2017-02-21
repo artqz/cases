@@ -16,12 +16,8 @@ class PagesController extends Controller
 
         $users = User::count();
         $plays = Play::count();
-        if (Cookie::get('ref_id')) {
-            $ref = Cookie::get('ref_id');
-        }
-        else $ref = 0;
 
-        return view('pages.start', compact('users', 'plays', 'ref'));
+        return view('pages.start', compact('users', 'plays'));
 
     }
 

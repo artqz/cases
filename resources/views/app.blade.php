@@ -35,8 +35,8 @@
             </button>
 
             <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
+            <a class="navbar-brand" href="{{ url('/') }}" style="padding: 0">
+                <img src="/images/logo_click.png" alt="Steamclicks" style="width: 40px; margin-top: 3px; margin-left: 15px; margin-right: 15px; padding: 0;">
             </a>
         </div>
 
@@ -79,6 +79,7 @@
         </div>
     </div>
 </nav>
+@if(!Request::is('/'))
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
@@ -90,6 +91,9 @@
         </div>
     </div>
 </div>
+@else
+    @yield('content')
+@endif
 
     <script src="/js/app.js"></script>
     <script src="/js/fuckadblock.js"></script>

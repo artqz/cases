@@ -3,73 +3,23 @@
 @section('content')
     <div id="information">
         <div class="container">
-            <div class="col-sm-6">
-                <h2>WIN FREE RIPPLE EVERY HOUR!</h2>
+            <div class="col-sm-12 row">
+                <img src="/images/logo_click2.png" alt="Steamclicks">
+                <h1>Добро пожаловать на Steam Clicks!</h1>
                 <ul>
-                    <li style="padding-bottom: 10px;">WIN UP TO $200 IN FREE BITCOINS</li>
-                    <li style="padding-bottom: 10px;">MULTIPLY YOUR BITCOINS PLAYING HI-LO</li>
-                    <li style="padding-bottom: 10px;">WIN HI-LO JACKPOTS UP TO 1 BITCOIN</li>
-                    <li style="padding-bottom: 10px;">FREE WEEKLY LOTTERY WITH BIG PRIZES</li>
-                    <li style="padding-bottom: 10px;">50% REFERRAL COMMISSIONS FOR LIFE</li>
+                    <li class="col-sm-4">
+                        <img src="/images/icons/click.png" alt="Click">
+                        <h4>Получай до 48 кликов в сутки</h4>
+                    </li>
+                    <li class="col-sm-4">
+                        <img src="/images/icons/friends.png" alt="Friends">
+                        <h4>Приводи друзей и получай дополнительные клики</h4>
+                    </li>
+                    <li class="col-sm-4">
+                        <img src="/images/icons/buy.png" alt="Buy">
+                        <h4>Копи клики и покупай товары из нашего магазина</h4>
+                    </li>
                 </ul>
-            </div>
-            <div class="col-sm-6">
-                @if (Auth::guest())
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <h4 style="text-align:center;">CREATE AN ACCOUNT</h4>
-                        <form role="form" method="POST" action="{{ url('/register') }}">
-                            {{ csrf_field() }}
-                            <input id="ref_id" type="hidden" class="form-control" name="ref_id" value="{{ $ref }}" required>
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="email">Email</label>
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <label for="password">Password</label>
-                                <input id="password" type="password" class="form-control" name="password" value="{{ old('password-confirm') }}" required>
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                            <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                                <label for="password_confirmation">Password confirmation</label>
-                                <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" value="{{ old('password_confirmation') }}" required>
-                                @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                <label for="name">Ripple address</label>
-                                <input id="name" type="address" class="form-control" name="name" value="{{ old('name') }}" required>
-                                <div style="text-align:center; margin-top: 10px;"><a href="#">DON'T HAVE A RIPPLE ADDRESS?</a></div>
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                            <br>
-                            <div style="text-align:center;">Please complete the captcha below</div>
-                            <br>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-danger btn-block">SIGN UP!</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                @else
-                    <div><img src="//banners.mellowads.com/ads/F603C43841E7.gif" id="BannerAdImage" alt="Mellow Ads" width="300" height="250"></div><br>
-                @endif
             </div>
         </div>
     </div>
@@ -77,25 +27,25 @@
         <div class="container">
             <div class="col-sm-4" style="text-align:center;">
                 <br>
-                <div>REGISTERED USERS</div>
+                <h4>Зарегистрировано пользователей</h4>
                 <div>{{ $users }}</div>
                 <br>
             </div>
             <div class="col-sm-4" style="text-align:center;">
                 <br>
-                <div>GAMES PLAYED</div>
+                <h4>Выдано монет</h4>
                 <div>{{ $plays }}</div>
                 <br>
             </div>
             <div class="col-sm-4" style="text-align:center;">
                 <br>
-                <div>RIPPLE WON BY USERS</div>
+                <h4>Постов на форуме</h4>
                 <div>0</div>
                 <br>
             </div>
         </div>
     </div>
-    <div style="background-color:#c86f45; color: white;" id="features">
+    <div style="background-color:#5d2763; color: white;" id="features">
         <div class="container">
             <div class="col-sm-6">
                 <div style="position: relative;">
@@ -148,4 +98,38 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('style')
+    <style>
+    #information {
+        background: url("/images/bg/dota.jpg");
+        margin-top: -22px;
+        background-size: cover;
+        background-position: top;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        position: relative;
+        color: #fff;
+
+        text-align: center;
+    }
+    #information:before {
+        content: '';
+        background: rgba(125, 28, 136, 0.52);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+    #information img {
+        margin-top: 25px;
+    }
+    #information ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    </style>
 @endsection
