@@ -9,7 +9,7 @@
                 <ul>
                     <li class="col-sm-4">
                         <img src="/images/icons/click.png" alt="Click">
-                        <h4>Получай до 48 кликов в сутки</h4>
+                        <h4>Получай клики каждые полчаса</h4>
                     </li>
                     <li class="col-sm-4">
                         <img src="/images/icons/friends.png" alt="Friends">
@@ -88,9 +88,26 @@
     </div>
     <div id="what">
         <div class="container">
-            <h2 style="text-align:center;">WHAT IS RIPPLE?</h2>
+            <h2 style="text-align:center;">Что такое Steam clicks?</h2>
             <span>
-                Ripple’s solution is built around an open, neutral protocol (Interledger Protocol or ILP) to power payments across different ledgers and networks globally. It offers a cryptographically secure end-to-end payment flow with transaction immutability and information redundancy. Architected to fit within a bank’s existing infrastructure, <strong>Ripple is designed to comply with risk, privacy and compliance requirements.</strong>
+               <h4>Первый в своем роде проект, по бесплатной раздаче игр и продуктов сообщества Steam.</h4>
+                <p>Иногда хочется купить игру со Steam или скины, предметы для популярных игр в которые уже играешь (таких как Dota 2, Counter-Strike), но не хочется за них платить свои собственные деньги?</p>
+
+                <p>Специально для вас мы разработали наш сервис, на котором желаемые покупки на Steam можно получить совершенно бесплатно!</p>
+
+                <p>Секрет очень прост - зарабатывай клики на нашем сайте и обменивай их на любимые игры, либо предметы из игр.</p>
+
+                <p>Мы покупаем игры и комплектующие, публикуем количество данных позиций в наличии. Они становятся доступными каждому участнику.</p>
+
+                <p>Вы зарабатываете клики, и набрав необходимое количество можете смело забирать, то что нравится! Подарок отправится прямиком на тот адрес электронной почты, который вы укажете.</p>
+
+                <p>Будьте внимательны, если товар находится в одном экземпляре в наличии, значит кто-то может его забрать раньше чем Вы =)</p>
+
+                <p>Поэтому не стоит думать что, ассортимент будет всегда одинаков. Мы постоянно обновляем позиции, с учетом вашего спроса и их актуальности.</p>
+
+                <p>Все пожелания по добавлению того, или иного товара со Steam можете писать на нашем форуме</p>
+
+
             </span>
             <br><br>
             <div class="row" style="text-align:center;">
@@ -111,8 +128,8 @@
         background-repeat: no-repeat;
         position: relative;
         color: #fff;
-
         text-align: center;
+        padding: 25px;
     }
     #information:before {
         content: '';
@@ -122,9 +139,6 @@
         height: 100%;
         top: 0;
         left: 0;
-    }
-    #information img {
-        margin-top: 25px;
     }
     #information ul {
         list-style: none;
