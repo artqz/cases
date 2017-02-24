@@ -90,7 +90,7 @@ class ShopController extends Controller
             'data' => 'required',
         ]);
 
-        $steam->addGameToDB($request->input('game_id'), $request->input('price'));
+        $steam->addGameToDB($request->input('game_id'), $request->input('price'), $request->input('data'));
 
         return redirect('shop/games')->with([
             'flash_message' => 'Вы успешно добавили игру',

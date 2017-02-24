@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Game;
+use App\Item;
 use App\Referral;
 use App\Stats;
 use App\User;
@@ -36,7 +37,13 @@ class PagesController extends Controller
 
     public function index_my_games ()
     {
-        $games = Game::where('user_id', Auth::id())->get();
+        $games = Game::where('user_id', Auth::id())->paginate(20);
         return view('pages.mygames', compact('games'));
+    }
+
+    public function index_my_items ()
+    {
+        $items = Item::where('user_id', Auth::id())->paginate(20);
+        return view('pages.myitems', compact('items'));
     }
 }

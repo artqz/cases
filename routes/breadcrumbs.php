@@ -12,6 +12,18 @@ Breadcrumbs::register('faucet', function($breadcrumbs)
     $breadcrumbs->push('Кликер', url('faucet'));
 });
 
+Breadcrumbs::register('mygames', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Мои игры', url('my-games'));
+});
+
+Breadcrumbs::register('myitems', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Мои предметы', url('my-items'));
+});
+
 Breadcrumbs::register('referral', function($breadcrumbs)
 {
     $breadcrumbs->parent('home');

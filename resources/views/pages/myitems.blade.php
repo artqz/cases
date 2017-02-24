@@ -2,20 +2,20 @@
 
 @section('content')
     <div>
-        {!! Breadcrumbs::render('mygames') !!}
+        {!! Breadcrumbs::render('myitems') !!}
         <ul class="items-list">
-            @foreach($games as $game)
+            @foreach($items as $item)
                 <li class="items-item">
-                    <span class="item-buy-name"><img src="{{ $game->header_image }}" alt="{{ $game->name }}"> {{ $game->name }}</span>
-                    @if($game->status == 1)<span class="label label-default">Ожидание выдачи</span>@elseif($game->status == 2)<span class="label label-success">Выдано</span>@endif
+                    <span class="item-buy-name"><img src="http://steamcommunity-a.akamaihd.net/economy/image/{{ $item->icon_url_large }}" alt="{{ $item->name }}"> {{ $item->name }}</span>
+                    @if($item->status == 1)<span class="label label-default">Ожидание выдачи</span>@elseif($item->status == 2)<span class="label label-success">Выдано</span>@endif
                     <div class="pull-right">
-                        <span class="item-user">{{ $game->data }}</span>
+                        <span class="item-user">{{ $item->hashcode }}</span>
                     </div>
                     <div class="clearfix"></div>
                 </li>
             @endforeach
         </ul>
-        <div>{{$games->links()}}</div>
+        <div>{{$items->links()}}</div>
     </div>
 @endsection
 

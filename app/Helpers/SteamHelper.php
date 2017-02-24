@@ -163,7 +163,7 @@ class SteamHelper implements SteamContract
         }
     } */
     //----
-    public function addGameToDB ($appid, $price){
+    public function addGameToDB ($appid, $price, $data){
         $this->getGame($appid);
         $getGame = DB::table('all_games')->where('appid', $appid)->first();
 
@@ -172,6 +172,7 @@ class SteamHelper implements SteamContract
                 'appid' => $getGame->appid,
                 'name' => $getGame->name,
                 'price' => $price,
+                'data' => $data,
                 'header_image' => $getGame->header_image,
             ]);
 
