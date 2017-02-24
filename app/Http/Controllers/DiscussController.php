@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Channel;
+use App\Stats;
 use App\Helpers\SlugHelper;
 use App\Post;
 use App\Theme;
@@ -105,6 +106,8 @@ class DiscussController extends Controller
             $channel->themes()->save($theme)->posts()->save($post);
 
             if ($channel) {
+                //Записываем статистику
+                Stats::where('name', 'posts')->increment('value', 1);
                 return redirect('discuss/channels/'. $slug_channel .'/'. $slug_theme);
             }
 
@@ -160,6 +163,8 @@ class DiscussController extends Controller
             $theme->posts()->save($post);
 
             if ($theme) {
+                //Записываем статистику
+                Stats::where('name', 'posts')->increment('value', 1);
                 if ($post->where('theme_id', $theme->id)->paginate(Config::get('main.posts_per_page'))->lastPage() > 1) {
                     $page = '?page='. ($post->where('theme_id', $theme->id)->paginate(Config::get('main.posts_per_page'))->lastPage());
                 }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Game;
 use App\Referral;
+use App\Stats;
 use App\User;
 use App\Play;
 use Illuminate\Http\Request;
@@ -14,10 +16,9 @@ class PagesController extends Controller
     public function index ()
     {
 
-        $users = User::count();
-        $plays = Play::count();
+        $stats = Stats::all();
 
-        return view('pages.start', compact('users', 'plays'));
+        return view('pages.start', compact('stats'));
 
     }
 
@@ -31,5 +32,11 @@ class PagesController extends Controller
         $referral_clicks = Referral::where('user_ref_id', Auth::id())->sum('clicks');
         $referral_count = User::where('user_ref_id', Auth::id())->count();
         return view('pages.profile', compact('referral_clicks', 'referral_count'));
+    }
+
+    public function index_my_games ()
+    {
+        $games = Game::where('user_id', Auth::id())->get();
+        return view('pages.mygames', compact('games'));
     }
 }

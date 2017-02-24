@@ -6,6 +6,7 @@ use App\Game;
 use App\Helpers\SteamHelper;
 use App\Item;
 use App\User;
+use App\Stats;
 use Config;
 use Illuminate\Http\Request;
 use DB;
@@ -50,6 +51,8 @@ class ShopController extends Controller
                 User::where('id', \Auth::id())->update([
                     'clicks' => $user->clicks - $item->price,
                 ]);
+                //Записываем статистику
+                Stats::where('name', 'items')->increment('value', 1);
                 Item::where('id', $id_item)->update([
                     'status' => 1,
                     'hashcode' => md5(\Auth::id() + $id_item +time()),
@@ -104,6 +107,8 @@ class ShopController extends Controller
                 User::where('id', \Auth::id())->update([
                     'clicks' => $user->clicks - $game->price,
                 ]);
+                //Записываем статистику
+                Stats::where('name', 'games')->increment('value', 1);
                 Game::where('id', $id_game)->update([
                     'status' => 2,
                     'hashcode' => md5(\Auth::id() + $id_game +time()),

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Stats;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -69,6 +70,9 @@ class RegisterController extends Controller
         else {
             $user_ref_id = 0;
         }
+        //Записываем статистику
+        Stats::where('name', 'users')->increment('value', 1);
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

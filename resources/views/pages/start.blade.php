@@ -28,19 +28,19 @@
             <div class="col-sm-4" style="text-align:center;">
                 <br>
                 <h4>Зарегистрировано пользователей</h4>
-                <div>{{ $users }}</div>
+                <div>{{ $stats[0]['value'] }}</div>
                 <br>
             </div>
             <div class="col-sm-4" style="text-align:center;">
                 <br>
-                <h4>Выдано монет</h4>
-                <div>{{ $plays }}</div>
+                <h4>Выдано кликов</h4>
+                <div>{{ $stats[4]['value'] }}</div>
                 <br>
             </div>
             <div class="col-sm-4" style="text-align:center;">
                 <br>
                 <h4>Постов на форуме</h4>
-                <div>0</div>
+                <div>{{ $stats[3]['value'] }}</div>
                 <br>
             </div>
         </div>

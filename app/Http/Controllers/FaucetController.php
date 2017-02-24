@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Referral;
+use App\Stats;
 use App\User;
 use Carbon\Carbon;
 use Config;
@@ -30,6 +31,8 @@ class FaucetController extends Controller
                 'clicks' => $user->clicks + 1,
                 'last_click' => Carbon::now()->toDateTimeString(),
             ]);
+            //Записываем статистику
+            Stats::where('name', 'clicks')->increment('value', Config::get('main.reward_click'));
             if ($user->user_ref_id) {
                 User::where('id', $user->user_ref_id)->increment('clicks', Config::get('main.reward_click')*Config::get('main.ref_percent_click'));
                 Referral::create([
@@ -37,6 +40,8 @@ class FaucetController extends Controller
                     'user_id' => Auth::id(),
                     'clicks' => Config::get('main.reward_click')*Config::get('main.ref_percent_click'),
                 ]);
+                //Записываем статистику
+                Stats::where('name', 'clicks')->increment('value', Config::get('main.reward_click')*Config::get('main.ref_percent_click'));
             }
             $finishTime = (time() + Config::get('main.period_click'));
 
