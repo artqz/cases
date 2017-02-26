@@ -203,7 +203,11 @@ class SteamHelper implements SteamContract
         if ($data) {
             if ($data->success == true) {
                 if (!$this->searchGameToDB($game_id)) {
-                    DB::table('all_games')->insertGetId([
+
+                    if ($data->data->website == null) {
+                        $website = 'none';
+                    }
+                        DB::table('all_games')->insertGetId([
                         'type' => $data->data->type,
                         'name' => $data->data->name,
                         'appid' => $data->data->steam_appid,
@@ -214,7 +218,7 @@ class SteamHelper implements SteamContract
                         'short_description' => $data->data->short_description,
                         'supported_languages' => $data->data->supported_languages,
                         'header_image' => $data->data->header_image,
-                        'website' => $data->data->website,
+                        'website' => $website,
                     ]);
                 }
 
