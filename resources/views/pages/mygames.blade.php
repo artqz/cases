@@ -1,5 +1,7 @@
 @extends('app')
 
+@section('title', 'Мои игры - ')
+
 @section('content')
     <div>
         {!! Breadcrumbs::render('mygames') !!}

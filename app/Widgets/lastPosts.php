@@ -2,9 +2,10 @@
 
 namespace App\Widgets;
 
+use App\Post;
 use Arrilot\Widgets\AbstractWidget;
 
-class Banner extends AbstractWidget
+class lastPosts extends AbstractWidget
 {
     /**
      * The configuration array.
@@ -21,8 +22,11 @@ class Banner extends AbstractWidget
     {
         //
 
-        return view("widgets.banner", [
+        $last_posts = Post::all();
+
+        return view('widgets.lastPosts', [
             'config' => $this->config,
+            'last_posts' => $last_posts,
         ]);
     }
 }

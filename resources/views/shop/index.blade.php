@@ -1,5 +1,7 @@
 @extends('app')
 
+@section('title', 'Магазин - ')
+
 @section('content')
     <div>
         {!! Breadcrumbs::render('shop') !!}
@@ -30,7 +32,7 @@
                 <div class="col-xs-6 col-sm-3 col-md-3">
                     <div class="items-item">
                         <div class="item-name">{{ $item->name }}</div>
-                        <img src="http://steamcommunity-a.akamaihd.net/economy/image/{{ $item->icon_url_large }}" alt="{{ $item->name }}">
+                        <img src="{{ $item->icon_url }}" alt="{{ $item->name }}">
                         <div class="item-price">Цена: {{ $item->price }} Клик.</div>
                         <div class="clearfix"></div>
                     </div>
@@ -47,7 +49,7 @@
                 <ul class="last-buy-items-list">
                     @foreach($last_buy_items as $last_buy_item)
                         <li class="last-buy-items-item">
-                            <span class="item-buy-name"><img src="http://steamcommunity-a.akamaihd.net/economy/image/{{ $last_buy_item->icon_url_large }}" alt="{{ $last_buy_item->name }}"> {{ $last_buy_item->name }}</span>
+                            <span class="item-buy-name"><img src="{{ $last_buy_item->icon_url_large }}" alt="{{ $last_buy_item->name }}"> {{ $last_buy_item->name }}</span>
                             @if($last_buy_item->status == 1)<span class="label label-default">Ожидание выдачи</span>@elseif($last_buy_item->status == 2)<span class="label label-success">Выдано</span>@endif
                             <div class="pull-right">
                                 <span class="item-user"><img src="https://secure.gravatar.com/avatar/{{ $last_buy_item->user->email_hash }}?s=32&d=identicon"> {{ $last_buy_item->user->name }}</span>

@@ -17,6 +17,7 @@ class CreateItemsTable extends Migration
             $table->increments('id');
             $table->integer('appid');
             $table->string('name');
+            $table->text('icon_url');
             $table->text('icon_url_large');
             $table->float('price');
             $table->integer('user_id');

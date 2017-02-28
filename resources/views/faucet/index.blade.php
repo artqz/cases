@@ -1,12 +1,16 @@
 @extends('app')
 
+@section('title', 'Кликер - ')
+
 @section('content')
     <div>
         @include('layouts.flash')
         {!! Breadcrumbs::render('faucet') !!}
+        <p>Здесь ты можешь получать клики каждые полчаса. Для получения клика необходимо подтвердить что ты человек!</p>
         <form class="form-horizontal" role="form" method="POST" action="{{ url('faucet/get-click') }}">
             {{ csrf_field() }}
             <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
+            <br>
             <input type="submit" data-time="{{ $finishTime }}" class="btn btn-sm btn-success" value="Получить клики"/>
         </form>
 
@@ -14,7 +18,11 @@
 @endsection
 
 @section('sidebar')
-    @widget('Banner')
+    @widget('lastBuyItems')
+
+    @widget('lastBuyGames')
+
+    @widget('lastPosts')
 @endsection
 
 @section('scripts')
@@ -63,14 +71,12 @@
             $('[data-time]').each(function(){
                 var s = parseInt($(this).data('time'))-parseInt(new Date().getTime()/1000);
                 if(s<0)
-                {
-                    $(this).text('Получить клики').attr('class', 'btn btn-sm btn-success').attr('disabled', false);
-                }
+                    $(this).val('Получить клики').prop('disabled', false);
                 else{
                     s-=(d=Math.floor(s/60/60/24))*24*60*60;
                     s-=(h=Math.floor(s/60/60))*60*60;
                     s-=(m=Math.floor(s/60))*60;
-                    $(this).text(
+                    $(this).val(
                             (h<10?'0'+h:h).plural(":",":",":")+
                             (m<10?'0'+m:m).plural(":",":",":")+
                             (s<10?'0'+s:s).plural("","","")

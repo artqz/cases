@@ -1,5 +1,7 @@
 @extends('app')
 
+@section('title', 'Бонусы - ')
+
 @section('content')
     {!! Breadcrumbs::render('referral') !!}
     <h1>Реферальная система</h1>

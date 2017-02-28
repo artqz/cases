@@ -1,5 +1,7 @@
 @extends('app')
 
+@section('title', 'Общение - ')
+
 @section('content')
     <div>
         {!! Breadcrumbs::render('discuss') !!}

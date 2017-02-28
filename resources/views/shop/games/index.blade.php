@@ -1,5 +1,7 @@
 @extends('app')
 
+@section('title', 'Игры - Магазин - ')
+
 @section('content')
     <div>
         @include('layouts.flash')
@@ -24,7 +26,14 @@
 @endsection
 
 @section('sidebar')
-    123
+    @if (\Auth::id() == \Config::get('main.admin_id'))
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div>Тут можно добавить игру или предмет</div><br>
+                <a class="btn btn-sm btn-success" href="{{ url('shop/games/create-game') }}">Добавить игру</a>
+            </div>
+        </div>
+    @endif
 @endsection
 
 

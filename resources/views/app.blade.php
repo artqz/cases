@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title'){{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
@@ -97,17 +97,15 @@
     @yield('content')
 @endif
 
-
-
-<script src='https://www.google.com/recaptcha/api.js'></script>
+</body>
 <script src="/js/app.js"></script>
 <script src="/js/fuckadblock.js"></script>
 
 @yield('scripts')
 
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
 <script>
     $('div.alert').not('.alert-important').delay(3000).slideUp(200);
 </script>
-</body>
-
 </html>

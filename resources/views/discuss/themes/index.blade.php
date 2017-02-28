@@ -1,5 +1,7 @@
 @extends('app')
 
+@section('title', $theme->name . ' - ' . $theme->channel->name . ' - Общение - ')
+
 @section('content')
     <div>
         {!! Breadcrumbs::render('themes', $theme->channel, $theme) !!}

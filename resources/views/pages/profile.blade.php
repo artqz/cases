@@ -1,5 +1,7 @@
 @extends('app')
 
+@section('title', 'Профиль - ')
+
 @section('content')
     <h1>Профиль
 

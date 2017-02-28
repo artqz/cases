@@ -35,6 +35,7 @@ class SteamHelper implements SteamContract
                 'appid' => $getGame->appid,
                 'name' => $getGame->name,
                 'price' => $price,
+                'icon_url' => $getGame->icon_url,
                 'icon_url_large' => $getGame->icon_url_large,
             ]);
 
@@ -53,7 +54,9 @@ class SteamHelper implements SteamContract
     public function getItem ($game_id)
     {
         //$url = 'https://api.steampowered.com/ISteamEconomy/GetAssetClassInfo/v1/?key=97E5CDC7C832E47EC6168D6F728E837E&format=json&appid=570&language=ru&class_count=2&class_id=5461';
-        $url = 'http://steamcommunity.com/id/djoctuk/inventory/json/'.$game_id.'/2';
+        if (strlen($game_id) == 3) $i = 2;
+        else $i = 1;
+        $url = 'http://steamcommunity.com/id/djoctuk/inventory/json/'.$game_id.'/'.$i;
         $tuCurl = curl_init();
         curl_setopt($tuCurl, CURLOPT_URL, $url);
         curl_setopt($tuCurl, CURLOPT_RETURNTRANSFER, 1);
@@ -64,17 +67,36 @@ class SteamHelper implements SteamContract
         //Заносим в базу
         if ($data) {
             if ($data->success == true) {
-
                 foreach ($data->rgDescriptions as $item) {
                     if (!$this->searchItemToDB($item->appid, $item->classid, $item->instanceid)) {
-                        DB::table('all_items')->insertGetId([
+
+                        if (property_exists($item, 'icon_url_large')) {
+                            $icon_url_large = $item->icon_url_large;
+                        }
+                        else $icon_url_large = 'none';
+
+                        if (property_exists($item, 'market_hash_name')) {
+                            $market_hash_name = $item->market_hash_name;
+                        }
+                        else $market_hash_name = 'none';
+
+                        if (strlen($game_id) == 3) {
+                            $icon_url_large_full = 'http://steamcommunity-a.akamaihd.net/economy/image/'.$icon_url_large;
+                            $icon_url_full = 'http://steamcommunity-a.akamaihd.net/economy/image/'.$item->icon_url;
+                        }
+                        else {
+                            $icon_url_large_full = 'http://community.edgecast.steamstatic.com/economy/image/'.$icon_url_large;
+                            $icon_url_full = 'http://community.edgecast.steamstatic.com/economy/image/'.$item->icon_url;
+                        }
+
+                            DB::table('all_items')->insertGetId([
                             'appid' => $item->appid,
                             'classid' => $item->classid,
                             'instanceid' => $item->instanceid,
-                            'icon_url' => $item->icon_url,
-                            'icon_url_large' => $item->icon_url_large,
+                            'icon_url' => $icon_url_full,
+                            'icon_url_large' => $icon_url_large_full,
                             'name' => $item->name,
-                            'market_hash_name' => $item->market_hash_name,
+                            'market_hash_name' => $market_hash_name,
                             'market_name' => $item->market_name,
                             'type' => $item->type,
                             'tradable' => $item->tradable,
@@ -204,9 +226,11 @@ class SteamHelper implements SteamContract
             if ($data->success == true) {
                 if (!$this->searchGameToDB($game_id)) {
 
-                    if ($data->data->website == null) {
-                        $website = 'none';
-                    }
+                        if ($data->data->website == null) {
+                            $website = 'none';
+                        }
+                        else $website = $data->data->website;
+
                         DB::table('all_games')->insertGetId([
                         'type' => $data->data->type,
                         'name' => $data->data->name,

@@ -8,16 +8,22 @@
                 <h1>Добро пожаловать на Steam Clicks!</h1>
                 <ul>
                     <li class="col-sm-4">
-                        <img src="/images/icons/click.png" alt="Click">
-                        <h4>Получай клики каждые полчаса</h4>
+                        <a href="{{ url ('faucet') }}">
+                            <img src="/images/icons/click.png" alt="Click">
+                            <h4>Получай клики каждые полчаса</h4>
+                        </a>
                     </li>
                     <li class="col-sm-4">
-                        <img src="/images/icons/friends.png" alt="Friends">
-                        <h4>Приводи друзей и получай дополнительные клики</h4>
+                        <a href="{{ url ('referral') }}">
+                            <img src="/images/icons/friends.png" alt="Friends">
+                            <h4>Приводи друзей и получай дополнительные клики</h4>
+                        </a>
                     </li>
                     <li class="col-sm-4">
-                        <img src="/images/icons/buy.png" alt="Buy">
-                        <h4>Копи клики и покупай товары из нашего магазина</h4>
+                        <a href="{{ url ('shop') }}">
+                            <img src="/images/icons/buy.png" alt="Buy">
+                            <h4>Копи клики и покупай товары из нашего магазина</h4>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -47,41 +53,14 @@
     </div>
     <div style="background-color:#5d2763; color: white;" id="features">
         <div class="container">
-            <div class="col-sm-6">
-                <div style="position: relative;">
-                    <img src="/images/icons/stopwatch.png" style="width:70px; height:70px; position:absolute; top:20px; left:0px;" alt="stopwatch">
-                </div>
-                <div style="position: relative; margin-left:90px">
-                    <h3>FREE BITCOINS EVERY HOUR</h3>
-                    Try your luck every hour playing our simple game and you could win up to $200 in free bitcoins!
-                </div>
+            <div class="col-sm-4">
+                Реклама
             </div>
-            <div class="col-sm-6">
-                <div style="position: relative;">
-                    <img src="/images/icons/rocket.png" style="width:70px; height:70px; position:absolute; top:20px; left:0px;" alt="stopwatch">
-                </div>
-                <div style="position: relative; margin-left:90px">
-                    <h3>PROVABLY FAIR HI-LO GAME</h3>
-                    Multiply your bitcoins playing a simple HI-LO game that is designed to be provably fair by using a combination of math and cryptography. Win big HI-LO jackpot prizes up to 1 bitcoin every time you play.
-                </div>
+            <div class="col-sm-4">
+                Реклама
             </div>
-            <div class="col-sm-6">
-                <div style="position: relative;">
-                    <img src="/images/icons/trophy.png" style="width:70px; height:70px; position:absolute; top:20px; left:0px;" alt="stopwatch">
-                </div>
-                <div style="position: relative; margin-left:90px">
-                    <h3>FREE WEEKLY LOTTERY</h3>
-                    Win big prizes with our weekly lottery for which you get free tickets every time you or someone referred by you plays the free bitcoin game.
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div style="position: relative;">
-                    <img src="/images/icons/diagram.png" style="width:70px; height:70px; position:absolute; top:20px; left:0px;" alt="stopwatch">
-                </div>
-                <div style="position: relative; margin-left:90px">
-                    <h3>GENEROUS REFERRAL PROGRAM</h3>
-                    Refer your friends after signing up, and get 50% of whatever they win in addition to getting free lottery tickets every time they play.
-                </div>
+            <div class="col-sm-4">
+                Реклама
             </div>
         </div>
         <br>
@@ -111,7 +90,7 @@
             </span>
             <br><br>
             <div class="row" style="text-align:center;">
-                <iframe width="720" height="405" src="https://www.youtube.com/embed/Q2YHhLkOO9g" frameborder="0" allowfullscreen></iframe>
+                Наше видео!
             </div>
         </div>
     </div>
@@ -119,31 +98,43 @@
 
 @section('style')
     <style>
-    #information {
-        background: url("/images/bg/dota.jpg");
-        margin-top: -22px;
-        background-size: cover;
-        background-position: top;
-        background-attachment: fixed;
-        background-repeat: no-repeat;
-        position: relative;
-        color: #fff;
-        text-align: center;
-        padding: 25px;
-    }
-    #information:before {
-        content: '';
-        background: rgba(125, 28, 136, 0.52);
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-    }
-    #information ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
+        ul li a {
+            text-decoration: none;
+            color: #fff;
+        }
+        ul li a:hover {
+             text-decoration: none;
+             color: #fff;
+        }
+        ul li a:active {
+            text-decoration: none;
+            color: #fff;
+        }
+        #information {
+            background: url("/images/bg/dota.jpg");
+            margin-top: -22px;
+            background-size: cover;
+            background-position: top;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            position: relative;
+            color: #fff;
+            text-align: center;
+            padding: 25px;
+        }
+        #information:before {
+            content: '';
+            background: rgba(125, 28, 136, 0.52);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+        #information ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
     </style>
 @endsection
