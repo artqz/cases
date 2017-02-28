@@ -97,13 +97,17 @@
     @yield('content')
 @endif
 
-    <script src="/js/app.js"></script>
-    <script src="/js/fuckadblock.js"></script>
-<script>
-    $('div.alert').not('.alert-important').delay(3000).slideUp(200);
-</script>
+
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="/js/app.js"></script>
+<script src="/js/fuckadblock.js"></script>
 
 @yield('scripts')
 
+<script>
+    $('div.alert').not('.alert-important').delay(3000).slideUp(200);
+</script>
 </body>
+
 </html>

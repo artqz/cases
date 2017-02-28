@@ -4,8 +4,17 @@
     <div>
         @include('layouts.flash')
         {!! Breadcrumbs::render('faucet') !!}
-        <a data-time="{{ $finishTime }}" class="btn btn-sm btn-success" href="{{ url('faucet/get-click') }}">Получить клики</a>
+        <form class="form-horizontal" role="form" method="POST" action="{{ url('faucet/get-click') }}">
+            {{ csrf_field() }}
+            <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
+            <input type="submit" data-time="{{ $finishTime }}" class="btn btn-sm btn-success" value="Получить клики"/>
+        </form>
+
     </div>
+@endsection
+
+@section('sidebar')
+    @widget('Banner')
 @endsection
 
 @section('scripts')

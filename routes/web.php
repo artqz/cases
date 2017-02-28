@@ -62,7 +62,7 @@ Route::post('/discuss/channels/{slug_channel}/{slug_theme}/{id_post}/edit-post',
 Route::get('/discuss/channels/{slug_channel}/{slug_theme}/{id_post}/delete-post', 'DiscussController@delete_post')->middleware('auth', 'userId');
 //---
 Route::get('faucet', 'FaucetController@index')->middleware('auth');
-Route::get('faucet/get-click', 'FaucetController@get_click')->middleware('auth');
+Route::post('faucet/get-click', 'FaucetController@get_click')->middleware('auth');
 Route::get('profile', 'PagesController@index_profile')->middleware('auth');
 Route::get('my-games', 'PagesController@index_my_games')->middleware('auth');
 Route::get('my-items', 'PagesController@index_my_items')->middleware('auth');
