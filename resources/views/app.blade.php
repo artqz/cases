@@ -20,6 +20,34 @@
             margin-top: 50px;
         }
     </style>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter43174499 = new Ya.Metrika({
+                        id:43174499,
+                        clickmap:true,
+                        trackLinks:true,
+                        accurateTrackBounce:true
+                    });
+                } catch(e) { }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                    s = d.createElement("script"),
+                    f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/43174499" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
 
     <!-- Scripts -->
     <script>
@@ -61,9 +89,12 @@
                     <li><a href="{{ url('/register') }}">Регистрация</a></li>
                 @else
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="position: relative; padding-left: 50px;">
-                            <img src="https://secure.gravatar.com/avatar/{{ Auth::user()->email_hash }}?s=32&d=identicon" style="width:32px; height:32px; position:absolute; top:10px; left:10px; border-radius:50%;">
-                            {{ Auth::user()->email }} <span class="caret"></span>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="">
+                            <div style="position: relative;">
+                            <img src="https://secure.gravatar.com/avatar/{{ Auth::user()->email_hash }}?s=32&d=identicon" style="width:32px; height:32px; position:absolute; left:10px; border-radius:50%;">
+                                <div class="user-name" style="padding-left: 50px; line-height: 1; color: #a04eb4;">{{ Auth::user()->name }} <span class="caret"></span></div>
+                                <div class="user-clicks" style="padding-left: 50px; line-height: 1; font-size: 12px;">Клики: {{Auth::user()->clicks}}</div>
+                            </div>    
                         </a>
 
                         <ul class="dropdown-menu" role="menu">

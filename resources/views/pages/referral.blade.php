@@ -16,3 +16,11 @@
     После чего любой зарегистрированный по вашей ссылке будет приносить вам с каждого своего клика 20%. Все просто больше рефералов - больше кликов!</p>
 
 @endsection
+
+@section('sidebar')
+    @widget('lastBuyItems')
+
+    @widget('lastBuyGames')
+
+    @widget('lastPosts')
+@endsection

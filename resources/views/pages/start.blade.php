@@ -54,7 +54,15 @@
     <div style="background-color:#5d2763; color: white;" id="features">
         <div class="container">
             <div class="col-sm-4">
-                Реклама
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- 336_280_1_home_steamclicks -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px"
+                     data-ad-client="ca-pub-6809180877585246"
+                     data-ad-slot="3807430925"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
             <div class="col-sm-4">
                 Реклама
@@ -109,32 +117,6 @@
         ul li a:active {
             text-decoration: none;
             color: #fff;
-        }
-        #information {
-            background: url("/images/bg/dota.jpg");
-            margin-top: -22px;
-            background-size: cover;
-            background-position: top;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            position: relative;
-            color: #fff;
-            text-align: center;
-            padding: 25px;
-        }
-        #information:before {
-            content: '';
-            background: rgba(125, 28, 136, 0.52);
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-        }
-        #information ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
         }
     </style>
 @endsection

@@ -1,5 +1,5 @@
 @if(count($last_posts))
-<div class="panel panel-warning">
+<div class="panel panel-primary">
     <div class="panel-heading">
         Последние ответы
     </div>

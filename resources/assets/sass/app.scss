@@ -7,17 +7,62 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+body {
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+}
 //---widgets---
-.widget-games-list {
+.widget-items-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
+.widget-items-item {
+  position:relative;
+  border-bottom: 1px solid #f5f5f5;
+  padding: 12px 20px 12px 0;
+}
+.widget-items-item:last-child {
+  border-bottom: 0;
+}
+.widget-items-user {
+  padding-left: 25px;
+  color: #a04eb4;
+  margin-bottom: 7px;
+  position: relative;
+}
+.widget-items-user img {
+  width:20px;
+  height:20px;
+  position:absolute;
+  top:-2px;
+  left:0px;
+  border-radius:50%;
+}
+.widget-items-name {
+  padding-left: 25px;
+  color: #00d01a;
+  margin-bottom: 7px;
+  position: relative;
+}
+.widget-items-name img {
+  width:20px;
+  height:20px;
+  position:absolute;
+  top:-2px;
+  left:0px;
+  border-radius:50%;
+}
+
+.widget-games-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 .widget-games-item {
   position:relative;
   border-bottom: 1px solid #f5f5f5;
-  line-height: 3;
+  padding: 12px 20px 12px 0;
 }
 .widget-games-item:last-child {
   border-bottom: 0;
@@ -56,11 +101,10 @@
   padding: 0;
   margin: 0;
 }
-
 .widget-themes-item {
   position:relative;
   border-bottom: 1px solid #f5f5f5;
-  line-height: 3;
+  padding: 12px 20px 12px 0;
 }
 .widget-themes-item:last-child {
   border-bottom: 0;
@@ -171,7 +215,7 @@
   width: 100%;
 }
 .item-name {
-  color: #a04eb4;
+  color: #00d01a;
   margin-bottom: 7px;
   white-space: nowrap;
   overflow: hidden;
@@ -229,4 +273,32 @@
   padding: 10px;
   background-color: white;
   position:relative;
+}
+
+//------
+#information {
+  background: url("/images/bg/dota.jpg");
+  margin-top: -22px;
+  background-size: cover;
+  background-position: top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  position: relative;
+  color: #fff;
+  text-align: center;
+  padding: 25px;
+}
+#information:before {
+  content: '';
+  background: rgba(125, 28, 136, 0.52);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+#information ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }

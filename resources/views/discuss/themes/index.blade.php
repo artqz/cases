@@ -47,6 +47,12 @@
         </div>
     </div>
 
+    @widget('lastBuyItems')
+
+    @widget('lastBuyGames')
+
+    @widget('lastPosts')
+
 @endsection
 
 
