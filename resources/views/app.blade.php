@@ -13,6 +13,13 @@
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
     @yield('style')
+    <style>
+        .footer {
+            line-height: 4;
+            border-top: 1px solid #ebebeb;
+            margin-top: 50px;
+        }
+    </style>
 
     <!-- Scripts -->
     <script>
@@ -96,6 +103,13 @@
 @else
     @yield('content')
 @endif
+<div class="footer">
+    <div class="container">
+        <footer class="bs-docs-footer">
+            <p>© {{ date('Y') }} Steamclicks.ru</p>
+        </footer>
+    <div>
+</div>
 
 </body>
 <script src="/js/app.js"></script>

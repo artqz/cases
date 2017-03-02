@@ -34,85 +34,10 @@
             </div>
         </div>
     @endif
-@endsection
 
+    @widget('lastBuyItems')
 
-@section('style')
-    <style>
-        .games-list {
+    @widget('lastBuyGames')
 
-        }
-        .games-item {
-            margin-bottom: 15px;
-            display: block;
-            color: #777;
-            border: 1px solid #e3e3e3;
-            padding: 10px;
-            background-color: white;
-            position:relative;
-        }
-        .games-item img {
-            width: 100%;
-        }
-        .game-name {
-            color: #a04eb4;
-            margin-bottom: 7px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .game-price {
-            margin-top: 15px;
-            font-size: 11px;
-            color: #b2b2b2;
-        }
-
-        .last-buy-games-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .game-date {
-            font-size: 10px;
-            color: #b2b2b2;
-        }
-        .game-buy-name {
-            padding-left: 25px;
-            color: #a04eb4;
-            margin-bottom: 7px;
-            position: relative;
-        }
-        .game-buy-name img {
-            width:20px;
-            height:20px;
-            position:absolute;
-            top:-2px;
-            left:0px;
-            border-radius:50%;
-        }
-        .item-user {
-            padding-left: 25px;
-            color: #a04eb4;
-            margin-bottom: 7px;
-            position: relative;
-        }
-        .game-user img {
-            width:20px;
-            height:20px;
-            position:absolute;
-            top:-2px;
-            left:0px;
-            border-radius:50%;
-        }
-        .last-buy-games-item {
-            margin-bottom: 15px;
-            display: block;
-            color: #777;
-            border: 1px solid #e3e3e3;
-            padding: 10px;
-            background-color: white;
-            position:relative;
-        }
-    </style>
+    @widget('lastPosts')
 @endsection

@@ -1,4 +1,4 @@
-@if($last_buy_items)
+@if(count($last_buy_items))
     <div class="panel panel-default">
         <div class="panel-heading">
             Последние купленные вещи
@@ -13,8 +13,6 @@
             </ul>
             </div>
     </div>
-@else
-Пока ничего не купили
 @endif
 
 @section('style')

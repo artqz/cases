@@ -89,6 +89,12 @@
             </div>
         </div>
     @endif
+
+    @widget('lastBuyItems')
+
+    @widget('lastBuyGames')
+
+    @widget('lastPosts')
 @endsection
 
 @section('style')
