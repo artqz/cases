@@ -4,6 +4,7 @@ namespace App\Widgets;
 
 use App\Post;
 use Arrilot\Widgets\AbstractWidget;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redis;
 
 class lastPosts extends AbstractWidget
@@ -21,10 +22,11 @@ class lastPosts extends AbstractWidget
      */
     public function run()
     {
-        //
-        $storage = Redis::Connection();
 
-        $last_posts = Post::all();
+        $last_posts = Cache::remember('widget:last_posts', 1, function()
+        {
+            return Post::get();
+        });
 
         return view('widgets.lastPosts', [
             'config' => $this->config,

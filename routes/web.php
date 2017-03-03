@@ -17,10 +17,12 @@ Route::get('r/{id}/', function ($id) {
     return redirect('/')->withCookie($cookie);
 });
 Route::get('redis', function () {
-    $redis = app()->make('redis');
-    $redis->set('key1', 'testVal');
+    if (!Cache::has('items')) {
+        Cache::put('items', \App\Item::all(), 1);
+    }
 
-    return $redis->get('key1');
+    $items = Cache::get('items');
+    dd($items);
 });
 
 Route::get('cache', function () {

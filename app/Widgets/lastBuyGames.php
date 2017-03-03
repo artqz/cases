@@ -4,6 +4,7 @@ namespace App\Widgets;
 
 use App\Game;
 use Arrilot\Widgets\AbstractWidget;
+use Illuminate\Support\Facades\Cache;
 
 class lastBuyGames extends AbstractWidget
 {
@@ -20,9 +21,11 @@ class lastBuyGames extends AbstractWidget
      */
     public function run()
     {
-        //
+        $last_buy_games = Cache::remember('widget:last_buy_games', 60, function()
+        {
+            return Game::where('status', 1)->orwhere('status', 2)->limit(15)->get();
+        });
 
-        $last_buy_games = Game::where('status', 1)->orwhere('status', 2)->limit(15)->get();
         return view('widgets.lastBuyGames', [
             'config' => $this->config,
             'last_buy_games' => $last_buy_games,
