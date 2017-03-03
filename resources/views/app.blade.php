@@ -134,6 +134,7 @@
 @else
     @yield('content')
 @endif
+
 <div class="footer">
     <div class="container">
         <footer class="bs-docs-footer">

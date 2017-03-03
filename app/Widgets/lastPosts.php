@@ -4,6 +4,7 @@ namespace App\Widgets;
 
 use App\Post;
 use Arrilot\Widgets\AbstractWidget;
+use Illuminate\Support\Facades\Redis;
 
 class lastPosts extends AbstractWidget
 {
@@ -21,6 +22,7 @@ class lastPosts extends AbstractWidget
     public function run()
     {
         //
+        $storage = Redis::Connection();
 
         $last_posts = Post::all();
 

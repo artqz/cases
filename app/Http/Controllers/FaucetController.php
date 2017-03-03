@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Item;
 use App\Referral;
 use App\Stats;
 use App\Traits\CaptchaTrait;
@@ -19,7 +20,8 @@ class FaucetController extends Controller
     {
         $user = User::where('id', Auth::id())->first();
         $finishTime = (strtotime($user->last_click) + Config::get('main.period_click'));
-        return view('faucet.index', compact('finishTime'));
+
+        return view('faucet.index', compact('finishTime', 'items'));
     }
     
     public function get_click (Request $request)

@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,16 +16,18 @@ Route::get('r/{id}/', function ($id) {
     $cookie = Cookie::make('ref_id', $id, 60);
     return redirect('/')->withCookie($cookie);
 });
-Route::get('phpinfo', function () {
-    //phpinfo();
-    $url = 'http://store.steampowered.com/api/appdetails?appids=570&language=ru';
-    $tuCurl = curl_init();
-    curl_setopt($tuCurl, CURLOPT_URL, $url);
-    curl_setopt($tuCurl, CURLOPT_RETURNTRANSFER, 1);
-    $result = curl_exec($tuCurl);
-    curl_close($tuCurl);
-    $data = json_decode($result);
-    dd($data);
+Route::get('redis', function () {
+    $redis = app()->make('redis');
+    $redis->set('key1', 'testVal');
+
+    return $redis->get('key1');
+});
+
+Route::get('cache', function () {
+    $value = Cache::get('key', function () {
+        return DB::table('items')->get();
+    });
+    return $value;
 });
 
 Route::get('shop', 'ShopController@index');

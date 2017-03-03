@@ -11,7 +11,9 @@
         "caouecs/laravel-lang": "3.0.19",
         "laravelcollective/html": "5.3.x-dev",
         "davejamesmiller/laravel-breadcrumbs": "3.0.2",
-        "arrilot/laravel-widgets": "3.7.0"
+        "arrilot/laravel-widgets": "3.7.0",
+        "predis/predis": "v1.1.1",
+        "barryvdh/laravel-debugbar": "v2.3.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
