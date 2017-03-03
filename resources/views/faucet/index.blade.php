@@ -56,7 +56,7 @@
         fuckAdBlock.setOption('checkOnLoad', false);
         // and|or
         fuckAdBlock.setOption({
-            debug: true,
+            debug: false,
             checkOnLoad: false,
             resetOnEnd: false
         });
