@@ -18,6 +18,8 @@
 @endsection
 
 @section('sidebar')
+    @include('widgets.reklama')
+    
     @widget('lastBuyItems')
 
     @widget('lastBuyGames')

@@ -50,4 +50,9 @@ class PagesController extends Controller
         $items = Item::where('user_id', Auth::id())->paginate(20);
         return view('pages.myitems', compact('items'));
     }
+
+    public function index_help ()
+    {
+        return view('pages.help');
+    }
 }

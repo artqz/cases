@@ -65,10 +65,26 @@
                 </script>
             </div>
             <div class="col-sm-4">
-                Реклама
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- 336_280_2_home_steamclicks -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px"
+                     data-ad-client="ca-pub-6809180877585246"
+                     data-ad-slot="3598621329"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
             <div class="col-sm-4">
-                Реклама
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- 336_280_3_home_steamclicks -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px"
+                     data-ad-client="ca-pub-6809180877585246"
+                     data-ad-slot="5075354525"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
         </div>
         <br>
