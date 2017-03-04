@@ -29,7 +29,7 @@
 
     Если выбирается Предмет, вечером этого же дня, Мы со своего аккаунта в Steam'е (ник - <strong>Holyshit_service</strong>, да простит нас Бог, за такой ник) предложим обмен Вашему аккаунту в Steam'е.
     Поэтому Steam должен быть включен всегда.
-    <br>
+    <br><br>
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- adaptiv_help -->
     <ins class="adsbygoogle"
