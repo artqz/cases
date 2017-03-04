@@ -11,13 +11,17 @@ use App\Play;
 use Illuminate\Http\Request;
 use Cookie;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class PagesController extends Controller
 {
     public function index ()
     {
 
-        $stats = Stats::all();
+        $stats = Cache::remember('stats', 60, function()
+        {
+            return Stats::all();
+        });
 
         return view('pages.start', compact('stats'));
 

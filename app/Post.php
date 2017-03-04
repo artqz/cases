@@ -15,6 +15,11 @@ class Post extends Model
         return $this->belongsTo('App\Theme');
     }
 
+    public function channel()
+    {
+        return $this->hasManyThrough('App\Theme', 'App\Channel', 'id', 'channel_id');
+    }
+
     public function user()
     {
         return $this->belongsTo('App\User');

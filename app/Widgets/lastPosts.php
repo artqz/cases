@@ -22,11 +22,26 @@ class lastPosts extends AbstractWidget
      */
     public function run()
     {
-
-        $last_posts = Cache::remember('widget:last_posts', 1, function()
+        $last_posts = Cache::remember('widget:last_posts', 10, function()
         {
-            return Post::get();
+
+
+        $last_posts = Post::orderBy('created_at', 'desc')->get();
+            //$last_posts = Post::with(['user', 'theme'])->with('theme', 'channel')->get();
+
+        $object = new \stdClass();
+        foreach ($last_posts as $key => $value) {
+            $object->$key = new \stdClass();
+            $object->$key->post = $value;
+            $object->$key->user = $value->user;
+            $object->$key->theme = $value->theme;
+            $object->$key->channel = $value->theme->channel;
+        }
+
+            return $last_posts;
         });
+
+        //dd($last_posts);
 
         return view('widgets.lastPosts', [
             'config' => $this->config,
