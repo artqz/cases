@@ -20,9 +20,8 @@
 @section('sidebar')
     @include('widgets.reklama')
 
+    @widget('WidgetBuyItems')
 
-
-    
 @endsection
 
 @section('scripts')
