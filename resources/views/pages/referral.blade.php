@@ -18,9 +18,11 @@
 @endsection
 
 @section('sidebar')
-    @widget('lastBuyItems')
+    @widget('WidgetLastPosts')
 
-    @widget('lastBuyGames')
+    @include('widgets.reklama')
 
-    @widget('lastPosts')
+    @widget('WidgetBuyGames')
+
+    @widget('WidgetBuyItems')
 @endsection
