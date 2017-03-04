@@ -18,9 +18,9 @@
 @endsection
 
 @section('sidebar')
-    @include('widgets.reklama')
-
     @widget('WidgetBuyItems')
+
+    @include('widgets.reklama')
 
 @endsection
 
