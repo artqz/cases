@@ -22,7 +22,7 @@
 
 
 
-    @widget('lastPosts')
+    
 @endsection
 
 @section('scripts')
