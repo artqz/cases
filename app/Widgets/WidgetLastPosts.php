@@ -2,7 +2,9 @@
 
 namespace App\Widgets;
 
+use App\Post;
 use Arrilot\Widgets\AbstractWidget;
+use Illuminate\Support\Facades\Cache;
 
 class WidgetLastPosts extends AbstractWidget
 {
