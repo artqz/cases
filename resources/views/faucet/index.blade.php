@@ -20,9 +20,7 @@
 @section('sidebar')
     @include('widgets.reklama')
 
-    @widget('lastBuyItems')
 
-    @widget('lastBuyGames')
 
     @widget('lastPosts')
 @endsection
