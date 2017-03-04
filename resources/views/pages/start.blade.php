@@ -52,6 +52,7 @@
         </div>
     </div>
     <div style="background-color:#5d2763; color: white;" id="features">
+        <br>
         <div class="container">
             <div class="col-sm-4">
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
