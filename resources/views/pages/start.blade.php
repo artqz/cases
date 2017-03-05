@@ -115,7 +115,7 @@
             </span>
             <br><br>
             <div class="row" style="text-align:center;">
-                Наше видео!
+
             </div>
         </div>
     </div>

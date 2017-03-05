@@ -14,7 +14,7 @@ class UserTableSeeder extends Seeder
 {
     User::create(
         [
-            'name' => 'etc',
+            'name' => 'Admin',
             'email' => 'holyshit@steamclicks.ru',
             'email_hash' => md5('holyshit@steamclicks.ru'),
             'password' => bcrypt('SlojniyPar0l'),
