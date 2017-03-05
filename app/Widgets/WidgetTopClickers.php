@@ -21,6 +21,7 @@ class WidgetTopClickers extends AbstractWidget
      */
     public function run()
     {
+        $user = Cache::remember('widget:users', 5, function()
         {
             return User::orderBy('all_clicks', 'desc')->limit(10)->get();
         });
