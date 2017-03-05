@@ -42,7 +42,7 @@ class AppServiceProvider extends ServiceProvider
             curl_setopt($verify, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($verify, CURLOPT_RETURNTRANSFER, true);
             $result = json_decode(curl_exec($verify));
-            dd($result);
+            
             if ($result->success) {
                 return true;
             }
