@@ -15,7 +15,7 @@ class StatsTableSeeder extends Seeder
         Stats::create(
             [
                 'name' => 'users',
-                'value' => 0,
+                'value' => 3,
             ]);
         Stats::create(
             [

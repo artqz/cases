@@ -71,6 +71,22 @@ Route::get('my-games', 'PagesController@index_my_games')->middleware('auth');
 Route::get('my-items', 'PagesController@index_my_items')->middleware('auth');
 Route::get('help', 'PagesController@index_help');
 
+
+Route::get('admin/items', 'AdminController@index_items')->middleware('auth', 'userId');
+Route::get('admin/items/create-item', 'AdminController@create_item')->middleware('auth', 'userId');
+Route::post('admin/items/create-item', 'AdminController@store_item')->middleware('auth', 'userId');
+Route::get('admin/items/{id_item}/edit-item', 'AdminController@edit_item')->middleware('auth', 'userId');
+Route::post('admin/items/{id_item}/edit-item', 'AdminController@update_item')->middleware('auth', 'userId');
+Route::get('admin/items/{id_item}/delete-item', 'AdminController@delete_item')->middleware('auth', 'userId');
+
+Route::get('admin/games', 'AdminController@index_games')->middleware('auth', 'userId');
+Route::get('admin/games/create-game', 'AdminController@create_game')->middleware('auth', 'userId');
+Route::post('admin/games/create-game', 'AdminController@store_game')->middleware('auth', 'userId');
+Route::get('admin/games/{id_game}/edit-game', 'AdminController@edit_game')->middleware('auth', 'userId');
+Route::post('admin/games/{id_game}/edit-game', 'AdminController@update_game')->middleware('auth', 'userId');
+Route::get('admin/games/{id_game}/delete-game', 'AdminController@delete_game')->middleware('auth', 'userId');
+
+
 Route::get('test', 'TestController@index');
 Route::get('test/create', 'TestController@store');
 
