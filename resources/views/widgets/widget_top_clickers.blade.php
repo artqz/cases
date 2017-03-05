@@ -8,6 +8,7 @@
                 @foreach($user as $key => $value)
                     <li class="widget-users-item">
                         {{ $key+1 }}. <span class="widget-themes-user"><img src="https://secure.gravatar.com/avatar/{{ $value->email_hash }}?s=32&d=identicon">{{ $value->name }}</span>
+                        <span>({{ $value->all_clicks }})</span>
                     </li>
                 @endforeach
             </ul>
