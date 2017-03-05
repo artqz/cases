@@ -74,7 +74,7 @@
             $('[data-time]').each(function(){
                 var s = parseInt($(this).data('time'))-parseInt(new Date().getTime()/1000);
                 if(s<0)
-                    $(this).val('Получить клики').prop('disabled', false);
+                    $(this).val('Получить клики').attr('class', 'btn btn-sm btn-success').prop('disabled', false);
                 else{
                     s-=(d=Math.floor(s/60/60/24))*24*60*60;
                     s-=(h=Math.floor(s/60/60))*60*60;
