@@ -21,7 +21,7 @@ class WidgetLastPosts extends AbstractWidget
      */
     public function run()
     {
-        $last_posts = Cache::remember('widget:last_posts', 10, function()
+        $last_posts = Cache::remember('widget:last_posts', 5, function()
         {
 
 

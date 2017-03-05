@@ -23,7 +23,7 @@ class UserTableSeeder extends Seeder
     User::create(
         [
             'id' => '1001',
-            'name' => 'Anton',
+            'name' => 'Мамин парень',
             'email' => 'Anthony_1991@mail.ru',
             'email_hash' => 'c03e42d0a4fd951903e942d1242221f5',
             'password' => '$2y$10$CtxvgdnQDT.Ayd9jwL54DeuKz4KzP879UncKBosv/eX3/C.Yhgfke',

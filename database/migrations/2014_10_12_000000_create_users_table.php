@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('user_ref_id');
             $table->float('clicks');
+            $table->float('all_clicks');
             $table->timestamp('last_click')->nullable();
             $table->rememberToken();
             $table->timestamps();

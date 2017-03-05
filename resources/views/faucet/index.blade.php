@@ -22,6 +22,8 @@
 
     @include('widgets.reklama')
 
+    @widget('WidgetTopClickers')
+
     @widget('WidgetBuyGames')
 
     @widget('WidgetBuyItems')
@@ -36,7 +38,7 @@
         }
         // Function called if AdBlock is detected
         function adBlockDetected() {
-            alert('Please disable adBlock plugin');
+            alert('Пожалуйста отключите adblock или добавьте наш сайт в исключение!');
             $('[data-time]').detach();
         }
 

@@ -2,11 +2,11 @@
 
 namespace App\Widgets;
 
-use App\Item;
+use App\User;
 use Arrilot\Widgets\AbstractWidget;
 use Illuminate\Support\Facades\Cache;
 
-class WidgetBuyItems extends AbstractWidget
+class WidgetTopClickers extends AbstractWidget
 {
     /**
      * The configuration array.
@@ -21,17 +21,16 @@ class WidgetBuyItems extends AbstractWidget
      */
     public function run()
     {
-        $last_buy_items = Cache::remember('widget:last_buy_items', 5, function()
         {
-            return Item::where('status', 1)->orwhere('status', 2)->limit(15)->get();
+            return User::orderBy('all_clicks', 'desc')->limit(10)->get();
         });
 
-        return view('widgets.widget_buy_items', [
+        return view('widgets.widget_top_clickers', [
             'config' => $this->config,
-            'last_buy_items' => $last_buy_items,
+            'user' => $user,
         ]);
 
-        //return view("widgets.widget_buy_items", [
+        //return view("widgets.widget_top_clickers", [
         //    'config' => $this->config,
         //]);
     }

@@ -21,7 +21,7 @@ class WidgetBuyGames extends AbstractWidget
      */
     public function run()
     {
-        $last_buy_games = Cache::remember('widget:last_buy_games', 60, function()
+        $last_buy_games = Cache::remember('widget:last_buy_games', 5, function()
         {
             return Game::where('status', 1)->orwhere('status', 2)->limit(15)->get();
         });
