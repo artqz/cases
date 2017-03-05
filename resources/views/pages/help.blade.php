@@ -73,6 +73,8 @@
 
     @include('widgets.reklama')
 
+    @widget('WidgetTopClickers')
+
     @widget('WidgetBuyGames')
 
     @widget('WidgetBuyItems')
