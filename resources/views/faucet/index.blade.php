@@ -83,7 +83,7 @@
                             (h<10?'0'+h:h).plural(":",":",":")+
                             (m<10?'0'+m:m).plural(":",":",":")+
                             (s<10?'0'+s:s).plural("","","")
-                    ).attr('class', 'btn btn-sm btn-default').prop('disabled', true).attr('disabled', true);
+                    ).attr('class', 'btn btn-sm btn-default').prop('disabled', true);
                 }
             });
         }

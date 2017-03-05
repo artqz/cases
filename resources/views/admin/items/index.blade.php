@@ -1,9 +1,10 @@
 @extends('app')
 
-@section('title', 'Предметы - Панель - ')
+@section('title', 'Предметы - Панель управления - ')
 
 @section('content')
     @include('layouts.flash')
+    {!! Breadcrumbs::render('admin.items') !!}
     <h1>Предметы</h1>
     <div class="panel panel-default">
 

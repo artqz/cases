@@ -70,8 +70,8 @@ Route::get('profile', 'PagesController@index_profile')->middleware('auth');
 Route::get('my-games', 'PagesController@index_my_games')->middleware('auth');
 Route::get('my-items', 'PagesController@index_my_items')->middleware('auth');
 Route::get('help', 'PagesController@index_help');
-
-
+//---
+Route::get('admin', 'AdminController@index')->middleware('auth', 'userId');
 Route::get('admin/items', 'AdminController@index_items')->middleware('auth', 'userId');
 Route::get('admin/items/create-item', 'AdminController@create_item')->middleware('auth', 'userId');
 Route::post('admin/items/create-item', 'AdminController@store_item')->middleware('auth', 'userId');
@@ -86,6 +86,11 @@ Route::get('admin/games/{id_game}/edit-game', 'AdminController@edit_game')->midd
 Route::post('admin/games/{id_game}/edit-game', 'AdminController@update_game')->middleware('auth', 'userId');
 Route::get('admin/games/{id_game}/delete-game', 'AdminController@delete_game')->middleware('auth', 'userId');
 
+Route::get('admin/users', 'AdminController@index_users')->middleware('auth', 'userId');
+Route::get('admin/users/{id_user}/edit-user', 'AdminController@edit_user')->middleware('auth', 'userId');
+Route::post('admin/users/{id_user}/edit-user', 'AdminController@update_user')->middleware('auth', 'userId');
+Route::get('admin/users/{id_user}/delete-user', 'AdminController@delete_user')->middleware('auth', 'userId');
+//---
 
 Route::get('test', 'TestController@index');
 Route::get('test/create', 'TestController@store');

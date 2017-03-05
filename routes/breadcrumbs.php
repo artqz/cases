@@ -1,9 +1,32 @@
 <?php
 
-
 Breadcrumbs::register('home', function($breadcrumbs)
 {
     $breadcrumbs->push('Главная', url('/'));
+});
+
+Breadcrumbs::register('admin', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Панель управления', url('admin'));
+});
+
+Breadcrumbs::register('admin.items', function($breadcrumbs)
+{
+    $breadcrumbs->parent('admin');
+    $breadcrumbs->push('Предметы', url('admin/items'));
+});
+
+Breadcrumbs::register('admin.games', function($breadcrumbs)
+{
+    $breadcrumbs->parent('admin');
+    $breadcrumbs->push('Игры', url('admin/games'));
+});
+
+Breadcrumbs::register('admin.users', function($breadcrumbs)
+{
+    $breadcrumbs->parent('admin');
+    $breadcrumbs->push('Пользователи', url('admin/users'));
 });
 
 Breadcrumbs::register('faucet', function($breadcrumbs)

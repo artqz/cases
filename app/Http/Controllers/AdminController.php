@@ -5,14 +5,25 @@ namespace App\Http\Controllers;
 use App\Game;
 use App\Helpers\SteamHelper;
 use App\Item;
+use App\User;
 use Illuminate\Http\Request;
 use \Config;
 
 class AdminController extends Controller
 {
+    public function index ()
+    {
+        $items_count = Item::count();
+        $games_count = Game::count();
+        $users_count = User::count();
+
+        return view('admin.index', compact('items_count', 'games_count', 'users_count'));
+    }
+
+
     public function index_items ()
     {
-        $items = Item::paginate(Config::get('main.items_per_page'));
+        $items = Item::paginate(30);
 
         return view('admin.items.index', compact('items'));
     }
@@ -36,7 +47,7 @@ class AdminController extends Controller
         ]);
     }
     public function edit_item ($id_item) {
-        $item = Item::find($id_item)->first();
+        $item = Item::findOrFail($id_item);
         return view('admin.items.edit', compact('item'));
     }
 
@@ -46,7 +57,7 @@ class AdminController extends Controller
             'price' => 'required',
         ]);
 
-        $item = Item::find($id_item)->first();
+        $item = Item::findOrFail($id_item);
 
         Item::where('id', $item->id)->update([
             'price' => $request->input('price')
@@ -59,7 +70,7 @@ class AdminController extends Controller
     }
 
     public function delete_item ($id_item) {
-        $item = Item::find($id_item)->first();
+        $item = Item::findOrFail($id_item);
 
         Item::where('id', $item->id)->delete();
         return redirect('admin/items')->with([
@@ -72,7 +83,7 @@ class AdminController extends Controller
 
     public function index_games ()
     {
-        $games = Game::paginate(Config::get('main.items_per_page'));
+        $games = Game::paginate(30);
 
         return view('admin.games.index', compact('games'));
     }
@@ -96,7 +107,7 @@ class AdminController extends Controller
         ]);
     }
     public function edit_game ($id_game) {
-        $game = Game::find($id_game)->first();
+        $game = Game::findOrFail($id_game);
         return view('admin.games.edit', compact('game'));
     }
 
@@ -107,7 +118,7 @@ class AdminController extends Controller
             'data' => 'required',
         ]);
 
-        $game = Game::find($id_game)->first();
+        $game = Game::findOrFail($id_game);
 
         Game::where('id', $game->id)->update([
             'price' => $request->input('price'),
@@ -121,11 +132,57 @@ class AdminController extends Controller
     }
 
     public function delete_game ($id_game) {
-        $game = Game::find($id_game)->first();
+        $game = Game::findOrFail($id_game);
 
         Game::where('id', $game->id)->delete();
         return redirect('admin/games')->with([
             'flash_message' => 'Вы успешно удалили игру '. $game->name,
+            'flash_message_status' => 'success',
+        ]);
+    }
+
+
+    public function index_users ()
+    {
+        $users = User::paginate(30);
+
+        return view('admin.users.index', compact('users'));
+    }
+
+    public function edit_user ($id_user) {
+        $user = User::findOrFail($id_user);
+
+        return view('admin.users.edit', compact('user'));
+    }
+
+    public function update_user (Request $request, $id_user)
+    {
+        $user = User::findOrFail($id_user);
+
+        $this->validate($request, [
+            'name' => 'required|max:20|min:3',
+            'email' => 'required|email|max:255|unique:users,email,'.$user->id,
+            'clicks' => 'numeric',
+        ]);
+
+        User::where('id', $user->id)->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'clicks' => $request->input('clicks'),
+        ]);
+
+        return redirect('admin/users')->with([
+            'flash_message' => 'Вы успешно изменили пользователя '. $user->name,
+            'flash_message_status' => 'success',
+        ]);
+    }
+
+    public function delete_user ($id_user) {
+        $user = User::findOrFail($id_user);
+
+        User::where('id', $user->id)->delete();
+        return redirect('admin/users')->with([
+            'flash_message' => 'Вы успешно удалили пользователя '. $user->name,
             'flash_message_status' => 'success',
         ]);
     }

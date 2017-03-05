@@ -100,7 +100,10 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ url('/profile') }}">Профиль</a></li>
                             <li><a href="{{ url('/my-games') }}">Мои игры</a></li>
-                            <li><a href="{{ url('/my-items') }}">Мои предметы</a></li>
+                            <li><a href="{{ url('/my-items') }}">Мои предметы</a>
+                            @if (\Auth::id() == \Config::get('main.admin_id'))
+                            <li><a href="{{ url('admin') }}" style="color: red;">Панель управлления</a></li>
+                            @endif
                             <li>
                                 <a href="{{ url('/logout') }}"
                                    onclick="event.preventDefault();
