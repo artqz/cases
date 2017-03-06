@@ -51,7 +51,7 @@ class FaucetController extends Controller
 
                     User::where('id', Auth::id())->update([
                         'clicks' => $user->clicks + 1,
-                        'all_clicks' => $user->clicks + 1,
+                        'all_clicks' => $user->all_clicks + 1,
                         'last_click' => Carbon::now()->toDateTimeString(),
                     ]);
                     //Записываем статистику
@@ -59,11 +59,11 @@ class FaucetController extends Controller
 
                     if ($user->user_ref_id) {
                         User::where('id', $user->user_ref_id)->increment('clicks', Config::get('main.reward_click')*Config::get('main.ref_percent_click'));
+                        User::where('id', $user->user_ref_id)->increment('all_clicks', Config::get('main.reward_click')*Config::get('main.ref_percent_click'));
                         Referral::create([
                             'user_ref_id' => $user->user_ref_id,
                             'user_id' => Auth::id(),
                             'clicks' => Config::get('main.reward_click')*Config::get('main.ref_percent_click'),
-                            'all_clicks' => Config::get('main.reward_click')*Config::get('main.ref_percent_click'),
                         ]);
                         //Записываем статистику
                         Stats::where('name', 'clicks')->increment('value', Config::get('main.reward_click')*Config::get('main.ref_percent_click'));
