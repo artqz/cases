@@ -33,7 +33,11 @@
 
                     <td>{{ $item->hashcode ? $item->hashcode : 'Нет'  }}</td>
 
-                    <td><a class="btn btn-xs btn-primary" href="{{ url('admin/items/'.$item->id.'/edit-item') }}">Редактировать</a> <a class="btn btn-xs btn-danger" href="{{ url('admin/items/'.$item->id.'/delete-item') }}" onclick="return confirm('Точно удалить?')">Удалить</a></td>
+                    <td>
+                        <a class="btn btn-xs btn-success" href="{{ url('admin/items/'.$item->id.'/give-item') }}" onclick="return confirm('Точно выдал?')">Выдал</a>
+                        <a class="btn btn-xs btn-primary" href="{{ url('admin/items/'.$item->id.'/edit-item') }}">Редактировать</a>
+                        <a class="btn btn-xs btn-danger" href="{{ url('admin/items/'.$item->id.'/delete-item') }}" onclick="return confirm('Точно удалить?')">Удалить</a>
+                    </td>
                 </tr>
             @endforeach
             </tbody>

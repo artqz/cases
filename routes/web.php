@@ -78,6 +78,7 @@ Route::post('admin/items/create-item', 'AdminController@store_item')->middleware
 Route::get('admin/items/{id_item}/edit-item', 'AdminController@edit_item')->middleware('auth', 'userId');
 Route::post('admin/items/{id_item}/edit-item', 'AdminController@update_item')->middleware('auth', 'userId');
 Route::get('admin/items/{id_item}/delete-item', 'AdminController@delete_item')->middleware('auth', 'userId');
+Route::get('admin/items/{id_item}/give-item', 'AdminController@give_item')->middleware('auth', 'userId');
 
 Route::get('admin/games', 'AdminController@index_games')->middleware('auth', 'userId');
 Route::get('admin/games/create-game', 'AdminController@create_game')->middleware('auth', 'userId');

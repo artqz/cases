@@ -69,6 +69,24 @@ class AdminController extends Controller
         ]);
     }
 
+    public function give_item (Request $request, $id_item)
+    {
+        $this->validate($request, [
+            'price' => 'required',
+        ]);
+
+        $item = Item::findOrFail($id_item);
+
+        Item::where('id', $item->id)->update([
+            'status' => 2
+        ]);
+
+        return redirect('admin/items')->with([
+            'flash_message' => 'Вы успешно выдали предмет '. $item->name,
+            'flash_message_status' => 'success',
+        ]);
+    }
+
     public function delete_item ($id_item) {
         $item = Item::findOrFail($id_item);
 
