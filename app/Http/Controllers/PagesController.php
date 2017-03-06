@@ -18,10 +18,8 @@ class PagesController extends Controller
     public function index ()
     {
 
-        $stats = Cache::remember('stats', 60, function()
-        {
-            return Stats::all();
-        });
+        $stats =  Stats::all();
+
 
         return view('pages.start', compact('stats'));
 
