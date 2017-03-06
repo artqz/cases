@@ -24,14 +24,8 @@ class ShopController extends Controller
         {
             return Item::where('status', 0)->orderBy('price', 'desc')->limit(4)->get();
         });
-        $last_buy_items = Cache::remember('shop:last_buy_items', 10, function()
-        {
-            return Item::where('status', 1)->orwhere('status', 2)->limit(15)->get();
-        });
-        $last_buy_games = Cache::remember('shop:last_buy_games', 10, function()
-        {
-            return Game::where('status', 2)->limit(15)->get();
-        });
+        $last_buy_items = Item::where('status', 1)->orwhere('status', 2)->limit(15)->get();
+        $last_buy_games = Game::where('status', 2)->limit(15)->get();
         return view('shop.index', compact('games', 'items', 'last_buy_items', 'last_buy_games'));
     }
 
