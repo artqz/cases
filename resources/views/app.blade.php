@@ -141,7 +141,7 @@
 <div class="footer">
     <div class="container">
         <footer class="bs-docs-footer">
-            <p>© {{ date('Y') }} Steamclicks.ru</p>
+            <p>© {{ date('Y') }} Steamclicks.ru - webmaster@steamclicks.ru</p>
         </footer>
     <div>
 </div>
