@@ -16,6 +16,7 @@
                     <th>Наименование</th>
                     <th>Эл. почта</th>
                     <th>Клики</th>
+                    <th>Реф</th>
                     <th>Управление</th>
                 </tr>
             </thead>
@@ -29,6 +30,8 @@
                     <td>{{ $user->email }}</td>
 
                     <td>{{ $user->clicks }}</td>
+
+                    <td>{{ $user->user_ref_id }}</td>
 
                     <td><a class="btn btn-xs btn-primary" href="{{ url('admin/users/'.$user->id.'/edit-user') }}">Редактировать</a> <a class="btn btn-xs btn-danger" href="{{ url('admin/users/'.$user->id.'/delete-user') }}" onclick="return confirm('Точно удалить?')">Удалить</a></td>
                 </tr>
