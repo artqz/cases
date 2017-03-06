@@ -71,10 +71,6 @@ class AdminController extends Controller
 
     public function give_item (Request $request, $id_item)
     {
-        $this->validate($request, [
-            'price' => 'required',
-        ]);
-
         $item = Item::findOrFail($id_item);
 
         Item::where('id', $item->id)->update([
