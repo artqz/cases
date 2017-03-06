@@ -8,6 +8,7 @@
         {!! Breadcrumbs::render('faucet') !!}
         <div class="col-sm-6 col-md-6">
             <p>Здесь ты можешь получать клики каждые полчаса. Для получения клика необходимо подтвердить что ты человек!</p>
+            <p>Клики требуются для приобретения игр и предметов Steam (Dota 2, Counter-strike: GO, Team-fortress 2).</p>
             <form class="form-horizontal" role="form" method="POST" action="{{ url('faucet/get-click') }}">
                 {{ csrf_field() }}
                 <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
