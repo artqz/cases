@@ -6,23 +6,36 @@
     <div>
         @include('layouts.flash')
         {!! Breadcrumbs::render('faucet') !!}
-        <p>Здесь ты можешь получать клики каждые полчаса. Для получения клика необходимо подтвердить что ты человек!</p>
-        <form class="form-horizontal" role="form" method="POST" action="{{ url('faucet/get-click') }}">
-            {{ csrf_field() }}
-            <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
-            <br>
-            <input type="submit" data-time="{{ $finishTime }}" class="btn btn-sm btn-success" value="Получить клики"/>
-        </form>
+        <div class="col-sm-6 col-md-6">
+            <p>Здесь ты можешь получать клики каждые полчаса. Для получения клика необходимо подтвердить что ты человек!</p>
+            <form class="form-horizontal" role="form" method="POST" action="{{ url('faucet/get-click') }}">
+                {{ csrf_field() }}
+                <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
+                <br>
+                <input type="submit" data-time="{{ $finishTime }}" class="btn btn-sm btn-success" value="Получить клики"/>
+            </form>
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- 336_280_1_home_steamclicks -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:336px;height:280px"
+                 data-ad-client="ca-pub-6809180877585246"
+                 data-ad-slot="3807430925"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
 
     </div>
 @endsection
 
 @section('sidebar')
-    @widget('WidgetLastPosts')
+    @widget('WidgetTopClickers')
 
     @include('widgets.reklama')
 
-    @widget('WidgetTopClickers')
+    @widget('WidgetLastPosts')
 
     @widget('WidgetBuyGames')
 
