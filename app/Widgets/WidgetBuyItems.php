@@ -23,7 +23,7 @@ class WidgetBuyItems extends AbstractWidget
     {
         $last_buy_items = Cache::remember('widget:last_buy_items', 5, function()
         {
-            return Item::where('status', 1)->orwhere('status', 2)->limit(15)->get();
+            return Item::where('status', 1)->orwhere('status', 2)->orderBy('updated_at', 'desc')->limit(15)->get();
         });
 
         return view('widgets.widget_buy_items', [
