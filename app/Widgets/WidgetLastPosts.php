@@ -25,7 +25,7 @@ class WidgetLastPosts extends AbstractWidget
         {
 
 
-            $last_posts = Post::orderBy('created_at', 'desc')->get();
+            $last_posts = Post::orderBy('created_at', 'desc')->limit(15)->get();
             //$last_posts = Post::with(['user', 'theme'])->with('theme', 'channel')->get();
 
             $object = new \stdClass();
