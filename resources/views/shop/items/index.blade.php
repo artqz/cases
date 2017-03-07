@@ -6,7 +6,7 @@
     <div>
         @include('layouts.flash')
         {!! Breadcrumbs::render('items') !!}
-        <h1>Вещи</h1>
+        <h1>Предметы</h1>
         <div class="row items-categories">
             @foreach($categories as $category)
                 <div class="col-sm-3 col-md-3">
@@ -21,11 +21,12 @@
         <div class="items-list row">
             @foreach($items as $item)
                 <div class="col-xs-6 col-sm-3 col-md-3">
-                    <div class="items-item">
+                    <div class="item-card">
                         <div class="item-name">{{ $item->name }}</div>
-                        <img src="{{ $item->icon_url }}" alt="{{ $item->name }}">
-                        <div class="item-price">Цена: {{ $item->price }} Клик.</div>
-                        <div class="pull-right"><a href="{{ url('/shop/items/'. $item->id .'/buy-item') }}" class="btn btn-xs btn-default">Купить</a></div>
+                        <div class="category-icon"><img src="{{ url('images/games/icons/'.$item->category->appid.'.jpg') }}" alt="{{ $item->category->name }}"></div>
+                        <div class="item-image"><img src="{{ $item->icon_url }}" alt="{{ $item->name }}"></div>
+                        <div class="price"><span>{{ $item->price }}</span></div>
+                        <div><a href="{{ url('/shop/items/'. $item->id .'/buy-item') }}" class="btn btn-sm btn-success buy">Купить</a></div>
                         <div class="clearfix"></div>
                     </div>
                 </div>
