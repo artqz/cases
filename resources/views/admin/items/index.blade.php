@@ -50,10 +50,8 @@
 @section('sidebar')
     <div class="panel panel-default">
         <div class="panel-body">
-            <div>Тут можно добавить Категорию или предмет</div><br>
+            <div>Тут можно добавить предмет</div><br>
             <a class="btn btn-sm btn-success" href="{{ url('admin/items/create-item') }}">Добавить предмет</a>
-            <hr>
-            <a class="btn btn-sm btn-success" href="{{ url('admin/items/categories/create-category') }}">Добавить категорию</a>
         </div>
     </div>
 @endsection
