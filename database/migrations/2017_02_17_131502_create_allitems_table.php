@@ -16,7 +16,7 @@ class CreateAllitemsTable extends Migration
         Schema::create('all_items', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('appid');
-            $table->bigInteger('classid');
+            $table->integer('classid');
             $table->integer('instanceid');
             $table->text('icon_url');
             $table->text('icon_url_large');

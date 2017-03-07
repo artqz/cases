@@ -7692,27 +7692,6 @@ body {
   font-family: 'Fira Sans',sans-serif;
 }
 
-.price {
-  padding-right: 5px;
-  color: #d2b524;
-  font-size: 12px;
-}
-
-.price:after {
-  content: '';
-  background-image: url(/images/icons/clickcoin_mini.png);
-  /* подставьте сюда адрес своего спрайта */
-  background-repeat: no-repeat;
-  background-position: 0 0;
-  margin: 0;
-  left: 5px;
-  top: 7px;
-  position: relative;
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-}
-
 .widget-users-list {
   list-style: none;
   padding: 0;
@@ -7882,56 +7861,6 @@ body {
 
 .items-categories .category .category-icon {
   border-radius: 3px;
-}
-
-.items-list .item-card {
-  background-color: #fff;
-  padding: 5px 10px;
-  margin-bottom: 15px;
-  border-radius: 3px;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-  position: relative;
-  display: block;
-}
-
-.items-list .item-card .category-icon img {
-  border-radius: 3px;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 20px;
-  opacity: .8;
-}
-
-.items-list .item-card .item-image {
-  margin: 0 auto;
-  text-align: center;
-}
-
-.items-list .item-card .item-image img {
-  width: auto;
-  border-radius: 3px;
-  max-width: 100%;
-}
-
-.items-list .item-card .item-name {
-  padding-left: 30px;
-  line-height: 2.2;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: #949494;
-  margin-bottom: 10px;
-}
-
-.items-list .item-card .price {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.items-list .item-card .buy {
-  width: 100%;
-  margin-bottom: 4px;
 }
 
 .games-item {
