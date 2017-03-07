@@ -68,6 +68,7 @@ class SteamHelper implements SteamContract
         if ($data) {
             if ($data->success == true) {
                 foreach ($data->rgDescriptions as $item) {
+
                     if (!$this->searchItemToDB($item->appid, $item->classid, $item->instanceid)) {
 
                         if (property_exists($item, 'icon_url_large')) {
@@ -102,6 +103,10 @@ class SteamHelper implements SteamContract
                             'tradable' => $item->tradable,
                             'marketable' => $item->marketable,
                         ]);
+
+                        if (!$this->searchGameToDB ($item->appid)) {
+                            $this->getGame($item->appid);
+                        }
                     }
                 }
             }

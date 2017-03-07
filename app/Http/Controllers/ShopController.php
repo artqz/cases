@@ -29,10 +29,18 @@ class ShopController extends Controller
         return view('shop.index', compact('games', 'items', 'last_buy_items', 'last_buy_games'));
     }
 
-    public function index_items (SteamHelper $steam) {
-        $items = Item::where('status', 0)->orderBy('price', 'desc')->paginate(Config::get('main.items_per_page'));
 
-        return view('shop.items.index', compact('items','last_buy_items'));
+    public function index_items ($id_game = null) {
+
+        if($id_game) {
+            $items = Item::where('appid', $id_game)->where('status', 0)->orderBy('price', 'desc')->paginate(Config::get('main.items_per_page'));
+        }
+        else {
+            $items = Item::where('status', 0)->orderBy('price', 'desc')->paginate(Config::get('main.items_per_page'));
+        }
+        $categories = Item::groupBy('appid')->get();
+
+        return view('shop.items.index', compact('items','last_buy_items', 'categories'));
     }
     public function create_item () {
         return view('shop.items.create');

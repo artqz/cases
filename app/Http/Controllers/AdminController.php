@@ -20,7 +20,6 @@ class AdminController extends Controller
         return view('admin.index', compact('items_count', 'games_count', 'users_count'));
     }
 
-
     public function index_items ()
     {
         $items = Item::paginate(30);

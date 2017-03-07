@@ -139,6 +139,37 @@ body {
   left:0px;
   border-radius:50%;
 }
+//---Shop---
+.items-categories {
+
+}
+
+.items-categories .category {
+  background-color: #fff;
+  padding: 5px 10px;
+  border-radius: 3px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  display: block;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: .5;
+}
+
+.items-categories .category:hover {
+  opacity: 1;
+}
+
+.items-categories .category.active {
+  opacity: 1;
+}
+
+.items-categories .category .category-icon {
+  border-radius: 3px;
+}
+
 //------
 .games-list {
 

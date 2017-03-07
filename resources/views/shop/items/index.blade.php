@@ -7,6 +7,17 @@
         @include('layouts.flash')
         {!! Breadcrumbs::render('items') !!}
         <h1>Вещи</h1>
+        <div class="row items-categories">
+            @foreach($categories as $category)
+                <div class="col-xs-6 col-sm-3 col-md-3">
+                    <a class="category {{ Request::is('shop/items/g/'.$category->category->appid) ? 'active' : '' }}" href="{{ url('shop/items/g/'.$category->category->appid) }}">
+                        <img class="category-icon" src="{{ url('images/games/icons/'.$category->category->appid.'.jpg') }}" alt="{{ $category->category->name }}">
+                        <span class="category-name">{{ $category->category->name }}</span>
+                    </a>
+                </div>
+            @endforeach
+        </div>
+        <br>
         <div class="items-list row">
             @foreach($items as $item)
                 <div class="col-xs-6 col-sm-3 col-md-3">

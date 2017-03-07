@@ -34,6 +34,7 @@ Route::get('cache', function () {
 
 Route::get('shop', 'ShopController@index');
 Route::get('shop/items', 'ShopController@index_items');
+Route::get('shop/items/g/{id_game}', 'ShopController@index_items');
 Route::get('shop/items/update-items', 'ShopController@update_items')->middleware('auth', 'userId');
 Route::get('shop/items/create-item', 'ShopController@create_item')->middleware('auth', 'userId');
 Route::post('shop/items/create-item', 'ShopController@store_item')->middleware('auth', 'userId');
@@ -79,6 +80,7 @@ Route::get('admin/items/{id_item}/edit-item', 'AdminController@edit_item')->midd
 Route::post('admin/items/{id_item}/edit-item', 'AdminController@update_item')->middleware('auth', 'userId');
 Route::get('admin/items/{id_item}/delete-item', 'AdminController@delete_item')->middleware('auth', 'userId');
 Route::get('admin/items/{id_item}/give-item', 'AdminController@give_item')->middleware('auth', 'userId');
+
 
 Route::get('admin/games', 'AdminController@index_games')->middleware('auth', 'userId');
 Route::get('admin/games/create-game', 'AdminController@create_game')->middleware('auth', 'userId');
