@@ -4,6 +4,10 @@
 
 @section('content')
     <div>
+        <span class="alert alert-warning alert-dismissible" style="display: block">
+            <h4>Внимание!</h4>
+            <p>Для того чтобы получить купленный предмет, необходимо добавить в друзья наш steam-аккаунт <b>djoctuk</b>, и написать ему в сообщение хэшкод покупки, например <b>718dbde1e9d843e5b366ca6f7c538d7a</b>. После чего мы передадим Вам ваш предмет!</p>
+        </span>
         {!! Breadcrumbs::render('myitems') !!}
         <ul class="items-list">
             @foreach($items as $item)

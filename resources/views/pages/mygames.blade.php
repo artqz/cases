@@ -4,6 +4,10 @@
 
 @section('content')
     <div>
+        <span class="alert alert-warning alert-dismissible" style="display: block">
+            <h4>Внимание!</h4>
+            <p>Для того чтобы получить купленную игру, необходимо  скопировать ссылку и ввести её в адресную строку браузера.</p>
+        </span>
         {!! Breadcrumbs::render('mygames') !!}
         <ul class="items-list">
             @foreach($games as $game)
