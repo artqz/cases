@@ -6,6 +6,8 @@ use App\Game;
 use App\Helpers\Contracts\SteamContract;
 use App\Item;
 use DB;
+use Intervention\Image\Facades\Image;
+
 //97E5CDC7C832E47EC6168D6F728E837E
 //76561198000501285
 
@@ -90,19 +92,33 @@ class SteamHelper implements SteamContract
                             $icon_url_full = 'http://community.edgecast.steamstatic.com/economy/image/'.$item->icon_url;
                         }
 
+                        $url = $icon_url_full;
+                        $category = 'items';
+                        $file_name = $item->classid;
+                        $file_info = getimagesize($url);
+                        $file_ext = str_replace('image/', '.', $file_info['mime'] );
+
+                        $save = Image::make($url)->resize(null, 100, function ($constraint) {
+                            $constraint->aspectRatio();
+                            $constraint->upsize();
+                        })->save(public_path('images/'.$category.'/'.$file_name.$file_ext));
+
+                        if ($save) {
+
                             DB::table('all_items')->insertGetId([
-                            'appid' => $item->appid,
-                            'classid' => $item->classid,
-                            'instanceid' => $item->instanceid,
-                            'icon_url' => $icon_url_full,
-                            'icon_url_large' => $icon_url_large_full,
-                            'name' => $item->name,
-                            'market_hash_name' => $market_hash_name,
-                            'market_name' => $item->market_name,
-                            'type' => $item->type,
-                            'tradable' => $item->tradable,
-                            'marketable' => $item->marketable,
-                        ]);
+                                'appid' => $item->appid,
+                                'classid' => $item->classid,
+                                'instanceid' => $item->instanceid,
+                                'icon_url' => url('images/'.$category.'/'.$file_name.$file_ext),
+                                'icon_url_large' => $icon_url_large_full,
+                                'name' => $item->name,
+                                'market_hash_name' => $market_hash_name,
+                                'market_name' => $item->market_name,
+                                'type' => $item->type,
+                                'tradable' => $item->tradable,
+                                'marketable' => $item->marketable,
+                            ]);
+                        }
 
                         if (!$this->searchGameToDB ($item->appid)) {
                             $this->getGame($item->appid);
