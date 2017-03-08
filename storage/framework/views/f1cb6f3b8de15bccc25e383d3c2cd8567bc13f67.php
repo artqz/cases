@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
-    <title>@yield('title'){{ config('app.name', 'Laravel') }}</title>
+    <title><?php echo $__env->yieldContent('title'); ?><?php echo e(config('app.name', 'Laravel')); ?></title>
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
-    @yield('style')
+    <?php echo $__env->yieldContent('style'); ?>
     <style>
         .footer {
             line-height: 4;
@@ -70,7 +70,7 @@
             </button>
 
             <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}" style="padding: 0">
+            <a class="navbar-brand" href="<?php echo e(url('/')); ?>" style="padding: 0">
                 <img src="/images/logo_click.png" alt="Steamclicks" style="width: 40px; margin-top: 3px; margin-left: 15px; margin-right: 15px; padding: 0;">
             </a>
         </div>
@@ -78,70 +78,71 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                @include('layouts.menu')
+                <?php echo $__env->make('layouts.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
             </ul>
 
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
-                @if (Auth::guest())
-                    <li><a href="{{ url('/login') }}">Войти</a></li>
-                    <li><a href="{{ url('/register') }}">Регистрация</a></li>
-                @else
+                <?php if(Auth::guest()): ?>
+                    <li><a href="<?php echo e(url('/login')); ?>">Войти</a></li>
+                    <li><a href="<?php echo e(url('/register')); ?>">Регистрация</a></li>
+                <?php else: ?>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="">
                             <div style="position: relative;">
-                            <img src="https://secure.gravatar.com/avatar/{{ Auth::user()->email_hash }}?s=32&d=identicon" style="width:32px; height:32px; position:absolute; left:10px; border-radius:50%;">
-                                <div class="user-name" style="padding-left: 50px; line-height: 1; color: #a04eb4;">{{ Auth::user()->name }} <span class="caret"></span></div>
-                                <div class="user-clicks" style="padding-left: 50px; line-height: 1; font-size: 12px;">Клики: {{Auth::user()->clicks}}</div>
+                            <img src="https://secure.gravatar.com/avatar/<?php echo e(Auth::user()->email_hash); ?>?s=32&d=identicon" style="width:32px; height:32px; position:absolute; left:10px; border-radius:50%;">
+                                <div class="user-name" style="padding-left: 50px; line-height: 1; color: #a04eb4;"><?php echo e(Auth::user()->name); ?> <span class="caret"></span></div>
+                                <div class="user-clicks" style="padding-left: 50px; line-height: 1; font-size: 12px;">Клики: <?php echo e(Auth::user()->clicks); ?></div>
                             </div>    
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ url('/profile') }}">Профиль</a></li>
-                            <li><a href="{{ url('/my-games') }}">Мои игры</a></li>
-                            <li><a href="{{ url('/my-items') }}">Мои предметы</a>
-                            @if (\Auth::id() == \Config::get('main.admin_id'))
-                            <li><a href="{{ url('admin') }}" style="color: red;">Панель управлления</a></li>
-                            @endif
+                            <li><a href="<?php echo e(url('/profile')); ?>">Профиль</a></li>
+                            <li><a href="<?php echo e(url('/my-games')); ?>">Мои игры</a></li>
+                            <li><a href="<?php echo e(url('/my-items')); ?>">Мои предметы</a>
+                            <?php if(\Auth::id() == \Config::get('main.admin_id')): ?>
+                            <li><a href="<?php echo e(url('admin')); ?>" style="color: red;">Панель управлления</a></li>
+                            <?php endif; ?>
                             <li>
-                                <a href="{{ url('/logout') }}"
+                                <a href="<?php echo e(url('/logout')); ?>"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
                                     Выйти
                                 </a>
 
-                                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
+                                <form id="logout-form" action="<?php echo e(url('/logout')); ?>" method="POST" style="display: none;">
+                                    <?php echo e(csrf_field()); ?>
+
                                 </form>
                             </li>
                         </ul>
                     </li>
-                @endif
+                <?php endif; ?>
             </ul>
         </div>
     </div>
 </nav>
-@if(!Request::is('/'))
+<?php if(!Request::is('/')): ?>
 <div id="app" class="container">
     <div class="row">
         <div class="col-sm-9">
-            @yield('content')
+            <?php echo $__env->yieldContent('content'); ?>
         </div>
 
         <div class="col-sm-3">
-            @yield('sidebar')
+            <?php echo $__env->yieldContent('sidebar'); ?>
         </div>
     </div>
 </div>
-@else
-    @yield('content')
-@endif
+<?php else: ?>
+    <?php echo $__env->yieldContent('content'); ?>
+<?php endif; ?>
 
 <div class="footer">
     <div class="container">
         <footer class="bs-docs-footer">
-            <p>© {{ date('Y') }} Steamclicks.ru - По всем вопросам писать на webmaster@steamclicks.ru</p>
+            <p>© <?php echo e(date('Y')); ?> Steamclicks.ru - По всем вопросам писать на webmaster@steamclicks.ru</p>
         </footer>
     <div>
 </div>
@@ -150,7 +151,7 @@
 <script src="/js/app.js"></script>
 <script src="/js/fuckadblock.js"></script>
 
-@yield('scripts')
+<?php echo $__env->yieldContent('scripts'); ?>
 
 <script src='https://www.google.com/recaptcha/api.js'></script>
 
