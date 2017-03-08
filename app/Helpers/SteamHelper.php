@@ -252,19 +252,33 @@ class SteamHelper implements SteamContract
                         }
                         else $website = $data->data->website;
 
-                        DB::table('all_games')->insertGetId([
-                        'type' => $data->data->type,
-                        'name' => $data->data->name,
-                        'appid' => $data->data->steam_appid,
-                        'required_age' => $data->data->required_age,
-                        'is_free' => $data->data->is_free,
-                        'detailed_description' => $data->data->detailed_description,
-                        'about_the_game' => $data->data->about_the_game,
-                        'short_description' => $data->data->short_description,
-                        'supported_languages' => $data->data->supported_languages,
-                        'header_image' => $data->data->header_image,
-                        'website' => $website,
-                    ]);
+                        $url = $data->data->header_image;
+                        $category = 'games';
+                        $file_name = $data->data->steam_appid;
+                        $file_info = getimagesize($url);
+                        $file_ext = str_replace('image/', '.', $file_info['mime'] );
+
+                        $save = Image::make($url)->resize(null, 100, function ($constraint) {
+                            $constraint->aspectRatio();
+                            $constraint->upsize();
+                        })->save(public_path('images/'.$category.'/'.$file_name.$file_ext));
+
+                        if ($save) {
+                            DB::table('all_games')->insertGetId([
+                                'type' => $data->data->type,
+                                'name' => $data->data->name,
+                                'appid' => $data->data->steam_appid,
+                                'required_age' => $data->data->required_age,
+                                'is_free' => $data->data->is_free,
+                                'detailed_description' => $data->data->detailed_description,
+                                'about_the_game' => $data->data->about_the_game,
+                                'short_description' => $data->data->short_description,
+                                'supported_languages' => $data->data->supported_languages,
+                                'header_image' => url('images/'.$category.'/'.$file_name.$file_ext),
+                                'website' => $website,
+                            ]);
+                        }
+
                 }
 
             }
