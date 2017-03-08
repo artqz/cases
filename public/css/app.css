@@ -7696,6 +7696,7 @@ body {
   padding-right: 5px;
   color: #d2b524;
   font-size: 12px;
+  cursor: default;
 }
 
 .price:after {
@@ -7932,6 +7933,24 @@ body {
 .items-list .item-card .buy {
   width: 100%;
   margin-bottom: 4px;
+  border: 1px solid #eaedef;
+  border-radius: 3px;
+  background-color: #f5f8fa;
+  color: grey;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  padding: 5px 10px;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.items-list .item-card .buy:hover {
+  border: 1px solid #ecc75e;
+  background-color: #ffd560;
+  color: #a0790c;
+  -webkit-transition: 1s;
+  transition: 1s;
 }
 
 .games-item {

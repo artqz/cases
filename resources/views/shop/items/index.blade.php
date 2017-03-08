@@ -26,7 +26,7 @@
                         <div class="category-icon"><img src="{{ url('images/games/icons/'.$item->category->appid.'.jpg') }}" alt="{{ $item->category->name }}"></div>
                         <div class="item-image"><img src="{{ $item->icon_url }}" alt="{{ $item->name }}"></div>
                         <div class="price"><span>{{ $item->price }}</span></div>
-                        <div><a href="{{ url('/shop/items/'. $item->id .'/buy-item') }}" class="btn btn-sm btn-success buy">Купить</a></div>
+                        <div><a href="{{ url('/shop/items/'. $item->id .'/buy-item') }}" class="buy">Купить</a></div>
                         <div class="clearfix"></div>
                     </div>
                 </div>
