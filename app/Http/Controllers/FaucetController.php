@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Click;
 use App\Item;
 use App\Referral;
 use App\Stats;
@@ -54,9 +55,17 @@ class FaucetController extends Controller
                         'all_clicks' => $user->all_clicks + 1,
                         'last_click' => Carbon::now()->toDateTimeString(),
                     ]);
+
+                    //Записываем в таблицу для подсчета рейтинга
+                    Click::create([
+                        'user_id' => Auth::id(),
+                        'clicks' => Config::get('main.reward_click'),
+                    ]);
+
                     //Записываем статистику
                     Stats::where('name', 'clicks')->increment('value', Config::get('main.reward_click'));
 
+                    //Бонус за реф
                     if ($user->user_ref_id) {
                         User::where('id', $user->user_ref_id)->increment('clicks', Config::get('main.reward_click')*Config::get('main.ref_percent_click'));
                         User::where('id', $user->user_ref_id)->increment('all_clicks', Config::get('main.reward_click')*Config::get('main.ref_percent_click'));
