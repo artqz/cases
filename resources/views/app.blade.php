@@ -123,7 +123,7 @@
     </div>
 </nav>
 @if(!Request::is('/'))
-<div id="app" class="container">
+<div class="container">
     <div class="row">
         <div class="col-sm-9">
             @yield('content')

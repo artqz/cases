@@ -16,10 +16,14 @@ use Session;
 class ShopController extends Controller
 {
     public function index () {
-        $games =  Game::where('status', 0)->orderBy('price', 'desc')->limit(4)->get();
- 
-        $items = Item::where('status', 0)->orderBy('price', 'desc')->limit(4)->get();
-
+        $games = Cache::remember('shop:games', 5, function()
+        {
+            return Game::where('status', 0)->orderBy('price', 'desc')->limit(4)->get();
+        });
+        $items = Cache::remember('shop:items', 5, function()
+        {
+            return Item::where('status', 0)->orderBy('price', 'desc')->limit(4)->get();
+        });
         $last_buy_items = Item::where('status', 1)->orderBy('updated_at', 'desc')->orwhere('status', 2)->limit(15)->get();
         $last_buy_games = Game::where('status', 2)->orderBy('updated_at', 'desc')->limit(15)->get();
         return view('shop.index', compact('games', 'items', 'last_buy_items', 'last_buy_games'));
