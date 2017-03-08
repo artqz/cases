@@ -1,6 +1,4 @@
 /node_modules
-/public/images/items
-/public/images/games
 /public/storage
 /storage/*.key
 /vendor
