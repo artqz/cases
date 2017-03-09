@@ -9,7 +9,7 @@
         "laravel/framework": "5.3.*",
         "barryvdh/laravel-ide-helper": "v2.2.2",
         "caouecs/laravel-lang": "3.0.19",
-        "laravelcollective/html": "5.3.x-dev",
+        "laravelcollective/html": "5.3.*",
         "davejamesmiller/laravel-breadcrumbs": "3.0.2",
         "arrilot/laravel-widgets": "3.7.0",
         "predis/predis": "v1.1.1",
