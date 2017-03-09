@@ -49,38 +49,44 @@ class FaucetController extends Controller
             if ($result->success) {
 
                 if (time() - strtotime($user->last_click) >= Config::get('main.period_click')) {
+                    if(date("w",time()) == 7) {
+                        $clicks = random_int(Config::get('main.reward_click_min'),Config::get('main.reward_click_max'))*2;
+                    }
+                    else {
+                        $clicks = random_int(Config::get('main.reward_click_min'),Config::get('main.reward_click_max'));
+                    }
 
                     User::where('id', Auth::id())->update([
-                        'clicks' => $user->clicks + 1,
-                        'all_clicks' => $user->all_clicks + 1,
+                        'clicks' => $user->clicks + $clicks, //1
+                        'all_clicks' => $user->all_clicks + $clicks, //1
                         'last_click' => Carbon::now()->toDateTimeString(),
                     ]);
 
                     //Записываем в таблицу для подсчета рейтинга
                     Click::create([
                         'user_id' => Auth::id(),
-                        'clicks' => Config::get('main.reward_click'),
+                        'clicks' => $clicks,
                     ]);
 
                     //Записываем статистику
-                    Stats::where('name', 'clicks')->increment('value', Config::get('main.reward_click'));
+                    Stats::where('name', 'clicks')->increment('value', $clicks);
 
                     //Бонус за реф
                     if ($user->user_ref_id) {
-                        User::where('id', $user->user_ref_id)->increment('clicks', Config::get('main.reward_click')*Config::get('main.ref_percent_click'));
-                        User::where('id', $user->user_ref_id)->increment('all_clicks', Config::get('main.reward_click')*Config::get('main.ref_percent_click'));
+                        User::where('id', $user->user_ref_id)->increment('clicks', $clicks*Config::get('main.ref_percent_click'));
+                        User::where('id', $user->user_ref_id)->increment('all_clicks', $clicks*Config::get('main.ref_percent_click'));
                         Referral::create([
                             'user_ref_id' => $user->user_ref_id,
                             'user_id' => Auth::id(),
-                            'clicks' => Config::get('main.reward_click')*Config::get('main.ref_percent_click'),
+                            'clicks' => $clicks*Config::get('main.ref_percent_click'),
                         ]);
                         //Записываем статистику
-                        Stats::where('name', 'clicks')->increment('value', Config::get('main.reward_click')*Config::get('main.ref_percent_click'));
+                        Stats::where('name', 'clicks')->increment('value', $clicks*Config::get('main.ref_percent_click'));
                     }
                     $finishTime = (time() + Config::get('main.period_click'));
 
                     return redirect('faucet')->with([
-                        'flash_message' => 'Вы получили '. Config::get('main.reward_click') .' Клик.',
+                        'flash_message' => 'Вы получили '. $clicks .' Клик.',
                         'flash_message_status' => 'success',
                     ]);
                 }

@@ -6,6 +6,8 @@ return [
     'admin_id' => 1,
     'period_click' => 0.5 * 60 * 60,
     'reward_click' => 1,
+    'reward_click_min' => 1,
+    'reward_click_max' => 3,
     'ref_percent_click' => 0.2,
     //Forum
     'channels_per_page' => 10,
