@@ -3,7 +3,7 @@
 /public/images/items/*
 /public/images/games/*
 /storage/*.key
-/storage/framework
+/storage/framework/
 /vendor
 /.idea
 Homestead.json
