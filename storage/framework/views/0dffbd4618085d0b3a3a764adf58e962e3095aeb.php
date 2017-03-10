@@ -32,6 +32,8 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('sidebar'); ?>
+    <?php echo app('arrilot.widget')->run('WidgetChat'); ?>
+
     <?php echo app('arrilot.widget')->run('WidgetTopClickers'); ?>
 
     <?php echo $__env->make('widgets.reklama', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

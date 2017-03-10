@@ -157,4 +157,8 @@
 <script>
     $('div.alert').not('.alert-important').delay(3000).slideUp(200);
 </script>
+<script type="text/javascript">
+    var block = document.getElementById("chat");
+    block.scrollTop = block.scrollHeight;
+</script>
 </html>

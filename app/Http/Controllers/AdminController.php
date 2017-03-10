@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Game;
 use App\Helpers\SteamHelper;
 use App\Item;
+use App\Message;
 use App\User;
 use Illuminate\Http\Request;
 use \Config;
@@ -16,8 +17,9 @@ class AdminController extends Controller
         $items_count = Item::count();
         $games_count = Game::count();
         $users_count = User::count();
+        $messages_count = Message::count();
 
-        return view('admin.index', compact('items_count', 'games_count', 'users_count'));
+        return view('admin.index', compact('items_count', 'games_count', 'users_count', 'messages_count'));
     }
 
     public function index_items ()
@@ -196,6 +198,23 @@ class AdminController extends Controller
         User::where('id', $user->id)->delete();
         return redirect('admin/users')->with([
             'flash_message' => 'Вы успешно удалили пользователя '. $user->name,
+            'flash_message_status' => 'success',
+        ]);
+    }
+
+    public function index_messages ()
+    {
+        $messages = Message::paginate(30);
+
+        return view('admin.messages.index', compact('messages'));
+    }
+
+    public function delete_message ($id_message) {
+        $message = Message::findOrFail($id_message);
+
+        Message::where('id', $message->id)->delete();
+        return redirect('admin/messages')->with([
+            'flash_message' => 'Вы успешно удалили сообщение '. $message->text,
             'flash_message_status' => 'success',
         ]);
     }

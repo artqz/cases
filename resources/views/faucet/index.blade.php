@@ -32,6 +32,8 @@
 @endsection
 
 @section('sidebar')
+    @widget('WidgetChat')
+
     @widget('WidgetTopClickers')
 
     @include('widgets.reklama')

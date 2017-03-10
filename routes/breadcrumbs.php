@@ -11,6 +11,12 @@ Breadcrumbs::register('admin', function($breadcrumbs)
     $breadcrumbs->push('Панель управления', url('admin'));
 });
 
+Breadcrumbs::register('admin.messages', function($breadcrumbs)
+{
+    $breadcrumbs->parent('admin');
+    $breadcrumbs->push('Сообщения чата', url('admin/messages'));
+});
+
 Breadcrumbs::register('admin.items', function($breadcrumbs)
 {
     $breadcrumbs->parent('admin');

@@ -106,8 +106,12 @@ Route::get('admin/users/{id_user}/edit-user', 'AdminController@edit_user')->midd
 Route::post('admin/users/{id_user}/edit-user', 'AdminController@update_user')->middleware('auth', 'userId');
 Route::get('admin/users/{id_user}/delete-user', 'AdminController@delete_user')->middleware('auth', 'userId');
 
+Route::get('admin/messages', 'AdminController@index_messages')->middleware('auth', 'userId');
+Route::get('admin/messages/{id_message}/delete-message', 'AdminController@delete_message')->middleware('auth', 'userId');
 
-Route::get('ratings', 'RatingsController@index');
+
+Route::get('rating', 'RatingsController@index');
+Route::post('chat/create-message', 'ChatController@store_message');
 //---
 
 Route::get('test', 'TestController@index');

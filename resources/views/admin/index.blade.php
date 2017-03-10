@@ -17,5 +17,9 @@
             <span class="badge">{{ $users_count }}</span>
             <a href="{{ url('admin/users') }}">Пользователи</a>
         </li>
+        <li class="list-group-item">
+            <span class="badge">{{ $messages_count }}</span>
+            <a href="{{ url('admin/messages') }}">Сообщения чата</a>
+        </li>
     </ul>
 @endsection
