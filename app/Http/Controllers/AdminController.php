@@ -6,6 +6,7 @@ use App\Game;
 use App\Helpers\SteamHelper;
 use App\Item;
 use App\Message;
+use App\Stats;
 use App\User;
 use Illuminate\Http\Request;
 use \Config;
@@ -188,6 +189,31 @@ class AdminController extends Controller
 
         return redirect('admin/users')->with([
             'flash_message' => 'Вы успешно изменили пользователя '. $user->name,
+            'flash_message_status' => 'success',
+        ]);
+    }
+
+    public function create_reward ($id_user) {
+        $user = User::findOrFail($id_user);
+
+        return view('admin.users.reward', compact('user'));
+    }
+
+    public function update_reward (Request $request, $id_user) {
+
+        $user = User::findOrFail($id_user);
+
+        $this->validate($request, [
+            'reward' => 'numeric',
+        ]);
+
+        User::where('id', $user->id)->increment('clicks', $request->input('reward'));
+        User::where('id', $user->id)->increment('all_clicks', $request->input('reward'));
+        //Записываем статистику
+        Stats::where('name', 'clicks')->increment('value', $request->input('reward'));
+
+        return redirect('admin/users')->with([
+            'flash_message' => 'Вы успешно наградили пользователя '. $user->name,
             'flash_message_status' => 'success',
         ]);
     }

@@ -12,7 +12,7 @@ class RatingsController extends Controller
     public function index () {
         $clickers = Click::where('created_at', '<=', Carbon::now())
             ->where('created_at', '>=', Carbon::now()->subWeek())
-            ->selectRaw('count(clicks) AS clicks, user_id')
+            ->selectRaw('sum(clicks) AS clicks, user_id')
             ->groupBy('user_id')
             ->orderBy('clicks', 'desc')
             ->limit(10)

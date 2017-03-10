@@ -33,7 +33,11 @@
 
                     <td>{{ $user->user_ref_id }}</td>
 
-                    <td><a class="btn btn-xs btn-primary" href="{{ url('admin/users/'.$user->id.'/edit-user') }}">Редактировать</a> <a class="btn btn-xs btn-danger" href="{{ url('admin/users/'.$user->id.'/delete-user') }}" onclick="return confirm('Точно удалить?')">Удалить</a></td>
+                    <td>
+                        <a class="btn btn-xs btn-warning" href="{{ url('admin/users/'.$user->id.'/create-reward') }}">Наградить</a>
+                        <a class="btn btn-xs btn-primary" href="{{ url('admin/users/'.$user->id.'/edit-user') }}">Редактировать</a>
+                        <a class="btn btn-xs btn-danger" href="{{ url('admin/users/'.$user->id.'/delete-user') }}" onclick="return confirm('Точно удалить?')">Удалить</a>
+                    </td>
                 </tr>
             @endforeach
             </tbody>

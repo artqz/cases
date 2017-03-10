@@ -34,15 +34,11 @@
 @section('sidebar')
     @widget('WidgetChat')
 
-    @widget('WidgetTopClickers')
-
     @include('widgets.reklama')
 
+    @widget('WidgetTopClickers')
+
     @widget('WidgetLastPosts')
-
-    @widget('WidgetBuyGames')
-
-    @widget('WidgetBuyItems')
 
 @endsection
 

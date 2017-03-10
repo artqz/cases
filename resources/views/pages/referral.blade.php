@@ -18,13 +18,12 @@
 @endsection
 
 @section('sidebar')
-    @widget('WidgetLastPosts')
+    @widget('WidgetChat')
 
     @include('widgets.reklama')
 
     @widget('WidgetTopClickers')
 
-    @widget('WidgetBuyGames')
+    @widget('WidgetLastPosts')
 
-    @widget('WidgetBuyItems')
 @endsection

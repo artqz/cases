@@ -48,13 +48,12 @@
         </div>
     @endif
 
-    @widget('WidgetLastPosts')
+    @widget('WidgetChat')
 
     @include('widgets.reklama')
 
     @widget('WidgetTopClickers')
 
-    @widget('WidgetBuyGames')
+    @widget('WidgetLastPosts')
 
-    @widget('WidgetBuyItems')
 @endsection

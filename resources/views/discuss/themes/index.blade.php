@@ -14,7 +14,7 @@
                         <img src="https://secure.gravatar.com/avatar/{{ $post->user['email_hash'] }}?s=32&d=identicon"> {{ $post->user['name'] }}
                     </div>
                     <div class="post-text">
-                        {{ $post->text }}
+                        {!! nl2br($post->text) !!}
                     </div>
                     <div class="pull-right">
                         @if(\Auth::id() == \Config::get('main.admin_id'))
@@ -47,15 +47,13 @@
         </div>
     </div>
 
-    @widget('WidgetLastPosts')
+    @widget('WidgetChat')
 
     @include('widgets.reklama')
 
     @widget('WidgetTopClickers')
 
-    @widget('WidgetBuyGames')
-
-    @widget('WidgetBuyItems')
+    @widget('WidgetLastPosts')
 
 @endsection
 

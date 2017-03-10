@@ -27,15 +27,14 @@
     </div>
     <?php endif; ?>
 
-    <?php echo app('arrilot.widget')->run('WidgetLastPosts'); ?>
+    <?php echo app('arrilot.widget')->run('WidgetChat'); ?>
 
     <?php echo $__env->make('widgets.reklama', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
     <?php echo app('arrilot.widget')->run('WidgetTopClickers'); ?>
 
-    <?php echo app('arrilot.widget')->run('WidgetBuyGames'); ?>
+    <?php echo app('arrilot.widget')->run('WidgetLastPosts'); ?>
 
-    <?php echo app('arrilot.widget')->run('WidgetBuyItems'); ?>
 <?php $__env->stopSection(); ?>
 
 

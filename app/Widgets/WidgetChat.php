@@ -22,7 +22,7 @@ class WidgetChat extends AbstractWidget
     public function run()
     {
         Carbon::setLocale('ru');
-        $messages = Message::all();
+        $messages = Message::limit(50)->get();
 
 
         return view('widgets.widget_chat', [

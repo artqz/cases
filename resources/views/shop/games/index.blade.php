@@ -10,12 +10,11 @@
         <div class="games-list row">
             @foreach($games as $game)
                 <div class="col-xs-6 col-sm-3 col-md-3">
-                    <div class="games-item">
+                    <div class="game-card">
                         <div class="game-name">{{ $game->name }}</div>
-                        <img src="{{ $game->header_image }}" alt="{{ $game->name }}">
-                        <div class="game-price">Цена: {{ $game->price }} Клик.</div>
-                        <div class="pull-right"><a href="{{ url('/shop/games/'. $game->id .'/buy-game') }}" class="btn btn-xs btn-default">Купить</a></div>
-                        <div class="clearfix"></div>
+                        <div class="game-image"><img src="{{ $game->header_image }}" alt="{{ $game->name }}"></div>
+                        <div class="price"><span>{{ $game->price }}</span></div>
+                        <div><a href="{{ url('/shop/games/'. $game->id .'/buy-game') }}" class="buy">Купить</a></div>
                     </div>
                 </div>
             @endforeach
@@ -35,13 +34,12 @@
         </div>
     @endif
 
-    @widget('WidgetLastPosts')
+    @widget('WidgetChat')
 
     @include('widgets.reklama')
 
     @widget('WidgetTopClickers')
 
-    @widget('WidgetBuyGames')
+    @widget('WidgetLastPosts')
 
-    @widget('WidgetBuyItems')
 @endsection

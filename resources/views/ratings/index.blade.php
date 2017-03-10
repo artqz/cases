@@ -1,10 +1,10 @@
 @extends('app')
 
-@section('title', 'Магазин - ')
+@section('title', 'Рейтинг - ')
 
 @section('content')
-    <div>
-        <h1>Лучшие</h1>
+    <h1>Лучшие</h1>
+    <div class="row">
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -19,7 +19,7 @@
                     @foreach($clickers as $key => $clicker)
                         <tr>
                             <td>{{ $key+1 }}</td>
-                            <td><img src="https://secure.gravatar.com/avatar/{{ $clicker->user->email_hash }}?s=32&d=identicon"> {{ $clicker->user->name }}</td>
+                            <td class="user-name"><img src="https://secure.gravatar.com/avatar/{{ $clicker->user->email_hash }}?s=32&d=identicon"> {{ $clicker->user->name }}</td>
                             <td>{{ $clicker->clicks }}</td>
                         </tr>
                     @endforeach
@@ -34,8 +34,8 @@
                 <table class="table">
                     <tr>
                         <th>#</th>
-                        <th>Кликер</th>
-                        <th>Рефералов</th>
+                        <th>Реферер</th>
+                        <th>Кол-во рефералов</th>
                     </tr>
                     @foreach($referrers as $key => $referrer)
                         <tr>
@@ -52,6 +52,12 @@
 @endsection
 
 @section('sidebar')
+    @widget('WidgetChat')
+
     @include('widgets.reklama')
+
+    @widget('WidgetTopClickers')
+
     @widget('WidgetLastPosts')
+
 @endsection
