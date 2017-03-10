@@ -71,6 +71,21 @@
                                 @endif
                             </div>
                         </div>
+
+                        <div class="form-group{{ $errors->has('tradeoffer') ? ' has-error' : '' }}">
+                            <label for="tradeoffer" class="col-md-4 control-label">Ссылка на обмен</label>
+
+                            <div class="col-md-6">
+                                <input id="tradeoffer" type="tradeoffer" class="form-control" name="tradeoffer" value="{{ old('tradeoffer') }}">
+
+                                @if ($errors->has('tradeoffer'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('tradeoffer') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>

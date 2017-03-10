@@ -24,4 +24,8 @@
             </div>
         </form>
     </div>
+    <script type="text/javascript">
+        var block = document.getElementById("chat");
+        block.scrollTop = block.scrollHeight;
+    </script>
 </div>

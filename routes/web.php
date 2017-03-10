@@ -80,6 +80,8 @@ Route::get('/discuss/channels/{slug_channel}/{slug_theme}/{id_post}/delete-post'
 Route::get('faucet', 'FaucetController@index')->middleware('auth');
 Route::post('faucet/get-click', 'FaucetController@get_click')->middleware('auth');
 Route::get('profile', 'PagesController@index_profile')->middleware('auth');
+Route::get('profile/edit-tradeoffer', 'PagesController@edit_tradeoffer')->middleware('auth');
+Route::post('profile/edit-tradeoffer', 'PagesController@update_tradeoffer')->middleware('auth');
 Route::get('my-games', 'PagesController@index_my_games')->middleware('auth');
 Route::get('my-items', 'PagesController@index_my_items')->middleware('auth');
 Route::get('help', 'PagesController@index_help');

@@ -53,6 +53,7 @@ class RegisterController extends Controller
             'name' => 'required|max:20|min:3',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'tradeoffer' => '',
             'g-recaptcha-response' => 'required|recaptcha',
         ]);
     }
@@ -74,12 +75,13 @@ class RegisterController extends Controller
         }
         //Записываем статистику
         Stats::where('name', 'users')->increment('value', 1);
-
+        
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'email_hash' => md5($data['email']),
             'password' => bcrypt($data['password']),
+            'tradeoffer' => $data['tradeoffer'],
             'user_ref_id' => $user_ref_id,
         ]);
     }

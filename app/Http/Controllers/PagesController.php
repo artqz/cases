@@ -34,8 +34,26 @@ class PagesController extends Controller
     {
         $referral_clicks = Referral::where('user_ref_id', Auth::id())->sum('clicks');
         $referral_count = User::where('user_ref_id', Auth::id())->count();
-        return view('pages.profile', compact('referral_clicks', 'referral_count'));
+
+        return view('pages.profile.index', compact('referral_clicks', 'referral_count'));
     }
+
+    public function edit_tradeoffer ()
+    {
+        return view('pages.profile.edit');
+    }
+    public function update_tradeoffer (Request $request)
+    {
+        User::where('id', Auth::id())->update([
+            'tradeoffer' => $request->input('tradeoffer'),
+        ]);
+
+        return redirect('profile')->with([
+            'flash_message' => 'Вы успешно изменили свою ссылку на обмен',
+            'flash_message_status' => 'success',
+        ]);
+    }
+
 
     public function index_my_games ()
     {
