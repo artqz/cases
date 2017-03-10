@@ -105,6 +105,9 @@ Route::get('admin/users', 'AdminController@index_users')->middleware('auth', 'us
 Route::get('admin/users/{id_user}/edit-user', 'AdminController@edit_user')->middleware('auth', 'userId');
 Route::post('admin/users/{id_user}/edit-user', 'AdminController@update_user')->middleware('auth', 'userId');
 Route::get('admin/users/{id_user}/delete-user', 'AdminController@delete_user')->middleware('auth', 'userId');
+
+
+Route::get('ratings', 'RatingsController@index');
 //---
 
 Route::get('test', 'TestController@index');

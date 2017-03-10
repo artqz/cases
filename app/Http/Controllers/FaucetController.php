@@ -49,11 +49,20 @@ class FaucetController extends Controller
             if ($result->success) {
 
                 if (time() - strtotime($user->last_click) >= Config::get('main.period_click')) {
+                    //берем последние 10 кликов
+                    $clicks = Click::latest('created_at')->limit(10)->max('clicks');
+                    //разрешаем максимум раз в 10 ликов, если повезет
+                    if ($clicks >= Config::get('main.reward_click_max'))
+                    {
+                        $click_max = (Config::get('main.reward_click_min')+Config::get('main.reward_click_max'))/2;
+                    }
+                    else $click_max = Config::get('main.reward_click_max');
+                    //если сегодня ВС даём х2
                     if(date("w",time()) == 7) {
-                        $clicks = random_int(Config::get('main.reward_click_min'),Config::get('main.reward_click_max'))*2;
+                        $clicks = random_int(Config::get('main.reward_click_min'),$click_max)*2;
                     }
                     else {
-                        $clicks = random_int(Config::get('main.reward_click_min'),Config::get('main.reward_click_max'));
+                        $clicks = random_int(Config::get('main.reward_click_min'),$click_max);
                     }
 
                     User::where('id', Auth::id())->update([
