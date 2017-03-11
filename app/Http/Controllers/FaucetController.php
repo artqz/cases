@@ -58,7 +58,7 @@ class FaucetController extends Controller
                     }
                     else $click_max = Config::get('main.reward_click_max');
                     //если сегодня ВС даём х2
-                    if(date("w",time()) == 7) {
+                    if(date("w",time()) == 0) {
                         $clicks = random_int(Config::get('main.reward_click_min'),$click_max)*2;
                     }
                     else {
