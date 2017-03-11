@@ -22,6 +22,6 @@ class Channel extends Model
 
     public function themes_news()
     {
-        return $this->hasMany('App\Theme')->orderBy('created_at', 'DESC');
+        return $this->hasMany('App\Theme')->orderBy('created_at', 'DESC')->limit(3);
     }
 }
