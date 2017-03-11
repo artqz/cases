@@ -51,6 +51,8 @@
     <div class="panel panel-warning">
         <div class="panel-body">
             <div>Пользователя нельзя создать, так как есть регистрация!</div>
+            <br>
+            <a class="btn btn-sm btn-warning" href="{{ url('admin/users/create-reward-hundred') }}">Наградить 100 активных</a>
         </div>
     </div>
 @endsection

@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
     <div class="panel panel-default">
-        <div class="panel-heading">Дать бонус</div>
+        <div class="panel-heading">Дать бонус 100 активным пользователям</div>
         <div class="panel-body">
-            <form class="form-horizontal" role="form" method="POST" action="{{ url('admin/users/'.$user->id.'/create-reward') }}">
+            <form class="form-horizontal" role="form" method="POST" action="{{ url('admin/users/create-reward-hundred') }}">
                 {{ csrf_field() }}
 
                 <div class="form-group{{ $errors->has('reward') ? ' has-error' : '' }}">

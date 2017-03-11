@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Channel;
 use App\Game;
 use App\Item;
+use App\Post;
 use App\Referral;
 use App\Stats;
 use App\User;
@@ -19,9 +21,9 @@ class PagesController extends Controller
     {
 
         $stats =  Stats::all();
+        $news = Channel::with('themes')->where('slug', 'novosti')->first();
 
-
-        return view('pages.start', compact('stats'));
+        return view('pages.start', compact('stats', 'news'));
 
     }
 

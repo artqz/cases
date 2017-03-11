@@ -89,6 +89,12 @@
         <br>
     </div>
     <div id="what">
+        <?php $__currentLoopData = $news->themes_news; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $theme): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+            <?php echo e($theme->name); ?>
+
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+    </div>
+    <div id="what">
         <div class="container">
             <h2 style="text-align:center;">Что такое Steam clicks?</h2>
             <span>

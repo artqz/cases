@@ -91,6 +91,11 @@
         <br>
     </div>
     <div id="what">
+        @foreach($news->themes_news as $theme)
+            {{ $theme->name }}
+        @endforeach
+    </div>
+    <div id="what">
         <div class="container">
             <h2 style="text-align:center;">Что такое Steam clicks?</h2>
             <span>

@@ -193,6 +193,31 @@ class AdminController extends Controller
         ]);
     }
 
+    public function create_reward_hundred () {
+        return view('admin.users.reward_hundred');
+    }
+
+    public function update_reward_hundred (Request $request) {
+
+        $users = User::orderBy('updated_at', 'desc')->limit(100)->get();
+
+        $this->validate($request, [
+            'reward' => 'numeric',
+        ]);
+
+        foreach ($users as $user) {
+            User::where('id', $user->id)->increment('clicks', $request->input('reward'));
+            User::where('id', $user->id)->increment('all_clicks', $request->input('reward'));
+            //Записываем статистику
+            Stats::where('name', 'clicks')->increment('value', $request->input('reward'));
+        }
+
+        return redirect('admin/users')->with([
+            'flash_message' => 'Вы успешно наградили 100 пользователей',
+            'flash_message_status' => 'success',
+        ]);
+    }
+
     public function create_reward ($id_user) {
         $user = User::findOrFail($id_user);
 
@@ -227,6 +252,8 @@ class AdminController extends Controller
             'flash_message_status' => 'success',
         ]);
     }
+
+
 
     public function index_messages ()
     {
