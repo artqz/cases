@@ -95,8 +95,9 @@ class FaucetController extends Controller
                     $finishTime = (time() + Config::get('main.period_click'));
 
                     return redirect('faucet')->with([
-                        'flash_message' => 'Вы получили '. $clicks .' Клик.',
-                        'flash_message_status' => 'success',
+                        'flash_message' => 'Вы получили ',
+                        'flash_message_value' => $clicks,
+                        'flash_message_status' => 'warning',
                     ]);
                 }
                 $finishTime = (strtotime($user->last_click) + Config::get('main.period_click'));
