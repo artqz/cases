@@ -40,7 +40,7 @@
                     @foreach($referrers as $key => $referrer)
                         <tr>
                             <td>{{ $key+1 }}</td>
-                            <td><img src="https://secure.gravatar.com/avatar/{{ $referrer->user->email_hash }}?s=32&d=identicon"> {{ $referrer->user->name }}</td>
+                            <td class="user-name"><img src="https://secure.gravatar.com/avatar/{{ $referrer->user->email_hash }}?s=32&d=identicon"> {{ $referrer->user->name }}</td>
                             <td>{{ $referrer->referrals }}</td>
                         </tr>
                     @endforeach
