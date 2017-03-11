@@ -14,6 +14,9 @@
         </ul>
     </div>
     <div class="panel-footer">
+        @if (Auth::guest())
+            Писать могут только пользователи.
+        @else
         <form class="form-horizontal" role="form" method="POST" action="{{ url('/chat/create-message') }}">
             {{ csrf_field() }}
             <div class="input-group">
@@ -23,6 +26,7 @@
                 </span>
             </div>
         </form>
+        @endif
     </div>
     <script type="text/javascript">
         var block = document.getElementById("chat");
