@@ -22,13 +22,13 @@ class WidgetChat extends AbstractWidget
     public function run()
     {
         Carbon::setLocale('ru');
-
+        $messages_count = Message::count();
         $messages = Message::orderBy('created_at', 'ASC')
-            ->offset('count(*)-50')
+            ->offset($messages_count-50)
             ->limit(50)
             ->get();
 
-        
+
         return view('widgets.widget_chat', [
             'config' => $this->config,
             'messages' => $messages,
