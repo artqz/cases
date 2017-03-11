@@ -11,7 +11,7 @@
     <title>@yield('title'){{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ elixir("css/app.css") }}">
     @yield('style')
     <style>
         .footer {
