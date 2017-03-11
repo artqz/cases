@@ -88,11 +88,25 @@
         </div>
         <br>
     </div>
-    <div id="what">
-        <?php $__currentLoopData = $news->themes_news; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $theme): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-            <?php echo e($theme->name); ?>
-
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+    <div id="news">
+        <div class="container">
+            <div class="col-sm-12 row">
+            <h2>Последние новости Steam Clicks</h2>
+                <div class="news-list">
+                <?php $__currentLoopData = $news->themes_news; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $theme): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                    <div class="col-sm-4">
+                        <div class="news-item">
+                            <div class="news-name"><?php echo e($theme->name); ?></div>
+                            <div class="news-date"><?php echo e($theme->created_at->diffForHumans()); ?></div>
+                            <div class="news-text"><?php echo e(mb_strimwidth($theme->posts[0]->text, 0, 200, '...')); ?></div>
+                            <div class="news-link pull-right"><a class="btn btn-xs btn-default" href="<?php echo e(url('discuss/channels/'.$news->slug.'/'.$theme->slug)); ?>">Подробнее</a></div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="what">
         <div class="container">

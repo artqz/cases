@@ -5,21 +5,19 @@ namespace App\Http\Controllers;
 use App\Channel;
 use App\Game;
 use App\Item;
-use App\Post;
 use App\Referral;
 use App\Stats;
 use App\User;
-use App\Play;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Cookie;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cache;
 
 class PagesController extends Controller
 {
     public function index ()
     {
-
+        Carbon::setLocale('ru');
         $stats =  Stats::all();
         $news = Channel::with('themes')->where('slug', 'novosti')->first();
 

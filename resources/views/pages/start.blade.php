@@ -90,10 +90,25 @@
         </div>
         <br>
     </div>
-    <div id="what">
-        @foreach($news->themes_news as $theme)
-            {{ $theme->name }}
-        @endforeach
+    <div id="news">
+        <div class="container">
+            <div class="col-sm-12 row">
+            <h2>Последние новости Steam Clicks</h2>
+                <div class="news-list">
+                @foreach($news->themes_news as $theme)
+                    <div class="col-sm-4">
+                        <div class="news-item">
+                            <div class="news-name">{{ $theme->name }}</div>
+                            <div class="news-date">{{ $theme->created_at->diffForHumans() }}</div>
+                            <div class="news-text">{{ mb_strimwidth($theme->posts[0]->text, 0, 200, '...') }}</div>
+                            <div class="news-link pull-right"><a class="btn btn-xs btn-default" href="{{ url('discuss/channels/'.$news->slug.'/'.$theme->slug) }}">Подробнее</a></div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                @endforeach
+                </div>
+            </div>
+        </div>
     </div>
     <div id="what">
         <div class="container">
