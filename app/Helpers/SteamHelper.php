@@ -134,7 +134,16 @@ class SteamHelper implements SteamContract
         }
 
     }
-  
+
+    public function addDistributionToDB ($appid){
+        $this->getGame($appid);
+        $getGame = DB::table('all_games')->where('appid', $appid)->first();
+
+        if ($getGame) {
+            return $getGame;
+        }
+        else return false;
+    }
     public function addGameToDB ($appid, $price, $data){
         $this->getGame($appid);
         $getGame = DB::table('all_games')->where('appid', $appid)->first();

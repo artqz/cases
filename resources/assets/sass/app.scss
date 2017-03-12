@@ -7,6 +7,7 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
 body {
   font-family: 'Fira Sans',sans-serif;
 }
@@ -212,6 +213,86 @@ body {
   left:0px;
   border-radius:50%;
 }
+
+//---distributions---
+.distributions-list {
+
+}
+.distributions-list .distribution-card {
+  background-color: #fff;
+  padding: 5px 10px;
+  margin-bottom: 15px;
+  border-radius: 3px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  position: relative;
+  display: block;
+}
+.distributions-list .distribution-card .distribution-name {
+  line-height: 2.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #949494;
+  margin-bottom: 10px;
+}
+.distributions-list .distribution-card .distribution-players {
+  line-height: 2.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #949494;
+  margin-bottom: 20px;
+}
+.distributions-list .distribution-card .distribution-image {
+  padding: 14px 0;
+}
+.distributions-list .distribution-card .distribution-image img {
+  width: auto;
+  border-radius: 3px;
+  max-width: 100%;
+}
+.distributions-list .distribution-card .distribution-price {
+  font-size: 12px;
+}
+.distributions-list .distribution-card .distribution-user {
+  color: #a04eb4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.distributions-list .distribution-card .distribution-user:before {
+  color: #636b6f;
+  font-size: 12px;
+  content: 'Раздача от:';
+  margin-right: 7px;
+}
+.distributions-list .distribution-card .distribution-user img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+.distributions-list .distribution-card .player-name {
+  color: #a04eb4;
+  background-color: #ffffff;
+  border: 1px solid #f5f5f5;
+  padding: 5px 13px;
+  border-radius: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 15px;
+}
+.distributions-list .distribution-card .player-name img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+.distributions-list .distribution-card .buy {
+  margin-top: 20px;
+}
+
 
 
 //---Shop---

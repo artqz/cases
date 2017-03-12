@@ -36,6 +36,8 @@
 
     @include('widgets.reklama')
 
+    @include('widgets.vk')
+
     @widget('WidgetTopClickers')
 
     @widget('WidgetLastPosts')

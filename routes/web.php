@@ -57,6 +57,13 @@ Route::get('shop/games/create-game', 'ShopController@create_game')->middleware('
 Route::post('shop/games/create-game', 'ShopController@store_game')->middleware('auth', 'userId');
 Route::get('shop/games/{id_post}/buy-game', 'ShopController@buy_game')->middleware('auth');
 //---
+//distributions
+Route::get('distributions', 'distributionsController@index');
+Route::get('distributions/create', 'distributionsController@create')->middleware('auth', 'userId');
+Route::post('distributions/create', 'distributionsController@update')->middleware('auth', 'userId');
+Route::get('distributions/{id_distribution}/join', 'distributionsController@join')->middleware('auth', 'userId');
+
+//---
 //forum
 Route::get('discuss', 'DiscussController@index');
 Route::get('/discuss/create-channel', 'DiscussController@create_channel')->middleware('auth', 'userId');
