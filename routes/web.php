@@ -9,6 +9,7 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+
 Route::get('/', 'PagesController@index');
 //Route::get('referral/{id}/', 'PagesController@index');
 Route::get('referral', 'PagesController@index_referral');
@@ -131,6 +132,7 @@ Route::get('test', 'TestController@index');
 Route::get('test/create', 'TestController@store');
 
 //Auth
+Route::get('steam-login', 'AuthController@login');
 Auth::routes();
 
 
