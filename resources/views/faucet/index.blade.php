@@ -27,7 +27,6 @@
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         </div>
-
     </div>
 @endsection
 
@@ -92,7 +91,6 @@
                 if(s<0)
                     $(this).val('Получить клики').attr('class', 'btn btn-sm btn-success').prop('disabled', false);
                 else{
-                    s-=(d=Math.floor(s/60/60/24))*24*60*60;
                     s-=(h=Math.floor(s/60/60))*60*60;
                     s-=(m=Math.floor(s/60))*60;
                     $(this).val(

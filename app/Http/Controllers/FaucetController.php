@@ -21,8 +21,8 @@ class FaucetController extends Controller
     {
         $user = User::where('id', Auth::id())->first();
         $finishTime = (strtotime($user->last_click) + Config::get('main.period_click'));
-
-        return view('faucet.index', compact('finishTime', 'items'));
+        $finishDate = date("Y/m/d H:i:s", $finishTime);
+        return view('faucet.index', compact('finishTime', 'finishDate', 'items'));
     }
     
     public function get_click (Request $request)
@@ -50,13 +50,25 @@ class FaucetController extends Controller
 
                 if (time() - strtotime($user->last_click) >= Config::get('main.period_click')) {
                     //берем последние 10 кликов
-                    $clicks = Click::latest('created_at')->limit(10)->max('clicks');
+                    //$clicks = Click::limit(1)->max('clicks');  - не работает
+
+                    $clicks = Click::latest('created_at')->limit(25)->get();
+
+                    $array = array();
+
+                    foreach ($clicks as $click)
+                    {
+                        $array[] =  $click->clicks;
+                    }
+
+                    if (!$array) $array[] = 0;
                     //разрешаем максимум раз в 10 ликов, если повезет
-                    if ($clicks >= Config::get('main.reward_click_max'))
+                    if (max($array) >= Config::get('main.reward_click_max'))
                     {
                         $click_max = (Config::get('main.reward_click_min')+Config::get('main.reward_click_max'))/2;
                     }
                     else $click_max = Config::get('main.reward_click_max');
+
                     //если сегодня ВС даём х2
                     if(date("w",time()) == 0) {
                         $clicks = random_int(Config::get('main.reward_click_min'),$click_max)*2;

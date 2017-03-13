@@ -4,7 +4,7 @@ return [
     'cooldown_click' => 0.05 * 60 * 60, //3 минуты, 0.5 - полчаса,
     'count_game',
     'admin_id' => 1,
-    'period_click' => 0.5 * 60 * 60,
+    'period_click' => 0.005 * 60 * 60,
     'reward_click' => 1,
     'reward_click_min' => 1,
     'reward_click_max' => 3,

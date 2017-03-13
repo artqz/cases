@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+require('./jquery.countdown-2.2.0/jquery.countdown');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
