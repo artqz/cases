@@ -17,6 +17,8 @@ class CreateFieldToUsersTable extends Migration
             $table->string('steam_name');
             $table->string('steam_avatar');
             $table->string('steamid');
+            $table->string('steam_profile');
+
         });
     }
 
@@ -31,6 +33,7 @@ class CreateFieldToUsersTable extends Migration
             $table->dropColumn('steam_name');
             $table->dropColumn('steam_avatar');
             $table->dropColumn('steamid');
+            $table->dropColumn('steam_profile');
         });
     }
 }

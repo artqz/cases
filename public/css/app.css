@@ -7920,6 +7920,64 @@ body {
   border-radius: 50%;
 }
 
+.btn-steam {
+  width: 100%;
+  border-radius: 3px;
+  text-align: center;
+  padding: 10px 3px;
+  background-color: green;
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.btn-steam:hover {
+  color: #fff;
+  background-color: #0c9f0c;
+  text-decoration: none;
+}
+
+.btn-steam:focus {
+  color: #fff;
+  background-color: #0c9f0c;
+  text-decoration: none;
+}
+
+.btn-steam.active {
+  background-color: #eee;
+  color: dimgrey;
+}
+
+.btn-mail {
+  width: 100%;
+  border-radius: 3px;
+  text-align: center;
+  padding: 10px 3px;
+  background-color: #3097d1;
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.btn-mail:hover {
+  color: #fff;
+  background-color: #3ba4df;
+  text-decoration: none;
+}
+
+.btn-mail:focus {
+  color: #fff;
+  background-color: #3ba4df;
+  text-decoration: none;
+}
+
+.btn-mail.active {
+  background-color: #eee;
+  color: dimgrey;
+}
+
 .distributions-list .distribution-card {
   background-color: #fff;
   padding: 5px 10px;

@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ elixir("css/app.css") }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     @yield('style')
     <style>
         .footer {
@@ -141,7 +142,8 @@
 <div class="footer">
     <div class="container">
         <footer class="bs-docs-footer">
-            <p>© {{ date('Y') }} Steamclicks.ru - По всем вопросам писать на webmaster@steamclicks.ru</p>
+            <p>© {{ date('Y') }} Steamclicks.ru - Powered by <a target="_blank" rel="nofollow" href="http://steampowered.com">Steam</a>.</p>
+            <p>По всем вопросам писать на webmaster@steamclicks.ru</p>
         </footer>
     <div>
 </div>
