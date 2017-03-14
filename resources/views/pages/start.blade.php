@@ -90,6 +90,7 @@
         </div>
         <br>
     </div>
+    @if($news)
     <div id="news">
         <div class="container">
             <div class="col-sm-12 row">
@@ -110,6 +111,7 @@
             </div>
         </div>
     </div>
+    @endif
     <div id="what">
         <div class="container">
             <h2 style="text-align:center;">Что такое Steam clicks?</h2>

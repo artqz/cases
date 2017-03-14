@@ -14,6 +14,8 @@ class CreateFieldToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function($table) {
+            $table->ipAddress('ip_address');
+            $table->boolean('confirm_email')->index();
             $table->string('steam_name');
             $table->string('steam_avatar');
             $table->string('steamid');
@@ -30,6 +32,8 @@ class CreateFieldToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function($table) {
+            $table->dropColumn('ip_address');
+            $table->dropColumn('confirm_email');
             $table->dropColumn('steam_name');
             $table->dropColumn('steam_avatar');
             $table->dropColumn('steamid');

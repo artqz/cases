@@ -20,7 +20,7 @@ class PagesController extends Controller
         Carbon::setLocale('ru');
         $stats =  Stats::all();
         $news = Channel::with('themes')->where('slug', 'novosti')->first();
-
+        
         return view('pages.start', compact('stats', 'news'));
 
     }

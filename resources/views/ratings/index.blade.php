@@ -19,7 +19,7 @@
                     @foreach($clickers as $key => $clicker)
                         <tr>
                             <td>{{ $key+1 }}</td>
-                            <td class="user-name"><img src="https://secure.gravatar.com/avatar/{{ $clicker->user->email_hash }}?s=32&d=identicon"> {{ $clicker->user->name }}</td>
+                            <td class="user-name"><img src="{{ avatar($clicker->user->email_hash, $clicker->user->steam_avatar) }}"> {{ $clicker->user->name }}</td>
                             <td>{{ $clicker->clicks }}</td>
                         </tr>
                     @endforeach
@@ -40,7 +40,7 @@
                     @foreach($referrers as $key => $referrer)
                         <tr>
                             <td>{{ $key+1 }}</td>
-                            <td class="user-name"><img src="https://secure.gravatar.com/avatar/{{ $referrer->user->email_hash }}?s=32&d=identicon"> {{ $referrer->user->name }}</td>
+                            <td class="user-name"><img src="{{ avatar($referrer->user->email_hash, $referrer->user->steam_avatar) }}"> {{ $referrer->user->name }}</td>
                             <td>{{ $referrer->referrals }}</td>
                         </tr>
                     @endforeach

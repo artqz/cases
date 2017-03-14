@@ -135,6 +135,7 @@ Route::get('test/create', 'TestController@store');
 Route::get('steam-login', 'AuthController@login');
 Route::get('profile/join-steam', 'AuthController@join')->middleware('auth');
 Route::get('profile/check-email', 'AuthController@check_email')->middleware('auth');
+Route::get('confirm-email/{token_email}', 'AuthController@confirm_email');
 Auth::routes();
 
 

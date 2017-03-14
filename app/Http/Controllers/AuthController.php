@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Invisnik\LaravelSteamAuth\SteamAuth;
 use App\User;
 use Auth;
@@ -79,13 +80,61 @@ class AuthController extends Controller
 
     public function check_email()
     {
-        $token=str_random(32); //это наша случайная строка
-        \DB::table('confirm_emails')->insert([
-            'user_id' => Auth::id(),
-            'email' => Auth::user()->email,
-            'token' => $token,
-        ]);
+        if (!Auth::user()->confirm_email) {
+            $token = str_random(32);
+            $user = \DB::table('confirm_emails')->where('email', Auth::user()->email)->first();
 
+            if ($user) {
+                $check = \DB::table('confirm_emails')->where('email', $user->email)->update([
+                    'token' => $token,
+                    'created_at' => Carbon::now(),
+                ]);
+                if ($check) {
+                    \Mail::send('emails.confirm', array('activationUrl' => url('confirm-email/' . $token)), function ($message) {
+                        $message->to(Auth::user()->email, Auth::user()->name)->subject('Подтверждение Вашей эл. почты!');
+                    });
+                    return redirect('profile')->with([
+                        'flash_message' => 'На Вашу эл. почту повторно отправлено письмо с подтверждением!',
+                        'flash_message_status' => 'success',
+                    ]);
+                }
+            } else {
+                $check = \DB::table('confirm_emails')->insert([
+                    'email' => Auth::user()->email,
+                    'token' => $token,
+                    'created_at' => Carbon::now(),
+                ]);
+                if ($check) {
+                    \Mail::send('emails.confirm', array('activationUrl' => url('confirm-email/' . $token)), function ($message) {
+                        $message->to(Auth::user()->email, Auth::user()->name)->subject('Подтверждение Вашей эл. почты!');
+                    });
+                    return redirect('profile')->with([
+                        'flash_message' => 'На Вашу эл. почту отправлено письмо с подтверждением!',
+                        'flash_message_status' => 'success',
+                    ]);
+                }
+            }
+        }
+        return redirect('profile')->with([
+            'flash_message' => 'Ваша эл. почту уже подтверждена!',
+            'flash_message_status' => 'danger',
+        ]);
+    }
+
+    public function confirm_email($token_email)
+    {
+        $user = \DB::table('confirm_emails')->where('token', $token_email)->first();
+
+        if ($user) {
+            User::where('email', $user->email)->update([
+                'confirm_email' => 1,
+            ]);
+            return redirect('profile')->with([
+                'flash_message' => 'Ваша эл. почта подтверждена!',
+                'flash_message_status' => 'success',
+            ]);
+        }
+        return redirect('/');
     }
 
 }

@@ -92,7 +92,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="">
                             <div style="position: relative;">
-                            <img src="https://secure.gravatar.com/avatar/{{ Auth::user()->email_hash }}?s=32&d=identicon" style="width:32px; height:32px; position:absolute; left:10px; border-radius:50%;">
+                            <img src="{{ avatar(Auth::user()->email_hash, Auth::user()->steam_avatar) }}" style="width:32px; height:32px; position:absolute; left:10px; border-radius:50%;">
                                 <div class="user-name" style="padding-left: 50px; line-height: 1; color: #a04eb4;">{{ Auth::user()->name }} <span class="caret"></span></div>
                                 <div class="user-clicks" style="padding-left: 50px; line-height: 1; font-size: 12px;">Клики: {{Auth::user()->clicks}}</div>
                             </div>    

@@ -7978,6 +7978,20 @@ body {
   color: dimgrey;
 }
 
+.trade-link,
+.ref-link {
+  width: 100%;
+  border-radius: 3px;
+  text-align: center;
+  padding: 10px 3px;
+  background-color: #fff;
+  color: dimgrey;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
 .distributions-list .distribution-card {
   background-color: #fff;
   padding: 5px 10px;

@@ -49,32 +49,34 @@ class FaucetController extends Controller
             if ($result->success) {
 
                 if (time() - strtotime($user->last_click) >= Config::get('main.period_click')) {
-                    //берем последние 25 кликов
+                    //берем последние 50 кликов
                     //$clicks = Click::limit(1)->max('clicks');  - не работает
+                    if (Auth::user()->steamid && Auth::user()->confirm_email) {
 
-                    $clicks = Click::latest('created_at')->limit(25)->get();
+                        $clicks = Click::latest('created_at')->limit(50)->get();
 
-                    $array = array();
+                        $array = array();
 
-                    foreach ($clicks as $click)
-                    {
-                        $array[] =  $click->clicks;
+                        foreach ($clicks as $click) {
+                            $array[] = $click->clicks;
+                        }
+
+                        if (!$array) $array[] = 0;
+                        //разрешаем максимум раз в 50 ликов, если повезет
+                        if (max($array) >= Config::get('main.reward_click_max')) {
+                            $click_max = (Config::get('main.reward_click_min') + Config::get('main.reward_click_max')) / 2;
+                        } else $click_max = Config::get('main.reward_click_max');
+
+                        //если сегодня ВС даём х2
+                        if (date("w", time()) == 0) {
+                            $clicks = random_int(Config::get('main.reward_click_min'), $click_max) * 2;
+                        } else {
+                            $clicks = random_int(Config::get('main.reward_click_min'), $click_max);
+                        }
                     }
-
-                    if (!$array) $array[] = 0;
-                    //разрешаем максимум раз в 25 ликов, если повезет
-                    if (max($array) >= Config::get('main.reward_click_max'))
-                    {
-                        $click_max = (Config::get('main.reward_click_min')+Config::get('main.reward_click_max'))/2;
-                    }
-                    else $click_max = Config::get('main.reward_click_max');
-
-                    //если сегодня ВС даём х2
-                    if(date("w",time()) == 0) {
-                        $clicks = random_int(Config::get('main.reward_click_min'),$click_max)*2;
-                    }
+                    //Если пользователь не подтвердил аккаунт будет получать минималку
                     else {
-                        $clicks = random_int(Config::get('main.reward_click_min'),$click_max);
+                        $clicks = Config::get('main.reward_click_min');
                     }
 
                     User::where('id', Auth::id())->update([
@@ -93,16 +95,19 @@ class FaucetController extends Controller
                     Stats::where('name', 'clicks')->increment('value', $clicks);
 
                     //Бонус за реф
-                    if ($user->user_ref_id) {
-                        User::where('id', $user->user_ref_id)->increment('clicks', $clicks*Config::get('main.ref_percent_click'));
-                        User::where('id', $user->user_ref_id)->increment('all_clicks', $clicks*Config::get('main.ref_percent_click'));
-                        Referral::create([
-                            'user_ref_id' => $user->user_ref_id,
-                            'user_id' => Auth::id(),
-                            'clicks' => $clicks*Config::get('main.ref_percent_click'),
-                        ]);
-                        //Записываем статистику
-                        Stats::where('name', 'clicks')->increment('value', $clicks*Config::get('main.ref_percent_click'));
+                    //Только для подтвержденных аккаунтов
+                    if (Auth::user()->steamid && Auth::user()->confirm_email) {
+                        if ($user->user_ref_id) {
+                            User::where('id', $user->user_ref_id)->increment('clicks', $clicks * Config::get('main.ref_percent_click'));
+                            User::where('id', $user->user_ref_id)->increment('all_clicks', $clicks * Config::get('main.ref_percent_click'));
+                            Referral::create([
+                                'user_ref_id' => $user->user_ref_id,
+                                'user_id' => Auth::id(),
+                                'clicks' => $clicks * Config::get('main.ref_percent_click'),
+                            ]);
+                            //Записываем статистику
+                            Stats::where('name', 'clicks')->increment('value', $clicks * Config::get('main.ref_percent_click'));
+                        }
                     }
                     $finishTime = (time() + Config::get('main.period_click'));
 

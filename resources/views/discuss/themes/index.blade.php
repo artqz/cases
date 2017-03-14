@@ -11,7 +11,7 @@
                 <li class="posts-item">
                     <div class="post-date pull-right">{{ $post->created_at }}</div>
                     <div class="post-author">
-                        <img src="https://secure.gravatar.com/avatar/{{ $post->user['email_hash'] }}?s=32&d=identicon"> {{ $post->user['name'] }}
+                        <img src="{{ avatar($post->user['email_hash'], $post->user['steam_avatar']) }}"> {{ $post->user['name'] }}
                     </div>
                     <div class="post-text">
                         {!! nl2br($post->text) !!}

@@ -7,7 +7,7 @@
             <ul class="widget-games-list">
                 @foreach($last_buy_games as $game)
                     <li class="widget-games-item">
-                        <span class="widget-games-user"><img src="https://secure.gravatar.com/avatar/{{ $game->user['email_hash'] }}?s=32&d=identicon">{{ $game->user->name }}</span> купил игру <span class="widget-games-name"><img src="{{ $game->header_image }}" alt="{{ $game->name }}"> {{ $game->name }}</span>
+                        <span class="widget-games-user"><img src="{{ avatar($game->user['email_hash'], $game->user['steam_avatar']) }}">{{ $game->user->name }}</span> купил игру <span class="widget-games-name"><img src="{{ $game->header_image }}" alt="{{ $game->name }}"> {{ $game->name }}</span>
                     </li>
                 @endforeach
             </ul>
