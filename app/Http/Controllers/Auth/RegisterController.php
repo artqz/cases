@@ -82,7 +82,7 @@ class RegisterController extends Controller
             'email_hash' => md5($data['email']),
             'password' => bcrypt($data['password']),
             'tradeoffer' => $data['tradeoffer'],
-            'user_ref_id' => $user_ref_id,
+            'user_ref_id' => $user_ref_id
         ]);
     }
 }

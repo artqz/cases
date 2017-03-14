@@ -16,7 +16,7 @@ class CreateFieldToUsersTable extends Migration
         Schema::table('users', function($table) {
             $table->string('steam_name');
             $table->string('steam_avatar');
-            $table->string('steam_steamid');
+            $table->string('steamid');
         });
     }
 
@@ -30,7 +30,7 @@ class CreateFieldToUsersTable extends Migration
         Schema::table('users', function($table) {
             $table->dropColumn('steam_name');
             $table->dropColumn('steam_avatar');
-            $table->dropColumn('steam_steamid');
+            $table->dropColumn('steamid');
         });
     }
 }

@@ -20,24 +20,21 @@ class AuthController extends Controller
 
     public function login()
     {
-        if(Auth::id())
-        {
-            if ($this->steam->validate()) {
-                $info = $this->steam->getUserInfo();
-                if (!is_null($info)) {
-                        $user = User::where('id', Auth::id())->update([
-                            'steam_name' => $info->personaname,
-                            'steam_avatar'   => $info->avatarfull,
-                            'steam_steamid'  => $info->steamID64
-                        ]);
-                    
-                    Auth::login($user, true);
-                    return redirect('/'); // redirect to site
+        if ($this->steam->validate()) {
+            $info = $this->steam->getUserInfo();
+            dd($info);
+            if (!is_null($info)) {
+                $user = User::where('steamid', $info->steamID64)->first();
+                if (is_null($user)) {
+                    $user = User::create([
+                        'steam_name' => $info->personaname,
+                        'steam_avatar'   => $info->avatarfull,
+                        'steamid'  => $info->steamID64
+                    ]);
                 }
+                Auth::login($user, true);
+                return redirect('/'); // redirect to site
             }
-        }
-        else {
-          dd('her');
         }
         return $this->steam->redirect(); // redirect to Steam login page
     }

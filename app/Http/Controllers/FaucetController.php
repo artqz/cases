@@ -49,7 +49,7 @@ class FaucetController extends Controller
             if ($result->success) {
 
                 if (time() - strtotime($user->last_click) >= Config::get('main.period_click')) {
-                    //берем последние 10 кликов
+                    //берем последние 25 кликов
                     //$clicks = Click::limit(1)->max('clicks');  - не работает
 
                     $clicks = Click::latest('created_at')->limit(25)->get();
@@ -62,7 +62,7 @@ class FaucetController extends Controller
                     }
 
                     if (!$array) $array[] = 0;
-                    //разрешаем максимум раз в 10 ликов, если повезет
+                    //разрешаем максимум раз в 25 ликов, если повезет
                     if (max($array) >= Config::get('main.reward_click_max'))
                     {
                         $click_max = (Config::get('main.reward_click_min')+Config::get('main.reward_click_max'))/2;
