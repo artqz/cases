@@ -1,4 +1,4 @@
-<div margin>
+<div style="margin: 22px 0;">
     <script type="text/javascript" src="//vk.com/js/api/openapi.js?142"></script>
 
     <!-- VK Widget -->
