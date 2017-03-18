@@ -11,6 +11,11 @@
 body {
   font-family: 'Fira Sans',sans-serif;
 }
+footer p {
+  margin: 0;
+  padding: 0;
+  line-height: 2;
+}
 .price {
   padding-right: 5px;
   color: #d2b524;
@@ -331,6 +336,12 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.distributions-list .distribution-card .distribution-share {
+  margin-top: 7px;
+}
+.distributions-list .distribution-card .distribution-share td a {
+  box-sizing: content-box;
+}
 .distributions-list .distribution-card .distribution-user:before {
   color: #636b6f;
   font-size: 12px;
@@ -362,6 +373,20 @@ body {
 }
 .distributions-list .distribution-card .buy {
   margin-top: 20px;
+}
+.distributions-list .distribution-card .disable{
+  margin-top: 20px;
+  width: 100%;
+  margin-bottom: 4px;
+  border: 1px solid #eaedef;
+  border-radius: 3px;
+  background-color: #f5f8fa;
+  color: grey;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  padding: 5px 10px;
+  transition: .5s;
 }
 
 

@@ -5,6 +5,10 @@
 @section('content')
     <h1>Помощь</h1>
 
+    @foreach($helps as $help)
+        {{ $help->name }}
+    @endforeach
+
     <h4>1) Что такое SteamClicks?</h4>
 
     <strong>SteamClicks</strong> - это единственный сервис предоставляющий возможность получить бесплатно игры и предметы из сообщества Steam.

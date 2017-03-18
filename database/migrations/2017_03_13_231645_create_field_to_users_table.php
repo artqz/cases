@@ -20,7 +20,8 @@ class CreateFieldToUsersTable extends Migration
             $table->string('steam_avatar');
             $table->string('steamid');
             $table->string('steam_profile');
-
+            $table->integer('isTrader');
+            $table->integer('isBanned');
         });
     }
 
@@ -38,6 +39,8 @@ class CreateFieldToUsersTable extends Migration
             $table->dropColumn('steam_avatar');
             $table->dropColumn('steamid');
             $table->dropColumn('steam_profile');
+            $table->dropColumn('isTrader');
+            $table->dropColumn('isBanned');
         });
     }
 }

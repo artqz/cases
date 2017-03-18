@@ -17,13 +17,18 @@ class CreateDistributionsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('players');
+            $table->integer('joined_players');
             $table->float('price');
+            $table->integer('type');
             $table->integer('status');
             $table->integer('user_id');
             $table->integer('user_winner_id');
             $table->string('game_name');
             $table->string('game_image');
             $table->integer('game_id');
+            $table->string('item_name');
+            $table->string('item_image');
+            $table->integer('item_id');
             $table->timestamps();
         });
     }

@@ -19,9 +19,4 @@ class Distribution extends Model
     {
         return $this->hasMany('App\Player')->orderBy('created_at', 'DESC')->limit(9);
     }
-
-    public function players_count()
-    {
-        return $this->hasMany('App\Player')->count();
-    }
 }

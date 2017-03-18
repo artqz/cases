@@ -97,18 +97,23 @@ class FaucetController extends Controller
                     //Бонус за реф
                     //Только для подтвержденных аккаунтов
                     if (Auth::user()->steamid && Auth::user()->confirm_email) {
-                        if ($user->user_ref_id) {
-                            User::where('id', $user->user_ref_id)->increment('clicks', $clicks * Config::get('main.ref_percent_click'));
-                            User::where('id', $user->user_ref_id)->increment('all_clicks', $clicks * Config::get('main.ref_percent_click'));
-                            Referral::create([
-                                'user_ref_id' => $user->user_ref_id,
-                                'user_id' => Auth::id(),
-                                'clicks' => $clicks * Config::get('main.ref_percent_click'),
-                            ]);
-                            //Записываем статистику
-                            Stats::where('name', 'clicks')->increment('value', $clicks * Config::get('main.ref_percent_click'));
-                        }
+                        $ref_click = $clicks * Config::get('main.ref_percent_click');
                     }
+                    else {
+                        $ref_click = $clicks * Config::get('main.ref_percent_click_not_valid');
+                    }
+                    if ($user->user_ref_id) {
+                        User::where('id', $user->user_ref_id)->increment('clicks', $clicks * $ref_click);
+                        User::where('id', $user->user_ref_id)->increment('all_clicks', $clicks * $ref_click);
+                        Referral::create([
+                            'user_ref_id' => $user->user_ref_id,
+                            'user_id' => Auth::id(),
+                            'clicks' => $ref_click,
+                        ]);
+                        //Записываем статистику
+                        Stats::where('name', 'clicks')->increment('value', $ref_click);
+                    }
+
                     $finishTime = (time() + Config::get('main.period_click'));
 
                     return redirect('faucet')->with([

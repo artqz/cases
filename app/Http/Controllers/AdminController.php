@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Game;
+use App\Help;
 use App\Helpers\SteamHelper;
 use App\Item;
 use App\Message;
@@ -10,17 +11,22 @@ use App\Stats;
 use App\User;
 use Illuminate\Http\Request;
 use \Config;
+use App\Helpers\DataViewer;
 
 class AdminController extends Controller
 {
     public function index ()
     {
-        $items_count = Item::count();
-        $games_count = Game::count();
-        $users_count = User::count();
-        $messages_count = Message::count();
 
-        return view('admin.index', compact('items_count', 'games_count', 'users_count', 'messages_count'));
+        $items = new \stdClass();
+        $items->items_count = Item::count();
+        $items->games_count = Game::count();
+        $items->users_count = User::count();
+        $items->messages_count = Message::count();
+        $items->helps_count = Help::count();
+
+
+        return view('admin.index', compact('items'));
     }
 
     public function index_items ()
@@ -268,6 +274,37 @@ class AdminController extends Controller
         Message::where('id', $message->id)->delete();
         return redirect('admin/messages')->with([
             'flash_message' => 'Вы успешно удалили сообщение '. $message->text,
+            'flash_message_status' => 'success',
+        ]);
+    }
+
+
+    public function index_helps ()
+    {
+        $helps = Help::paginate(30);
+
+        return view('admin.helps.index', compact('helps'));
+    }
+
+    public function get_helps ()
+    {
+        return Help::scopeSearchPaginateAndOrder();
+    }
+
+    public function create_help () {
+        return view('admin.helps.create');
+    }
+    public function store_help (Request $request, SteamHelper $steam)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'text' => 'required',
+        ]);
+
+        $steam->addGameToDB($request->input('game_id'), $request->input('price'), $request->input('data'));
+
+        return redirect('admin/helps')->with([
+            'flash_message' => 'Вы успешно добавили игру',
             'flash_message_status' => 'success',
         ]);
     }

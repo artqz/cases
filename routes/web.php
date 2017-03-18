@@ -60,9 +60,9 @@ Route::get('shop/games/{id_post}/buy-game', 'ShopController@buy_game')->middlewa
 //---
 //distributions
 Route::get('distributions', 'distributionsController@index');
-Route::get('distributions/create', 'distributionsController@create')->middleware('auth', 'userId');
-Route::post('distributions/create', 'distributionsController@update')->middleware('auth', 'userId');
-Route::get('distributions/{id_distribution}/join', 'distributionsController@join')->middleware('auth', 'userId');
+Route::get('distributions/create', 'distributionsController@create')->middleware('auth', 'trader');
+Route::post('distributions/create', 'distributionsController@update')->middleware('auth', 'trader');
+Route::get('distributions/{id_distribution}/join', 'distributionsController@join')->middleware('auth');
 
 //---
 //forum
@@ -95,6 +95,11 @@ Route::get('my-items', 'PagesController@index_my_items')->middleware('auth');
 Route::get('help', 'PagesController@index_help');
 //---
 Route::get('admin', 'AdminController@index')->middleware('auth', 'userId');
+
+Route::get('admin/helps', 'AdminController@index_helps')->middleware('auth', 'userId');
+Route::get('admin/api/helps', 'AdminController@get_helps')->middleware('auth', 'userId');
+
+
 Route::get('admin/items', 'AdminController@index_items')->middleware('auth', 'userId');
 Route::get('admin/items/create-item', 'AdminController@create_item')->middleware('auth', 'userId');
 Route::post('admin/items/create-item', 'AdminController@store_item')->middleware('auth', 'userId');

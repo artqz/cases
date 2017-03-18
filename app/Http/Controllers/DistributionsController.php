@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Distribution;
 use App\Helpers\SteamHelper;
+use App\Player;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -61,9 +63,54 @@ class DistributionsController extends Controller
     public function join($id_distribution)
     {
         $distribution = Distribution::where('id', $id_distribution)->first();
-
         if ($distribution) {
-            dd($distribution);
+            //щитаем количество участия
+            $play = Player::where('distribution_id', $distribution->id)->where('user_id', Auth::id())->count();
+
+            $user = User::where('id', Auth::id())->first();
+
+            if ($distribution->user_id != Auth::id()) {
+
+                if ($play == 0) {
+                    if ($user->clicks >= $distribution->price) {
+                        User::where('id', \Auth::id())->update([
+                            'clicks' => $user->clicks - $distribution->price,
+                        ]);
+                        Distribution::where('id', $distribution->id)->update([
+                            'joined_players' => $distribution->joined_players + 1,
+                        ]);
+                        $player = Player::create([
+                            'distribution_id' => $distribution->id,
+                            'user_id' => Auth::id(),
+                        ]);
+                        if ($player) {
+                            if (Player::where('distribution_id', $distribution->id)->count() == $distribution->players) {
+                                $random_user = Player::where('distribution_id', $distribution->id)
+                                    ->inRandomOrder()
+                                    ->first();
+                                Distribution::where('id', $distribution->id)->update([
+                                    'user_winner_id' => $random_user->user_id,
+                                    'status' => 1,
+                                ]);
+                            }
+                        }
+                        return redirect('distributions')->with([
+                            'flash_message' => 'Вы успешно приняли участие в раздаче ' . $distribution->game_name,
+                            'flash_message_status' => 'success',
+                        ]);
+                    } else return redirect('distributions')->with([
+                        'flash_message' => 'У Вас не хватает кликов для участия в раздаче ' . $distribution->game_name,
+                        'flash_message_status' => 'danger',
+                    ]);
+                } else return redirect('distributions')->with([
+                    'flash_message' => 'Вы уже участвуете в раздаче ' . $distribution->game_name,
+                    'flash_message_status' => 'danger',
+                ]);
+            }
+            else return redirect('distributions')->with([
+                'flash_message' => 'Вы не можете участвовать в своей раздаче',
+                'flash_message_status' => 'danger',
+            ]);
         }
         else return redirect('/');
     }

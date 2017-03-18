@@ -141,7 +141,7 @@
 
 <div class="footer">
     <div class="container">
-        <footer class="bs-docs-footer">
+        <footer>
             <p>© {{ date('Y') }} Steamclicks.ru - Powered by <a target="_blank" rel="nofollow" href="http://steampowered.com">Steam</a>.</p>
             <p>По всем вопросам писать на webmaster@steamclicks.ru</p>
         </footer>
@@ -158,5 +158,10 @@
 
 <script>
     $('div.alert').not('.alert-important').delay(3000).slideUp(200);
+</script>
+<script>
+    window.Laravel = <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+    ]); ?>
 </script>
 </html>

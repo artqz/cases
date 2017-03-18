@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Channel;
 use App\Game;
+use App\Help;
 use App\Item;
 use App\Referral;
 use App\Stats;
@@ -69,6 +70,8 @@ class PagesController extends Controller
 
     public function index_help ()
     {
-        return view('pages.help');
+        $helps = Help::all();
+
+        return view('pages.help', compact('helps'));
     }
 }
