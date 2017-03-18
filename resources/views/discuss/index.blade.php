@@ -32,7 +32,7 @@
 
     @include('widgets.reklama')
 
-    @widget('WidgetTopClickers')
+    @include('widgets.vk')
 
     @widget('WidgetLastPosts')
 
