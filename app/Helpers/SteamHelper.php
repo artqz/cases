@@ -10,6 +10,7 @@ use Intervention\Image\Facades\Image;
 
 //97E5CDC7C832E47EC6168D6F728E837E
 //76561198000501285
+//http://steamcommunity.com/inventory/76561198000501285/570/2?l=english
 
 class SteamHelper implements SteamContract
 {
