@@ -159,9 +159,4 @@
 <script>
     $('div.alert').not('.alert-important').delay(3000).slideUp(200);
 </script>
-<script>
-    window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
-    ]); ?>
-</script>
 </html>

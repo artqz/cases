@@ -10,6 +10,7 @@ use App\Stats;
 use Config;
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Session;
 
@@ -55,34 +56,43 @@ class ShopController extends Controller
 
     }
     public function buy_item ($id_item) {
-        $user = User::where('id', \Auth::id())->first();
-        $item = Item::where('id', $id_item)->where('status', 0)->first();
-        if ($item) {
-            if ($user->clicks >= $item->price) {
-                User::where('id', \Auth::id())->update([
-                    'clicks' => $user->clicks - $item->price,
-                ]);
-                //Записываем статистику
-                Stats::where('name', 'items')->increment('value', 1);
-                Item::where('id', $id_item)->update([
-                    'status' => 1,
-                    'hashcode' => md5(\Auth::id() + $id_item +time()),
-                    'user_id' => \Auth::id()]);
-                return redirect('/shop/items')->with([
-                    'flash_message' => 'Вы успешно купили предмет '. $item->name,
-                    'flash_message_status' => 'success',
-                ]);
+        //Только для подтвержденных аккаунтов
+        if (Auth::user()->steamid && Auth::user()->confirm_email) {
+            $user = User::where('id', \Auth::id())->first();
+
+            $item = Item::where('id', $id_item)->where('status', 0)->first();
+            if ($item) {
+                if ($user->clicks >= $item->price) {
+                    User::where('id', \Auth::id())->update([
+                        'clicks' => $user->clicks - $item->price,
+                    ]);
+                    //Записываем статистику
+                    Stats::where('name', 'items')->increment('value', 1);
+                    Item::where('id', $id_item)->update([
+                        'status' => 1,
+                        'hashcode' => md5(\Auth::id() + $id_item + time()),
+                        'user_id' => \Auth::id()]);
+                    return redirect('/shop/items')->with([
+                        'flash_message' => 'Вы успешно купили предмет ' . $item->name,
+                        'flash_message_status' => 'success',
+                    ]);
+                }
+
+            } else {
+                return redirect('/shop/items');
             }
 
+            return redirect('/shop/items')->with([
+                'flash_message' => 'У вас не хватает денег!',
+                'flash_message_status' => 'danger',
+            ]);
         }
         else {
-            return redirect('/shop/items');
+            return redirect('/shop/items')->with([
+                'flash_message' => 'Вы не подтвердили свой аккаунт!',
+                'flash_message_status' => 'danger',
+            ]);
         }
-
-        return redirect('/shop/items')->with([
-            'flash_message' => 'У вас не хватает денег!',
-            'flash_message_status' => 'danger',
-        ]);
     }
 
     public function index_games (SteamHelper $steam) {
@@ -111,33 +121,41 @@ class ShopController extends Controller
 
     }
     public function buy_game ($id_game) {
-        $user = User::where('id', \Auth::id())->first();
-        $game = Game::where('id', $id_game)->where('status', 0)->first();
-        if ($game) {
-            if ($user->clicks >= $game->price) {
-                User::where('id', \Auth::id())->update([
-                    'clicks' => $user->clicks - $game->price,
-                ]);
-                //Записываем статистику
-                Stats::where('name', 'games')->increment('value', 1);
-                Game::where('id', $id_game)->update([
-                    'status' => 2,
-                    'hashcode' => md5(\Auth::id() + $id_game +time()),
-                    'user_id' => \Auth::id()]);
-                return redirect('/shop/games')->with([
-                    'flash_message' => 'Вы успешно купили игру '. $game->name,
-                    'flash_message_status' => 'success',
-                ]);
+        //Только для подтвержденных аккаунтов
+        if (Auth::user()->steamid && Auth::user()->confirm_email) {
+            $user = User::where('id', \Auth::id())->first();
+            $game = Game::where('id', $id_game)->where('status', 0)->first();
+            if ($game) {
+                if ($user->clicks >= $game->price) {
+                    User::where('id', \Auth::id())->update([
+                        'clicks' => $user->clicks - $game->price,
+                    ]);
+                    //Записываем статистику
+                    Stats::where('name', 'games')->increment('value', 1);
+                    Game::where('id', $id_game)->update([
+                        'status' => 2,
+                        'hashcode' => md5(\Auth::id() + $id_game + time()),
+                        'user_id' => \Auth::id()]);
+                    return redirect('/shop/games')->with([
+                        'flash_message' => 'Вы успешно купили игру ' . $game->name,
+                        'flash_message_status' => 'success',
+                    ]);
+                }
+
+            } else {
+                return redirect('/shop/games');
             }
 
+            return redirect('/shop/games')->with([
+                'flash_message' => 'У вас не хватает денег!',
+                'flash_message_status' => 'danger',
+            ]);
         }
         else {
-            return redirect('/shop/games');
+            return redirect('/shop/games')->with([
+                'flash_message' => 'Вы не подтвердили свой аккаунт!',
+                'flash_message_status' => 'danger',
+            ]);
         }
-
-        return redirect('/shop/games')->with([
-            'flash_message' => 'У вас не хватает денег!',
-            'flash_message_status' => 'danger',
-        ]);
     }
 }
