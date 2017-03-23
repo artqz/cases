@@ -198,6 +198,14 @@ class AdminController extends Controller
             'flash_message_status' => 'success',
         ]);
     }
+    public function search_user (Request $request)
+    {
+        $users = User::where('name', 'LIKE', '%'.$request['q'].'%')
+            ->orWhere('id', $request['q'])
+            ->paginate(30);
+
+        return view('admin.users.index', compact('users'));
+    }
 
     public function create_reward_hundred () {
         return view('admin.users.reward_hundred');

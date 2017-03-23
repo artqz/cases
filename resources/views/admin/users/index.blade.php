@@ -25,7 +25,7 @@
                 <tr>
                     <td>{{ $user->id }}</td>
 
-                    <td><img src="{{ avatar($user->email_hash, $user->steam_avatar) }}" style="width: 24px">{{ $user->name }}</td>
+                    <td><img src="{{ avatar($user->email_hash, $user->steam_avatar) }}" style="width: 24px"> {{ $user->name }}</td>
 
                     <td>{{ $user->email }}</td>
 
@@ -48,6 +48,20 @@
 @endsection
 
 @section('sidebar')
+    <div class="panel panel-warning">
+        <div class="panel-body">
+            <div>Поиск пользователя</div>
+            <br>
+            <form method="get" action="{{ url('admin/users/search') }}">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Go!</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="panel panel-warning">
         <div class="panel-body">
             <div>Пользователя нельзя создать, так как есть регистрация!</div>

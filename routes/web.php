@@ -119,6 +119,7 @@ Route::get('admin/games/{id_game}/delete-game', 'AdminController@delete_game')->
 Route::get('admin/users', 'AdminController@index_users')->middleware('auth', 'userId');
 Route::get('admin/users/create-reward-hundred', 'AdminController@create_reward_hundred')->middleware('auth', 'userId');
 Route::post('admin/users/create-reward-hundred', 'AdminController@update_reward_hundred')->middleware('auth', 'userId');
+Route::get('admin/users/search', 'AdminController@search_user')->middleware('auth', 'userId');
 Route::get('admin/users/{id_user}/edit-user', 'AdminController@edit_user')->middleware('auth', 'userId');
 Route::post('admin/users/{id_user}/edit-user', 'AdminController@update_user')->middleware('auth', 'userId');
 Route::get('admin/users/{id_user}/create-reward', 'AdminController@create_reward')->middleware('auth', 'userId');
