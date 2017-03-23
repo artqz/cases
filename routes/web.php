@@ -93,6 +93,10 @@ Route::post('profile/edit-tradeoffer', 'PagesController@update_tradeoffer')->mid
 Route::get('my-games', 'PagesController@index_my_games')->middleware('auth');
 Route::get('my-items', 'PagesController@index_my_items')->middleware('auth');
 Route::get('help', 'PagesController@index_help');
+
+
+Route::get('users', 'UsersController@index')->middleware('auth');
+Route::get('users/{id_user}', 'UsersController@show')->middleware('auth');
 //---
 Route::get('admin', 'AdminController@index')->middleware('auth', 'userId');
 

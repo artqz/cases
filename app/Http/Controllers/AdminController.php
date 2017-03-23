@@ -214,6 +214,7 @@ class AdminController extends Controller
         $users = User::where('name', 'LIKE', '%'.$request['q'].'%')
             ->orWhere('id', $request['q'])
             ->paginate(30);
+        $users->appends(['q' => $request['q']]);
 
         return view('admin.users.index', compact('users'));
     }
