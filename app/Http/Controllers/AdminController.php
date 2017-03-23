@@ -103,7 +103,7 @@ class AdminController extends Controller
     public function search_item (Request $request)
     {
         $items = Item::join('users', 'items.user_id', '=', 'users.id')
-            ->selectRaw('items.name as name, items.id as id, items.price as price, items.status as status, items.user_id as user_id, items.hashcode as hashcode')
+            ->selectRaw('items.name as name, items.id as id, items.price as price, items.status as status, items.user_id as user_id, items.hashcode as hashcode, items.created_at as created_at')
             ->where('items.name', 'LIKE', '%'.$request['q'].'%')
             ->orWhere('users.name', 'LIKE', '%'.$request['q'].'%')
             ->orderBy('created_at', 'desc')
