@@ -103,6 +103,7 @@ Route::get('admin/api/helps', 'AdminController@get_helps')->middleware('auth', '
 Route::get('admin/items', 'AdminController@index_items')->middleware('auth', 'userId');
 Route::get('admin/items/create-item', 'AdminController@create_item')->middleware('auth', 'userId');
 Route::post('admin/items/create-item', 'AdminController@store_item')->middleware('auth', 'userId');
+Route::get('admin/items/search', 'AdminController@search_item')->middleware('auth', 'userId');
 Route::get('admin/items/{id_item}/edit-item', 'AdminController@edit_item')->middleware('auth', 'userId');
 Route::post('admin/items/{id_item}/edit-item', 'AdminController@update_item')->middleware('auth', 'userId');
 Route::get('admin/items/{id_item}/delete-item', 'AdminController@delete_item')->middleware('auth', 'userId');

@@ -49,6 +49,20 @@
 @endsection
 
 @section('sidebar')
+    <div class="panel panel-warning">
+        <div class="panel-body">
+            <div>Поиск предмета</div>
+            <br>
+            <form method="get" action="{{ url('admin/items/search') }}">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Go!</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="panel panel-default">
         <div class="panel-body">
             <div>Тут можно добавить предмет</div><br>
