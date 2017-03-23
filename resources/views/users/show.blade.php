@@ -25,7 +25,7 @@
                                     <tr>
                                         <td>{{ $key+1 }}</td>
                                         <td>{{ $click->clicks }}</td>
-                                        <td>{{ $click->created_at->diffForHumans() }}</td>
+                                        <td>{{ $click->created_at->diffForHumans() }} ({{ $click->created_at }})</td>
                                     </tr>
                                 @endforeach
                             </tbody>
