@@ -106,6 +106,7 @@ class AdminController extends Controller
             ->selectRaw('items.name as name, items.id as id, items.price as price, items.status as status, items.user_id as user_id, items.hashcode as hashcode')
             ->where('items.name', 'LIKE', '%'.$request['q'].'%')
             ->orWhere('users.name', 'LIKE', '%'.$request['q'].'%')
+            ->orderBy('created_at', 'desc')
             ->paginate(30);
         $items->appends(['q' => $request['q']]);
 
