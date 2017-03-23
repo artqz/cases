@@ -107,7 +107,7 @@ class AdminController extends Controller
             ->where('items.name', 'LIKE', '%'.$request['q'].'%')
             ->orWhere('users.name', 'LIKE', '%'.$request['q'].'%')
             ->paginate(30);
-        $items->appends(['search' => $request['q']]);
+        $items->appends(['q' => $request['q']]);
 
         return view('admin.items.index', compact('items'));
     }
