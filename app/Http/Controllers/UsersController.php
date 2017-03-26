@@ -29,7 +29,6 @@ class UsersController extends Controller
                 ->where('steamid', '!=', 0)
                 ->selectRaw('count(id) AS referrals, user_ref_id AS user_id')
                 ->selectRaw('count(user_ref_id)')
-                ->groupBy('user_ref_id')
                 ->count();
 
             return view('users.show', compact('items'));
