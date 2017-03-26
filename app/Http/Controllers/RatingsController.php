@@ -21,6 +21,8 @@ class RatingsController extends Controller
         $referrers = User::where('created_at', '<=', Carbon::now())
             ->where('created_at', '>=', Carbon::now()->subWeek())
             ->where('user_ref_id', '!=', 0)
+            ->where('confirm_email', '=', 1)
+            ->where('steamid', '!=', 0)
             ->selectRaw('count(id) AS referrals, user_ref_id AS user_id')
             ->selectRaw('count(user_ref_id)')
             ->groupBy('user_ref_id')
