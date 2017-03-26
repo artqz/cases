@@ -6,7 +6,7 @@
     <div>
         <span class="alert alert-warning alert-dismissible" style="display: block">
             <h4>Внимание!</h4>
-            <p>Для того чтобы получить купленный предмет, необходимо добавить в своём профиле добавить ссылку для обмена!
+            <p>Для того чтобы получить купленный предмет, необходимо добавить в своём профиле ссылку для обмена!
                 <a href="https://steamclicks.ru/discuss/channels/novosti/ssylka-na-obmen-gde-vzyat">Здесь можно почитать где её взять</a>. <b>Предметы выдаются в ручном режиме после 21:00 (Мск)!</b></p>
         </span>
         {!! Breadcrumbs::render('myitems') !!}
