@@ -5,7 +5,8 @@
 @section('content')
     <div>
         <h1>Профиль {{ $items->user->name }}</h1>
-
+        <div>Дата регистрации: {{ $items->user->created_at }}</div>
+        <div>Кол-во рефералов (подтвержденных): {{ $items->referrals_count }}</div>
         <div class="row">
             <div class="col-md-6">
                 <div role="tabpanel" class="tab-pane active" id="clicks">
