@@ -22,7 +22,7 @@ class UsersController extends Controller
             $items->user = $user;
             $items->clicks = Click::where('user_id', $user->id)->orderBy('created_at', 'desc')->limit(30)->get();
             $items->games = Game::where('user_id', $user->id)->orderBy('created_at', 'desc')->limit(30)->get();
-            $items->referrals_count = Referral::where('user_ref_id', $user->id)->count();
+            $items->referrals_count = User::where('user_ref_id', $user->id)->count();
 
             return view('users.show', compact('items'));
         }

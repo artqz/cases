@@ -7926,6 +7926,16 @@ footer p {
   border-radius: 50%;
 }
 
+.profile-card {
+  background-color: #fff;
+  padding: 5px 10px;
+  margin-bottom: 15px;
+  border-radius: 3px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  position: relative;
+  display: block;
+}
+
 .btn-steam {
   width: 100%;
   border-radius: 3px;

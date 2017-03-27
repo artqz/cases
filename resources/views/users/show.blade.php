@@ -5,8 +5,17 @@
 @section('content')
     <div>
         <h1>Профиль {{ $items->user->name }}</h1>
-        <div>Дата регистрации: {{ $items->user->created_at }}</div>
-        <div>Кол-во рефералов (подтвержденных): {{ $items->referrals_count }}</div>
+        <div class="profile-card">
+            <div class="row">
+            <div class="col-sm-3"><img src="{{ avatar($items->user->email_hash, $items->user->steam_avatar) }}"></div>
+            <div class="col-sm-9">
+                <div>Дата регистрации: {{ $items->user->created_at }}</div>
+                <div>Значки: </div>
+                <div>Кол-во рефералов: {{ $items->referrals_count }}</div>
+            </div>
+            <div class="clearfix"></div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-6">
                 <div role="tabpanel" class="tab-pane active" id="clicks">
