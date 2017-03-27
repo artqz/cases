@@ -33,6 +33,10 @@ Route::get('cache', function () {
     return $value;
 });
 
+Route::get('ip', function () {
+    return Request::ip();
+});
+
 Route::get('image', function () {
     $url = 'http://steamcommunity.com/id/djoctuk/inventory/json/730/2';
     $tuCurl = curl_init();
