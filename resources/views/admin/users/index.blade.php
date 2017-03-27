@@ -25,7 +25,10 @@
                 <tr>
                     <td>{{ $user->id }}</td>
 
-                    <td><img src="{{ avatar($user->email_hash, $user->steam_avatar) }}" style="width: 24px"> {{ $user->name }}</td>
+                    <td><img src="{{ avatar($user->email_hash, $user->steam_avatar) }}" style="width: 24px"> {{ $user->name }}
+                        <br>
+                        {{ $user->ip_address }}
+                    </td>
 
                     <td>{{ $user->email }}</td>
 
