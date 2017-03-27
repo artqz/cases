@@ -17,8 +17,10 @@ use Auth;
 
 class FaucetController extends Controller
 {
-    public function index ()
-    {
+    public function index (Request $request)
+    {   User::where('id', Auth::id())->update([
+             'ip_address' => $request->ip(),
+        ]);
         $user = User::where('id', Auth::id())->first();
         $finishTime = (strtotime($user->last_click) + Config::get('main.period_click'));
         $finishDate = date("Y/m/d H:i:s", $finishTime);
