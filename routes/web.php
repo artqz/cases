@@ -64,6 +64,7 @@ Route::get('shop/games/{id_post}/buy-game', 'ShopController@buy_game')->middlewa
 //---
 //distributions
 Route::get('distributions', 'distributionsController@index');
+Route::get('distributions/buy-cert', 'distributionsController@buy_cert')->middleware('auth');
 Route::get('distributions/create', 'distributionsController@create')->middleware('auth', 'trader');
 Route::post('distributions/create', 'distributionsController@update')->middleware('auth', 'trader');
 Route::get('distributions/{id_distribution}/join', 'distributionsController@join')->middleware('auth');

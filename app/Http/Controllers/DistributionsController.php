@@ -18,6 +18,32 @@ class DistributionsController extends Controller
         return view('distributions.index', compact('distributions'));
     }
 
+    /**
+     * @return string
+     */
+    public function buy_cert ()
+    {
+        //Только для подтвержденных аккаунтов
+        if (Auth::user()->steamid && Auth::user()->confirm_email) {
+            $user = User::where('id', \Auth::id())->first();
+
+            if ($user->clicks >= Config::get('main.price_cert')) {
+                return redirect('distributions')->with([
+                    'flash_message' => 'Вы успешно приобрели сертификат торговца!',
+                    'flash_message_status' => 'success',
+                ]);
+            }
+            return redirect('distributions')->with([
+                'flash_message' => 'У Вас не хватает кликов!',
+                'flash_message_status' => 'danger',
+            ]);
+        }
+        return redirect('distributions')->with([
+            'flash_message' => 'Ваш аккаунт не подтвержден!',
+            'flash_message_status' => 'danger',
+        ]);
+    }
+
     public function create()
     {
         return view('distributions.create');

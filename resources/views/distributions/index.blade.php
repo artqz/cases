@@ -67,6 +67,11 @@
 @section('sidebar')
     <div class="panel panel-default">
         <div class="panel-body">
+            Для того, чтобы создавать свои раздачи необходимо преобрести сертификат торговца за <div class="price" style="display: inline-block;">{{ Config::get('main.price_cert') }}</div>
+            <div class="clearfix"></div>
+            <br>
+            <a class="btn btn-sm btn-warning" href="{{ url('distributions/buy-cert') }}">Купить сертификат</a>
+            <hr>
             <div>Тут можно создать раздачу</div><br>
             <a class="btn btn-sm btn-success" href="{{ url('distributions/create') }}">Создать раздачу</a>
         </div>
