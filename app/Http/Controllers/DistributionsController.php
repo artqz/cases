@@ -8,6 +8,7 @@ use App\Player;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Config;
 
 class DistributionsController extends Controller
 {
@@ -27,15 +28,26 @@ class DistributionsController extends Controller
         if (Auth::user()->steamid && Auth::user()->confirm_email) {
             $user = User::where('id', \Auth::id())->first();
 
-            if ($user->clicks >= Config::get('main.price_cert')) {
+            if ($user->isTrader == 0) {
+                if ($user->clicks >= Config::get('main.price_cert')) {
+                    User::where('id', \Auth::id())->update([
+                        'clicks' => $user->clicks - Config::get('main.price_cert'),
+                        'isTrader' => 1,
+                    ]);
+
+                    return redirect('distributions')->with([
+                        'flash_message' => 'Вы успешно приобрели сертификат торговца!',
+                        'flash_message_status' => 'success',
+                    ]);
+                }
                 return redirect('distributions')->with([
-                    'flash_message' => 'Вы успешно приобрели сертификат торговца!',
-                    'flash_message_status' => 'success',
+                    'flash_message' => 'У Вас не хватает кликов!',
+                    'flash_message_status' => 'danger',
                 ]);
             }
             return redirect('distributions')->with([
-                'flash_message' => 'У Вас не хватает кликов!',
-                'flash_message_status' => 'danger',
+                'flash_message' => 'У Вас уже есть сертификат торговца!',
+                'flash_message_status' => 'warning',
             ]);
         }
         return redirect('distributions')->with([

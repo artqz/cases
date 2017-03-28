@@ -203,6 +203,7 @@ class AdminController extends Controller
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'clicks' => $request->input('clicks'),
+            'isBanned' => $request->input('isBanned'),
         ]);
 
         return redirect('admin/users')->with([

@@ -25,7 +25,7 @@
                 <tr>
                     <td>{{ $user->id }}</td>
 
-                    <td><img src="{{ avatar($user->email_hash, $user->steam_avatar) }}" style="width: 24px"> {{ $user->name }}</td>
+                    <td><img src="{{ avatar($user->email_hash, $user->steam_avatar) }}" style="width: 24px"> {{ $user->name }} {!!  ($user->isBanned == 1) ? '<span class="label label-danger">BAN</span>' : '' !!}</td>
 
                     <td>{{ $user->email }}<br>
                         ({{ $user->ip_address }})</td>
