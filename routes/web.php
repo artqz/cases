@@ -63,11 +63,11 @@ Route::post('shop/games/create-game', 'ShopController@store_game')->middleware('
 Route::get('shop/games/{id_post}/buy-game', 'ShopController@buy_game')->middleware('auth');
 //---
 //distributions
-Route::get('distributions', 'distributionsController@index');
-Route::get('distributions/buy-cert', 'distributionsController@buy_cert')->middleware('auth');
-Route::get('distributions/create', 'distributionsController@create')->middleware('auth', 'trader');
-Route::post('distributions/create', 'distributionsController@update')->middleware('auth', 'trader');
-Route::get('distributions/{id_distribution}/join', 'distributionsController@join')->middleware('auth');
+Route::get('distributions', 'DistributionsController@index');
+Route::get('distributions/buy-cert', 'DistributionsController@buy_cert')->middleware('auth');
+Route::get('distributions/create', 'DistributionsController@create')->middleware('auth', 'trader');
+Route::post('distributions/create', 'DistributionsController@update')->middleware('auth', 'trader');
+Route::get('distributions/{id_distribution}/join', 'DistributionsController@join')->middleware('auth');
 
 //---
 //forum
