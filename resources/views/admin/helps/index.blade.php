@@ -5,7 +5,6 @@
 @section('content')
     @include('layouts.flash')
     {!! Breadcrumbs::render('admin.games') !!}
-    <div id="app">1</div>
     <h1>Хелпер</h1>
     <div class="panel panel-default">
 
@@ -38,8 +37,8 @@
 @section('sidebar')
     <div class="panel panel-default">
         <div class="panel-body">
-            <div>Тут можно добавить игру</div><br>
-            <a class="btn btn-sm btn-success" href="{{ url('admin/games/create-game') }}">Добавить игру</a>
+            <div>Тут можно добавить хелпер</div><br>
+            <a class="btn btn-sm btn-success" href="{{ url('admin/helps/create') }}">Добавить хелпер</a>
         </div>
     </div>
 @endsection

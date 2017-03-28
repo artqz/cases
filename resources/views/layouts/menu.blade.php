@@ -3,4 +3,4 @@
 <li><a href="{{ url('rating') }}">Рейтинг</a></li>
 <li><a href="{{ url('discuss') }}">Общение</a></li>
 <li><a href="{{ url('referral') }}">Бонусы</a></li>
-<li><a href="{{ url('help') }}">Помощь</a></li>
+<li><a href="{{ url('help') }}">FAQ</a></li>

@@ -8,4 +8,8 @@ use App\Helpers\DataViewer;
 class Help extends Model
 {
     use DataViewer;
+
+    protected $fillable = [
+        'name', 'text', 'position',
+    ];
 }

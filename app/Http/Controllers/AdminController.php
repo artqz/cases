@@ -309,25 +309,54 @@ class AdminController extends Controller
         return view('admin.helps.index', compact('helps'));
     }
 
-    public function get_helps ()
-    {
-        return Help::scopeSearchPaginateAndOrder();
-    }
-
     public function create_help () {
         return view('admin.helps.create');
     }
+
     public function store_help (Request $request, SteamHelper $steam)
     {
         $this->validate($request, [
             'name' => 'required',
             'text' => 'required',
+            'position' => 'integer',
         ]);
 
-        $steam->addGameToDB($request->input('game_id'), $request->input('price'), $request->input('data'));
+        Help::create([
+            'name' => $request['name'],
+            'text' => $request['text'],
+            'position' => $request['position'],
+        ]);
 
         return redirect('admin/helps')->with([
-            'flash_message' => 'Вы успешно добавили игру',
+            'flash_message' => 'Вы успешно добавили хелпер',
+            'flash_message_status' => 'success',
+        ]);
+    }
+
+    public function edit_help ($id_help) {
+        $help = Help::findOrFail($id_help);
+
+        return view('admin.helps.edit', compact('help'));
+    }
+
+    public function update_help (Request $request, $id_help)
+    {
+        $help = User::findOrFail($id_help);
+
+        $this->validate($request, [
+            'name' => 'required',
+            'text' => 'required',
+            'position' => 'integer',
+        ]);
+
+        Help::where('id', $help->id)->update([
+            'name' => $request['name'],
+            'text' => $request['text'],
+            'position' => $request['position'],
+        ]);
+
+        return redirect('admin/helps')->with([
+            'flash_message' => 'Вы успешно изменили хелпер',
             'flash_message_status' => 'success',
         ]);
     }

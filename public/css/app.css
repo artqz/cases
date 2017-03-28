@@ -8008,6 +8008,26 @@ footer p {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
+ul.faq-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.faq-list a h4 {
+  color: #555;
+  font-size: 19px;
+  margin: 10px 0;
+}
+
+.faq-list a:hover {
+  text-decoration: none;
+}
+
+.faq-list .content {
+  padding-bottom: 10px;
+}
+
 .distributions-list .distribution-card {
   background-color: #fff;
   padding: 5px 10px;
