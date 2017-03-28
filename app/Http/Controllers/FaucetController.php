@@ -97,12 +97,12 @@ class FaucetController extends Controller
                     Stats::where('name', 'clicks')->increment('value', $clicks);
 
                     //Бонус за реф
-                    //Только для подтвержденных аккаунтов
-                    if (Auth::user()->steamid && Auth::user()->confirm_email) {
+                    //Только для подтвержденных аккаунтов и не забанненых
+                    if (Auth::user()->steamid && Auth::user()->confirm_email && Auth::user()->isBanned == 0) {
                         $ref_click = $clicks * Config::get('main.ref_percent_click');
                     }
                     else {
-                        $ref_click = $clicks * Config::get('main.ref_percent_click_not_valid');
+                        $ref_click = Config::get('main.reward_click_min') * Config::get('main.ref_percent_click_not_valid');
                     }
                     if ($user->user_ref_id) {
                         User::where('id', $user->user_ref_id)->increment('clicks', $clicks * $ref_click);
