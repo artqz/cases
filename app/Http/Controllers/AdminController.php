@@ -214,6 +214,7 @@ class AdminController extends Controller
     public function search_user (Request $request)
     {
         $users = User::where('name', 'LIKE', '%'.$request['q'].'%')
+            ->orWhere('email', 'LIKE', '%'.$request['q'].'%')
             ->orWhere('id', $request['q'])
             ->orWhere('ip_address', $request['q'])
             ->paginate(30);
