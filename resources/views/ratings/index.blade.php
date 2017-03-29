@@ -37,7 +37,7 @@
                         <th>Реферер</th>
                         <th>Кол-во рефералов</th>
                     </tr>
-                    @foreach($referrers as $key => $referrer)
+                    @foreach($referrers->where('isBanned', 0) as $key => $referrer)
                         <tr>
                             <td>{{ $key+1 }}</td>
                             <td class="user-name"><img src="{{ avatar($referrer->user->email_hash, $referrer->user->steam_avatar) }}"> {{ $referrer->user->name }}</td>
