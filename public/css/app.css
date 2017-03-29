@@ -8111,6 +8111,7 @@ ul.faq-menu {
 .distributions-list .distribution-card .distribution-steam,
 .distributions-list .distribution-card .distribution-comments {
   display: inline-block;
+  padding-right: 7px;
 }
 
 .distributions-list .distribution-card .player-name img {
@@ -8120,8 +8121,23 @@ ul.faq-menu {
   margin-right: 5px;
 }
 
-.distributions-list .distribution-card .buy {
-  margin-top: 20px;
+.distributions-list .distribution-card .distribution-show {
+  line-height: 2.4;
+}
+
+.distributions-list .distribution-card .distribution-show a {
+  width: 100%;
+  margin-bottom: 0;
+  border: 1px solid #eaedef;
+  border-radius: 3px;
+  background-color: #f5f8fa;
+  color: grey;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  padding: 5px 10px;
+  -webkit-transition: .5s;
+  transition: .5s;
 }
 
 .distributions-list .distribution-card .disable {

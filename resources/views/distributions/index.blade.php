@@ -15,12 +15,10 @@
                         <div class="distribution-image"><img src="{{ $distribution->game_image }}" alt="Раздача {{ $distribution->game_name }}"></div>
                         <div style="display: inline-block; vertical-align: middle;">
                             <div class="distribution-name">Раздача {{ $distribution->game_name }}</div>
-                            <div class="distribution-price"><span class="price">{{ $distribution->price }}</span></div>
                             <div class="distribution-players"><i class="fa fa-users" aria-hidden="true"></i> {{ $distribution->joined_players }}/{{ $distribution->players }}</div>
                             <div class="distribution-comments"><i class="fa fa-comments-o" aria-hidden="true"></i> 1</div>
-                            <div class="distribution-steam"><a href="http://store.steampowered.com/app/{{ $distribution->game_id }}/"><i class="fa fa-steam" aria-hidden="true"></i></a></div>
                         </div>
-                        <div class="distribution-show">Подробнее</div>
+                        <div class="distribution-show"><a href="{{ url('distributions/'.$distribution->id) }}">Подробнее</a></div>
                     </div>
                 </div>
                 @endif
