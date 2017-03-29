@@ -10,7 +10,7 @@
             <li><a href="#{{ $help->id }}">{{ $key+1 }}. {{ $help->name }}</a></li>
         @endforeach
     </ul>
-    <div>Хотите почитать правила <a href="#">Steam Clicks</a>?</div>
+    <div>Хотите почитать <a href="{{ url('rules') }}">правила Steam Clicks</a>?</div>
     <br>
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- adaptiv_help -->

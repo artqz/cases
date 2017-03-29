@@ -27,13 +27,11 @@ class RatingsController extends Controller
             ->where('steamid', '!=', 0)
             ->selectRaw('count(id) AS referrals, user_ref_id AS user_id')
             ->selectRaw('count(user_ref_id)')
-            ->selectRaw('(SELECT isBanned FROM users WHERE id = user_id) AS isBanned')
+            //->selectRaw('(SELECT isBanned FROM users WHERE id = user_id) AS isBanned')
             ->groupBy('user_ref_id')
             ->orderBy('referrals', 'desc')
-            ->where('isBanned', 0)
             ->limit(10)
             ->get();
-
         return view('ratings.index', compact('clickers', 'referrers'));
     }
 }

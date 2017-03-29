@@ -74,4 +74,8 @@ class PagesController extends Controller
 
         return view('pages.help', compact('helps'));
     }
+    public function index_rules ()
+    {
+        return view('pages.rules');
+    }
 }
