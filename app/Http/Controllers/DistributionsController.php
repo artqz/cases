@@ -77,7 +77,8 @@ class DistributionsController extends Controller
             Distribution::create([
                 'name' => '',
                 'players' => $request->input('players'),
-                'price' => $request->input('price'),
+                'price' => ($request->input('price')/$request->input('players'))+($request->input('price')/$request->input('players')*0.1),
+                'type' => 1, //игра 1, предмет 2
                 'status' => 0,
                 'user_id' => Auth::id(),
                 'user_winner_id' => 0,

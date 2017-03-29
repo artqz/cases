@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }}">
-                    <label for="price" class="col-md-4 control-label">Цена за участие</label>
+                    <label for="price" class="col-md-4 control-label">Какую сумму вы хотите собрать?</label>
 
                     <div class="col-md-6">
                         <input id="price" type="text" class="form-control" name="price" value="{{ old('price') }}" required>
@@ -31,20 +31,6 @@
                         @if ($errors->has('price'))
                             <span class="help-block">
                                     <strong>{{ $errors->first('price') }}</strong>
-                                </span>
-                        @endif
-                    </div>
-                </div>
-
-                <div class="form-group{{ $errors->has('data') ? ' has-error' : '' }}">
-                    <label for="data" class="col-md-4 control-label">Сылка на гифт или ключ</label>
-
-                    <div class="col-md-6">
-                        <input id="data" type="text" class="form-control" name="data" value="{{ old('data') }}" required>
-
-                        @if ($errors->has('data'))
-                            <span class="help-block">
-                                    <strong>{{ $errors->first('data') }}</strong>
                                 </span>
                         @endif
                     </div>
@@ -59,6 +45,20 @@
                         @if ($errors->has('players'))
                             <span class="help-block">
                                     <strong>{{ $errors->first('players') }}</strong>
+                                </span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="form-group{{ $errors->has('data') ? ' has-error' : '' }}">
+                    <label for="data" class="col-md-4 control-label">Сылка на гифт или ключ</label>
+
+                    <div class="col-md-6">
+                        <input id="data" type="text" class="form-control" name="data" value="{{ old('data') }}" required>
+
+                        @if ($errors->has('data'))
+                            <span class="help-block">
+                                    <strong>{{ $errors->first('data') }}</strong>
                                 </span>
                         @endif
                     </div>

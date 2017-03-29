@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Distribution extends Model
 {
     protected $fillable = [
-        'name', 'players', 'price', 'status', 'user_id', 'user_winner_id', 'game_name', 'game_image', 'game_id'
+        'name', 'players', 'price', 'type', 'status', 'user_id', 'user_winner_id', 'game_name', 'game_image', 'game_id'
     ];
 
     public function user()

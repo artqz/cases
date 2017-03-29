@@ -331,28 +331,23 @@ ul.faq-menu {
   display: block;
 }
 .distributions-list .distribution-card .distribution-name {
-  line-height: 2.2;
-  white-space: nowrap;
+   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   color: #949494;
-  margin-bottom: 10px;
 }
-.distributions-list .distribution-card .distribution-players {
-  line-height: 2.2;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: #949494;
-  margin-bottom: 20px;
+.distributions-list .distribution-card .distribution-show {
+  display: inline-block;
+  float: right;
 }
 .distributions-list .distribution-card .distribution-image {
-  padding: 14px 0;
+  padding-right: 10px;
+  display: inline-block;
 }
 .distributions-list .distribution-card .distribution-image img {
   width: auto;
   border-radius: 3px;
-  max-width: 100%;
+  height: 45px;
 }
 .distributions-list .distribution-card .distribution-price {
   font-size: 12px;
@@ -392,6 +387,13 @@ ul.faq-menu {
   text-overflow: ellipsis;
   margin-bottom: 15px;
 }
+.distributions-list .distribution-card .distribution-price,
+.distributions-list .distribution-card .distribution-players,
+.distributions-list .distribution-card .distribution-steam,
+.distributions-list .distribution-card .distribution-comments {
+  display: inline-block;
+}
+
 .distributions-list .distribution-card .player-name img {
   width: 20px;
   height: 20px;
