@@ -22,9 +22,12 @@
             @foreach($items as $item)
                 <div class="col-xs-6 col-sm-3 col-md-3">
                     <div class="item-card">
-                        <div class="item-name">{{ $item->name }}</div>
+                        <div class="item-name" style="color: #{{ $item->name_color }};">{{ $item->name }}</div>
                         <div class="category-icon"><img src="{{ url('images/games/icons/'.$item->category->appid.'.jpg') }}" alt="{{ $item->category->name }}"></div>
-                        <div class="item-image"><img src="{{ $item->icon_url }}" alt="{{ $item->name }}"></div>
+                        <div class="item-image">
+                            <div class="type" style="background-color: #{{ $item->name_color }};"></div>
+                            <img src="{{ $item->icon_url }}" alt="{{ $item->name }}">
+                        </div>
                         <div class="price"><span>{{ $item->price }}</span></div>
                         <div><a href="{{ url('/shop/items/'. $item->id .'/buy-item') }}" class="buy">Купить</a></div>
                         <div class="clearfix"></div>

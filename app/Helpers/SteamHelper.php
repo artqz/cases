@@ -40,6 +40,8 @@ class SteamHelper implements SteamContract
                 'price' => $price,
                 'icon_url' => $getGame->icon_url,
                 'icon_url_large' => $getGame->icon_url_large,
+                'type' => $getGame->type,
+                'name_color' => $getGame->name_color,
             ]);
 
             return $item;
@@ -121,6 +123,7 @@ class SteamHelper implements SteamContract
                                 'market_hash_name' => $market_hash_name,
                                 'market_name' => $item->market_name,
                                 'type' => $item->type,
+                                'name_color' => $item->name_color,
                                 'tradable' => $item->tradable,
                                 'marketable' => $item->marketable,
                             ]);

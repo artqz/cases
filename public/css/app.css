@@ -8311,6 +8311,7 @@ ul.faq-menu {
 .items-list .item-card .item-image {
   margin: 0 auto;
   text-align: center;
+  position: relative;
 }
 
 .items-list .item-card .item-image img {
@@ -8327,6 +8328,15 @@ ul.faq-menu {
   text-overflow: ellipsis;
   color: #949494;
   margin-bottom: 10px;
+}
+
+.items-list .item-card .type {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 
 .items-list .item-card .price {
