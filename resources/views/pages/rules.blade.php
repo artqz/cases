@@ -18,8 +18,4 @@
 
     @include('widgets.reklama')
 
-    @widget('WidgetTopClickers')
-
-    @widget('WidgetLastPosts')
-
 @endsection

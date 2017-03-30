@@ -96,6 +96,5 @@
 
     @include('widgets.vk')
 
-    @widget('WidgetLastPosts')
 
 @endsection

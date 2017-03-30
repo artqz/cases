@@ -37,10 +37,6 @@
 
     @include('widgets.vk')
 
-    @widget('WidgetTopClickers')
-
-    @widget('WidgetLastPosts')
-
 @endsection
 
 @section('scripts')

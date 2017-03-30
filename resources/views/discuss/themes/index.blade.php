@@ -51,9 +51,7 @@
 
     @include('widgets.reklama')
 
-    @widget('WidgetTopClickers')
-
-    @widget('WidgetLastPosts')
+    @include('widgets.vk')
 
 @endsection
 
