@@ -103,7 +103,7 @@ class DistributionsController extends Controller
     {
         $distribution = Distribution::where('id', $id_distribution)->first();
         if ($distribution) {
-            //щитаем количество участия
+            //считаем количество участия
             $play = Player::where('distribution_id', $distribution->id)->where('user_id', Auth::id())->count();
 
             $user = User::where('id', Auth::id())->first();
@@ -152,5 +152,11 @@ class DistributionsController extends Controller
             ]);
         }
         else return redirect('/');
+    }
+
+    public function show ($id_distribution) {
+        $distribution = Distribution::where('id', $id_distribution)->first();
+
+        return view('distributions.show', compact('distribution'));
     }
 }

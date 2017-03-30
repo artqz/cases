@@ -67,6 +67,7 @@ Route::get('distributions', 'DistributionsController@index')->middleware('auth')
 Route::get('distributions/buy-cert', 'DistributionsController@buy_cert')->middleware('auth');
 Route::get('distributions/create', 'DistributionsController@create')->middleware('auth', 'trader');
 Route::post('distributions/create', 'DistributionsController@update')->middleware('auth', 'trader');
+Route::get('distributions/{id_distribution}', 'DistributionsController@show')->middleware('auth');
 Route::get('distributions/{id_distribution}/join', 'DistributionsController@join')->middleware('auth');
 
 //---
