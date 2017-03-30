@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', 'Раздачи - ')
+@section('title', 'Раздача '.$distribution->game_name.' - ')
 
 @section('content')
     <div>
@@ -73,19 +73,22 @@
 @endsection
 
 @section('sidebar')
-    <div class="panel panel-default">
-        <div class="panel-body">
-            @if(Auth::user()->isTrader == 0)
-            Для того, чтобы создавать свои раздачи необходимо преобрести сертификат торговца за <div class="price" style="display: inline-block;">{{ Config::get('main.price_cert') }}</div>
-            <div class="clearfix"></div>
-            <br>
-            <a class="btn btn-sm btn-warning" href="{{ url('distributions/buy-cert') }}">Купить сертификат</a>
-            <hr>
-            @endif
-            <div>Тут можно создать раздачу</div><br>
-            <a class="btn btn-sm btn-success" href="{{ url('distributions/create') }}">Создать раздачу</a>
+    @if(Auth::id())
+        <div class="panel panel-default">
+            <div class="panel-body">
+                @if(Auth::user()->isTrader == 0)
+                    Для того, чтобы создавать свои раздачи необходимо приобрести сертификат торговца за <div class="price" style="display: inline-block;">{{ Config::get('main.price_cert') }}</div>
+                    <div class="clearfix"></div>
+                    <br>
+                    <a class="btn btn-sm btn-warning" href="{{ url('distributions/buy-cert') }}">Купить сертификат</a>
+                @else
+                    <div>
+                        <a class="btn btn-sm btn-success" href="{{ url('distributions/create') }}">Создать раздачу</a>
+                    </div>
+                @endif
+            </div>
         </div>
-    </div>
+    @endif
 
     @widget('WidgetChat')
 
