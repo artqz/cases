@@ -14,7 +14,7 @@
                         <img src="{{ avatar($post->user['email_hash'], $post->user['steam_avatar']) }}"> {{ $post->user['name'] }}
                     </div>
                     <div class="post-text">
-                        {!! nl2br($post->text !!}
+                        {!! nl2br($post->text) !!}
                     </div>
                     <div class="pull-right">
                         @if(\Auth::id() == \Config::get('main.admin_id'))
