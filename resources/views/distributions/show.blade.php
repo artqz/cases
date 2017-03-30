@@ -16,7 +16,7 @@
 
         <div class="row">
             <div class="col-sm-6 col-md-6">
-                <a class="category " href="{{ url('comments/'.$distribution->id) }}">
+                <a class="category " href="{{ url('distribution/'.$distribution->id.'/players') }}">
                     <span class="category-name">Комментарии</span>
                 </a>
             </div>
