@@ -361,4 +361,14 @@ class AdminController extends Controller
             'flash_message_status' => 'success',
         ]);
     }
+
+    public function delete_help ($id_message) {
+        $help = Help::findOrFail($id_message);
+
+        Help::where('id', $help->id)->delete();
+        return redirect('admin/messages')->with([
+            'flash_message' => 'Вы успешно удалили хелпер '. $help->name,
+            'flash_message_status' => 'success',
+        ]);
+    }
 }

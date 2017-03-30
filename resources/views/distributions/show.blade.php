@@ -10,7 +10,16 @@
 
         <div>
             <img src="{{ $distribution->game_image }}" alt="{{ $distribution->game_name }}">
+            {{ $distribution->user->name }}
             <div class="distribution-players"><i class="fa fa-users" aria-hidden="true"></i> Участников {{ $distribution->joined_players }} из {{ $distribution->players }}</div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <a class="category " href="{{ url('comments/'.$distribution->id) }}">
+                    <span class="category-name">Комментарии</span>
+                </a>
+            </div>
         </div>
 
     </div>

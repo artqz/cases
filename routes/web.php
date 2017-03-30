@@ -112,6 +112,7 @@ Route::get('admin/helps/create', 'AdminController@create_help')->middleware('aut
 Route::post('admin/helps/create', 'AdminController@store_help')->middleware('auth', 'userId');
 Route::get('admin/helps/{id_help}/edit', 'AdminController@edit_help')->middleware('auth', 'userId');
 Route::post('admin/helps/{id_help}/edit', 'AdminController@update_help')->middleware('auth', 'userId');
+Route::get('admin/helps/{id_help}/delete', 'AdminController@update_delete')->middleware('auth', 'userId');
 
 Route::get('admin/items', 'AdminController@index_items')->middleware('auth', 'userId');
 Route::get('admin/items/create-item', 'AdminController@create_item')->middleware('auth', 'userId');
