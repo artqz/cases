@@ -158,7 +158,7 @@ class DiscussController extends Controller
             $theme = Theme::where('slug', $slug_theme)->first();
             $post = Post::create([
                 'user_id' => \Auth::id(),
-                'text' => $request->input('text'),
+                'text' => strip_tags($request->input('text')),
             ]);
             $theme->posts()->save($post);
 
