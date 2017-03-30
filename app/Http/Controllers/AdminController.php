@@ -366,7 +366,7 @@ class AdminController extends Controller
         $help = Help::findOrFail($id_message);
 
         Help::where('id', $help->id)->delete();
-        return redirect('admin/messages')->with([
+        return redirect('admin/helps')->with([
             'flash_message' => 'Вы успешно удалили хелпер '. $help->name,
             'flash_message_status' => 'success',
         ]);
