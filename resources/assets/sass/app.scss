@@ -55,6 +55,27 @@ footer p {
   transition: 1s;
   text-decoration: none;
 }
+.join {
+  width: 100%;
+  margin-bottom: 4px;
+  border: 1px solid #a04eb4;
+  border-radius: 3px;
+  background-color: #af56c5;
+  color: white;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  padding: 5px 10px;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+.join:hover {
+  border: 1px solid #a04eb4;
+  background-color: #bf67d5;
+  color: white;
+  transition: 1s;
+  text-decoration: none;
+}
 //---widgets---
 .panel-body.chat {
   overflow-y: scroll;
@@ -318,6 +339,55 @@ ul.faq-menu {
 }
 ///------
 //---distributions---
+.distribution {
+
+}
+.distribution .distribution-card {
+  background-color: #fff;
+  padding: 5px 10px;
+  margin-bottom: 15px;
+  border-radius: 3px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  position: relative;
+  display: block;
+}
+.distribution .distribution-card .distribution-share {
+  margin: 13px 0;
+}
+.distribution .distribution-card .distribution-share td a {
+  box-sizing: content-box;
+}
+.distribution .distribution-card .distribution-user,
+.distribution .distribution-card .distribution-steam,
+.distribution .distribution-card .distribution-players,
+.distribution .distribution-card .distribution-price {
+  line-height: 3;
+  border-bottom: 1px dotted #dfdfdf;
+}
+.distribution .distribution-card .distribution-price {
+  line-height: 3;
+}
+.distribution .distribution-card .distribution-user img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+.distribution .distribution-card .distribution-image {
+  margin: 13px 0;
+  text-align: center;
+
+}
+.distribution .distribution-card .distribution-image img {
+  width: auto;
+  border-radius: 3px;
+}
+.distribution .distribution-card .distribution-join {
+
+}
+
+
+
 .distributions-list {
 
 }

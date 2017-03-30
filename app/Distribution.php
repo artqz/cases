@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Distribution extends Model
@@ -17,6 +18,11 @@ class Distribution extends Model
 
     public function players_list ()
     {
-        return $this->hasMany('App\Player')->orderBy('created_at', 'DESC')->limit(9);
+        Carbon::setLocale('ru');
+        return $this->hasMany('App\Player')->orderBy('created_at', 'DESC');
+    }
+    public function check_player ()
+    {
+        return $this->hasMany('App\Player')->where('user_id', \Auth::id());
     }
 }

@@ -35,7 +35,7 @@
                         @foreach($items as $item)
                             <div class="col-sm-6 col-md-6">
                                 <div class="item-card">
-                                    <div class="item-name">{{ $item->name }}</div>
+                                    <div class="item-name" style="color: #{{ $item->name_color }};">{{ $item->name }}</div>
                                     <div class="category-icon"><img src="{{ url('images/games/icons/'.$item->category->appid.'.jpg') }}" alt="{{ $item->category->name }}"></div>
                                     <div class="item-image"><img src="{{ $item->icon_url }}" alt="{{ $item->name }}"></div>
                                     <div class="price"><span>{{ $item->price }}</span></div>
