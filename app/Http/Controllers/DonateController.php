@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 class DonateController extends Controller
 {
     public function index () {
-        $user = User::where('id'. \Auth::id())->first();
         $payment = new \Idma\Robokassa\Payment(
             'djoctuk', 'Artem110789', 'Kuznetsov110789', true
         );
