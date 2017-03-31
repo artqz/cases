@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReferralsTable extends Migration
+class CreatedOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateReferralsTable extends Migration
      */
     public function up()
     {
-        Schema::create('referrals', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->integer('user_ref_id');
-            $table->float('clicks');
-            
+            $table->float('sum');
+            $table->string('description');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateReferralsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('referrals');
+        Schema::drop('orders');
     }
 }

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DonateController extends Controller
 {
@@ -17,17 +19,25 @@ class DonateController extends Controller
      */
     public function buy_one()
     {
-        $payment = new \Idma\Robokassa\Payment(
-            'steamclicks.ru', 'Artem110789', 'Kuznetsov110789', true
-        );
+        $order = Order::create([
+            'user_id' => Auth::id(),
+            'sum' => 15.00,
+            'description' => 'Payment for 5 crystals',
+        ]);
 
-        $payment
-            ->setInvoiceId(1)
-            ->setSum(15.00)
-            ->setDescription('Payment for some goods');
+        if ($order) {
+            $payment = new \Idma\Robokassa\Payment(
+                'steamclicks.ru', 'Artem110789', 'Kuznetsov110789', true
+            );
 
-        // redirect to payment url
-        return redirect($payment->getPaymentUrl());
+            $payment
+                ->setInvoiceId($order->id)
+                ->setSum($order->sum)
+                ->setDescription($order->description);
+
+            // redirect to payment url
+            return redirect($payment->getPaymentUrl());
+        }
     }
     public function buy_five()
     {
@@ -55,6 +65,25 @@ class DonateController extends Controller
             ->setDescription('Payment for some goods');
 
         // redirect to payment url
+
         return redirect($payment->getPaymentUrl());
+    }
+
+    public function success () {
+        $payment = new \Idma\Robokassa\Payment(
+            'steamclicks.ru', 'Artem110789', 'Kuznetsov110789', true
+        );
+        dd($payment->validateResult($_GET));
+        if ($payment->validateResult($_GET)) {
+            $order = Order::find($payment->getInvoiceId());
+
+            if ($payment->getSum() == $order->sum) {
+                dd($order);
+            }
+
+            // send answer
+            echo $payment->getSuccessAnswer(); // "OK1254487\n"
+        }
+
     }
 }
