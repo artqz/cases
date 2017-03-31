@@ -9,12 +9,12 @@ class DonateController extends Controller
 {
     public function index () {
         $payment = new \Idma\Robokassa\Payment(
-            'djoctuk', 'Artem110789', 'Kuznetsov110789', true
+            'steamclicks.ru', 'Artem110789', 'Kuznetsov110789', true
         );
 
         $payment
-            ->setInvoiceId(1)
-            ->setSum(10)
+            ->setInvoiceId(111111)
+            ->setSum(10.00)
             ->setDescription('Payment for some goods');
 
         // redirect to payment url
