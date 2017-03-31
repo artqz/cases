@@ -149,6 +149,9 @@ Route::get('rating', 'RatingsController@index');
 Route::post('chat/create-message', 'ChatController@store_message');
 
 Route::get('donate', 'DonateController@index');
+Route::get('donate/buy-one', 'DonateController@buy_one');
+Route::get('donate/buy-five', 'DonateController@buy_five');
+Route::get('donate/buy-ten', 'DonateController@buy_ten');
 //---
 
 Route::get('test', 'TestController@index');
