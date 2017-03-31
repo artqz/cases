@@ -69,21 +69,20 @@ class DonateController extends Controller
         return redirect($payment->getPaymentUrl());
     }
 
-    public function success () {
+    public function success (Request $request) {
+
         $payment = new \Idma\Robokassa\Payment(
             'steamclicks.ru', 'Artem110789', 'Kuznetsov110789', true
         );
-        dd($payment->validateResult($_GET));
-        if ($payment->validateResult($_GET)) {
-            $order = Order::find($payment->getInvoiceId());
 
-            if ($payment->getSum() == $order->sum) {
-                dd($order);
-            }
+        if ($payment->validateSuccess($_GET)) {
+        $order = Order::find($payment->getInvoiceId());
 
-            // send answer
-            echo $payment->getSuccessAnswer(); // "OK1254487\n"
+        if ($payment->getSum() == $order->sum) {
+            dd($order);
         }
+
+    }
 
     }
 }
