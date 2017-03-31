@@ -38,7 +38,7 @@ Route::get('ip', function () {
 });
 
 Route::get('image', function () {
-    $url = 'http://steamcommunity.com/id/djoctuk/inventory/json/730/2';
+    $url = 'http://steamcommunity.com/id/steamclicks/inventory/json/440/2';
     $tuCurl = curl_init();
     curl_setopt($tuCurl, CURLOPT_URL, $url);
     curl_setopt($tuCurl, CURLOPT_RETURNTRANSFER, 1);
@@ -63,13 +63,11 @@ Route::post('shop/games/create-game', 'ShopController@store_game')->middleware('
 Route::get('shop/games/{id_post}/buy-game', 'ShopController@buy_game')->middleware('auth');
 //---
 //distributions
-Route::get('distributions', 'DistributionsController@index')->middleware('auth');
+Route::get('distributions', 'DistributionsController@index');
 Route::get('distributions/buy-cert', 'DistributionsController@buy_cert')->middleware('auth');
 Route::get('distributions/create', 'DistributionsController@create')->middleware('auth', 'trader');
 Route::post('distributions/create', 'DistributionsController@update')->middleware('auth', 'trader');
-Route::get('distributions/comments/{id_distribution}', 'DistributionsController@index_comments');
-Route::get('distributions/{id_distribution}/players', 'DistributionsController@index_players');
-Route::get('distributions/{id_distribution}', 'DistributionsController@show')->middleware('auth');
+Route::get('distributions/{id_distribution}', 'DistributionsController@show');
 Route::get('distributions/{id_distribution}/join', 'DistributionsController@join')->middleware('auth');
 
 //---
@@ -149,6 +147,8 @@ Route::get('admin/messages/{id_message}/delete-message', 'AdminController@delete
 
 Route::get('rating', 'RatingsController@index');
 Route::post('chat/create-message', 'ChatController@store_message');
+
+Route::get('donate', 'DonateController@index');
 //---
 
 Route::get('test', 'TestController@index');

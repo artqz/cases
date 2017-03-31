@@ -50,31 +50,4 @@
 
     @include('widgets.reklama')
 
-    @widget('WidgetTopClickers')
-
-    @widget('WidgetLastPosts')
-
-@endsection
-
-
-@section('style')
-    <style>
-        button[disabled], html input[disabled] {
-            cursor: no-drop;
-        }
-        .channels-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .channel-item {
-            margin-bottom: 15px;
-            display: block;
-            color: #777;
-            border: 1px solid #e3e3e3;
-            padding: 10px;
-            background-color: white;
-            position:relative;
-        }
-    </style>
 @endsection

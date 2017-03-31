@@ -15,7 +15,8 @@
         "predis/predis": "v1.1.1",
         "barryvdh/laravel-debugbar": "v2.3.2",
         "intervention/image": "2.3.11",
-        "invisnik/laravel-steam-auth": "v2.3.2"
+        "invisnik/laravel-steam-auth": "v2.3.2",
+        "idma/robokassa": "v1.0.0-beta3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
