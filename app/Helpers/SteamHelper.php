@@ -61,7 +61,7 @@ class SteamHelper implements SteamContract
         //$url = 'https://api.steampowered.com/ISteamEconomy/GetAssetClassInfo/v1/?key=97E5CDC7C832E47EC6168D6F728E837E&format=json&appid=570&language=ru&class_count=2&class_id=5461';
         if (strlen($game_id) == 3) $i = 2;
         else $i = 1;
-        $url = 'http://steamcommunity.com/id/djoctuk/inventory/json/'.$game_id.'/'.$i;
+        $url = 'http://steamcommunity.com/id/steamclicks/inventory/json/'.$game_id.'/'.$i;
         $tuCurl = curl_init();
         curl_setopt($tuCurl, CURLOPT_URL, $url);
         curl_setopt($tuCurl, CURLOPT_RETURNTRANSFER, 1);
