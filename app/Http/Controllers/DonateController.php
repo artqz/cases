@@ -28,7 +28,7 @@ class DonateController extends Controller
             $sum = 70.00;
         }
         elseif ($count == 10) {
-            $crystals = 5;
+            $crystals = 10;
             $sum = 100.00;
         }
         else return redirect('donate');
