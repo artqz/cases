@@ -152,6 +152,7 @@ Route::get('donate', 'DonateController@index');
 Route::get('donate/buy/{count}', 'DonateController@buy')->middleware('auth');
 Route::get('payment/result', 'DonateController@result');
 Route::get('payment/success', 'DonateController@success')->middleware('auth');
+Route::get('payment/fail', 'DonateController@fail')->middleware('auth');
 //---
 
 Route::get('test', 'TestController@index');

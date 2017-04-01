@@ -5,6 +5,7 @@
 @section('content')
     <div>
         @include('layouts.flash')
+        <h1>Купить кристаллы</h1>
         <div class="crystals-list row">
             <div class="col-sm-4">
                 <a href="{{ url('donate/buy/1') }}" class="crystal-card">
@@ -24,7 +25,7 @@
                 <a href="{{ url('donate/buy/10') }}" class="crystal-card">
                     <img src="{{ url('images/icons/clickcrystal.png') }}" alt="Кристалл">
                     <div class="crystals">Купить 10 кристаллов</div>
-                    <div class="ruble">За 100 Рублей <span class="economy">экономия 50 рублей</span></div>
+                    <div class="ruble">За 110 Рублей <span class="economy">экономия 40 рублей</span></div>
                 </a>
             </div>
         </div>

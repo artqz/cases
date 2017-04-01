@@ -32,8 +32,8 @@
                 </div>
             </div>
         </div>
-        <br>
         @if($distribution->user_id != Auth::id())
+            <br>
             @if($distribution->user_winner_id)
                 <div class="disable">Раздача завершена!</div>
             @else
@@ -43,6 +43,10 @@
             @endif
         @else
 
+        @endif
+        @if($distribution->user_id == Auth::id())
+            <br>
+            <a class="cancel" href="{{ url('distributions/'.$distribution->id.'/cancel') }}">Завершить раздачу и вернуть клики</a>
         @endif
         <br>
         <div class="panel panel-default">

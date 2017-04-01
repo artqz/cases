@@ -29,7 +29,7 @@ class DonateController extends Controller
         }
         elseif ($count == 10) {
             $crystals = 10;
-            $sum = 100.00;
+            $sum = 110.00;
         }
         else return redirect('donate');
 
@@ -55,7 +55,7 @@ class DonateController extends Controller
         }
     }
 
-    public function success (Request $request) {
+    public function success () {
 
         $payment = new \Idma\Robokassa\Payment(
             'steamclicks.ru', 'Artem110789', 'Kuznetsov110789', true
@@ -96,5 +96,14 @@ class DonateController extends Controller
             // send answer
             echo $payment->getSuccessAnswer(); // "OK1254487\n"
         }
+    }
+
+    public function fail (Request $request) {
+        Order::where('id', $request['InvId'])->delete();
+
+        return redirect('donate')->with([
+            'flash_message' => 'Вы отменили покупку!',
+            'flash_message_status' => 'warning',
+        ]);
     }
 }

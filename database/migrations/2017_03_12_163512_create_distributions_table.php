@@ -29,6 +29,8 @@ class CreateDistributionsTable extends Migration
             $table->string('item_name');
             $table->string('item_image');
             $table->integer('item_id');
+            $table->text('comment');
+            $table->integer('rating');
             $table->timestamps();
         });
     }
