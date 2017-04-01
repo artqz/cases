@@ -17,13 +17,27 @@ class DonateController extends Controller
     /**
      * @return string
      */
-    public function buy_one()
+    public function buy($count)
     {
+        if ($count == 1) {
+            $crystals = 1;
+            $sum = 15.00;
+        }
+        elseif ($count == 5) {
+            $crystals = 5;
+            $sum = 70.00;
+        }
+        elseif ($count == 10) {
+            $crystals = 5;
+            $sum = 100.00;
+        }
+        else return redirect('donate');
+
         $order = Order::create([
             'user_id' => Auth::id(),
-            'sum' => 15.00,
-            'description' => 'Payment for 1 crystals',
-            'crystals' => 1,
+            'sum' => $sum,
+            'description' => 'Payment for '.$crystals.' crystals',
+            'crystals' => $crystals,
         ]);
 
         if ($order) {
@@ -39,35 +53,6 @@ class DonateController extends Controller
             // redirect to payment url
             return redirect($payment->getPaymentUrl());
         }
-    }
-    public function buy_five()
-    {
-        $payment = new \Idma\Robokassa\Payment(
-            'steamclicks.ru', 'Artem110789', 'Kuznetsov110789', true
-        );
-
-        $payment
-            ->setInvoiceId(2)
-            ->setSum(70.00)
-            ->setDescription('Payment for some goods');
-
-        // redirect to payment url
-        return redirect($payment->getPaymentUrl());
-    }
-    public function buy_ten()
-    {
-        $payment = new \Idma\Robokassa\Payment(
-            'steamclicks.ru', 'Artem110789', 'Kuznetsov110789', true
-        );
-
-        $payment
-            ->setInvoiceId(3)
-            ->setSum(100.00)
-            ->setDescription('Payment for some goods');
-
-        // redirect to payment url
-
-        return redirect($payment->getPaymentUrl());
     }
 
     public function success (Request $request) {
