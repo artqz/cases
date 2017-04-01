@@ -7959,6 +7959,37 @@ footer p {
   position: relative;
   display: block;
   text-align: center;
+  text-decoration: none;
+}
+
+.crystal-card:hover {
+  text-decoration: none;
+  background-color: #fffcd2;
+}
+
+.crystal-card:focus {
+  text-decoration: none;
+}
+
+.crystal-card img {
+  padding: 30px 0;
+}
+
+.crystal-card .crystals {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.crystal-card .ruble {
+  margin-top: 10px;
+  color: #4e4e4e;
+}
+
+.crystal-card .ruble .economy {
+  display: block;
+  font-size: 12px;
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
 
 .profile-card {
