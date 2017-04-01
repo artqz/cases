@@ -89,9 +89,7 @@ class DonateController extends Controller
                 ]);
 
                 if ($order_success) {
-                    User::where('id', $order->user_id)->update([
-                        'crystals' => $order->crystals,
-                    ]);
+                    User::where('id', $order->user_id)->increment('crystals', $order->crystals);
                 }
             }
 
