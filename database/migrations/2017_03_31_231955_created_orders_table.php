@@ -18,6 +18,7 @@ class CreatedOrdersTable extends Migration
             $table->integer('user_id');
             $table->float('sum');
             $table->string('description');
+            $table->integer('crystals');
             $table->integer('status')->default(0);
             $table->timestamps();
         });

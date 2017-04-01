@@ -79,7 +79,10 @@ class DonateController extends Controller
             $order = Order::find($payment->getInvoiceId());
 
             if ($payment->getSum() == $order->sum) {
-                dd($order);
+                return redirect('donate')->with([
+                    'flash_message' => 'Вы успешно купили '. $order->crystals. ' Кристаллов',
+                    'flash_message_status' => 'success',
+                ]);
             }
 
         }
@@ -94,14 +97,20 @@ class DonateController extends Controller
         if ($payment->validateResult($_GET)) {
         $order = Order::find($payment->getInvoiceId());
 
-        if ($payment->getSum() == $order->sum) {
-            Order::where('id', $order->id)->update([
-                'status' => 1,
-            ]);
-        }
+            if ($payment->getSum() == $order->sum) {
+                $order_success = Order::where('id', $order->id)->update([
+                    'status' => 1,
+                ]);
 
-        // send answer
-        echo $payment->getSuccessAnswer(); // "OK1254487\n"
-    }
+                if ($order_success) {
+                    User::where('id', $order->user_id)->update([
+                        'crystals' => $order->crystals,
+                    ]);
+                }
+            }
+
+            // send answer
+            echo $payment->getSuccessAnswer(); // "OK1254487\n"
+        }
     }
 }
