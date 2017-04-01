@@ -10,6 +10,7 @@ class Order extends Model
         'user_id',
         'sum',
         'description',
+        'crystals',
         'status',
     ];
 }

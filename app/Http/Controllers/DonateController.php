@@ -22,7 +22,8 @@ class DonateController extends Controller
         $order = Order::create([
             'user_id' => Auth::id(),
             'sum' => 15.00,
-            'description' => 'Payment for 5 crystals',
+            'description' => 'Payment for 1 crystals',
+            'crystals' => 1,
         ]);
 
         if ($order) {
