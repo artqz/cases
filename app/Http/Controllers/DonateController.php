@@ -88,7 +88,7 @@ class DonateController extends Controller
 
     public function result () {
         $payment = new \Idma\Robokassa\Payment(
-            'john_doe', 'password1', 'password2', true
+            'steamclicks.ru', 'Artem110789', 'Kuznetsov110789', true
         );
 
         if ($payment->validateResult($_GET)) {
