@@ -75,14 +75,33 @@ class DonateController extends Controller
             'steamclicks.ru', 'Artem110789', 'Kuznetsov110789', true
         );
 
-        if ($payment->validateSuccess($_GET)) {
-        $order = Order::find($payment->getInvoiceId());
+            if ($payment->validateSuccess($_GET)) {
+            $order = Order::find($payment->getInvoiceId());
 
-        if ($payment->getSum() == $order->sum) {
-            dd($order);
+            if ($payment->getSum() == $order->sum) {
+                dd($order);
+            }
+
         }
 
     }
 
+    public function result () {
+        $payment = new \Idma\Robokassa\Payment(
+            'john_doe', 'password1', 'password2', true
+        );
+
+        if ($payment->validateResult($_GET)) {
+        $order = Order::find($payment->getInvoiceId());
+
+        if ($payment->getSum() == $order->sum) {
+            Order::where('id', $order->id)->update([
+                'status' => 1,
+            ]);
+        }
+
+        // send answer
+        echo $payment->getSuccessAnswer(); // "OK1254487\n"
+    }
     }
 }
