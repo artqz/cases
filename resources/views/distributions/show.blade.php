@@ -5,7 +5,7 @@
 @section('meta')
     <meta property="og:type" content="distribution" />
     <meta property="og:title" content="Раздача {{ $distribution->game_name }}" />
-    <meta property="og:description" content="Бесплатная раздача {{ $distribution->game_name }} на steamclicks.ru" />
+    <meta property="og:description" content="Бесплатная раздача {{ $distribution->data_name }} на steamclicks.ru" />
     <meta property="og:url" content="{{ url('distributions/'.$distribution->id) }}" />
     <meta property="og:image" content="{{ url($distribution->data_image) }}" />
 @endsection
@@ -14,7 +14,7 @@
     <div>
         @include('layouts.flash')
         {!! Breadcrumbs::render('distribution') !!}
-        <h1>Раздача {{ $distribution->game_name }}</h1>
+        <h1>Раздача {{ $distribution->data_name }}</h1>
 
         <div class="distribution">
             <div class="distribution-card">
