@@ -5,7 +5,7 @@
 @section('meta')
     <meta property="og:type" content="distribution" />
     <meta property="og:title" content="Раздача {{ $distribution->data_name }}" />
-    <meta property="og:description" content="Бесплатная раздача {{ $distribution->data_name }} на steamclicks.ru" />
+    <meta property="og:description" content="Бесплатная раздача {{ $distribution->data_name }} на steamclicks.ru. Участвуй со мной!" />
     <meta property="og:url" content="{{ url('distributions/'.$distribution->id) }}" />
     <meta property="og:image" content="{{ url($distribution->data_image) }}" />
 @endsection
