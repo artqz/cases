@@ -13,7 +13,7 @@
 @section('content')
     <div>
         @include('layouts.flash')
-        {!! Breadcrumbs::render('distribution') !!}
+        {!! Breadcrumbs::render('distribution', $distribution) !!}
         <h1>Раздача {{ $distribution->data_name }}</h1>
 
         <div class="distribution">

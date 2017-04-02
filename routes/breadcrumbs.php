@@ -102,8 +102,9 @@ Breadcrumbs::register('distributions', function($breadcrumbs)
     $breadcrumbs->parent('home');
     $breadcrumbs->push('Раздачи', url('distributions'));
 });
-Breadcrumbs::register('distribution', function($breadcrumbs)
+
+Breadcrumbs::register('distribution', function($breadcrumbs, $distribution)
 {
-    $breadcrumbs->parent('distributions');
-    $breadcrumbs->push('Раздачa', url('distributions'));
+    $breadcrumbs->parent('distributions', $distribution);
+    $breadcrumbs->push($distribution->data_name, url('distributions/{id_distribution}', $distribution->id));
 });
