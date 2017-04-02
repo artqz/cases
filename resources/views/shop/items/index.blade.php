@@ -21,7 +21,7 @@
         <div class="items-list row">
             @foreach($items as $item)
                 <div class="col-xs-6 col-sm-3 col-md-3">
-                    <div class="item-card">
+                    <div class="item-card" data-toggle="tooltip" data-placement="top" title="{{ $item->name }} ({{ $item->type }} )">
                         <div class="item-name" style="color: #{{ $item->name_color }};">{{ $item->name }}</div>
                         <div class="category-icon"><img src="{{ url('images/games/icons/'.$item->category->appid.'.jpg') }}" alt="{{ $item->category->name }}"></div>
                         <div class="item-image">
@@ -59,3 +59,11 @@
 
 
 @endsection
+
+@section('scripts')
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    @endsection
