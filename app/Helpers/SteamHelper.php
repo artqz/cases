@@ -137,16 +137,25 @@ class SteamHelper implements SteamContract
             }
         }
 
-    }
+    }    
 
-    public function addDistributionToDB ($appid){
-        $this->getGame($appid);
-        $getGame = DB::table('all_games')->where('appid', $appid)->first();
+    public function addDistributionToDB ($id, $type){
+        if ($type == 1) {
+            $this->getPackage($id);
+            $getPackage = DB::table('all_packages')->where('subid', $id)->first();
 
-        if ($getGame) {
-            return $getGame;
+            if ($getPackage) {
+                return $getPackage;
+            } else return false;
         }
-        else return false;
+        if ($type == 2) {
+            $this->getGame($id);
+            $getGame = DB::table('all_games')->where('appid', $id)->first();
+
+            if ($getGame) {
+                return $getGame;
+            } else return false;
+        }
     }
     public function addGameToDB ($appid, $price, $data){
         $this->getGame($appid);
@@ -226,6 +235,66 @@ class SteamHelper implements SteamContract
                                 'website' => $website,
                             ]);
                         }
+
+                }
+
+            }
+        }
+
+    }
+
+    public function searchPackageToDB ($subid) {
+        $getPackage = DB::table('all_packages')->where('subid', $subid)->first();
+        if ($getPackage) {
+            return $getPackage;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function getPackage ($package_id)
+    {
+        //$url = 'https://api.steampowered.com/ISteamEconomy/GetAssetClassInfo/v1/?key=97E5CDC7C832E47EC6168D6F728E837E&format=json&appid=570&language=ru&class_count=2&class_id=5461';
+        //$url = 'http://store.steampowered.com/api/appdetails?appids=' . $game_id .'&language=ru';
+        $url = 'http://store.steampowered.com/api/packagedetails?packageids='.$package_id.'&cc=ru';
+        $tuCurl = curl_init();
+        curl_setopt($tuCurl, CURLOPT_URL, $url);
+        curl_setopt($tuCurl, CURLOPT_RETURNTRANSFER, 1);
+        $result = curl_exec($tuCurl);
+        curl_close($tuCurl);
+        $data = json_decode($result)->$package_id;
+        //dd($data);
+        //Заносим в базу
+        if ($data) {
+            if ($data->success == true) {
+                if (!$this->searchPackageToDB($package_id)) {
+
+                    $url = $data->data->header_image;
+                    $category = 'packages';
+                    $file_name = $package_id;
+                    $file_info = getimagesize($url);
+                    $file_ext = str_replace('image/', '.', $file_info['mime'] );
+
+                    if (file_exists(public_path('images/'.$category.'/'.$file_name.$file_ext))) {
+                        $save = true;
+                    }
+                    else {
+                        $save = Image::make($url)->resize(null, 100, function ($constraint) {
+                            $constraint->aspectRatio();
+                            $constraint->upsize();
+                        })->save(public_path('images/'.$category.'/'.$file_name.$file_ext));
+                    }
+
+
+                    if ($save) {
+                        DB::table('all_packages')->insertGetId([
+                            'name' => $data->data->name,
+                            'subid' => $package_id,
+                            'page_content' => $data->data->page_content,
+                            'header_image' => url('images/'.$category.'/'.$file_name.$file_ext),
+                        ]);
+                    }
 
                 }
 

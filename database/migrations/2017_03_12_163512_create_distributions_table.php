@@ -23,12 +23,10 @@ class CreateDistributionsTable extends Migration
             $table->integer('status');
             $table->integer('user_id');
             $table->integer('user_winner_id');
-            $table->string('game_name');
-            $table->string('game_image');
-            $table->integer('game_id');
-            $table->string('item_name');
-            $table->string('item_image');
-            $table->integer('item_id');
+            $table->string('data_name');
+            $table->string('data_image');
+            $table->integer('data_id');
+            $table->text('data_key');
             $table->text('comment');
             $table->integer('rating');
             $table->timestamps();

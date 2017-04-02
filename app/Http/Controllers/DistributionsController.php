@@ -69,24 +69,31 @@ class DistributionsController extends Controller
             'game_id' => 'required|integer',
             'price' => 'required|integer',
             'data' => 'required',
+            'type' => 'required',
             'players' => 'required|integer',
         ]);
-        
-        if ($steam->addDistributionToDB($request->input('game_id'))) {
 
-            $steam = $steam->addDistributionToDB($request->input('game_id'));
+        if ($steam->addDistributionToDB($request->input('game_id'), $request->input('type'))) {
 
+            $steam = $steam->addDistributionToDB($request->input('game_id'), $request->input('type'));
+            if($request->input('type') == 1) {
+                $data_id = $steam->subid;
+            }
+            elseif ($request->input('type') == 2) {
+                $data_id = $steam->appid;
+            }
             Distribution::create([
                 'name' => '',
                 'players' => $request->input('players'),
                 'price' => abs($request->input('price')/$request->input('players'))+($request->input('price')/$request->input('players')*0.1),
-                'type' => 1, //игра 1, предмет 2
+                'type' => $request->input('type'), //пак 1, игра 2, предмет 3
                 'status' => 0,
                 'user_id' => Auth::id(),
                 'user_winner_id' => 0,
-                'game_name' => $steam->name,
-                'game_image' => $steam->header_image,
-                'game_id' => $steam->appid,
+                'data_name' => $steam->name,
+                'data_image' => $steam->header_image,
+                'data_id' => $data_id,
+                'data_key' => $request->input('data'),
             ]);
 
             return redirect('distributions')->with([
@@ -103,7 +110,7 @@ class DistributionsController extends Controller
 
     public function join($id_distribution)
     {
-        $distribution = Distribution::where('id', $id_distribution)->first();
+        $distribution = Distribution::where('id', $id_distribution)->where('status', 0)->first();
 
         //Только для подтвержденных аккаунтов
         if (Auth::user()->steamid && Auth::user()->confirm_email) {
@@ -165,6 +172,12 @@ class DistributionsController extends Controller
 
     public function show ($id_distribution) {
         $distribution = Distribution::where('id', $id_distribution)->first();
+        if ($distribution->type == 1) {
+            $distribution->data_type = 'sub';
+        }
+        elseif ($distribution->type == 2) {
+            $distribution->data_type = 'app';
+        }
         $check_player = $distribution->players_list->where('user_id', Auth::id())->first();
 
         return view('distributions.show', compact('distribution', 'check_player'));

@@ -8,8 +8,18 @@
             <form class="form-horizontal" role="form" method="POST" action="{{ url('distributions/create') }}">
                 {{ csrf_field() }}
 
+                <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
+                    <label for="type" class="col-md-4 control-label">Тип</label>
+                    <div class="col-md-6">
+                        <select name="type" class="form-control">
+                            <option value="2">Игра</option>
+                            <option value="1">Комплект</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div class="form-group{{ $errors->has('game_id') ? ' has-error' : '' }}">
-                    <label for="game_id" class="col-md-4 control-label">ID игры</label>
+                    <label for="game_id" class="col-md-4 control-label">ID игры / комплекта</label>
 
                     <div class="col-md-6">
                         <input id="game_id" type="text" class="form-control" name="game_id" value="{{ old('game_id') }}" required autofocus>
@@ -51,7 +61,7 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('data') ? ' has-error' : '' }}">
-                    <label for="data" class="col-md-4 control-label">Сылка на гифт или ключ</label>
+                    <label for="data" class="col-md-4 control-label">Ссылка на гифт или ключ</label>
 
                     <div class="col-md-6">
                         <input id="data" type="text" class="form-control" name="data" value="{{ old('data') }}" required>

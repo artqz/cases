@@ -5,21 +5,23 @@
 @section('content')
     <div>
         @include('layouts.flash')
-        {!! Breadcrumbs::render('discuss') !!}
+        {!! Breadcrumbs::render('distributions') !!}
         <h1>Раздачи</h1>
         <div class="distributions-list">
             @foreach($distributions as $distribution)
-                @if($distribution->type == 1)
+                @if($distribution->type == 1 OR $distribution->type == 2)
                 <div class="col-md-12">
-                    <div class="distribution-card row">
-                        <div class="distribution-image"><img src="{{ $distribution->game_image }}" alt="Раздача {{ $distribution->game_name }}"></div>
+                    <div class="distribution-card row" style="{{ (!$distribution->user_winner_id) ? '' : 'background-color: #f1f1f1;' }}">
+                        <div class="distribution-image"><img src="{{ $distribution->data_image }}" alt="Раздача {{ $distribution->data_name }}"></div>
                         <div style="display: inline-block; vertical-align: middle;">
-                            <div class="distribution-name">Раздача {{ $distribution->game_name }}</div>
+                            <div class="distribution-name">Раздача {{ $distribution->data_name }}</div>
                             <div class="distribution-players"><i class="fa fa-users" aria-hidden="true"></i> {{ $distribution->joined_players }}/{{ $distribution->players }}</div>
                             <div class="distribution-user"><a href="{{ url('users/'.$distribution->user->id) }}"><img src="{{ avatar($distribution->user->email_hash, $distribution->user->steam_avatar) }}">{{ $distribution->user->name }}</a></div>
                         </div>
                         <div class="distribution-show"><a href="{{ url('distributions/'.$distribution->id) }}">Подробнее</a></div>
-                        <div class="distribution-join"><a href="{{ url('distributions/'.$distribution->id.'/join') }}">Вступит <span class="price">{{ $distribution->price }}</span></a></div>
+                        @if(!$distribution->user_winner_id)
+                            <div class="distribution-join"><a href="{{ url('distributions/'.$distribution->id.'/join') }}">Вступить <span class="price">{{ $distribution->price }}</span></a></div>
+                        @endif
                     </div>
                 </div>
                 @endif

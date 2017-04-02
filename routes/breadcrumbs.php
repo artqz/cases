@@ -96,3 +96,14 @@ Breadcrumbs::register('games', function($breadcrumbs)
     $breadcrumbs->parent('shop');
     $breadcrumbs->push('Игры', url('shop/games'));
 });
+
+Breadcrumbs::register('distributions', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Раздачи', url('distributions'));
+});
+Breadcrumbs::register('distribution', function($breadcrumbs)
+{
+    $breadcrumbs->parent('distributions');
+    $breadcrumbs->push('Раздачa', url('distributions'));
+});

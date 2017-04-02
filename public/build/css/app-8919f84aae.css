@@ -7698,6 +7698,17 @@ footer p {
   line-height: 2;
 }
 
+.user-name {
+  color: #a04eb4;
+}
+
+.user-name img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
 .price {
   padding-right: 5px;
   color: #d2b524;
@@ -7742,6 +7753,19 @@ footer p {
   -webkit-transition: 1s;
   transition: 1s;
   text-decoration: none;
+}
+
+.disable {
+  width: 100%;
+  margin-bottom: 4px;
+  border: 1px solid #f5a758;
+  border-radius: 3px;
+  background-color: #fdb66d;
+  color: white;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  padding: 5px 10px;
 }
 
 .join {

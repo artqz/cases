@@ -8,12 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Distribution extends Model
 {
     protected $fillable = [
-        'name', 'players', 'price', 'type', 'status', 'user_id', 'user_winner_id', 'game_name', 'game_image', 'game_id'
+        'name', 'players', 'price', 'type', 'status', 'user_id', 'user_winner_id', 'data_name', 'data_image', 'data_id', 'data_key',
     ];
 
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function user_winner()
+    {
+        return $this->belongsTo('App\User', 'user_winner_id');
     }
 
     public function players_list ()
