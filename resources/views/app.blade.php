@@ -90,12 +90,14 @@
                     <li><a href="{{ url('/register') }}">Регистрация</a></li>
                 @else
                     <li role="presentation" class="dropdown events">
-                        <a href="#" class="dropdown-toggle" id="drop6" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-bell-o" aria-hidden="true"></i>
                         </a>
-                        <ul class="dropdown-menu" id="menu3" aria-labelledby="drop6">
-                            <li><a href="#">Пока не произошло никаких событий</a></li>
-                            <li role="separator" class="divider"></li>
+                        <ul class="dropdown-menu" id="menu2" aria-labelledby="drop6">
+                            @foreach(\App\Event::where('user_id', Auth::id())->get() as $event)
+                                <li><a class="event-link" href="#">{{ $event->text }}</a></li>
+                            @endforeach
+                                <li><a href="#">Показать все</a></li>
                         </ul>
                     </li>
 
