@@ -33,10 +33,10 @@
 @endsection
 
 @section('sidebar')
+    @include('widgets.vk')
+
     @widget('WidgetChat')
 
     @include('widgets.reklama')
-
-    @include('widgets.vk')
 
 @endsection

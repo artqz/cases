@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePackagesTable extends Migration
+class CreateEventsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreatePackagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('packages', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('subid');
-            $table->string('name');
-            $table->text('page_content');
-            $table->string('header_image');
+            $table->text('text');
+            $table->integer('value');
+            $table->integer('user_id');
+            $table->integer('status')->default(0);
         });
     }
 
@@ -29,6 +29,6 @@ class CreatePackagesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('packages');
+        Schema::drop('events');
     }
 }

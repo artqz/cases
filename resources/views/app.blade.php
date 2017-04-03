@@ -89,10 +89,20 @@
                     <li><a href="{{ url('/login') }}">Войти</a></li>
                     <li><a href="{{ url('/register') }}">Регистрация</a></li>
                 @else
+                    <li role="presentation" class="dropdown events">
+                        <a href="#" class="dropdown-toggle" id="drop6" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-bell-o" aria-hidden="true"></i>
+                        </a>
+                        <ul class="dropdown-menu" id="menu3" aria-labelledby="drop6">
+                            <li><a href="#">Пока не произошло никаких событий</a></li>
+                            <li role="separator" class="divider"></li>
+                        </ul>
+                    </li>
+
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="">
                             <div style="position: relative;">
-                            <img src="{{ avatar(Auth::user()->email_hash, Auth::user()->steam_avatar) }}" style="width:32px; height:32px; position:absolute; left:10px; border-radius:50%;">
+                                <img src="{{ avatar(Auth::user()->email_hash, Auth::user()->steam_avatar) }}" style="width:32px; height:32px; position:absolute; left:10px; border-radius:50%;">
                                 <div class="user-name" style="padding-left: 50px; line-height: 1; color: #a04eb4;">{{ Auth::user()->name }} <span class="caret"></span></div>
                                 <div class="user-clicks" style="padding-left: 50px; line-height: 1; font-size: 12px;">Клики: {{Auth::user()->clicks}}</div>
                             </div>    
