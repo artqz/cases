@@ -160,6 +160,7 @@ class FaucetController extends Controller
 
     public function moneycaptcha (Request $request)
     {
+        dd(123);
         $this->validate($request, [
             'moneycaptcha_code' => 'moneycaptcha',
         ]);
@@ -168,6 +169,5 @@ class FaucetController extends Controller
 
         $token = $request->input('moneycaptcha_code');
 
-        dd($token);
     }
 }
