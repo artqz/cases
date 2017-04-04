@@ -90,6 +90,13 @@ class DonateController extends Controller
 
                 if ($order_success) {
                     User::where('id', $order->user_id)->increment('crystals', $order->crystals);
+
+                    //event
+                    Event::create([
+                        'user_id' => Auth::id(),
+                        'image' => url('images/icons/clickcrystal.png'),
+                        'text' => 'Вы купили '.$clicks.' Кристальных кликов.',
+                    ]);
                 }
             }
 

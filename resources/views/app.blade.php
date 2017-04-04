@@ -91,7 +91,7 @@
                     <li><a href="{{ url('/login') }}">Войти</a></li>
                     <li><a href="{{ url('/register') }}">Регистрация</a></li>
                 @else
-                    <li role="presentation" class="dropdown events" style="display: none">
+                    <li role="presentation" class="dropdown events">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             @if(\App\Event::where('user_id', Auth::id())->where('status', 0)->count() >= 1)
                                 <i class="fa fa-bell" aria-hidden="true" style="color: gold;"></i>
@@ -101,7 +101,6 @@
                         </a>
                         <ul class="dropdown-menu" id="menu2" aria-labelledby="drop6">
                             @widget('events')
-                                <li><a href="href="{{ url('events') }}">Показать все</a></li>
                         </ul>
                     </li>
 
