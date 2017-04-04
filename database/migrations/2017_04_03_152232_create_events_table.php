@@ -17,7 +17,9 @@ class CreateEventsTable extends Migration
             $table->increments('id');
             $table->text('text');
             $table->string('image');
-            $table->integer('value');
+            $table->string('type');
+            $table->string('data');
+            $table->text('url');
             $table->integer('user_id');
             $table->integer('status')->default(0);
             $table->timestamps();

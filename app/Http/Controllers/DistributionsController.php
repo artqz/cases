@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Distribution;
+use App\Event;
 use App\Helpers\SteamHelper;
 use App\Player;
 use App\User;
@@ -143,6 +144,14 @@ class DistributionsController extends Controller
                                     Distribution::where('id', $distribution->id)->update([
                                         'user_winner_id' => $random_user->user_id,
                                         'status' => 1,
+                                    ]);
+
+                                    //event
+                                    Event::create([
+                                        'user_id' => $random_user,
+                                        'image' => $distribution->data_image,
+                                        'text' => 'Вы победили в розыгрыше  '.$distribution->data_name,
+                                        'type' => 'game',
                                     ]);
                                 }
                             }

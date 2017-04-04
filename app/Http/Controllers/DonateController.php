@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Event;
 use App\Order;
 use App\User;
 use Illuminate\Http\Request;
@@ -95,7 +96,8 @@ class DonateController extends Controller
                     Event::create([
                         'user_id' => Auth::id(),
                         'image' => url('images/icons/clickcrystal.png'),
-                        'text' => 'Вы купили '.$clicks.' Кристальных кликов.',
+                        'text' => 'Вы купили '.$order->crystals.' Кристальных кликов.',
+                        'type' => 'donate',
                     ]);
                 }
             }
