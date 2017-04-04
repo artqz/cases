@@ -157,4 +157,17 @@ class FaucetController extends Controller
         }
 
     }
+
+    public function moneycapcha (Request $request)
+    {
+        $this->validate($request, [
+            'moneycaptcha_code' => 'moneycaptcha',
+        ]);
+
+        $user = User::where('id', Auth::id())->first();
+
+        $token = $request->input('moneycaptcha_code');
+
+        dd($token);
+    }
 }

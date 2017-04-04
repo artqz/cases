@@ -90,6 +90,7 @@ Route::get('/discuss/channels/{slug_channel}/{slug_theme}/{id_post}/delete-post'
 //---
 Route::get('faucet', 'FaucetController@index')->middleware('auth');
 Route::post('faucet/get-click', 'FaucetController@get_click')->middleware('auth');
+Route::post('faucet/moneycaptcha', 'FaucetController@moneycaptcha')->middleware('auth');
 Route::get('profile', 'PagesController@index_profile')->middleware('auth');
 Route::get('profile/edit-tradeoffer', 'PagesController@edit_tradeoffer')->middleware('auth');
 Route::post('profile/edit-tradeoffer', 'PagesController@update_tradeoffer')->middleware('auth');

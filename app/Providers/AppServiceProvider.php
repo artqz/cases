@@ -42,11 +42,28 @@ class AppServiceProvider extends ServiceProvider
             curl_setopt($verify, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($verify, CURLOPT_RETURNTRANSFER, true);
             $result = json_decode(curl_exec($verify));
-            
+
             if ($result->success) {
                 return true;
             }
             return false;
+        }
+        return false;
+    });
+
+        Validator::extend('moneycaptcha', function($attribute, $value, $parameters, $validator) {
+            if ($value) {
+
+                $handle = curl_init();
+                curl_setopt($handle, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($handle, CURLOPT_URL, "https://moneycaptcha.ru/valid.php?code=$value");
+                curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, false);
+                $result = json_decode(curl_exec($handle));
+
+                if($result == "1"){
+                    return true;
+                }
+                return false;
             }
             return false;
         });
