@@ -158,7 +158,7 @@ class FaucetController extends Controller
 
     }
 
-    public function moneycapcha (Request $request)
+    public function moneycaptcha (Request $request)
     {
         $this->validate($request, [
             'moneycaptcha_code' => 'moneycaptcha',
