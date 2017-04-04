@@ -148,7 +148,7 @@ class DistributionsController extends Controller
 
                                     //event
                                     Event::create([
-                                        'user_id' => $random_user,
+                                        'user_id' => $random_user->user_id,
                                         'image' => $distribution->data_image,
                                         'text' => 'Вы победили в розыгрыше  '.$distribution->data_name,
                                         'type' => 'game',
