@@ -3,6 +3,8 @@
 @section('title', 'Кликер - ')
 
 @section('content')
+    <script src="//go.mobtrks.com/notice.php?p=1140185&interstitial=1"></script>
+    <script type="text/javascript" src="//go.pub2srv.com/apu.php?zoneid=1140177"></script>
     <div>
         @include('layouts.flash')
         {!! Breadcrumbs::render('faucet') !!}
@@ -100,8 +102,6 @@
         downtimers();
         setInterval(downtimers,1000);
     </script>
-
-    <script type="text/javascript" src="//go.pub2srv.com/apu.php?zoneid=1140177"></script>
 
 @endsection
 @section('style')
