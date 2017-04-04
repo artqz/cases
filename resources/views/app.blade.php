@@ -89,7 +89,7 @@
                     <li><a href="{{ url('/login') }}">Войти</a></li>
                     <li><a href="{{ url('/register') }}">Регистрация</a></li>
                 @else
-                    <li role="presentation" class="dropdown events">
+                    <li role="presentation" class="dropdown events" style="display: none">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-bell-o" aria-hidden="true"></i>
                         </a>

@@ -26,11 +26,8 @@ Route::get('redis', function () {
     dd($items);
 });
 
-Route::get('cache', function () {
-    $value = Cache::get('key', function () {
-        return DB::table('items')->get();
-    });
-    return $value;
+Route::get('capcha', function () {
+    return view('faucet.moneycapcha');
 });
 
 Route::get('ip', function () {
