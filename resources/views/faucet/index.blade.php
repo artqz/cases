@@ -101,6 +101,8 @@
         setInterval(downtimers,1000);
     </script>
 
+    <script type="text/javascript" src="//go.pub2srv.com/apu.php?zoneid=1140177"></script>
+
 @endsection
 @section('style')
     <style>
