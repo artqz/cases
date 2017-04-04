@@ -1,4 +1,3 @@
-Уведомления
 @if($events)
     @foreach($events as $event)
         <li>
