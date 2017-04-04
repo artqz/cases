@@ -160,7 +160,6 @@ class FaucetController extends Controller
 
     public function moneycaptcha (Request $request)
     {
-        dd(123);
         $this->validate($request, [
             'moneycaptcha_code' => 'moneycaptcha',
         ]);
