@@ -59,6 +59,7 @@
     </script>
 </head>
 <body>
+
 <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="navbar-header">
@@ -92,13 +93,15 @@
                 @else
                     <li role="presentation" class="dropdown events" style="display: none">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-bell-o" aria-hidden="true"></i>
+                            @if(\App\Event::where('user_id', Auth::id())->where('status', 0)->count() >= 1)
+                                <i class="fa fa-bell" aria-hidden="true" style="color: gold;"></i>
+                            @else
+                                <i class="fa fa-bell-o" aria-hidden="true"></i>
+                            @endif
                         </a>
                         <ul class="dropdown-menu" id="menu2" aria-labelledby="drop6">
-                            @foreach(\App\Event::where('user_id', Auth::id())->get() as $event)
-                                <li><a class="event-link" href="#">{{ $event->text }}</a></li>
-                            @endforeach
-                                <li><a href="#">Показать все</a></li>
+                            @widget('events')
+                                <li><a href="href="{{ url('events') }}">Показать все</a></li>
                         </ul>
                     </li>
 

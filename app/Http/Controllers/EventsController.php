@@ -9,7 +9,13 @@ class EventsController extends Controller
 {
     public function index ()
     {
-        $events = 1;
-        return view('layouts.events', compact('events'));
+        Event::where('user_id', \Auth::id())
+            ->where('status', 0)
+            ->update([
+                'status' => 1,
+            ]);
+
+        $events = Event::where('user_id', \Auth::id())->paginate(30);
+        return view('pages.events', compact('events'));
     }
 }

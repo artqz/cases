@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Click;
+use App\Event;
 use App\Item;
 use App\Referral;
 use App\Stats;
@@ -92,6 +93,13 @@ class FaucetController extends Controller
                         'user_id' => Auth::id(),
                         'clicks' => $clicks,
                     ]);
+
+                    //Создаем эвент
+                    //Event::create([
+                    //'user_id' => Auth::id(),
+                    //    'image' => url('images/icons/clickcoin.png'),
+                    //    'text' => 'Вы получили '.$clicks.' Клик.',
+                    //]);
 
                     //Записываем статистику
                     Stats::where('name', 'clicks')->increment('value', $clicks);

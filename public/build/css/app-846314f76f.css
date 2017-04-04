@@ -7779,6 +7779,24 @@ footer p {
   border-bottom: 1px solid #eee;
 }
 
+.events img {
+  height: 30px;
+  border-radius: 3px;
+  margin-right: 10px;
+  float: left;
+  margin-top: 4px;
+}
+
+.events .content {
+  padding-left: 40px;
+}
+
+.events .date {
+  color: #939393;
+  line-height: 1.417;
+  font-size: 12px;
+}
+
 .disable {
   width: 100%;
   margin-bottom: 4px;

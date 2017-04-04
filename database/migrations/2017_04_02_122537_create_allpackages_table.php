@@ -19,6 +19,7 @@ class CreateAllpackagesTable extends Migration
             $table->string('name');
             $table->text('page_content');
             $table->text('header_image');
+            $table->timestamps();
         });
     }
 
