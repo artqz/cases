@@ -55,36 +55,72 @@
         <br>
         <div class="container">
             <div class="col-sm-4">
-                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <!-- 336_280_1_home_steamclicks -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px"
-                     data-ad-client="ca-pub-6809180877585246"
-                     data-ad-slot="3807430925"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
+                <!-- Yandex.RTB R-A-217702-3 -->
+                <div id="yandex_rtb_R-A-217702-3"></div>
+                <script type="text/javascript">
+                    (function(w, d, n, s, t) {
+                        w[n] = w[n] || [];
+                        w[n].push(function() {
+                            Ya.Context.AdvManager.render({
+                                blockId: "R-A-217702-3",
+                                renderTo: "yandex_rtb_R-A-217702-3",
+                                horizontalAlign: false,
+                                async: true
+                            });
+                        });
+                        t = d.getElementsByTagName("script")[0];
+                        s = d.createElement("script");
+                        s.type = "text/javascript";
+                        s.src = "//an.yandex.ru/system/context.js";
+                        s.async = true;
+                        t.parentNode.insertBefore(s, t);
+                    })(this, this.document, "yandexContextAsyncCallbacks");
                 </script>
             </div>
             <div class="col-sm-4">
-                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <!-- 336_280_2_home_steamclicks -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px"
-                     data-ad-client="ca-pub-6809180877585246"
-                     data-ad-slot="3598621329"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
+                    <!-- Yandex.RTB R-A-217702-4 -->
+                    <div id="yandex_rtb_R-A-217702-4"></div>
+                    <script type="text/javascript">
+                    (function(w, d, n, s, t) {
+                        w[n] = w[n] || [];
+                        w[n].push(function() {
+                            Ya.Context.AdvManager.render({
+                                blockId: "R-A-217702-4",
+                                renderTo: "yandex_rtb_R-A-217702-4",
+                                horizontalAlign: false,
+                                async: true
+                            });
+                        });
+                        t = d.getElementsByTagName("script")[0];
+                        s = d.createElement("script");
+                        s.type = "text/javascript";
+                        s.src = "//an.yandex.ru/system/context.js";
+                        s.async = true;
+                        t.parentNode.insertBefore(s, t);
+                    })(this, this.document, "yandexContextAsyncCallbacks");
                 </script>
             </div>
             <div class="col-sm-4">
-                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <!-- 336_280_3_home_steamclicks -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px"
-                     data-ad-client="ca-pub-6809180877585246"
-                     data-ad-slot="5075354525"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
+                <!-- Yandex.RTB R-A-217702-5 -->
+                <div id="yandex_rtb_R-A-217702-5"></div>
+                <script type="text/javascript">
+                    (function(w, d, n, s, t) {
+                        w[n] = w[n] || [];
+                        w[n].push(function() {
+                            Ya.Context.AdvManager.render({
+                                blockId: "R-A-217702-5",
+                                renderTo: "yandex_rtb_R-A-217702-5",
+                                horizontalAlign: false,
+                                async: true
+                            });
+                        });
+                        t = d.getElementsByTagName("script")[0];
+                        s = d.createElement("script");
+                        s.type = "text/javascript";
+                        s.src = "//an.yandex.ru/system/context.js";
+                        s.async = true;
+                        t.parentNode.insertBefore(s, t);
+                    })(this, this.document, "yandexContextAsyncCallbacks");
                 </script>
             </div>
         </div>
