@@ -17,7 +17,8 @@ class DistributionsController extends Controller
     public function index()
     {
         Carbon::setLocale('ru');
-        $distributions = Distribution::paginate(20);
+        $distributions = Distribution::orderBy('created_at', 'desc')
+            ->paginate(30);
 
         return view('distributions.index', compact('distributions'));
     }
