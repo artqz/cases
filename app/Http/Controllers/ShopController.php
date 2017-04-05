@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Event;
 use App\Game;
 use App\Helpers\SteamHelper;
 use App\Item;
@@ -66,6 +67,14 @@ class ShopController extends Controller
                     if ($user->clicks >= $item->price) {
                         User::where('id', \Auth::id())->update([
                             'clicks' => $user->clicks - $item->price,
+                        ]);
+                        //event
+                        Event::create([
+                            'user_id' => $user->id,
+                            'image' => $item->icon_url,
+                            'text' => 'Вы успешно приобрели предмет '.$item->name,
+                            'url' => url('my-items'),
+                            'type' => 'item',
                         ]);
                         //Записываем статистику
                         Stats::where('name', 'items')->increment('value', 1);
@@ -139,6 +148,14 @@ class ShopController extends Controller
                     if ($user->clicks >= $game->price) {
                         User::where('id', \Auth::id())->update([
                             'clicks' => $user->clicks - $game->price,
+                        ]);
+                        //event
+                        Event::create([
+                            'user_id' => $user->id,
+                            'image' => $game->header_image,
+                            'text' => 'Вы успешно приобрели игру '.$game->name,
+                            'url' => url('my-games'),
+                            'type' => 'game',
                         ]);
                         //Записываем статистику
                         Stats::where('name', 'games')->increment('value', 1);
