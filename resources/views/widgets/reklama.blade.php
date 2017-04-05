@@ -1,12 +1,23 @@
 <br>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- adaptiv_widget -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-6809180877585246"
-     data-ad-slot="6552087720"
-     data-ad-format="auto"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
+<!-- Yandex.RTB R-A-217702-2 -->
+<div id="yandex_rtb_R-A-217702-2"></div>
+<script type="text/javascript">
+    (function(w, d, n, s, t) {
+        w[n] = w[n] || [];
+        w[n].push(function() {
+            Ya.Context.AdvManager.render({
+                blockId: "R-A-217702-2",
+                renderTo: "yandex_rtb_R-A-217702-2",
+                horizontalAlign: false,
+                async: true
+            });
+        });
+        t = d.getElementsByTagName("script")[0];
+        s = d.createElement("script");
+        s.type = "text/javascript";
+        s.src = "//an.yandex.ru/system/context.js";
+        s.async = true;
+        t.parentNode.insertBefore(s, t);
+    })(this, this.document, "yandexContextAsyncCallbacks");
 </script>
 <br>
