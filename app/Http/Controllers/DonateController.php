@@ -43,7 +43,7 @@ class DonateController extends Controller
 
         if ($order) {
             $payment = new \Idma\Robokassa\Payment(
-                'steamclicks.ru', 'Artem110789', 'Kuznetsov110789', true
+                'steamclicks.ru', 'd2zPEddL', 'Art!!0789Kuz', false
             );
 
             $payment
@@ -59,7 +59,7 @@ class DonateController extends Controller
     public function success () {
 
         $payment = new \Idma\Robokassa\Payment(
-            'steamclicks.ru', 'Artem110789', 'Kuznetsov110789', true
+            'steamclicks.ru', 'd2zPEddL', 'Art!!0789Kuz', false
         );
 
             if ($payment->validateSuccess($_GET)) {
@@ -78,7 +78,7 @@ class DonateController extends Controller
 
     public function result () {
         $payment = new \Idma\Robokassa\Payment(
-            'steamclicks.ru', 'Artem110789', 'Kuznetsov110789', true
+            'steamclicks.ru', 'd2zPEddL', 'Art!!0789Kuz', false
         );
 
         if ($payment->validateResult($_GET)) {
