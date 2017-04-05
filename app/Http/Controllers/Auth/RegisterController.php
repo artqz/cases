@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Event;
 use App\User;
 use App\Stats;
 use Validator;
@@ -75,8 +76,9 @@ class RegisterController extends Controller
         }
         //Записываем статистику
         Stats::where('name', 'users')->increment('value', 1);
-        
-        return User::create([
+
+
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'email_hash' => md5($data['email']),
@@ -84,5 +86,16 @@ class RegisterController extends Controller
             'tradeoffer' => $data['tradeoffer'],
             'user_ref_id' => $user_ref_id
         ]);
+
+        //event
+        Event::create([
+            'user_id' => $user->id,
+            'image' => url('images/icons/steamclicks.png'),
+            'text' => 'Добро пожаловать в Steam Clicks! Для получения доступа ко всем функциям сайта Вам необходимо подтвердить аккаунт в своем профиле!',
+            'url' => url('profile'),
+            'type' => 'profile',
+        ]);
+
+        return $user;
     }
 }

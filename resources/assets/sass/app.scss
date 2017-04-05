@@ -65,10 +65,10 @@ footer p {
   transition: 1s;
   text-decoration: none;
 }
-.events {
+.dropdown.events {
   position: relative;
 }
-.events span {
+.dropdown.events span {
   position: absolute;
   top: 0;
   right: 0;
@@ -78,29 +78,34 @@ footer p {
   width: 10px;
   height: 10px;
 }
-.events i {
+.dropdown.events i {
   font-size: 20px;
 }
-.events .event-link{
+.dropdown-menu.events .event-link{
   padding: 10px 20px;
   border-bottom: 1px solid #eee;
 }
-.events img {
+.dropdown-menu.events img {
   height: 30px;
   border-radius: 3px;
   margin-right: 10px;
   float: left;
   margin-top: 4px;
  }
-.events .content {
+.dropdown-menu.events .content {
   padding-left: 40px;
 }
-.events .date {
+.dropdown-menu.events .date {
   color: #939393;
   line-height: 1.417;
   font-size: 12px;
 }
-
+.dropdown-menu.events {
+  width: 350px;
+}
+.dropdown-menu.events a {
+  white-space: normal;
+}
 
 .disable {
   width: 100%;

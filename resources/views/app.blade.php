@@ -99,7 +99,7 @@
                                 <i class="fa fa-bell-o" aria-hidden="true"></i>
                             @endif
                         </a>
-                        <ul class="dropdown-menu" id="menu2" aria-labelledby="drop6">
+                        <ul class="dropdown-menu events" id="menu2" aria-labelledby="drop6">
                             @widget('events')
                         </ul>
                     </li>
