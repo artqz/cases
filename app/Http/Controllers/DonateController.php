@@ -96,7 +96,8 @@ class DonateController extends Controller
                     Event::create([
                         'user_id' => $order->user_id,
                         'image' => url('images/icons/clickcrystal.png'),
-                        'text' => 'Вы купили '.$order->crystals.' Кристальных кликов.',
+                        'text' => 'Вы купили '.$order->crystals.' Кристаллов.',
+                        'url' => url('donate'),
                         'type' => 'donate',
                     ]);
                 }
