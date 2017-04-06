@@ -108,3 +108,9 @@ Breadcrumbs::register('distribution', function($breadcrumbs, $distribution)
     $breadcrumbs->parent('distributions', $distribution);
     $breadcrumbs->push($distribution->data_name, url('distributions/{id_distribution}', $distribution->id));
 });
+
+Breadcrumbs::register('donate', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Купить кристаллы', url('donate'));
+});
