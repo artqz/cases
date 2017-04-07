@@ -12,6 +12,7 @@
                 <div>Дата регистрации: {{ $items->user->created_at }}</div>
                 <div>Значки: </div>
                 <div>Кол-во рефералов: {{ $items->referrals_count }}</div>
+                <div>Рейтинг: {{ $items->user->rating }}</div>
             </div>
             <div class="clearfix"></div>
             </div>
