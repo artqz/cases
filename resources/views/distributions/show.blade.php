@@ -6,7 +6,7 @@
     <meta property="og:type" content="distribution" />
     <meta property="og:title" content="Раздача {{ $distribution->data_name }}" />
     <meta property="og:description" content="Бесплатная раздача {{ $distribution->data_name }} на steamclicks.ru. Участвуй со мной!" />
-    <meta property="og:url" content="{{ url('distributions/'.$distribution->id) }}" />
+    <meta property="og:url" content="{{ url('distributions/'.$distribution->slug) }}" />
     <meta property="og:image" content="{{ url($distribution->data_image) }}" />
 @endsection
 
@@ -14,7 +14,7 @@
     <div>
         @include('layouts.flash')
         {!! Breadcrumbs::render('distribution', $distribution) !!}
-        <h1>Раздача {{ $distribution->data_name }}</h1>
+        <h1>{{ $distribution->data_name }}</h1>
 
         <div class="distribution">
             <div class="distribution-card">
@@ -40,13 +40,14 @@
                 </div>
             </div>
         </div>
+
         @if($distribution->user_id != Auth::id())
             <br>
             @if($distribution->user_winner_id)
                 <div class="disable">Раздача завершена! Победил: <span class="user-name"><a href="{{ url('users/'.$distribution->user_winner->id) }}"><img src="{{ avatar($distribution->user_winner->email_hash, $distribution->user_winner->steam_avatar) }}">{{ $distribution->user_winner->name }}</a></span></div>
             @else
                 @if (!$check_player)
-                    <a class="join" href="{{ url('distributions/'.$distribution->id.'/join') }}">Участвовать</a>
+                    <a class="join" href="{{ url('distributions/'.$distribution->slug.'/join') }}">Участвовать</a>
                 @endif
             @endif
         @else
@@ -57,9 +58,57 @@
             @if($distribution->user_winner_id)
                 <div class="disable">Раздача завершена! Победил: <span class="user-name"><a href="{{ url('users/'.$distribution->user_winner->id) }}"><img src="{{ avatar($distribution->user_winner->email_hash, $distribution->user_winner->steam_avatar) }}">{{ $distribution->user_winner->name }}</a></span></div>
             @else
-                <a class="cancel" href="{{ url('distributions/'.$distribution->id.'/cancel') }}">Завершить раздачу и вернуть клики</a>
+                <a class="cancel" href="{{ url('distributions/'.$distribution->slug.'/cancel') }}">Завершить раздачу и вернуть клики</a>
             @endif
         @endif
+
+        @if($distribution->comment)
+            <br>
+            <div>
+                <div class="card" style="{{ ($distribution->rating == 1) ? 'background-color: #daf8db' : 'background-color: #f8dbda' }}">
+                    <h4>Отзыва победителя:</h4>
+                    {{ $distribution->comment }}
+                </div>
+            </div>
+        @endif
+
+        @if($distribution->user_winner_id == Auth::id() && $distribution->comment == null)
+            <form class="form-horizontal" role="form" method="POST" action="{{ url('distributions/'.$distribution->slug.'/comment') }}">
+                {{ csrf_field() }}
+
+                <div class="form-group{{ $errors->has('comment') ? ' has-error' : '' }}">
+                    <div class="col-md-12">
+                    <h4>Отзыв</h4>
+                        <textarea class="form-control" name="comment" id="comment" cols="30" rows="5" required></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group{{ $errors->has('rating') ? ' has-error' : '' }}">
+                    <div class="col-md-12">
+                        <input type="radio" name="rating" id="pure-toggle" value="1" required hidden/>
+                        <label class="pure-toggle" for="pure-toggle">
+                            <i class="fa fa-thumbs-up Ok" aria-hidden="true">
+                            </i>
+                        </label>
+
+                        <input type="radio" name="rating" id="pure-toggle2" value="-1" required hidden/>
+                        <label class="pure-toggle" for="pure-toggle2">
+                            <i class="fa fa-thumbs-down Nok" aria-hidden="true">
+                            </i>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-6 col-md-offset-4">
+                        <button type="submit" class="btn btn-primary">
+                            Отправить
+                        </button>
+                    </div>
+                </div>
+            </form>
+        @endif
+
         <br>
         <div class="panel panel-default">
             <div class="panel-heading">

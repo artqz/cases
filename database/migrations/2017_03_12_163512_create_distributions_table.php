@@ -29,6 +29,7 @@ class CreateDistributionsTable extends Migration
             $table->text('data_key');
             $table->text('comment');
             $table->integer('rating');
+            $table->string('slug');
             $table->timestamps();
         });
     }

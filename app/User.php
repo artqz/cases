@@ -15,7 +15,23 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'email_hash', 'password',  'user_ref_id', 'clicks', 'all_clicks', 'last_click', 'tradeoffer', 'steam_name', 'steam_avatar', 'steam_profile', 'steamid', 'isBanned', 'isTrader',
+        'name',
+        'email',
+        'email_hash',
+        'password',
+        'user_ref_id',
+        'clicks',
+        'all_clicks',
+        'last_click',
+        'tradeoffer',
+        'steam_name',
+        'steam_avatar',
+        'steam_profile',
+        'steamid',
+        'isBanned',
+        'isTrader',
+        'crystals',
+        'rating',
     ];
 
     /**

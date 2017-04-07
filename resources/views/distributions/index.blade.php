@@ -18,9 +18,9 @@
                             <div class="distribution-players"><i class="fa fa-users" aria-hidden="true"></i> {{ $distribution->joined_players }}/{{ $distribution->players }}</div>
                             <div class="distribution-user"><a href="{{ url('users/'.$distribution->user->id) }}"><img src="{{ avatar($distribution->user->email_hash, $distribution->user->steam_avatar) }}">{{ $distribution->user->name }}</a></div>
                         </div>
-                        <div class="distribution-show"><a href="{{ url('distributions/'.$distribution->id) }}">Подробнее</a></div>
+                        <div class="distribution-show"><a href="{{ url('distributions/'.$distribution->slug) }}">Подробнее</a></div>
                         @if(!$distribution->user_winner_id)
-                            <div class="distribution-join"><a href="{{ url('distributions/'.$distribution->id.'/join') }}">Вступить <span class="price">{{ $distribution->price }}</span></a></div>
+                            <div class="distribution-join"><a href="{{ url('distributions/'.$distribution->slug.'/join') }}">Вступить <span class="price">{{ $distribution->price }}</span></a></div>
                         @endif
                     </div>
                 </div>

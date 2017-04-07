@@ -8955,4 +8955,28 @@ table .user-name img {
   margin-right: 5px;
 }
 
+input[type='radio'] + .pure-toggle i {
+  color: #cccccc;
+  -webkit-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+input[type='radio'] + .pure-toggle i.Ok:hover {
+  color: #1d9d74;
+}
+
+input[type='radio'] + .pure-toggle i.Nok:hover {
+  color: #ED2939;
+}
+
+input[type='radio']:checked + .pure-toggle i.Ok {
+  color: #1d9d74;
+}
+
+input[type='radio']:checked + .pure-toggle i.Nok {
+  color: #ED2939;
+}
+
 /*# sourceMappingURL=app.css.map */

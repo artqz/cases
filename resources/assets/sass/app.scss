@@ -1201,3 +1201,25 @@ table .user-name img {
   border-radius: 50%;
   margin-right: 5px;
 }
+//rating radiobutton
+input[type='radio'] + .pure-toggle {
+  i {
+    color:#cccccc;
+    transition:all 0.5s ease-out;
+    cursor:pointer;
+    font-size: 20px;
+    &.Ok:hover {
+      color:#1d9d74;
+    }
+    &.Nok:hover {
+      color:#ED2939;
+    }
+  }
+}
+
+input[type='radio']:checked + .pure-toggle {
+  i {
+    &.Ok {color:#1d9d74;}
+    &.Nok {color:#ED2939;}
+  }
+}

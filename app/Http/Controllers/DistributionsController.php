@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Distribution;
 use App\Event;
+use App\Helpers\SlugHelper;
 use App\Helpers\SteamHelper;
 use App\Player;
 use App\User;
@@ -65,7 +66,7 @@ class DistributionsController extends Controller
         return view('distributions.create');
     }
 
-    public function update(Request $request, SteamHelper $steam)
+    public function update(Request $request, SteamHelper $steam, SlugHelper $slug)
     {
         $this->validate($request, [
             'game_id' => 'required|integer',
@@ -84,6 +85,10 @@ class DistributionsController extends Controller
             elseif ($request->input('type') == 2) {
                 $data_id = $steam->appid;
             }
+
+            //slug
+            $slug = $slug->makeSlugFromTitle(Distribution::class, $steam->name);
+
             Distribution::create([
                 'name' => '',
                 'players' => $request->input('players'),
@@ -96,6 +101,7 @@ class DistributionsController extends Controller
                 'data_image' => $steam->header_image,
                 'data_id' => $data_id,
                 'data_key' => $request->input('data'),
+                'slug' => $slug,
             ]);
 
             return redirect('distributions')->with([
@@ -110,9 +116,9 @@ class DistributionsController extends Controller
         ]);
     }
 
-    public function join($id_distribution)
+    public function join($slug)
     {
-        $distribution = Distribution::where('id', $id_distribution)->where('status', 0)->first();
+        $distribution = Distribution::where('slug', $slug)->where('status', 0)->first();
 
         //Только для подтвержденных аккаунтов
         if (Auth::user()->steamid && Auth::user()->confirm_email) {
@@ -157,32 +163,32 @@ class DistributionsController extends Controller
                                     ]);
                                 }
                             }
-                            return redirect('distributions/' . $distribution->id)->with([
+                            return redirect('distributions/' . $distribution->slug)->with([
                                 'flash_message' => 'Вы успешно приняли участие в раздаче ' . $distribution->game_name,
                                 'flash_message_status' => 'success',
                             ]);
-                        } else return redirect('distributions/' . $distribution->id)->with([
+                        } else return redirect('distributions/' . $distribution->slug)->with([
                             'flash_message' => 'У Вас не хватает кликов для участия в раздаче ' . $distribution->game_name,
                             'flash_message_status' => 'danger',
                         ]);
-                    } else return redirect('distributions/' . $distribution->id)->with([
+                    } else return redirect('distributions/' . $distribution->slug)->with([
                         'flash_message' => 'Вы уже участвуете в раздаче ' . $distribution->game_name,
                         'flash_message_status' => 'danger',
                     ]);
-                } else return redirect('distributions/' . $distribution->id)->with([
+                } else return redirect('distributions/' . $distribution->slug)->with([
                     'flash_message' => 'Вы не можете участвовать в своей раздаче',
                     'flash_message_status' => 'danger',
                 ]);
             } else return redirect('/');
         }
-        else return redirect('distributions/' . $distribution->id)->with([
+        else return redirect('distributions/' . $distribution->slug)->with([
             'flash_message' => 'Вам необходимо подтвердить аккаунт',
             'flash_message_status' => 'danger',
         ]);
     }
 
-    public function show ($id_distribution) {
-        $distribution = Distribution::where('id', $id_distribution)->first();
+    public function show ($slug) {
+        $distribution = Distribution::where('slug', $slug)->first();
         if ($distribution->type == 1) {
             $distribution->data_type = 'sub';
         }
@@ -192,5 +198,24 @@ class DistributionsController extends Controller
         $check_player = $distribution->players_list->where('user_id', Auth::id())->first();
 
         return view('distributions.show', compact('distribution', 'check_player'));
+    }
+
+    public function comment (Request $request, $slug) {
+        $distribution = Distribution::where('slug', $slug)->first();
+        if ($distribution->user_winner_id == Auth::id() && $distribution->comment == null) {
+            Distribution::where('id', $distribution->id)
+                ->update([
+                    'comment' => $request['comment'],
+                    'rating' => ($request['rating']),
+                ]);
+
+            User::where('id', $distribution->user_id)->increment('rating', $request['rating']);
+            return redirect('distributions/'.$distribution->slug)
+                ->with([
+                    'flash_message' => 'Вы успешно добавили комментраий!',
+                    'flash_message_status' => 'success',
+            ]);
+        }
+        return redirect('/');
     }
 }

@@ -8,7 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Distribution extends Model
 {
     protected $fillable = [
-        'name', 'players', 'price', 'type', 'status', 'user_id', 'user_winner_id', 'data_name', 'data_image', 'data_id', 'data_key',
+        'name',
+        'players',
+        'price',
+        'type',
+        'status',
+        'user_id',
+        'user_winner_id',
+        'data_name',
+        'data_image',
+        'data_id',
+        'data_key',
+        'slug',
     ];
 
     public function user()

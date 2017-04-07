@@ -64,8 +64,9 @@ Route::get('distributions', 'DistributionsController@index');
 Route::get('distributions/buy-cert', 'DistributionsController@buy_cert')->middleware('auth');
 Route::get('distributions/create', 'DistributionsController@create')->middleware('auth', 'trader');
 Route::post('distributions/create', 'DistributionsController@update')->middleware('auth', 'trader');
-Route::get('distributions/{id_distribution}', 'DistributionsController@show');
-Route::get('distributions/{id_distribution}/join', 'DistributionsController@join')->middleware('auth');
+Route::get('distributions/{slug}', 'DistributionsController@show');
+Route::get('distributions/{slug}/join', 'DistributionsController@join')->middleware('auth');
+Route::post('distributions/{slug}/comment', 'DistributionsController@comment')->middleware('auth');
 
 //---
 //forum
