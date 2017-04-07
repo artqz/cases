@@ -158,7 +158,7 @@ class DistributionsController extends Controller
                                         'user_id' => $random_user->user_id,
                                         'image' => $distribution->data_image,
                                         'text' => 'Вы победили в розыгрыше  '.$distribution->data_name,
-                                        'url' => url('distributions/'.$distribution->id),
+                                        'url' => url('distributions/'.$distribution->slug),
                                         'type' => 'game',
                                     ]);
                                 }
