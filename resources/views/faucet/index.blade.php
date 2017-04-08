@@ -17,27 +17,66 @@
             </form>
         </div>
         <div class="col-sm-6 col-md-6">
-            <!-- Yandex.RTB R-A-217702-1 -->
-            <div id="yandex_rtb_R-A-217702-1"></div>
+            <!-- 300*250 Advertur.ru start -->
+            <div id="advertur_142244"></div>
+            <div id="142244_300_250" style="display: none;"></div>
             <script type="text/javascript">
-                (function(w, d, n, s, t) {
+                (function(w, d, n, ln) {
                     w[n] = w[n] || [];
-                    w[n].push(function() {
-                        Ya.Context.AdvManager.render({
-                            blockId: "R-A-217702-1",
-                            renderTo: "yandex_rtb_R-A-217702-1",
-                            horizontalAlign: false,
-                            async: true
-                        });
+                    w[n].push({
+                        section_id: 142244,
+                        place: "advertur_142244",
+                        width: 300,
+                        height: 250,
+                        message: "<b>Отключите AdBlock!</b><br> <b>AdBlock</b> — Бесплатные предметы и игры приобретаются за средства собранные с рекламы!"
                     });
-                    t = d.getElementsByTagName("script")[0];
-                    s = d.createElement("script");
-                    s.type = "text/javascript";
-                    s.src = "//an.yandex.ru/system/context.js";
-                    s.async = true;
-                    t.parentNode.insertBefore(s, t);
-                })(this, this.document, "yandexContextAsyncCallbacks");
+
+                    if (!w[ln]) {
+                        w[ln] = {};
+
+                        var s = d.createElement("script");
+                        s.type = "text/javascript";
+                        s.charset = "utf-8";
+                        s.src = "//ddnk.advertur.ru/v1/s/loader.js";
+                        s.async = true;
+                        s.onerror = function () {
+                            if (w != w.top) {
+                                return;
+                            }
+
+                            var counter = 0,
+                                    fn = function () {
+                                        if (counter >= 60) {
+                                            clearInterval(interval);
+                                            return;
+                                        }
+                                        counter++;
+                                        w[n].forEach(function (item) {
+                                            if (item.hasOwnProperty('rendered') && item.rendered) {
+                                                return;
+                                            }
+
+                                            var el = d.getElementById([item.section_id, item.width, item.height].join('_'));
+                                            if (!el) {
+                                                return;
+                                            }
+
+                                            el.style.width = item.width + "px";
+                                            el.style.height = item.height + "px";
+                                            el.innerHTML = item.message;
+                                            el.style.display = '';
+                                            item.rendered = true;
+                                        });
+                                    },
+                                    interval = setInterval(fn, 1000)
+                                    ;
+                        };
+                        document.body.appendChild(s);
+                    }
+                })(window, document, "advertur_sections", "advertur_loader");
             </script>
+            <!-- 300*250 Advertur.ru end -->
+
         </div>
     </div>
 @endsection
