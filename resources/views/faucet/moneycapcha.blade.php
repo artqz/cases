@@ -14,4 +14,9 @@
             <input type="submit" id="moneycaptchasubmit" disabled="true" title="Вам необходимо правильно ответить на капчу" class="btn btn-sm btn-success" value="Получить клики">
         </form>
     </div>
+    @if ($errors->has('moneycaptcha_code'))
+        <span class="help-block">
+            <strong>{{ $errors->first('moneycaptcha_code') }}</strong>
+        </span>
+    @endif
 @endsection
