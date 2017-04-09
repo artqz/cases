@@ -79,6 +79,8 @@
 @endsection
 
 @section('sidebar')
+    @include('widgets.buy')
+
     @if (\Auth::id() == \Config::get('main.admin_id'))
         <div class="panel panel-default">
             <div class="panel-body">
@@ -92,9 +94,9 @@
 
     @widget('WidgetChat')
 
-    @include('widgets.reklama')
-
     @include('widgets.vk')
+
+    @include('widgets.reklama')
 
 
 @endsection

@@ -15,9 +15,14 @@
 @endsection
 
 @section('sidebar')
+
+    @include('widgets.buy')
+
     @widget('WidgetChat')
 
-    @include('widgets.reklama')
     @include('widgets.vk')
+
+    @include('widgets.reklama')
+
 
 @endsection

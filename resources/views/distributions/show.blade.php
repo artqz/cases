@@ -130,7 +130,7 @@
                 @foreach($distribution->players_list as $key => $player)
                     <tr>
                         <td>{{ $key+1 }}</td>
-                        <td class="user-name"><img src="{{ avatar($player->user->email_hash, $player->user->steam_avatar) }}">{{ $player->user->name }}</td>
+                        <td class="user-name"><a href="{{ url('users/'.$player->user->id) }}"><img src="{{ avatar($player->user->email_hash, $player->user->steam_avatar) }}">{{ $player->user->name }}</a></td>
                         <td>{{ $player->created_at->diffForHumans() }}</td>
                     </tr>
                 @endforeach

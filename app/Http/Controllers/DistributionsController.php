@@ -93,7 +93,7 @@ class DistributionsController extends Controller
             'data' => 'required',
             'type' => 'required',
             'region' => 'required|integer',
-            'players' => 'required|integer|min:5|max:500',
+            'players' => 'required|integer|min:10|max:500',
         ]);
         //level distr
         if ($request['level'] == null OR $request['level'] == 1) {

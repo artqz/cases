@@ -19,6 +19,9 @@
 @endsection
 
 @section('sidebar')
+
+    @include('widgets.buy')
+
     @if (\Auth::id() == \Config::get('main.admin_id'))
     <div class="panel panel-default">
         <div class="panel-body">

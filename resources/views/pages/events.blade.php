@@ -22,3 +22,16 @@
         </div>
     </div>
 @endsection
+
+@section('sidebar')
+
+    @include('widgets.buy')
+
+    @widget('WidgetChat')
+
+    @include('widgets.vk')
+
+    @include('widgets.reklama')
+
+
+@endsection

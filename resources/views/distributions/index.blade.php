@@ -63,6 +63,8 @@
 @endsection
 
 @section('sidebar')
+    @include('widgets.buy')
+
     @if(Auth::id())
         <div class="panel panel-default">
             <div class="panel-body">
@@ -81,6 +83,8 @@
     @endif
 
     @widget('WidgetChat')
+
+    @include('widgets.vk')
 
     @include('widgets.reklama')
 
