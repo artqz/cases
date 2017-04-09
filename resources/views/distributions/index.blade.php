@@ -7,6 +7,14 @@
         @include('layouts.flash')
         {!! Breadcrumbs::render('distributions') !!}
         <h1>Раздачи</h1>
+        <div class="row categories">
+                <div class="col-sm-3 col-md-3">
+                    <a class="category" href="{{ url('distributions/c/active') }}">
+                        <img class="category-icon" src="{{ url('images/icons/clickcrystal.png') }}">
+                        <span class="category-name">Премиум</span>
+                    </a>
+                </div>
+        </div>
         <div class="distributions-list">
             @foreach($distributions as $distribution)
                 @if($distribution->type == 1 OR $distribution->type == 2)
