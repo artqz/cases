@@ -47,6 +47,9 @@
     </div>
     @if(Auth::user()->steamid)
     <h3>Обновить информацию Steam-аккаунта</h3>
+    <p>Имя Steam-аккаунта: {{ Auth::user()->steam_name }}</p>
+    <p>Уровень Steam-аккаунта: {{ Auth::user()->steam_level }}</p>
+    <p><img class="avatar" src="{{ url(Auth::user()->steam_avatar) }}" alt="Steam аватар {{ Auth::user()->steam_name }}"></p>
     <div class="row">
         <div class="col-sm-12">
             <form role="form" method="POST" action="{{ url('profile/update-steam') }}">
