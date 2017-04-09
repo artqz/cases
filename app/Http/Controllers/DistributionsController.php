@@ -273,7 +273,7 @@ class DistributionsController extends Controller
 
                 $players = Player::where('distribution_id', $distribution->id)
                     ->get();
-                if ($players) {
+                if (count($players)) {
                     foreach ($players as $player) {
                         Distribution::where('id', $distribution->id)
                             ->update([
