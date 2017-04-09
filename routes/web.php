@@ -95,6 +95,7 @@ Route::post('faucet/moneycaptcha', 'FaucetController@moneycaptcha')->middleware(
 Route::get('profile', 'PagesController@index_profile')->middleware('auth');
 Route::get('profile/edit-tradeoffer', 'PagesController@edit_tradeoffer')->middleware('auth');
 Route::post('profile/edit-tradeoffer', 'PagesController@update_tradeoffer')->middleware('auth');
+Route::post('profile/update-steam', 'PagesController@update_steam')->middleware('auth');
 Route::get('my-games', 'PagesController@index_my_games')->middleware('auth');
 Route::get('my-items', 'PagesController@index_my_items')->middleware('auth');
 Route::get('help', 'PagesController@index_help');

@@ -51,16 +51,11 @@
             <form action="POST" action="{{ url('profile/update-steam') }}">
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <div class="col-md-6 col-md-offset-4">
-                        <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
-                    </div>
+                    <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
                 </div>
+                <br>
                 <div class="form-group">
-                    <div class="col-md-6 col-md-offset-4">
-                        <button type="submit" class="btn btn-primary">
-                            Регистрация
-                        </button>
-                    </div>
+                    <button type="submit" class="btn btn-primary">Обновить</button>
                 </div>
             </form>
         </div>
