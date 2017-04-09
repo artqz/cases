@@ -4,7 +4,7 @@
 
 @section('meta')
     <meta property="og:type" content="distribution" />
-    <meta property="og:title" content="Раздача {{ $distribution->data_name }}" />
+    <meta property="og:title" content="Прямо сейчас раздается {{ $distribution->data_name }} - Все сюда!" />
     <meta property="og:description" content="Бесплатная раздача {{ $distribution->data_name }} на steamclicks.ru. Участвуй со мной!" />
     <meta property="og:url" content="{{ url('distributions/'.$distribution->slug) }}" />
     <meta property="og:image" content="{{ url($distribution->data_image) }}" />
@@ -142,6 +142,7 @@
 @endsection
 
 @section('sidebar')
+    @include('widgets.buy')
     @if(Auth::id())
         <div class="panel panel-default">
             <div class="panel-body">
@@ -161,7 +162,8 @@
 
     @widget('WidgetChat')
 
-    @include('widgets.reklama')
     @include('widgets.vk')
+
+    @include('widgets.reklama')
 
 @endsection
