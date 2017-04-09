@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('region') ? ' has-error' : '' }}">
-                    <label for="region" class="col-md-4 control-label">Раздача</label>
+                    <label for="region" class="col-md-4 control-label">Регион</label>
                     <div class="col-md-6">
                         <select name="region" class="form-control">
                             <option value="0">Нет</option>
