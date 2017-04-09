@@ -160,6 +160,7 @@ class DistributionsController extends Controller
                                         'text' => 'Вы победили в розыгрыше  '.$distribution->data_name,
                                         'url' => url('distributions/'.$distribution->slug),
                                         'type' => 'game',
+                                        'data' => $distribution->data_data,
                                     ]);
                                 }
                             }
