@@ -14,7 +14,7 @@
                         <div class="game-name">{{ $game->name }}</div>
                         <div class="game-image"><img src="{{ $game->header_image }}" alt="{{ $game->name }}"></div>
                         <div class="price"><span>{{ $game->price }}</span></div>
-                        <div><a href="{{ url('/shop/games/'. $game->id .'/buy-game') }}" class="buy">Купить</a></div>
+                        <div><a href="{{ url('/shop/games/'. $game->id .'/buy-game') }} " class="buy" onclick="return confirm('Точно хотите купить?')">Купить</a></div>
                     </div>
                 </div>
             @endforeach

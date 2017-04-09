@@ -29,7 +29,7 @@
                             <img src="{{ $item->icon_url }}" alt="{{ $item->name }}">
                         </div>
                         <div class="price"><span>{{ $item->price }}</span></div>
-                        <div><a href="{{ url('/shop/items/'. $item->id .'/buy-item') }}" class="buy">Купить</a></div>
+                        <div><a href="{{ url('/shop/items/'. $item->id .'/buy-item') }}" class="buy" onclick="return confirm('Точно хотите купить?')">Купить</a></div>
                         <div class="clearfix"></div>
                     </div>
                 </div>
