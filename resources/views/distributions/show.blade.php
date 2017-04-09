@@ -27,7 +27,7 @@
                         <div class="distribution-steam"><a href="http://store.steampowered.com/{{ $distribution->data_type }}/{{ $distribution->data_id }}/"><i class="fa fa-steam" aria-hidden="true"></i> http://store.steampowered.com/{{ $distribution->data_type }}/{{ $distribution->data_id }}</a></div>
                         <div class="distribution-players">Участников: {{ $distribution->joined_players }} из {{ $distribution->players }} </div>
                         <div class="distribution-price">Ставка: <span class="price {{ ($distribution->level == 2) ? 'crystal' : '' }}">{{ $distribution->price }}</span></div>
-                        <div class="distribution-region">Регион: {{ avatar($distribution->region) }}</div>
+                        <div class="distribution-region">Регион: {{ region($distribution->data_region) }}</div>
                         <div class="distribution-share">
                             <!-- Put this script tag to the <head> of your page -->
                             <script type="text/javascript" src="https://vk.com/js/api/share.js?94" charset="windows-1251"></script>
