@@ -20,7 +20,8 @@ class DistributionsController extends Controller
         Carbon::setLocale('ru');
 
         if($type == 'premium') {
-            $distributions = Distribution::where('level', 2)->orWhere('status', 0)
+            $distributions = Distribution::where('level', 2)
+                ->where('status', 0)
                 ->orderBy('created_at', 'desc')
                 ->paginate(30);
         }
