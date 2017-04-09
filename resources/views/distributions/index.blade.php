@@ -20,7 +20,7 @@
                         </div>
                         <div class="distribution-show"><a href="{{ url('distributions/'.$distribution->slug) }}">Подробнее</a></div>
                         @if(!$distribution->user_winner_id)
-                            {{ $distribution->players_list }}
+                            {{ $distribution->players_list->where('user_id', Auth::id()) }}
                             <div class="distribution-join"><a href="{{ url('distributions/'.$distribution->slug.'/join') }}">Вступить <span class="price">{{ $distribution->price }}</span></a></div>
                         @endif
                     </div>
