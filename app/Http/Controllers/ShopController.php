@@ -156,6 +156,7 @@ class ShopController extends Controller
                             'text' => 'Вы успешно приобрели игру '.$game->name,
                             'url' => url('my-games'),
                             'type' => 'game',
+                            'data' => $game->data_key,
                         ]);
                         //Записываем статистику
                         Stats::where('name', 'games')->increment('value', 1);

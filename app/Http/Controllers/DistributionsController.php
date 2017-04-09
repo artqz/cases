@@ -135,7 +135,7 @@ class DistributionsController extends Controller
                 'slug' => $slug,
             ]);
 
-            return redirect('distributions')->with([
+            return redirect('distributions/'.$slug)->with([
                 'flash_message' => 'Вы успешно создали раздачу '.$steam->name,
                 'flash_message_status' => 'success',
             ]);
@@ -154,89 +154,96 @@ class DistributionsController extends Controller
         //Только для подтвержденных аккаунтов
         if (Auth::user()->steamid && Auth::user()->confirm_email) {
 
-            if ($distribution) {
-                //считаем количество участия
-                $play = Player::where('distribution_id', $distribution->id)->where('user_id', Auth::id())->count();
+            //Только для аккаунтов 5 уровня
+            if (Auth::user()->steam_level >= 5) {
 
-                $user = User::where('id', Auth::id())->first();
+                if ($distribution) {
+                    //считаем количество участия
+                    $play = Player::where('distribution_id', $distribution->id)->where('user_id', Auth::id())->count();
 
-                if ($distribution->user_id != Auth::id()) {
+                    $user = User::where('id', Auth::id())->first();
 
-                    if ($play == 0) {
-                        //узнаем валюту
-                        if ($distribution->level == 1) {
-                            $coins_count = $user->clicks;
-                            $coin_name = 'Кликов';
-                            $coin = 'clicks';
-                            $coins_all_commission = ($distribution->players*$distribution->price-$distribution->players*$distribution->price*0.1);
-                        }
-                        elseif ($distribution->level == 2) {
-                            $coins_count = $user->crystals;
-                            $coin_name = 'Кристаллов';
-                            $coin = 'crystals';
-                            $coins_all_commission = $distribution->players*$distribution->price;
-                        }
+                    if ($distribution->user_id != Auth::id()) {
 
-                        if ($coins_count >= $distribution->price) {
-                            User::where('id', \Auth::id())->update([
-                                $coin => $coins_count - $distribution->price,
-                            ]);
-                            Distribution::where('id', $distribution->id)->update([
-                                'joined_players' => $distribution->joined_players + 1,
-                            ]);
-                            $player = Player::create([
-                                'distribution_id' => $distribution->id,
-                                'user_id' => Auth::id(),
-                            ]);
-                            if ($player) {
-                                if (Player::where('distribution_id', $distribution->id)->count() == $distribution->players) {
-                                    $random_user = Player::where('distribution_id', $distribution->id)
-                                        ->inRandomOrder()
-                                        ->first();
-                                    Distribution::where('id', $distribution->id)->update([
-                                        'user_winner_id' => $random_user->user_id,
-                                        'status' => 1,
-                                    ]);
-
-                                    User::where('id', $distribution->user_id)->increment($coin, $coins_all_commission);
-
-                                    //event
-                                    Event::create([
-                                        'user_id' => $distribution->user_id,
-                                        'image' => $distribution->data_image,
-                                        'text' => 'Ваш розыгрыш '.$distribution->data_name.' закончен! Вы заработали '.$coins_all_commission.' '.$coin_name,
-                                        'url' => url('distributions/'.$distribution->slug),
-                                        'type' => 'game',
-                                    ]);
-
-                                    //event 2
-                                    Event::create([
-                                        'user_id' => $random_user->user_id,
-                                        'image' => $distribution->data_image,
-                                        'text' => 'Вы победили в розыгрыше  '.$distribution->data_name,
-                                        'url' => url('distributions/'.$distribution->slug),
-                                        'type' => 'game',
-                                        'data' => $distribution->data_key,
-                                    ]);
-                                }
+                        if ($play == 0) {
+                            //узнаем валюту
+                            if ($distribution->level == 1) {
+                                $coins_count = $user->clicks;
+                                $coin_name = 'Кликов';
+                                $coin = 'clicks';
+                                $coins_all_commission = ($distribution->players * $distribution->price - $distribution->players * $distribution->price * 0.1);
+                            } elseif ($distribution->level == 2) {
+                                $coins_count = $user->crystals;
+                                $coin_name = 'Кристаллов';
+                                $coin = 'crystals';
+                                $coins_all_commission = $distribution->players * $distribution->price;
                             }
-                            return redirect('distributions/' . $distribution->slug)->with([
-                                'flash_message' => 'Вы успешно приняли участие в раздаче ' . $distribution->game_name,
-                                'flash_message_status' => 'success',
+
+                            if ($coins_count >= $distribution->price) {
+                                User::where('id', \Auth::id())->update([
+                                    $coin => $coins_count - $distribution->price,
+                                ]);
+                                Distribution::where('id', $distribution->id)->update([
+                                    'joined_players' => $distribution->joined_players + 1,
+                                ]);
+                                $player = Player::create([
+                                    'distribution_id' => $distribution->id,
+                                    'user_id' => Auth::id(),
+                                ]);
+                                if ($player) {
+                                    if (Player::where('distribution_id', $distribution->id)->count() == $distribution->players) {
+                                        $random_user = Player::where('distribution_id', $distribution->id)
+                                            ->inRandomOrder()
+                                            ->first();
+                                        Distribution::where('id', $distribution->id)->update([
+                                            'user_winner_id' => $random_user->user_id,
+                                            'status' => 1,
+                                        ]);
+
+                                        User::where('id', $distribution->user_id)->increment($coin, $coins_all_commission);
+
+                                        //event
+                                        Event::create([
+                                            'user_id' => $distribution->user_id,
+                                            'image' => $distribution->data_image,
+                                            'text' => 'Ваш розыгрыш ' . $distribution->data_name . ' закончен! Вы заработали ' . $coins_all_commission . ' ' . $coin_name,
+                                            'url' => url('distributions/' . $distribution->slug),
+                                            'type' => 'game',
+                                        ]);
+
+                                        //event 2
+                                        Event::create([
+                                            'user_id' => $random_user->user_id,
+                                            'image' => $distribution->data_image,
+                                            'text' => 'Вы победили в розыгрыше  ' . $distribution->data_name,
+                                            'url' => url('distributions/' . $distribution->slug),
+                                            'type' => 'game',
+                                            'data' => $distribution->data_key,
+                                        ]);
+                                    }
+                                }
+                                return redirect('distributions/' . $distribution->slug)->with([
+                                    'flash_message' => 'Вы успешно приняли участие в раздаче ' . $distribution->game_name,
+                                    'flash_message_status' => 'success',
+                                ]);
+                            } else return redirect('distributions/' . $distribution->slug)->with([
+                                'flash_message' => 'У Вас не хватает ' . $coin_name . ' для участия в раздаче ' . $distribution->game_name,
+                                'flash_message_status' => 'danger',
                             ]);
                         } else return redirect('distributions/' . $distribution->slug)->with([
-                            'flash_message' => 'У Вас не хватает '.$coin_name.' для участия в раздаче ' . $distribution->game_name,
+                            'flash_message' => 'Вы уже участвуете в раздаче ' . $distribution->game_name,
                             'flash_message_status' => 'danger',
                         ]);
                     } else return redirect('distributions/' . $distribution->slug)->with([
-                        'flash_message' => 'Вы уже участвуете в раздаче ' . $distribution->game_name,
+                        'flash_message' => 'Вы не можете участвовать в своей раздаче',
                         'flash_message_status' => 'danger',
                     ]);
-                } else return redirect('distributions/' . $distribution->slug)->with([
-                    'flash_message' => 'Вы не можете участвовать в своей раздаче',
-                    'flash_message_status' => 'danger',
-                ]);
-            } else return redirect('/');
+                } else return redirect('/');
+            }
+            else return redirect('distributions/' . $distribution->slug)->with([
+                'flash_message' => 'Ваш Steam-аккаунт должен быть не менее 5 уровня.',
+                'flash_message_status' => 'danger',
+            ]);
         }
         else return redirect('distributions/' . $distribution->slug)->with([
             'flash_message' => 'Вам необходимо подтвердить аккаунт',
