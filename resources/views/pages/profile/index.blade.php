@@ -48,7 +48,7 @@
     <h3>Обновить информацию Steam-аккаунта</h3>
     <div class="row">
         <div class="col-sm-12">
-            <form action="POST" action="{{ url('profile/update-steam') }}">
+            <form role="form" method="POST" action="{{ url('profile/update-steam') }}">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
