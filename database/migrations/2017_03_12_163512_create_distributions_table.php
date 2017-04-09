@@ -16,6 +16,7 @@ class CreateDistributionsTable extends Migration
         Schema::create('distributions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('level');
             $table->integer('players');
             $table->integer('joined_players');
             $table->float('price');

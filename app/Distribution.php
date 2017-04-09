@@ -9,6 +9,7 @@ class Distribution extends Model
 {
     protected $fillable = [
         'name',
+        'level',
         'players',
         'price',
         'type',

@@ -47,7 +47,7 @@
                         <div class="distribution-show"><a href="{{ url('distributions/'.$distribution->slug) }}">Подробнее</a></div>
                         @if(!$distribution->user_winner_id)
                             @if(!count($distribution->players_list->where('user_id', Auth::id())))
-                                <div class="distribution-join"><a href="{{ url('distributions/'.$distribution->slug.'/join') }}">Вступить <span class="price">{{ $distribution->price }}</span></a></div>
+                                <div class="distribution-join"><a href="{{ url('distributions/'.$distribution->slug.'/join') }}">Вступить <span class="price {{ ($distribution->level) ? 'crystal' : '' }}">{{ $distribution->price }}</span></a></div>
                             @endif
                         @endif
                     </div>

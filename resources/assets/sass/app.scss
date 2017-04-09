@@ -50,6 +50,19 @@ footer p {
   height: 20px;
   display: inline-block;
 }
+.price.crystal:after {
+  content: '';
+  background-image: url(/images/icons/clickcrystal_mini.png); /* подставьте сюда адрес своего спрайта */
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  margin: 0;
+  left: 5px;
+  top: 7px;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
 .buy {
   width: 100%;
   margin-bottom: 4px;

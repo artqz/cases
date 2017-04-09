@@ -8,6 +8,18 @@
             <form class="form-horizontal" role="form" method="POST" action="{{ url('distributions/create') }}">
                 {{ csrf_field() }}
 
+                @if(Auth::user()->isTrader == 2)
+                <div class="form-group{{ $errors->has('level') ? ' has-error' : '' }}">
+                    <label for="level" class="col-md-4 control-label">Раздача</label>
+                    <div class="col-md-6">
+                        <select name="level" class="form-control">
+                            <option value="1">За Клики</option>
+                            <option value="2">За Кристаллы</option>
+                        </select>
+                    </div>
+                </div>
+                @endif
+
                 <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
                     <label for="type" class="col-md-4 control-label">Тип</label>
                     <div class="col-md-6">

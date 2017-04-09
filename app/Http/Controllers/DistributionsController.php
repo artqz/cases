@@ -75,6 +75,15 @@ class DistributionsController extends Controller
             'type' => 'required',
             'players' => 'required|integer',
         ]);
+        //level distr
+        if ($request['level'] == null OR $request['level'] == 1) {
+            $level = 1;
+            $price = abs($request->input('price')/$request->input('players'))+($request->input('price')/$request->input('players')*0.1);
+        }
+        elseif ($request['level'] == 2) {
+            $level = 2;
+            $price = abs($request->input('price')/$request->input('players'));
+        }
 
         if ($steam->addDistributionToDB($request->input('game_id'), $request->input('type'))) {
 
@@ -90,9 +99,10 @@ class DistributionsController extends Controller
             $slug = $slug->makeSlugFromTitle(Distribution::class, $steam->name);
 
             Distribution::create([
-                'name' => '',
+                'name' => $level,
+                'level' => '',
                 'players' => $request->input('players'),
-                'price' => abs($request->input('price')/$request->input('players'))+($request->input('price')/$request->input('players')*0.1),
+                'price' => $price,
                 'type' => $request->input('type'), //пак 1, игра 2, предмет 3
                 'status' => 0,
                 'user_id' => Auth::id(),
@@ -160,7 +170,7 @@ class DistributionsController extends Controller
                                         'text' => 'Вы победили в розыгрыше  '.$distribution->data_name,
                                         'url' => url('distributions/'.$distribution->slug),
                                         'type' => 'game',
-                                        'data' => $distribution->data_data,
+                                        'data' => $distribution->data_key,
                                     ]);
                                 }
                             }
