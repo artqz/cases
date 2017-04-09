@@ -66,7 +66,7 @@
             <br>
             <div>
                 <div class="card" style="{{ ($distribution->rating == 1) ? 'background-color: #daf8db' : 'background-color: #f8dbda' }}">
-                    <h4>Отзыва победителя:</h4>
+                    <h4>Отзыв победителя:</h4>
                     {{ $distribution->comment }}
                 </div>
             </div>
