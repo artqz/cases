@@ -1248,6 +1248,29 @@ input[type='radio']:checked + .pure-toggle {
   opacity: .5;
 }
 
+.categories .category .passed {
+  background-color: red;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  border-radius: 50%;
+  opacity: .5;
+}
+
+.categories .category .category-icon {
+  display: inline-block;
+  position: relative;
+}
+
+.categories .category .active {
+  background-color: red;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  border-radius: 50%;
+  opacity: .5;
+}
+
 .categories .category img {
   width: 32px;
   height: 32px;

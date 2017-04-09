@@ -8,12 +8,27 @@
         {!! Breadcrumbs::render('distributions') !!}
         <h1>Раздачи</h1>
         <div class="row categories">
-                <div class="col-sm-3 col-md-3">
-                    <a class="category" href="{{ url('distributions/c/active') }}">
-                        <img class="category-icon" src="{{ url('images/icons/clickcrystal.png') }}">
-                        <span class="category-name">Премиум</span>
-                    </a>
-                </div>
+            <div class="col-sm-3 col-md-3">
+                <a class="category" href="{{ url('distributions/c/premium') }}">
+                    <img class="category-icon" src="{{ url('images/icons/clickcrystal.png') }}" alt="Премиум раздачи">
+                    <span class="category-name">Премиум</span>
+                </a>
+            </div>
+            <div class="col-sm-3 col-md-3">
+                <a class="category" href="{{ url('distributions/c/active') }}">
+                    <img class="category-icon" src="{{ url('images/icons/clickcoin.png') }}" alt="Активные раздачи">
+                    <span class="category-name">Активные</span>
+                </a>
+            </div>
+            <div class="col-sm-3 col-md-3">
+                <a class="category" href="{{ url('distributions/c/passed') }}">
+                    <div class="category-icon">
+                        <div class="passed"></div>
+                        <img src="{{ url('images/icons/clickcoin.png') }}" alt="Прошедшие раздачи">
+                    </div>
+                    <span class="category-name">Прошедшие</span>
+                </a>
+            </div>
         </div>
         <div class="distributions-list">
             @foreach($distributions as $distribution)
