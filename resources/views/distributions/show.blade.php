@@ -60,7 +60,7 @@
                 @if($distribution->user_winner_id)
                     <div class="disable">Раздача завершена! Победил: <span class="user-name"><a href="{{ url('users/'.$distribution->user_winner->id) }}"><img src="{{ avatar($distribution->user_winner->email_hash, $distribution->user_winner->steam_avatar) }}">{{ $distribution->user_winner->name }}</a></span></div>
                 @else
-                    <a class="cancel" href="{{ url('distributions/'.$distribution->slug.'/cancel') }}">Завершить раздачу и вернуть клики</a>
+                    <a class="cancel" href="{{ url('distributions/'.$distribution->slug.'/cancel') }}" onclick="return confirm('Точно отменить?')">Завершить раздачу и вернуть клики</a>
                 @endif
             @endif
 
