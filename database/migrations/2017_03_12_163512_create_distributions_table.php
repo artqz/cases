@@ -28,7 +28,7 @@ class CreateDistributionsTable extends Migration
             $table->string('data_image');
             $table->integer('data_id');
             $table->text('data_key');
-            $table->text('data_region');
+            $table->integer('data_region');
             $table->text('comment');
             $table->integer('rating');
             $table->string('slug');

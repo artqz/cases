@@ -87,16 +87,21 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('region') ? ' has-error' : '' }}">
-                    <label for="region" class="col-md-4 control-label">Регион</label>
-
+                    <label for="region" class="col-md-4 control-label">Раздача</label>
                     <div class="col-md-6">
-                        <input id="region" type="text" class="form-control" name="region" value="{{ old('region') }}" required>
-
-                        @if ($errors->has('region'))
-                            <span class="help-block">
-                                    <strong>{{ $errors->first('region') }}</strong>
-                                </span>
-                        @endif
+                        <select name="region" class="form-control">
+                            <option value="0">Нет</option>
+                            <option value="1">Китай</option>
+                            <option value="2">Гонгконг и Тайвань</option>
+                            <option value="3">Индия</option>
+                            <option value="4">Польша</option>
+                            <option value="5">Германия</option>
+                            <option value="6">Россия и СНГ</option>
+                            <option value="7">Юго-Восточная Азия</option>
+                            <option value="8">Южная Америка</option>
+                            <option value="9">Турция</option>
+                        </select>
+                        <span>Если Ваша копия игры имеет региональные ограничения Вы должны указать это, в противном случае Ваш аккаунт может быть заморожен.</span>
                     </div>
                 </div>
 
