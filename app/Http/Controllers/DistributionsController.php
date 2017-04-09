@@ -155,7 +155,7 @@ class DistributionsController extends Controller
         if (Auth::user()->steamid && Auth::user()->confirm_email) {
 
             //Только для аккаунтов 5 уровня
-            if (Auth::user()->steam_level >= 5) {
+            if (Auth::user()->steam_level >= 5 AND $distribution->level == 1 OR $distribution->level == 2) {
 
                 if ($distribution) {
                     //считаем количество участия
