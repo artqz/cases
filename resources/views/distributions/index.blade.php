@@ -9,13 +9,13 @@
         <h1>Раздачи</h1>
         <div class="row categories">
             <div class="col-sm-3 col-md-3">
-                <a class="category" href="{{ url('distributions/c/premium') }}">
+                <a class="category {{ Request::is('distributions/c/premium') ? 'active' : '' }}" href="{{ url('distributions/c/premium') }}">
                     <img class="category-icon" src="{{ url('images/icons/clickcrystal.png') }}" alt="Премиум раздачи">
                     <span class="category-name">Премиум</span>
                 </a>
             </div>
             <div class="col-sm-3 col-md-3">
-                <a class="category" href="{{ url('distributions/c/active') }}">
+                <a class="category {{ Request::is('distributions/c/active') ? 'active' : '' }}" href="{{ url('distributions/c/active') }}">
                     <div class="category-icon">
                         <img src="{{ url('images/icons/clickcoin.png') }}" alt="Активные раздачи">
                     </div>
@@ -23,7 +23,7 @@
                 </a>
             </div>
             <div class="col-sm-3 col-md-3">
-                <a class="category" href="{{ url('distributions/c/passed') }}">
+                <a class="category {{ Request::is('distributions/c/passed') ? 'active' : '' }}" href="{{ url('distributions/c/passed') }}">
                     <div class="category-icon">
                         <div class="passed"></div>
                         <img src="{{ url('images/icons/clickcoin.png') }}" alt="Прошедшие раздачи">
