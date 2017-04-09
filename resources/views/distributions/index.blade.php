@@ -44,10 +44,12 @@
                             <div class="distribution-user"><a href="{{ url('users/'.$distribution->user->id) }}"><img src="{{ avatar($distribution->user->email_hash, $distribution->user->steam_avatar) }}">{{ $distribution->user->name }}</a></div>
                         </div>
                         <div class="distribution-show"><a href="{{ url('distributions/'.$distribution->slug) }}">Подробнее</a></div>
-                        @if($distribution->user_id != Auth::id())
-                            @if(!$distribution->user_winner_id)
-                                @if(!count($distribution->players_list->where('user_id', Auth::id())))
-                                    <div class="distribution-join"><a href="{{ url('distributions/'.$distribution->slug.'/join') }}">Вступить <span class="price {{ ($distribution->level == 2) ? 'crystal' : '' }}">{{ $distribution->price }}</span></a></div>
+                        @if($distribution->status == 0)
+                            @if($distribution->user_id != Auth::id())
+                                @if(!$distribution->user_winner_id)
+                                    @if(!count($distribution->players_list->where('user_id', Auth::id())))
+                                        <div class="distribution-join"><a href="{{ url('distributions/'.$distribution->slug.'/join') }}">Вступить <span class="price {{ ($distribution->level == 2) ? 'crystal' : '' }}">{{ $distribution->price }}</span></a></div>
+                                    @endif
                                 @endif
                             @endif
                         @endif
