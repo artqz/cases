@@ -92,7 +92,8 @@ class DistributionsController extends Controller
             'price' => 'required|integer',
             'data' => 'required',
             'type' => 'required',
-            'players' => 'required|integer',
+            'region' => 'required',
+            'players' => 'required|integer|min:10|max:500',
         ]);
         //level distr
         if ($request['level'] == null OR $request['level'] == 1) {
@@ -130,6 +131,7 @@ class DistributionsController extends Controller
                 'data_image' => $steam->header_image,
                 'data_id' => $data_id,
                 'data_key' => $request->input('data'),
+                'data_region' => $request->input('region'),
                 'slug' => $slug,
             ]);
 
@@ -194,7 +196,28 @@ class DistributionsController extends Controller
                                         'status' => 1,
                                     ]);
 
+                                    $coins_all = Distribution::where('id', $distribution->id)->sum('price');
+
+                                    //узнаем валюту
+                                    if ($distribution->level == 1) {
+                                        $coins_all_commission = ($coins_all - $coins_all * 0.1);
+                                    }
+                                    elseif ($distribution->level == 2) {
+                                        $coins_all_commission = ($coins_all);
+                                    }
+
+                                    User::where('id', $distribution->user_id)->increment($coin, $coins_all_commission);
+
                                     //event
+                                    Event::create([
+                                        'user_id' => $distribution->user_id,
+                                        'image' => $distribution->data_image,
+                                        'text' => 'Ваш розыгрыш '.$distribution->data_name.' закончен! Вы заработали '.$coins_all_commission.' '.$coin_name,
+                                        'url' => url('distributions/'.$distribution->slug),
+                                        'type' => 'game',
+                                    ]);
+
+                                    //event 2
                                     Event::create([
                                         'user_id' => $random_user->user_id,
                                         'image' => $distribution->data_image,

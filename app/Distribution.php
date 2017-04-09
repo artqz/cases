@@ -20,6 +20,7 @@ class Distribution extends Model
         'data_image',
         'data_id',
         'data_key',
+        'data_region',
         'slug',
     ];
 
