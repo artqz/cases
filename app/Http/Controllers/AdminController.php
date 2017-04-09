@@ -336,14 +336,14 @@ class AdminController extends Controller
     }
 
     public function edit_help ($id_help) {
-        $help = Help::findOrFail($id_help);
+        $help = Help::where('id', $id_help)->first();
 
         return view('admin.helps.edit', compact('help'));
     }
 
     public function update_help (Request $request, $id_help)
     {
-        $help = User::findOrFail($id_help);
+        $help = Help::where('id', $id_help)->first();
 
         $this->validate($request, [
             'name' => 'required',
@@ -364,7 +364,7 @@ class AdminController extends Controller
     }
 
     public function delete_help ($id_message) {
-        $help = Help::findOrFail($id_message);
+        $help = Help::where('id', $id_help)->first();
 
         Help::where('id', $help->id)->delete();
         return redirect('admin/helps')->with([
