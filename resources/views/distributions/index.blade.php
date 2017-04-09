@@ -36,7 +36,7 @@
             @foreach($distributions as $distribution)
                 @if($distribution->type == 1 OR $distribution->type == 2)
                 <div class="col-md-12">
-                    <div class="distribution-card row" style="{{ ($distribution->user_winner_id != 0) ? 'background-color: #f1f1f1;' : '' }}">
+                    <div class="distribution-card row" style="{{ ($distribution->status != 0) ? 'background-color: #f1f1f1;' : '' }}">
                         <div class="distribution-image"><img src="{{ $distribution->data_image }}" alt="Раздача {{ $distribution->data_name }}"></div>
                         <div style="display: inline-block; vertical-align: middle;">
                             <div class="distribution-name">Раздача {{ $distribution->data_name }}</div>

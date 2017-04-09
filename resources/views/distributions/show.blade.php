@@ -40,73 +40,76 @@
                 </div>
             </div>
         </div>
-
-        @if($distribution->user_id != Auth::id())
-            <br>
-            @if($distribution->user_winner_id)
-                <div class="disable">Раздача завершена! Победил: <span class="user-name"><a href="{{ url('users/'.$distribution->user_winner->id) }}"><img src="{{ avatar($distribution->user_winner->email_hash, $distribution->user_winner->steam_avatar) }}">{{ $distribution->user_winner->name }}</a></span></div>
+        @if($distribution->status == 2)
+            <div class="disable">Торговец отменил раздачу!</div>
+        @else
+            @if($distribution->user_id != Auth::id())
+                <br>
+                @if($distribution->user_winner_id)
+                    <div class="disable">Раздача завершена! Победил: <span class="user-name"><a href="{{ url('users/'.$distribution->user_winner->id) }}"><img src="{{ avatar($distribution->user_winner->email_hash, $distribution->user_winner->steam_avatar) }}">{{ $distribution->user_winner->name }}</a></span></div>
+                @else
+                    @if (!$check_player)
+                        <a class="join" href="{{ url('distributions/'.$distribution->slug.'/join') }}">Участвовать</a>
+                    @endif
+                @endif
             @else
-                @if (!$check_player)
-                    <a class="join" href="{{ url('distributions/'.$distribution->slug.'/join') }}">Участвовать</a>
+
+            @endif
+            @if($distribution->user_id == Auth::id())
+                <br>
+                @if($distribution->user_winner_id)
+                    <div class="disable">Раздача завершена! Победил: <span class="user-name"><a href="{{ url('users/'.$distribution->user_winner->id) }}"><img src="{{ avatar($distribution->user_winner->email_hash, $distribution->user_winner->steam_avatar) }}">{{ $distribution->user_winner->name }}</a></span></div>
+                @else
+                    <a class="cancel" href="{{ url('distributions/'.$distribution->slug.'/cancel') }}">Завершить раздачу и вернуть клики</a>
                 @endif
             @endif
-        @else
 
-        @endif
-        @if($distribution->user_id == Auth::id())
-            <br>
-            @if($distribution->user_winner_id)
-                <div class="disable">Раздача завершена! Победил: <span class="user-name"><a href="{{ url('users/'.$distribution->user_winner->id) }}"><img src="{{ avatar($distribution->user_winner->email_hash, $distribution->user_winner->steam_avatar) }}">{{ $distribution->user_winner->name }}</a></span></div>
-            @else
-                <a class="cancel" href="{{ url('distributions/'.$distribution->slug.'/cancel') }}">Завершить раздачу и вернуть клики</a>
+            @if($distribution->comment)
+                <br>
+                <div>
+                    <div class="card" style="{{ ($distribution->rating == 1) ? 'background-color: #daf8db' : 'background-color: #f8dbda' }}">
+                        <h4>Отзыв победителя:</h4>
+                        {{ $distribution->comment }}
+                    </div>
+                </div>
             @endif
-        @endif
 
-        @if($distribution->comment)
-            <br>
-            <div>
-                <div class="card" style="{{ ($distribution->rating == 1) ? 'background-color: #daf8db' : 'background-color: #f8dbda' }}">
-                    <h4>Отзыв победителя:</h4>
-                    {{ $distribution->comment }}
-                </div>
-            </div>
-        @endif
+            @if($distribution->user_winner_id == Auth::id() && $distribution->comment == null)
+                <form class="form-horizontal" role="form" method="POST" action="{{ url('distributions/'.$distribution->slug.'/comment') }}">
+                    {{ csrf_field() }}
 
-        @if($distribution->user_winner_id == Auth::id() && $distribution->comment == null)
-            <form class="form-horizontal" role="form" method="POST" action="{{ url('distributions/'.$distribution->slug.'/comment') }}">
-                {{ csrf_field() }}
-
-                <div class="form-group{{ $errors->has('comment') ? ' has-error' : '' }}">
-                    <div class="col-md-12">
-                    <h4>Отзыв</h4>
-                        <textarea class="form-control" name="comment" id="comment" cols="30" rows="5" required></textarea>
+                    <div class="form-group{{ $errors->has('comment') ? ' has-error' : '' }}">
+                        <div class="col-md-12">
+                        <h4>Отзыв</h4>
+                            <textarea class="form-control" name="comment" id="comment" cols="30" rows="5" required></textarea>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group{{ $errors->has('rating') ? ' has-error' : '' }}">
-                    <div class="col-md-12">
-                        <input type="radio" name="rating" id="pure-toggle" value="1" required hidden/>
-                        <label class="pure-toggle" for="pure-toggle">
-                            <i class="fa fa-thumbs-up Ok" aria-hidden="true">
-                            </i>
-                        </label>
+                    <div class="form-group{{ $errors->has('rating') ? ' has-error' : '' }}">
+                        <div class="col-md-12">
+                            <input type="radio" name="rating" id="pure-toggle" value="1" required hidden/>
+                            <label class="pure-toggle" for="pure-toggle">
+                                <i class="fa fa-thumbs-up Ok" aria-hidden="true">
+                                </i>
+                            </label>
 
-                        <input type="radio" name="rating" id="pure-toggle2" value="-1" required hidden/>
-                        <label class="pure-toggle" for="pure-toggle2">
-                            <i class="fa fa-thumbs-down Nok" aria-hidden="true">
-                            </i>
-                        </label>
+                            <input type="radio" name="rating" id="pure-toggle2" value="-1" required hidden/>
+                            <label class="pure-toggle" for="pure-toggle2">
+                                <i class="fa fa-thumbs-down Nok" aria-hidden="true">
+                                </i>
+                            </label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <div class="col-md-6 col-md-offset-4">
-                        <button type="submit" class="btn btn-primary">
-                            Отправить
-                        </button>
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-4">
+                            <button type="submit" class="btn btn-primary">
+                                Отправить
+                            </button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            @endif
         @endif
 
         <br>

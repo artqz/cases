@@ -20,7 +20,7 @@ class DistributionsController extends Controller
         Carbon::setLocale('ru');
 
         if($type == 'premium') {
-            $distributions = Distribution::where('level', 2)
+            $distributions = Distribution::where('level', 2)->orWhere('status', 0)
                 ->orderBy('created_at', 'desc')
                 ->paginate(30);
         }
@@ -30,7 +30,7 @@ class DistributionsController extends Controller
                 ->paginate(30);
         }
         elseif ($type == 'passed') {
-            $distributions = Distribution::where('status', 1)
+            $distributions = Distribution::where('status', 1)->orWhere('status', 2)
                 ->orderBy('created_at', 'desc')
                 ->paginate(30);
         }
@@ -226,6 +226,62 @@ class DistributionsController extends Controller
             'flash_message' => 'Вам необходимо подтвердить аккаунт',
             'flash_message_status' => 'danger',
         ]);
+    }
+
+    public function cancel ($slug) {
+        $distribution = Distribution::where('slug', $slug)->first();
+
+        if ($distribution->user_id == Auth::id()) {
+            //узнаем валюту
+            if ($distribution->level == 1) {
+                $coins_count = ($distribution->price-$distribution->price*0.2);
+                $coin_name = 'Клики';
+                $coin_name_event = 'Клик.';
+                $coin = 'clicks';
+            }
+            elseif ($distribution->level == 2) {
+                $coins_count = $distribution->price;
+                $coin_name = 'Кристаллы';
+                $coin_name_event = 'Крис.';
+                $coin = 'crystals';
+            }
+
+            $players = Player::where('distribution_id', $distribution->id)
+                ->get();
+            if ($players) {
+                foreach ($players as $player) {
+                    Distribution::where('id', $distribution->id)
+                        ->update([
+                            'status' => '2',
+                        ]);
+
+                    User::where('id', $player->user_id)->increment($coin, $coins_count);
+
+                    //event
+                    Event::create([
+                        'user_id' => $player->user_id,
+                        'image' => $distribution->data_image,
+                        'text' => 'Торговец отменил раздачу  '.$distribution->data_name. 'и вернул Вам '.$coins_count.' '.$coin_name_event,
+                        'url' => url('distributions/'.$distribution->slug),
+                        'type' => 'game',
+                    ]);
+
+                }
+            }
+            else {
+                Distribution::where('id', $distribution->id)
+                    ->update([
+                        'status' => '2',
+                    ]);
+            }
+            return redirect('distributions/'.$distribution->slug)
+                ->with([
+                    'flash_message' => 'Вы успешно отменили раздачу и вернули '.$coin_name.' участникам!',
+                    'flash_message_status' => 'success',
+                ]);
+
+        }
+        return redirect('/');
     }
 
     public function show ($slug) {
