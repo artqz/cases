@@ -9010,12 +9010,12 @@ input[type='radio']:checked + .pure-toggle i.Nok {
 }
 
 .categories .category .passed {
-  background-color: red;
+  background-color: #777;
   width: 32px;
   height: 32px;
   position: absolute;
   border-radius: 50%;
-  opacity: .5;
+  opacity: .8;
 }
 
 .categories .category .category-icon {
