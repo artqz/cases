@@ -8985,4 +8985,33 @@ input[type='radio']:checked + .pure-toggle i.Nok {
   color: #ED2939;
 }
 
+.categories .category {
+  background-color: #fff;
+  padding: 5px 10px;
+  margin-bottom: 15px;
+  border-radius: 3px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  display: block;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: .5;
+}
+
+.categories .category img {
+  width: 32px;
+  height: 32px;
+  border-radius: 3px;
+}
+
+.categories .category:hover {
+  opacity: 1;
+}
+
+.categories .category.active {
+  opacity: 1;
+}
+
 /*# sourceMappingURL=app.css.map */
