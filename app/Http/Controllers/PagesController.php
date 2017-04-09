@@ -61,7 +61,7 @@ class PagesController extends Controller
             'g-recaptcha-response' => 'required|recaptcha',
         ]);
 
-        dd($steam->getSteamLevel(Auth::user()->steamid));
+        dd(123);
 
         return redirect('profile')->with([
             'flash_message' => 'Вы успешно обновили информацию своего Steam-аккаунта',
