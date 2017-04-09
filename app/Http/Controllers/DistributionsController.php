@@ -99,8 +99,8 @@ class DistributionsController extends Controller
             $slug = $slug->makeSlugFromTitle(Distribution::class, $steam->name);
 
             Distribution::create([
-                'name' => $level,
-                'level' => '',
+                'name' => '',
+                'level' => $level,
                 'players' => $request->input('players'),
                 'price' => $price,
                 'type' => $request->input('type'), //пак 1, игра 2, предмет 3
