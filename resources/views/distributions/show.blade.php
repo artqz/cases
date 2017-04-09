@@ -158,8 +158,6 @@
         </div>
     @endif
 
-    <div>Отменить раздачу</div>
-
     @widget('WidgetChat')
 
     @include('widgets.reklama')
