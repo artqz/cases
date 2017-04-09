@@ -34,7 +34,7 @@
             <div class="col-sm-4" style="text-align:center;">
                 <br>
                 <h4>Зарегистрировано пользователей</h4>
-                <div>{{ $stats[0]['value'] }}</div>
+                <div>{{ round($stats[0]['value']) }}</div>
                 <br>
             </div>
             <div class="col-sm-4" style="text-align:center;">
@@ -46,7 +46,7 @@
             <div class="col-sm-4" style="text-align:center;">
                 <br>
                 <h4>Постов на форуме</h4>
-                <div>{{ $stats[3]['value'] }}</div>
+                <div>{{ round($stats[3]['value']) }}</div>
                 <br>
             </div>
         </div>
