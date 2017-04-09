@@ -45,4 +45,24 @@
         </div>
         <div class="col-sm-3"><a class="btn-steam" href="{{ url('profile/edit-tradeoffer') }}"><i class="fa fa-steam" aria-hidden="true"></i> Изменить</a></div>
     </div>
+    <h3>Обновить информацию Steam-аккаунта</h3>
+    <div class="row">
+        <div class="col-sm-12">
+            <form action="POST" action="{{ url('profile/update-steam') }}">
+                {{ csrf_field() }}
+                <div class="form-group">
+                    <div class="col-md-6 col-md-offset-4">
+                        <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6 col-md-offset-4">
+                        <button type="submit" class="btn btn-primary">
+                            Регистрация
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 @endsection
