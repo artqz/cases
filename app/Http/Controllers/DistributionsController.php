@@ -168,11 +168,13 @@ class DistributionsController extends Controller
                             $coins_count = $user->clicks;
                             $coin_name = 'Кликов';
                             $coin = 'clicks';
+                            $coins_all_commission = ($distribution->players*$distribution->price-$distribution->players*$distribution->price*0.1);
                         }
                         elseif ($distribution->level == 2) {
                             $coins_count = $user->crystals;
                             $coin_name = 'Кристаллов';
                             $coin = 'crystals';
+                            $coins_all_commission = $distribution->players*$distribution->price;
                         }
 
                         if ($coins_count >= $distribution->price) {
@@ -195,16 +197,6 @@ class DistributionsController extends Controller
                                         'user_winner_id' => $random_user->user_id,
                                         'status' => 1,
                                     ]);
-
-                                    $coins_all = Distribution::where('id', $distribution->id)->sum('price');
-
-                                    //узнаем валюту
-                                    if ($distribution->level == 1) {
-                                        $coins_all_commission = ($coins_all - $coins_all * 0.1);
-                                    }
-                                    elseif ($distribution->level == 2) {
-                                        $coins_all_commission = ($coins_all);
-                                    }
 
                                     User::where('id', $distribution->user_id)->increment($coin, $coins_all_commission);
 
