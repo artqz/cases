@@ -11,6 +11,7 @@ use Intervention\Image\Facades\Image;
 //97E5CDC7C832E47EC6168D6F728E837E
 //76561198000501285
 //http://steamcommunity.com/inventory/76561198000501285/570/2?l=english
+// level steam http://api.steampowered.com/IPlayerService/GetSteamLevel/v1/?key=97E5CDC7C832E47EC6168D6F728E837E&steamid=76561198081479010
 
 class SteamHelper implements SteamContract
 {
