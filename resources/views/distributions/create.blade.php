@@ -87,7 +87,7 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('region') ? ' has-error' : '' }}">
-                    <label for="region" class="col-md-4 control-label">Ссылка на гифт или ключ</label>
+                    <label for="region" class="col-md-4 control-label">Регион</label>
 
                     <div class="col-md-6">
                         <input id="region" type="text" class="form-control" name="region" value="{{ old('region') }}" required>
