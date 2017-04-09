@@ -17,7 +17,7 @@
                 @endif
                 <div>Кол-во рефералов: {{ $items->referrals_count }}</div>
                 <div>Рейтинг: {{ $items->user->rating }}</div>
-                <div>Профиль Steam: {{ $items->user->stean_profile }}</div>
+                <div>Профиль Steam: {{ $items->user->steam_profile }}</div>
             </div>
             <div class="clearfix"></div>
             </div>
