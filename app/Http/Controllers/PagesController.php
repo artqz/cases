@@ -57,11 +57,17 @@ class PagesController extends Controller
     }
     public function update_steam (Request $request, SteamHelper $steam)
     {
-        //$this->validate($request, [
-        //    'g-recaptcha-response' => 'required|recaptcha',
-        //]);
+        $this->validate($request, [
+            'g-recaptcha-response' => 'required|recaptcha',
+        ]);
 
-        dd($steam->getSteamAccountInfo(Auth::user()->steamid));
+        $steamid = Auth::user()->steamid;
+        User::where('id', Auth::id())
+            ->update([
+                'steam_avatar' => $steam->getSteamAccountInfo($steamid)->avatarfull,
+                'steam_name' => $steam->getSteamAccountInfo($steamid)->personaname,
+                'steam_level' => $steam->getSteamLevel($steamid),
+            ]);
 
         return redirect('profile')->with([
             'flash_message' => 'Вы успешно обновили информацию своего Steam-аккаунта',
