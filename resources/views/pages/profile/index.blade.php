@@ -45,6 +45,7 @@
         </div>
         <div class="col-sm-3"><a class="btn-steam" href="{{ url('profile/edit-tradeoffer') }}"><i class="fa fa-steam" aria-hidden="true"></i> Изменить</a></div>
     </div>
+    @if(Auth::user()->steamid)
     <h3>Обновить информацию Steam-аккаунта</h3>
     <div class="row">
         <div class="col-sm-12">
@@ -60,4 +61,5 @@
             </form>
         </div>
     </div>
+    @endif
 @endsection
