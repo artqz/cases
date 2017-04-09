@@ -42,6 +42,17 @@ class SteamHelper implements SteamContract
         return $data->response->player_level;
     }
 
+    public function getSteamAccountInfo ($steamid) {
+        $url = 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=97E5CDC7C832E47EC6168D6F728E837E&steamids='.$steamid;
+        $tuCurl = curl_init();
+        curl_setopt($tuCurl, CURLOPT_URL, $url);
+        curl_setopt($tuCurl, CURLOPT_RETURNTRANSFER, 1);
+        $result = curl_exec($tuCurl);
+        curl_close($tuCurl);
+        $data = json_decode($result);
+        return $data->response->players[0];
+    }
+
     public function addItemToDB ($appid, $name, $price){
         $this->getItem($appid);
         $getGame = DB::table('all_items')->where('appid', $appid)->where('name', $name)->first();
