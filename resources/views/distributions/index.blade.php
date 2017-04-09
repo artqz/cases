@@ -16,7 +16,10 @@
             </div>
             <div class="col-sm-3 col-md-3">
                 <a class="category" href="{{ url('distributions/c/active') }}">
-                    <img class="category-icon" src="{{ url('images/icons/clickcoin.png') }}" alt="Активные раздачи">
+                    <div class="category-icon">
+                        <div class="active"></div>
+                        <img src="{{ url('images/icons/clickcoin.png') }}" alt="Активные раздачи">
+                    </div>
                     <span class="category-name">Активные</span>
                 </a>
             </div>
