@@ -7698,6 +7698,12 @@ footer p {
   line-height: 2;
 }
 
+.avatar {
+  border-radius: 3px;
+  width: 100px;
+  height: 100px;
+}
+
 .user-name {
   color: #a04eb4;
 }
