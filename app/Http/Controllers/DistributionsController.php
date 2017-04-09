@@ -15,11 +15,29 @@ use Config;
 
 class DistributionsController extends Controller
 {
-    public function index()
+    public function index($type = null)
     {
         Carbon::setLocale('ru');
-        $distributions = Distribution::orderBy('created_at', 'desc')
-            ->paginate(30);
+
+        if($type == 'premium') {
+            $distributions = Distribution::where('level', 2)
+                ->orderBy('created_at', 'desc')
+                ->paginate(30);
+        }
+        elseif ($type == 'active') {
+            $distributions = Distribution::where('status', 0)
+                ->orderBy('created_at', 'desc')
+                ->paginate(30);
+        }
+        elseif ($type == 'passed') {
+            $distributions = Distribution::where('status', 1)
+                ->orderBy('created_at', 'desc')
+                ->paginate(30);
+        }
+        else {
+            $distributions = Distribution::orderBy('created_at', 'desc')
+                ->paginate(30);
+        }
 
         return view('distributions.index', compact('distributions'));
     }
@@ -142,9 +160,21 @@ class DistributionsController extends Controller
                 if ($distribution->user_id != Auth::id()) {
 
                     if ($play == 0) {
-                        if ($user->clicks >= $distribution->price) {
+                        //узнаем валюту
+                        if ($distribution->level == 1) {
+                            $coins_count = $user->clicks;
+                            $coin_name = 'Кликов';
+                            $coin = 'clicks';
+                        }
+                        elseif ($distribution->level == 2) {
+                            $coins_count = $user->crystals;
+                            $coin_name = 'Кристаллов';
+                            $coin = 'crystals';
+                        }
+
+                        if ($coins_count >= $distribution->price) {
                             User::where('id', \Auth::id())->update([
-                                'clicks' => $user->clicks - $distribution->price,
+                                $coin => $coins_count - $distribution->price,
                             ]);
                             Distribution::where('id', $distribution->id)->update([
                                 'joined_players' => $distribution->joined_players + 1,
@@ -179,7 +209,7 @@ class DistributionsController extends Controller
                                 'flash_message_status' => 'success',
                             ]);
                         } else return redirect('distributions/' . $distribution->slug)->with([
-                            'flash_message' => 'У Вас не хватает кликов для участия в раздаче ' . $distribution->game_name,
+                            'flash_message' => 'У Вас не хватает '.$coin_name.' для участия в раздаче ' . $distribution->game_name,
                             'flash_message_status' => 'danger',
                         ]);
                     } else return redirect('distributions/' . $distribution->slug)->with([
