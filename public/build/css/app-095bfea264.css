@@ -9015,7 +9015,7 @@ input[type='radio']:checked + .pure-toggle i.Nok {
 }
 
 .categories .category .active {
-  background-color: red;
+  background-color: #71d871;
   width: 32px;
   height: 32px;
   position: absolute;
