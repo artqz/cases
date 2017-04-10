@@ -133,6 +133,7 @@ class DistributionsController extends Controller
                 'data_key' => $request->input('data'),
                 'data_region' => $request->input('region'),
                 'slug' => $slug,
+                'description' => $request->input('description'),
             ]);
 
             return redirect('distributions/'.$slug)->with([

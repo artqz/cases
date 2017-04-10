@@ -22,6 +22,7 @@ class Distribution extends Model
         'data_key',
         'data_region',
         'slug',
+        'description',
     ];
 
     public function user()
