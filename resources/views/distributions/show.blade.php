@@ -27,6 +27,9 @@
                         <div class="distribution-steam"><a href="http://store.steampowered.com/{{ $distribution->data_type }}/{{ $distribution->data_id }}/"><i class="fa fa-steam" aria-hidden="true"></i> http://store.steampowered.com/{{ $distribution->data_type }}/{{ $distribution->data_id }}</a></div>
                         <div class="distribution-players">Участников: {{ $distribution->joined_players }} из {{ $distribution->players }} </div>
                         <div class="distribution-price">Ставка: <span class="price {{ ($distribution->level == 2) ? 'crystal' : '' }}">{{ $distribution->price }}</span></div>
+                        @if($distribution->description)
+                            <div class="distribution-price">Описание: {{ $distribution->description }}</div>
+                        @endif
                         <div class="distribution-region">Регион: {{ region($distribution->data_region) }}</div>
                         <div class="distribution-share">
                             <!-- Put this script tag to the <head> of your page -->

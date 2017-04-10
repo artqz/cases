@@ -8247,6 +8247,7 @@ ul.faq-menu {
 .distribution .distribution-card .distribution-steam,
 .distribution .distribution-card .distribution-players,
 .distribution .distribution-card .distribution-region,
+.distribution .distribution-card .distribution-description,
 .distribution .distribution-card .distribution-price {
   line-height: 3;
   border-bottom: 1px dotted #dfdfdf;
