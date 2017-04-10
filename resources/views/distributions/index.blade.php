@@ -58,7 +58,7 @@
                 @endif
             @endforeach
         </div>
-
+        <div>{{$distributions->links()}}</div>
     </div>
 @endsection
 
