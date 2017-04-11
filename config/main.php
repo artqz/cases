@@ -2,6 +2,7 @@
 return [
     'price_click' => 0.1,
     'price_cert' => 500,
+    'price_cert_crystals' => 5,
     'cooldown_click' => 0.5 * 60 * 60, //0.5 - полчаса,
     'count_game',
     'admin_id' => 1,

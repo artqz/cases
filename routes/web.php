@@ -62,6 +62,7 @@ Route::get('shop/games/{id_post}/buy-game', 'ShopController@buy_game')->middlewa
 //distributions
 Route::get('distributions', 'DistributionsController@index');
 Route::get('distributions/buy-cert', 'DistributionsController@buy_cert')->middleware('auth');
+Route::get('distributions/buy-cert-crystals', 'DistributionsController@buy_cert_cry')->middleware('auth');
 Route::get('distributions/c/{type}', 'DistributionsController@index');
 Route::get('distributions/create', 'DistributionsController@create')->middleware('auth', 'trader');
 Route::post('distributions/create', 'DistributionsController@update')->middleware('auth', 'trader');

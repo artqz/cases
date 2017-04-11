@@ -69,10 +69,12 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 @if(Auth::user()->isTrader == 0)
-                    Для того, чтобы создавать свои раздачи необходимо приобрести сертификат торговца за <div class="price" style="display: inline-block;">{{ Config::get('main.price_cert') }}</div>
+                    Для того, чтобы создавать свои раздачи необходимо приобрести сертификат торговца за <span class="price">{{ Config::get('main.price_cert') }}</span> либо за <span class="price crystal">{{ Config::get('main.price_cert_crystals') }}</span>
                     <div class="clearfix"></div>
                     <br>
-                    <a class="btn btn-sm btn-warning" href="{{ url('distributions/buy-cert') }}">Купить сертификат</a>
+                    <a class="join buy cert" href="{{ url('distributions/buy-cert') }}">Купить сертификат <span class="price">{{ Config::get('main.price_cert') }}</span></a>
+                    <br>
+                    <a class="join buy cert" href="{{ url('distributions/buy-cert-crystals') }}">Купить сертификат <span class="price crystal">{{ Config::get('main.price_cert_crystals') }}</span></a>
                 @else
                     <div>
                         <a class="btn btn-sm btn-success" href="{{ url('distributions/create') }}">Создать раздачу</a>

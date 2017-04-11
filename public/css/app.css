@@ -7844,6 +7844,13 @@ footer p {
   transition: .5s;
 }
 
+.join.buy.cert {
+  border: 1px solid #eaedef;
+  background-color: #f5f8fa;
+  color: grey;
+  line-height: 2;
+}
+
 .join:hover {
   border: 1px solid #a04eb4;
   background-color: #bf67d5;

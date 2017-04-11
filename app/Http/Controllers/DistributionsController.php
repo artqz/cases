@@ -77,6 +77,40 @@ class DistributionsController extends Controller
         ]);
     }
 
+    public function buy_cert_cry()
+    {
+        //Только для подтвержденных аккаунтов
+        if (Auth::user()->steamid && Auth::user()->confirm_email) {
+            $user = User::where('id', \Auth::id())->first();
+
+            if ($user->isTrader == 0) {
+                if ($user->crystals >= Config::get('main.price_cert_crystals')) {
+                    User::where('id', \Auth::id())->update([
+                        'clicks' => $user->crystals - Config::get('main.price_cert_crystals'),
+                        'isTrader' => 1,
+                    ]);
+
+                    return redirect('distributions')->with([
+                        'flash_message' => 'Вы успешно приобрели сертификат торговца!',
+                        'flash_message_status' => 'success',
+                    ]);
+                }
+                return redirect('distributions')->with([
+                    'flash_message' => 'У Вас не хватает кликов!',
+                    'flash_message_status' => 'danger',
+                ]);
+            }
+            return redirect('distributions')->with([
+                'flash_message' => 'У Вас уже есть сертификат торговца!',
+                'flash_message_status' => 'warning',
+            ]);
+        }
+        return redirect('distributions')->with([
+            'flash_message' => 'Ваш аккаунт не подтвержден!',
+            'flash_message_status' => 'danger',
+        ]);
+    }
+
     public function create()
     {
         return view('distributions.create');
