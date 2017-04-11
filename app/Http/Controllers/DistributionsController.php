@@ -19,28 +19,21 @@ class DistributionsController extends Controller
     {
         Carbon::setLocale('ru');
 
-        if($type == 'premium') {
+        if ($type == 'premium') {
             $distributions = Distribution::where('level', 2)
                 ->where('status', 0)
                 ->orderBy('created_at', 'desc')
-                ->orderBy('topped_at', 'desc')
                 ->paginate(30);
-        }
-        elseif ($type == 'active') {
+        } elseif ($type == 'active') {
             $distributions = Distribution::where('status', 0)
                 ->orderBy('created_at', 'desc')
-                ->orderBy('topped_at', 'desc')
                 ->paginate(30);
-        }
-        elseif ($type == 'passed') {
+        } elseif ($type == 'passed') {
             $distributions = Distribution::where('status', 1)->orWhere('status', 2)
                 ->orderBy('created_at', 'desc')
-                ->orderBy('topped_at', 'desc')
                 ->paginate(30);
-        }
-        else {
-            $distributions = Distribution::orderBy('created_at', 'desc')
-                ->orderBy('topped_at', 'desc')
+        } else {
+            $distributions = Distribution::orderBy('topped_at', 'desc')
                 ->paginate(30);
         }
 
@@ -50,7 +43,7 @@ class DistributionsController extends Controller
     /**
      * @return string
      */
-    public function buy_cert ()
+    public function buy_cert()
     {
         //Только для подтвержденных аккаунтов
         if (Auth::user()->steamid && Auth::user()->confirm_email) {
@@ -102,20 +95,18 @@ class DistributionsController extends Controller
         //level distr
         if ($request['level'] == null OR $request['level'] == 1) {
             $level = 1;
-            $price = abs($request->input('price')/$request->input('players'))+($request->input('price')/$request->input('players')*0.1);
-        }
-        elseif ($request['level'] == 2) {
+            $price = abs($request->input('price') / $request->input('players')) + ($request->input('price') / $request->input('players') * 0.1);
+        } elseif ($request['level'] == 2) {
             $level = 2;
-            $price = abs($request->input('price')/$request->input('players'));
+            $price = abs($request->input('price') / $request->input('players'));
         }
 
         if ($steam->addDistributionToDB($request->input('game_id'), $request->input('type'))) {
 
             $steam = $steam->addDistributionToDB($request->input('game_id'), $request->input('type'));
-            if($request->input('type') == 1) {
+            if ($request->input('type') == 1) {
                 $data_id = $steam->subid;
-            }
-            elseif ($request->input('type') == 2) {
+            } elseif ($request->input('type') == 2) {
                 $data_id = $steam->appid;
             }
 
@@ -140,13 +131,11 @@ class DistributionsController extends Controller
                 'description' => $request->input('description'),
             ]);
 
-            return redirect('distributions/'.$slug)->with([
-                'flash_message' => 'Вы успешно создали раздачу '.$steam->name,
+            return redirect('distributions/' . $slug)->with([
+                'flash_message' => 'Вы успешно создали раздачу ' . $steam->name,
                 'flash_message_status' => 'success',
             ]);
-        }
-
-        else return redirect('distributions')->with([
+        } else return redirect('distributions')->with([
             'flash_message' => 'Невозможно создать раздачу, такой игры нет в Steam!',
             'flash_message_status' => 'danger',
         ]);
@@ -244,19 +233,18 @@ class DistributionsController extends Controller
                         'flash_message_status' => 'danger',
                     ]);
                 } else return redirect('/');
-            }
-            else return redirect('distributions/' . $distribution->slug)->with([
+            } else return redirect('distributions/' . $distribution->slug)->with([
                 'flash_message' => 'Ваш Steam-аккаунт должен быть не менее 5 уровня.',
                 'flash_message_status' => 'danger',
             ]);
-        }
-        else return redirect('distributions/' . $distribution->slug)->with([
+        } else return redirect('distributions/' . $distribution->slug)->with([
             'flash_message' => 'Вам необходимо подтвердить аккаунт',
             'flash_message_status' => 'danger',
         ]);
     }
 
-    public function cancel ($slug) {
+    public function cancel($slug)
+    {
         $distribution = Distribution::where('slug', $slug)
             ->where('status', 0)
             ->first();
@@ -314,12 +302,12 @@ class DistributionsController extends Controller
         return redirect('/');
     }
 
-    public function show ($slug) {
+    public function show($slug)
+    {
         $distribution = Distribution::where('slug', $slug)->first();
         if ($distribution->type == 1) {
             $distribution->data_type = 'sub';
-        }
-        elseif ($distribution->type == 2) {
+        } elseif ($distribution->type == 2) {
             $distribution->data_type = 'app';
         }
         $check_player = $distribution->players_list->where('user_id', Auth::id())->first();
@@ -327,7 +315,8 @@ class DistributionsController extends Controller
         return view('distributions.show', compact('distribution', 'check_player'));
     }
 
-    public function comment (Request $request, $slug) {
+    public function comment(Request $request, $slug)
+    {
         $distribution = Distribution::where('slug', $slug)->first();
         if ($distribution->user_winner_id == Auth::id() && $distribution->comment == null) {
             Distribution::where('id', $distribution->id)
@@ -337,12 +326,58 @@ class DistributionsController extends Controller
                 ]);
 
             User::where('id', $distribution->user_id)->increment('rating', $request['rating']);
-            return redirect('distributions/'.$distribution->slug)
+            return redirect('distributions/' . $distribution->slug)
                 ->with([
                     'flash_message' => 'Вы успешно добавили комментраий!',
                     'flash_message_status' => 'success',
-            ]);
+                ]);
         }
         return redirect('/');
+    }
+
+    public function up($slug)
+    {
+        $distribution = Distribution::where('slug', $slug)->first();
+
+        if ($distribution->user_id == Auth::id()) {
+            $user = User::where('id', $distribution->user_id)->first();
+            //узнаем валюту
+            if ($distribution->level == 1) {
+                $coins_count = $user->clicks;
+                $coin = 'clicks';
+                $price = 10;
+                $coin_name = 'Кликов';
+            } elseif ($distribution->level == 2) {
+                $coins_count = $user->crystals;
+                $coin = 'crystals';
+                $price = 1;
+                $coin_name = 'Кристаллов';
+            }
+
+            if (Auth::id() == 1 OR Auth::id() != 1 AND $coins_count >= $price) {
+                $distribution_update = Distribution::where('id', $distribution->id)
+                    ->update([
+                        'topped_at' => Carbon::now()->toDateTimeString(),
+                    ]);
+                if ($distribution_update) {
+                    if (Auth::id() != 1) {
+                        User::where('id', \Auth::id())->update([
+                            $coin => $coins_count - $price,
+                        ]);
+                    }
+                    return redirect('distributions/'.$distribution->slug)
+                        ->with([
+                            'flash_message' => 'Вы успешно подняли свою раздачу!',
+                            'flash_message_status' => 'success',
+                        ]);
+                }
+            }
+            return redirect('distributions/'.$distribution->slug)
+                ->with([
+                    'flash_message' => 'У Вас не хватает '.$coin_name,
+                    'flash_message_status' => 'danger',
+                ]);
+        }
+
     }
 }

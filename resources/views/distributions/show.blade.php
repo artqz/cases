@@ -39,6 +39,10 @@
                             <script type="text/javascript">
                                 document.write(VK.Share.button(false,{type: "button", text: "Поделиться", url: "{{ url('distribution') }}", title: "{{ $distribution->data_name }}", image: "{{ $distribution->data_image }}", noparse: true}));
                             </script>
+                            @if($distribution->user_id == Auth::id())
+                            <br>
+                            <a class="btn btn-xs btn-warning" href="{{ url('distributions/'.$distribution->slug.'/up') }}">Поднять раздачу за 10 Кликов</a>
+                            @endif
                         </div>
                     </div>
                 </div>

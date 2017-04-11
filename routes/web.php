@@ -66,6 +66,7 @@ Route::get('distributions/c/{type}', 'DistributionsController@index');
 Route::get('distributions/create', 'DistributionsController@create')->middleware('auth', 'trader');
 Route::post('distributions/create', 'DistributionsController@update')->middleware('auth', 'trader');
 Route::get('distributions/{slug}', 'DistributionsController@show');
+Route::get('distributions/{slug}/up', 'DistributionsController@up')->middleware('auth');
 Route::get('distributions/{slug}/join', 'DistributionsController@join')->middleware('auth');
 Route::get('distributions/{slug}/cancel', 'DistributionsController@cancel')->middleware('auth');
 Route::post('distributions/{slug}/comment', 'DistributionsController@comment')->middleware('auth');
