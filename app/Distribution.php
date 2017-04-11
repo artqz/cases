@@ -23,6 +23,7 @@ class Distribution extends Model
         'data_region',
         'slug',
         'description',
+        'topped_at',
     ];
 
     public function user()

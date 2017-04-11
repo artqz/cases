@@ -129,6 +129,7 @@ class DistributionsController extends Controller
                 'data_region' => $request->input('region'),
                 'slug' => $slug,
                 'description' => $request->input('description'),
+                'topped_at' => Carbon::now()->toDateTimeString(),
             ]);
 
             return redirect('distributions/' . $slug)->with([
