@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ elixir("css/app.css") }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     @yield('style')
+    @yield('css')
     <style>
         .footer {
             line-height: 4;
@@ -169,6 +170,7 @@
 <script src="/js/fuckadblock.js"></script>
 
 @yield('scripts')
+@yield('js')
 
 <script src='https://www.google.com/recaptcha/api.js'></script>
 

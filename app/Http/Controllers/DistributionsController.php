@@ -23,20 +23,24 @@ class DistributionsController extends Controller
             $distributions = Distribution::where('level', 2)
                 ->where('status', 0)
                 ->orderBy('created_at', 'desc')
+                ->orderBy('topped_at', 'desc')
                 ->paginate(30);
         }
         elseif ($type == 'active') {
             $distributions = Distribution::where('status', 0)
                 ->orderBy('created_at', 'desc')
+                ->orderBy('topped_at', 'desc')
                 ->paginate(30);
         }
         elseif ($type == 'passed') {
             $distributions = Distribution::where('status', 1)->orWhere('status', 2)
                 ->orderBy('created_at', 'desc')
+                ->orderBy('topped_at', 'desc')
                 ->paginate(30);
         }
         else {
             $distributions = Distribution::orderBy('created_at', 'desc')
+                ->orderBy('topped_at', 'desc')
                 ->paginate(30);
         }
 

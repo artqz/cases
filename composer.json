@@ -16,7 +16,8 @@
         "barryvdh/laravel-debugbar": "v2.3.2",
         "intervention/image": "2.3.11",
         "invisnik/laravel-steam-auth": "v2.3.2",
-        "idma/robokassa": "v1.0.0-beta3"
+        "idma/robokassa": "v1.0.0-beta3",
+        "graham-campbell/markdown": "v7.1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
