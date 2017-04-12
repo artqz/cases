@@ -54,7 +54,17 @@ class AuthController extends Controller
                             'steam_name' => $info->personaname,
                             'steam_avatar' => $info->avatarfull,
                             'steam_profile' => $info->profileurl,
-                            'steamid' => $info->steamID64
+                            'steamid' => $info->steamID64,
+                            'clicks' => $user->clicks + 10,
+                            'all_clicks' => $user->clicks + 10,
+                        ]);
+                        //event
+                        Event::create([
+                            'user_id' => $user->id,
+                            'image' => url('images/icons/steamclicks.png'),
+                            'text' => 'Вы успешно подключили Steam и получили 10 кликов',
+                            'url' => url('my-items'),
+                            'type' => 'item',
                         ]);
                         return redirect('profile')->with([
                             'flash_message' => 'Вы успешно подключили аккаунт Steam',
@@ -128,6 +138,16 @@ class AuthController extends Controller
         if ($user) {
             User::where('email', $user->email)->update([
                 'confirm_email' => 1,
+                'clicks' => $user->clicks + 10,
+                'all_clicks' => $user->clicks + 10,
+            ]);
+            //event
+            Event::create([
+                'user_id' => $user->id,
+                'image' => url('images/icons/steamclicks.png'),
+                'text' => 'Вы успешно подтвердили эл. почту и получили 10 кликов',
+                'url' => url('my-items'),
+                'type' => 'item',
             ]);
             return redirect('profile')->with([
                 'flash_message' => 'Ваша эл. почта подтверждена!',
