@@ -45,7 +45,7 @@ Route::get('image', function () {
     dd($data );
 
 });
-/*
+
 Route::get('shop', 'ShopController@index');
 Route::get('shop/items', 'ShopController@index_items');
 Route::get('shop/items/g/{id_game}', 'ShopController@index_items');
@@ -58,7 +58,7 @@ Route::get('shop/games/update-games', 'ShopController@update_games')->middleware
 Route::get('shop/games/create-game', 'ShopController@create_game')->middleware('auth', 'userId');
 Route::post('shop/games/create-game', 'ShopController@store_game')->middleware('auth', 'userId');
 Route::get('shop/games/{id_post}/buy-game', 'ShopController@buy_game')->middleware('auth');
-*/
+
 //---
 //distributions
 Route::get('distributions', 'DistributionsController@index');

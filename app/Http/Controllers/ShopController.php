@@ -146,28 +146,31 @@ class ShopController extends Controller
                 $game = Game::where('id', $id_game)->where('status', 0)->first();
                 if ($game) {
                     if ($user->clicks >= $game->price) {
-                        User::where('id', \Auth::id())->update([
-                            'clicks' => $user->clicks - $game->price,
-                        ]);
-                        //event
-                        Event::create([
-                            'user_id' => $user->id,
-                            'image' => $game->header_image,
-                            'text' => 'Вы успешно приобрели игру '.$game->name,
-                            'url' => url('my-games'),
-                            'type' => 'game',
-                            'data' => $game->data_key,
-                        ]);
-                        //Записываем статистику
-                        Stats::where('name', 'games')->increment('value', 1);
-                        Game::where('id', $id_game)->update([
+                        $game_update = Game::where('id', $id_game)->update([
                             'status' => 2,
                             'hashcode' => md5(\Auth::id() + $id_game + time()),
                             'user_id' => \Auth::id()]);
-                        return redirect('/shop/games')->with([
-                            'flash_message' => 'Вы успешно купили игру ' . $game->name,
-                            'flash_message_status' => 'success',
-                        ]);
+                        if ($game_update) {
+                            User::where('id', \Auth::id())->update([
+                                'clicks' => $user->clicks - $game->price,
+                            ]);
+                            //event
+                            Event::create([
+                                'user_id' => $user->id,
+                                'image' => $game->header_image,
+                                'text' => 'Вы успешно приобрели игру '.$game->name,
+                                'url' => url('my-games'),
+                                'type' => 'game',
+                                'data' => $game->data,
+                            ]);
+                            //Записываем статистику
+                            Stats::where('name', 'games')->increment('value', 1);
+
+                            return redirect('/shop/games')->with([
+                                'flash_message' => 'Вы успешно купили игру ' . $game->name,
+                                'flash_message_status' => 'success',
+                            ]);
+                        }
                     }
 
                 } else {
