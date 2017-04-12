@@ -98,4 +98,14 @@ class PagesController extends Controller
     {
         return view('pages.rules');
     }
+
+    public function referrals_list ()
+    {
+        $referrals = Referral::where('user_ref_id', Auth::id())
+            ->selectRaw('sum(clicks) as clicks, user_id, user_ref_id')
+            ->groupBy('user_id')
+            ->paginate(30);
+
+        return view('pages.profile.referrals', compact('referrals'));
+    }
 }
