@@ -45,12 +45,14 @@ class AuthController extends Controller
 
     public function join(SteamHelper $steam)
     {
+        //dd($steam->getSteamLevel(76561198126159901));
         if (!Auth::user()->steamid) {
             if ($this->steam->validate()) {
                 $info = $this->steam->getUserInfo();
 
                 if (!is_null($info)) {
                     $user = User::where('steamid', $info->steamID64)->first();
+                    $user_update = User::where('id', Auth::id())->first();
                     if (is_null($user)) {
                         User::where('id', Auth::id())->update([
                             'steam_name' => $info->personaname,
@@ -58,16 +60,16 @@ class AuthController extends Controller
                             'steam_profile' => $info->profileurl,
                             'steamid' => $info->steamID64,
                             'steam_level' => $steam->getSteamLevel($info->steamID64),
-                            'clicks' => $user->clicks + 10,
-                            'all_clicks' => $user->clicks + 10,
+                            'clicks' => $user_update->clicks + 10,
+                            'all_clicks' => $user_update->all_clicks + 10,
                         ]);
                         //event
                         Event::create([
-                            'user_id' => $user->id,
+                            'user_id' => $user_update->id,
                             'image' => url('images/icons/steamclicks.png'),
                             'text' => 'Вы успешно подключили Steam и получили 10 кликов',
-                            'url' => url('my-items'),
-                            'type' => 'item',
+                            'url' => url('profile'),
+                            'type' => 'profile',
                         ]);
                         return redirect('profile')->with([
                             'flash_message' => 'Вы успешно подключили аккаунт Steam',
@@ -143,15 +145,15 @@ class AuthController extends Controller
             User::where('email', $user->email)->update([
                 'confirm_email' => 1,
                 'clicks' => $user_update->clicks + 10,
-                'all_clicks' => $user_update->clicks + 10,
+                'all_clicks' => $user_update->all_clicks + 10,
             ]);
             //event
             Event::create([
                 'user_id' => $user_update->id,
                 'image' => url('images/icons/steamclicks.png'),
                 'text' => 'Вы успешно подтвердили эл. почту и получили 10 кликов',
-                'url' => url('my-items'),
-                'type' => 'item',
+                'url' => url('profile'),
+                'type' => 'profile',
             ]);
             return redirect('profile')->with([
                 'flash_message' => 'Ваша эл. почта подтверждена!',
