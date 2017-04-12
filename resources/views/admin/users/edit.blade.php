@@ -66,6 +66,16 @@
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
                                     <label>
+                                        <input type="checkbox" class="" name="isSpamer" value="1" {{ ($user->isSpamer == 1) ? 'checked' : '' }}> Спамер?
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <div class="checkbox">
+                                    <label>
                                         <input type="checkbox" class="" name="isTrader" value="1" {{ ($user->isTrader == 1) ? 'checked' : '' }}> Сертификат торговца
                                     </label>
                                 </div>

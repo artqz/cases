@@ -30,6 +30,7 @@ class User extends Authenticatable
         'steamid',
         'isBanned',
         'isTrader',
+        'isSpamer',
         'crystals',
         'rating',
     ];

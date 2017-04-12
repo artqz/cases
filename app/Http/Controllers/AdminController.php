@@ -205,6 +205,7 @@ class AdminController extends Controller
             'clicks' => $request->input('clicks'),
             'isBanned' => $request->input('isBanned'),
             'isTrader' => $request->input('isTrader'),
+            'isSpamer' => $request->input('isSpamer'),
         ]);
 
         return redirect('admin/users')->with([
