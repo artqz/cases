@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Event;
 use App\Helpers\SteamHelper;
 use Carbon\Carbon;
 use Invisnik\LaravelSteamAuth\SteamAuth;
