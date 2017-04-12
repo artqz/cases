@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\SteamHelper;
 use Carbon\Carbon;
 use Invisnik\LaravelSteamAuth\SteamAuth;
 use App\User;
@@ -41,7 +42,7 @@ class AuthController extends Controller
     }
     */
 
-    public function join()
+    public function join(SteamHelper $steam)
     {
         if (!Auth::user()->steamid) {
             if ($this->steam->validate()) {
@@ -55,6 +56,7 @@ class AuthController extends Controller
                             'steam_avatar' => $info->avatarfull,
                             'steam_profile' => $info->profileurl,
                             'steamid' => $info->steamID64,
+                            'steam_level' => $steam->getSteamLevel($info->steamID64),
                             'clicks' => $user->clicks + 10,
                             'all_clicks' => $user->clicks + 10,
                         ]);

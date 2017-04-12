@@ -17,13 +17,10 @@ Route::get('r/{id}/', function ($id) {
     $cookie = Cookie::make('ref_id', $id, 60);
     return redirect('/')->withCookie($cookie);
 });
-Route::get('redis', function () {
-    if (!Cache::has('items')) {
-        Cache::put('items', \App\Item::all(), 1);
-    }
-
-    $items = Cache::get('items');
-    dd($items);
+Route::get('time', function () {
+    return response()->json([
+        'time' => time(),
+    ]);
 });
 
 Route::get('capcha', function () {

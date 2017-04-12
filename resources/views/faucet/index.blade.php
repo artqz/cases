@@ -17,66 +17,16 @@
             </form>
         </div>
         <div class="col-sm-6 col-md-6">
-            <!-- 300*250 Advertur.ru start -->
-            <div id="advertur_142244"></div>
-            <div id="142244_300_250" style="display: none;"></div>
-            <script type="text/javascript">
-                (function(w, d, n, ln) {
-                    w[n] = w[n] || [];
-                    w[n].push({
-                        section_id: 142244,
-                        place: "advertur_142244",
-                        width: 300,
-                        height: 250,
-                        message: "<b>Отключите AdBlock!</b><br> <b>AdBlock</b> — Бесплатные предметы и игры приобретаются за средства собранные с рекламы!"
-                    });
-
-                    if (!w[ln]) {
-                        w[ln] = {};
-
-                        var s = d.createElement("script");
-                        s.type = "text/javascript";
-                        s.charset = "utf-8";
-                        s.src = "//ddnk.advertur.ru/v1/s/loader.js";
-                        s.async = true;
-                        s.onerror = function () {
-                            if (w != w.top) {
-                                return;
-                            }
-
-                            var counter = 0,
-                                    fn = function () {
-                                        if (counter >= 60) {
-                                            clearInterval(interval);
-                                            return;
-                                        }
-                                        counter++;
-                                        w[n].forEach(function (item) {
-                                            if (item.hasOwnProperty('rendered') && item.rendered) {
-                                                return;
-                                            }
-
-                                            var el = d.getElementById([item.section_id, item.width, item.height].join('_'));
-                                            if (!el) {
-                                                return;
-                                            }
-
-                                            el.style.width = item.width + "px";
-                                            el.style.height = item.height + "px";
-                                            el.innerHTML = item.message;
-                                            el.style.display = '';
-                                            item.rendered = true;
-                                        });
-                                    },
-                                    interval = setInterval(fn, 1000)
-                                    ;
-                        };
-                        document.body.appendChild(s);
-                    }
-                })(window, document, "advertur_sections", "advertur_loader");
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!— Steamclicks.ru —>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-1983162371188961"
+                 data-ad-slot="2849935534"
+                 data-ad-format="auto"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
-            <!-- 300*250 Advertur.ru end -->
-
         </div>
     </div>
 @endsection
@@ -130,14 +80,27 @@
         });
     </script>
     <script>
+
         String.prototype.plural = Number.prototype.plural = function(a, b, c) {
             var index = this % 100;
             index = (index >=11 && index <= 14) ? 0 : (index %= 10) < 5 ? (index > 2 ? 2 : index): 0;
             return(this+[a, b, c][index]);
         }
         function downtimers(){
+            var time = null;
+            var url = "{{ url('time') }}";
+            $.ajax({
+                url: url,
+                async: false,
+                dataType: 'json',
+                success: function(data) {
+                    time = data.time;
+                }
+            });
             $('[data-time]').each(function(){
-                var s = parseInt($(this).data('time'))-parseInt(new Date().getTime()/1000);
+
+                //var s = parseInt($(this).data('time'))-parseInt(new Date().getTime()/1000);
+                var s = parseInt($(this).data('time'))-time;
                 if(s<0)
                     $(this).val('Получить клики').attr('class', 'btn btn-sm btn-success').prop('disabled', false);
                 else{
