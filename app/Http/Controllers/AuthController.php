@@ -136,16 +136,17 @@ class AuthController extends Controller
     public function confirm_email($token_email)
     {
         $user = \DB::table('confirm_emails')->where('token', $token_email)->first();
+        $user_update = User::where('id', Auth::id())->first();
 
         if ($user) {
             User::where('email', $user->email)->update([
                 'confirm_email' => 1,
-                'clicks' => $user->clicks + 10,
-                'all_clicks' => $user->clicks + 10,
+                'clicks' => $user_update->clicks + 10,
+                'all_clicks' => $user_update->clicks + 10,
             ]);
             //event
             Event::create([
-                'user_id' => $user->id,
+                'user_id' => $user_update->id,
                 'image' => url('images/icons/steamclicks.png'),
                 'text' => 'Вы успешно подтвердили эл. почту и получили 10 кликов',
                 'url' => url('my-items'),
