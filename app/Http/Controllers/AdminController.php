@@ -231,8 +231,11 @@ class AdminController extends Controller
 
     public function update_reward_hundred (Request $request) {
 
-        $users = User::orderBy('updated_at', 'desc')->limit(100)->get();
-
+        $users = User::orderBy('updated_at', 'desc')
+            ->inRandomOrder()
+            ->limit(100)
+            ->get();
+         dd($users);
         $this->validate($request, [
             'reward' => 'numeric',
         ]);
