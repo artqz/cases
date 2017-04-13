@@ -17,16 +17,21 @@
             </form>
         </div>
         <div class="col-sm-6 col-md-6">
-            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <!— Steamclicks.ru —>
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-1983162371188961"
-                 data-ad-slot="2849935534"
-                 data-ad-format="auto"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+            <script type='text/javascript'>(function() {
+                    /* Optional settings (these lines can be removed): */
+                    subID = "";  // - local banner key;
+                    injectTo = "";  // - #id of html element (ex., "top-banner").
+                    /* End settings block */
+
+                    if(injectTo=="")injectTo="admitad_shuffle"+subID+Math.round(Math.random()*100000000);
+                    if(subID=='')subid_block=''; else subid_block='subid/'+subID+'/';
+                    document.write('<div id="'+injectTo+'"></div>');
+                    var s = document.createElement('script');
+                    s.type = 'text/javascript'; s.async = true;
+                    s.src = 'https://ad.admitad.com/shuffle/feccab2e4e/'+subid_block+'?inject_to='+injectTo;
+                    var x = document.getElementsByTagName('script')[0];
+                    x.parentNode.insertBefore(s, x);
+                })();</script>
         </div>
     </div>
 @endsection
