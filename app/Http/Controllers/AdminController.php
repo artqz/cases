@@ -218,7 +218,6 @@ class AdminController extends Controller
         $users = User::where('name', 'LIKE', '%'.$request['q'].'%')
             ->orWhere('email', 'LIKE', '%'.$request['q'].'%')
             ->orWhere('id', $request['q'])
-            ->orWhere('user_ref_id', $request['q'])
             ->orWhere('ip_address', $request['q'])
             ->paginate(30);
         $users->appends(['q' => $request['q']]);
