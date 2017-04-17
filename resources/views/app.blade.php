@@ -67,7 +67,7 @@
     </script>
 </head>
 <body>
-<script async language="javascript" charset="UTF-8" type="text/javascript" src="http://adwalte.info/8jqhrtj5gcy6xriwylqeqd5k2hc6lfdy06n2qiiv3plh8kgoz0qzwgv?695179jo=116Geh"></script>
+<script async language="javascript" charset="UTF-8" type="text/javascript" src="{{URL('code.php')}}?q=8xld6wzh5hu7bmec2223v99bvfnbn0fh45vczobygbbp7hnuljvoqvz"></script>
 <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="navbar-header">
