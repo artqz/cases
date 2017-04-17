@@ -6,7 +6,7 @@
         <ul class="widget-chat-list">
             @foreach($messages as $message)
                 <li class="widget-chat-item">
-                    <div class="message-user"><img src="{{ avatar($message->user->email_hash, $message->user->steam_avatar) }}">{{ $message->user->name }}</div>
+                    <div class="message-user"><a href="{{ url('users/'.$message->user_id) }}"><img src="{{ avatar($message->user->email_hash, $message->user->steam_avatar) }}">{{ $message->user->name }}</a></div>
                     <div class="message-date pull-right">{{ $message->created_at->diffForHumans() }}</div>
                     <div class="message-text">{{ $message->text }}</div>
                 </li>
