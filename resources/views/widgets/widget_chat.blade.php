@@ -20,7 +20,7 @@
         <form class="form-horizontal" role="form" method="POST" action="{{ url('/chat/create-message') }}">
             {{ csrf_field() }}
             <div class="input-group">
-                <input name="text" type="text" class="form-control" required>
+                <input name="text" type="text" class="form-control" required autocomplete="off">
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="submit">Ок</button>
                 </span>
