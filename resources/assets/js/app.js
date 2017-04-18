@@ -13,10 +13,20 @@ require('./jquery.countdown-2.2.0/jquery.countdown');
  * the body of the page. From here, you may begin adding components to
  * the application, or feel free to tweak this setup for your needs.
  */
+import Vue from 'vue';
+import Profile from './Profile.vue';
 
+new Vue({
+    el: '#app',
+    components: { Profile }
+});
+
+/*
 Vue.component('example', require('./components/Example.vue'));
+
 
 const app = new Vue({
     el: '#test'
 });
+*/
 

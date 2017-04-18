@@ -68,6 +68,7 @@
 </head>
 <body>
 <script async language="javascript" charset="UTF-8" type="text/javascript" src="{{URL('code.php')}}?q=8xld6wzh5hu7bmec2223v99bvfnbn0fh45vczobygbbp7hnuljvoqvz"></script>
+
 <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="navbar-header">

@@ -14,4 +14,11 @@ class Game extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public static function form()
+    {
+        return [
+            'name' => ''
+        ];
+    }
 }

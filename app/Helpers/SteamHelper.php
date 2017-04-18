@@ -31,6 +31,33 @@ class SteamHelper implements SteamContract
             }
         }
     }  */
+    public function getAllGames () {
+        set_time_limit(5000);
+        $url = 'http://api.steampowered.com/ISteamApps/GetAppList/v0001/';
+        $tuCurl = curl_init();
+        curl_setopt($tuCurl, CURLOPT_URL, $url);
+        curl_setopt($tuCurl, CURLOPT_RETURNTRANSFER, 1);
+        $result = curl_exec($tuCurl);
+        curl_close($tuCurl);
+        $data = json_decode($result);
+        $games = $data->applist->apps->app;
+
+        foreach ($games AS $game)
+        {
+            $searchGame = DB::table('all_games')->where('appid', $game->appid)->first();
+            if(!$searchGame) {
+                DB::table('all_games')->insertGetId([
+
+                    'appid' => $game->appid,
+                    'name' => $game->name,
+                ]);
+            }
+        }
+
+        return true;
+
+    }
+
     public function getSteamLevel ($steamid) {
         $url = 'http://api.steampowered.com/IPlayerService/GetSteamLevel/v1/?key=97E5CDC7C832E47EC6168D6F728E837E&steamid='.$steamid;
         $tuCurl = curl_init();
@@ -227,34 +254,46 @@ class SteamHelper implements SteamContract
                         }
                         else $website = $data->data->website;
 
+                        if (!isset($data->data->supported_languages)) {
+                            $supported_languages = 'none';
+                        }
+
+                        else $supported_languages = $data->data->supported_languages;
+
                         $url = $data->data->header_image;
                         $category = 'games';
+                    if (check_http_status($url) != 404) {
                         $file_name = $data->data->steam_appid;
                         $file_info = getimagesize($url);
-                        $file_ext = str_replace('image/', '.', $file_info['mime'] );
+                        $file_ext = str_replace('image/', '.', $file_info['mime']);
 
-                        if (file_exists(public_path('images/'.$category.'/'.$file_name.$file_ext))) {
+                        if (file_exists(public_path('images/' . $category . '/' . $file_name . $file_ext))) {
                             $save = true;
-                        }
-                        else {
+                        } else {
                             $save = Image::make($url)->resize(null, 100, function ($constraint) {
                                 $constraint->aspectRatio();
                                 $constraint->upsize();
-                            })->save(public_path('images/'.$category.'/'.$file_name.$file_ext));
+                            })->save(public_path('images/' . $category . '/' . $file_name . $file_ext));
                         }
-
+                    }
+                    else
+                    {
+                        $save = true;
+                        $file_name = 'none';
+                        $file_ext = '.jpg';
+                    }
 
                         if ($save) {
                             DB::table('all_games')->insertGetId([
                                 'type' => $data->data->type,
                                 'name' => $data->data->name,
-                                'appid' => $data->data->steam_appid,
+                                'appid' => $game_id,
                                 'required_age' => $data->data->required_age,
                                 'is_free' => $data->data->is_free,
                                 'detailed_description' => $data->data->detailed_description,
                                 'about_the_game' => $data->data->about_the_game,
                                 'short_description' => $data->data->short_description,
-                                'supported_languages' => $data->data->supported_languages,
+                                'supported_languages' => $supported_languages,
                                 'header_image' => url('images/'.$category.'/'.$file_name.$file_ext),
                                 'website' => $website,
                             ]);

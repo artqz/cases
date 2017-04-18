@@ -5,7 +5,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">Добавить Игру</div>
         <div class="panel-body">
-            <form class="form-horizontal" role="form" method="POST" action="{{ url('/usershop/games/create') }}">
+            <form class="form-horizontal" role="form" method="POST" action="{{ url('usershop/games/create') }}">
                 {{ csrf_field() }}
 
                 <div class="form-group{{ $errors->has('game_id') ? ' has-error' : '' }}">

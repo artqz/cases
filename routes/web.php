@@ -32,16 +32,10 @@ Route::get('ip', function () {
 });
 
 Route::get('image', function () {
-    $url = 'http://steamcommunity.com/id/steamclicks/inventory/json/440/2';
-    $tuCurl = curl_init();
-    curl_setopt($tuCurl, CURLOPT_URL, $url);
-    curl_setopt($tuCurl, CURLOPT_RETURNTRANSFER, 1);
-    $result = curl_exec($tuCurl);
-    curl_close($tuCurl);
-    $data = json_decode($result);
-    dd($data );
+    dd(check_http_status('http://cdn.akamai.steamstatic.com/steam/apps/900546/header.jpg?t=1447351164'));
 
 });
+Route::get('admin/steam/getAllGames', 'SteamController@getAllGames')->middleware('auth', 'userId');
 
 Route::get('shop', 'ShopController@index');
 Route::get('shop/items', 'ShopController@index_items');
@@ -56,6 +50,8 @@ Route::get('shop/games/create-game', 'ShopController@create_game')->middleware('
 Route::post('shop/games/create-game', 'ShopController@store_game')->middleware('auth', 'userId');
 Route::get('shop/games/{id_post}/buy-game', 'ShopController@buy_game')->middleware('auth');
 
+Route::get('usershop/games/create', 'UserShopController@create_game')->middleware('auth', 'trader');
+Route::post('usershop/games/create', 'UserShopController@store_game')->middleware('auth', 'trader');
 //---
 //distributions
 Route::get('distributions', 'DistributionsController@index');
