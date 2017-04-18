@@ -139,7 +139,9 @@ class AuthController extends Controller
     public function confirm_email($token_email)
     {
         $user = \DB::table('confirm_emails')->where('token', $token_email)->first();
-        $user_update = User::where('id', Auth::id())->first();
+        $user_update = User::where('id', Auth::id())
+            ->where('confirm_email', 0)
+            ->first();
 
         if ($user) {
             User::where('email', $user->email)->update([
