@@ -10,7 +10,7 @@ class SteamController extends Controller
     public function getInventory(Request $request)
     {
         $steamid = $request['steamid'];
-        $appid = 520;
+        $appid = 570;
         set_time_limit(5000);
         $url = 'http://steamcommunity.com/inventory/'.$steamid.'/'.$appid.'/2?l=russian';
         $tuCurl = curl_init();
