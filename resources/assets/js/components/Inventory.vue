@@ -5,7 +5,7 @@
             <input type="text" v-model="searchTest" placeholder="Search title...">
             <div v-if="loading">Загрузка... </div>
             <div class="inventory row">
-                <div v-for="item in filteredItems" class="col-sm-6" v-on:click="selectItem">
+                <div v-for="item in filteredItems" class="col-sm-6" v-on:mouseover="selectItem">
                     <div class="item-card">
                         <div class="item-name">{{ item.name }}</div>
                         <div class="item-icon"><img :src="'http://steamcommunity-a.akamaihd.net/economy/image/'+item.icon_url" :alt="item.name"></div>
