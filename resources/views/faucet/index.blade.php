@@ -19,6 +19,8 @@
         <div class="col-sm-6 col-md-6">
             <script type='text/javascript' id="s-449c189d996fdc6b">!function(t,e,n,o,a,c,s){t[a]=t[a]||function(){(t[a].q=t[a].q||[]).push(arguments)},t[a].l=1*new Date,c=e.createElement(n),s=e.getElementsByTagName(n)[0],c.async=1,c.src=o,s.parentNode.insertBefore(c,s)}(window,document,"script","//greeentea.ru/player/","vbm"); vbm('get', {"platformId":79078,"format":2,"align":"bottom","width":"300","height":"250","sig":"449c189d996fdc6b"});</script>
         </div>
+        <br>
+        <div id="s-aa21a25b8b29f15e"></div><script type='text/javascript'>!function(t,e,n,o,a,c,s){t[a]=t[a]||function(){(t[a].q=t[a].q||[]).push(arguments)},t[a].l=1*new Date,c=e.createElement(n),s=e.getElementsByTagName(n)[0],c.async=1,c.src=o,s.parentNode.insertBefore(c,s)}(window,document,"script","//greeentea.ru/player/","vbm"); vbm('get', {"platformId":79078,"format":7,"sig":"aa21a25b8b29f15e"});</script>
     </div>
 @endsection
 
