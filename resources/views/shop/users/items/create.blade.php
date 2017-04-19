@@ -2,6 +2,6 @@
 
 @section('content')
     <div id="app-vue">
-        <inventory steamid="{{ Auth::user()->steamid }}"></inventory>
+        <inventory steam_id="{{ Auth::user()->steamid }}"></inventory>
     </div>
 @endsection

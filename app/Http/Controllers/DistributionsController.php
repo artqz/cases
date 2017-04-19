@@ -86,7 +86,7 @@ class DistributionsController extends Controller
             if ($user->isTrader == 0) {
                 if ($user->crystals >= Config::get('main.price_cert_crystals')) {
                     User::where('id', \Auth::id())->update([
-                        'clicks' => $user->crystals - Config::get('main.price_cert_crystals'),
+                        'crystals' => $user->crystals - Config::get('main.price_cert_crystals'),
                         'isTrader' => 1,
                     ]);
 

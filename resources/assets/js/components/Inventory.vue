@@ -1,9 +1,11 @@
 <template>
     <div>
         <div class="col-sm-6">
+            {{searchText}}
+            <input type="text" v-model="searchTest" placeholder="Search title...">
+            <div v-if="loading">Загрузка... </div>
             <div class="inventory row">
-                <input type="text" v-model="keyword" placeholder="Search title...">
-                <div v-for="item in items" class="col-sm-6" v-on:click="selectItem">
+                <div v-for="item in items filterBy searchTest" class="col-sm-6" v-on:click="selectItem">
                     <div class="item-card">
                         <div class="item-name">{{ item.name }}</div>
                         <div class="item-icon"><img :src="'http://steamcommunity-a.akamaihd.net/economy/image/'+item.icon_url" :alt="item.name"></div>
@@ -11,19 +13,21 @@
                 </div>
             </div>
         </div>
+        {{ steam_id }}
         <pre>{{ $data }}</pre>
     </div>
 </template>
 
 <script>
-    var apiURL = 'http://localhost:8000/api/steam/getInventory';
     export default {
         data () { /* ES2015 эквивалент для: `data: function () {` */
             return {
                 items: null,
+                searchTest: '123',
+                loading: true,
             };
         },
-        created: function () {
+        created () {
             this.fetchData();
         },
         methods: {
@@ -33,17 +37,19 @@
             fetchData: function () {
                 var self = this;
                 $.get( {
-                    url: apiURL,
+                    url: '/api/steam/getInventory?steamid=' + this.steam_id,
                     headers: {
 
                     }
                 },
                 function( data ) {
                     self.items = JSON.parse(data).descriptions;
+                    self.loading = false;
                     console.log(self.items);
                 });
             }
-        }
+        },
+        props: ['steam_id'],
     }
 </script>
 

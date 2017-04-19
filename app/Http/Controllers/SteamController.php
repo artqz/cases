@@ -9,8 +9,7 @@ class SteamController extends Controller
 {
     public function getInventory(Request $request)
     {
-        $steamid = \Auth::user()->steamid;
-        //$steamid = $request['steamid'];
+        $steamid = $request['steamid'];
         $appid = 440;
         set_time_limit(5000);
         $url = 'http://steamcommunity.com/inventory/'.$steamid.'/'.$appid.'/2?l=russian';

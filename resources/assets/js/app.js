@@ -19,7 +19,6 @@ import Inventory from './components/Inventory.vue';
 new Vue({
     el: '#app-vue',
     components: { Inventory },
-    props: ['steamid'],
 });
 
 /*
