@@ -51,7 +51,8 @@
         },
         computed: {
             filteredItems () {
-                return this.items.filter(item => item.name.toLowerCase().indexOf(this.searchTest.toLowerCase()) !== -1);
+                var self = this;
+                return self.items.filter(item => item.name.toLowerCase().includes(self.searchTest.toLowerCase()));
             },
         },
         props: ['steam_id'],
