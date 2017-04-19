@@ -1,4 +1,15 @@
 <?php
+function getInventory() {
+    $url = 'http://steamcommunity.com/inventory/76561198000501285/440/2?l=english&count=5000';
+    $tuCurl = curl_init();
+    curl_setopt($tuCurl, CURLOPT_URL, $url);
+    curl_setopt($tuCurl, CURLOPT_RETURNTRANSFER, 1);
+    $result = curl_exec($tuCurl);
+    curl_close($tuCurl);
+    $data = json_decode($result);
+    dd($data);
+}
+
 function check_http_status($url)
 {
     $user_agent = 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0)';

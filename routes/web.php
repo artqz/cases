@@ -35,7 +35,7 @@ Route::get('image', function () {
     dd(check_http_status('http://cdn.akamai.steamstatic.com/steam/apps/900546/header.jpg?t=1447351164'));
 
 });
-Route::get('admin/steam/getAllGames', 'SteamController@getAllGames')->middleware('auth', 'userId');
+Route::get('api/steam/getInventory', 'SteamController@getInventory');
 
 Route::get('shop', 'ShopController@index');
 Route::get('shop/items', 'ShopController@index_items');
@@ -52,6 +52,7 @@ Route::get('shop/games/{id_post}/buy-game', 'ShopController@buy_game')->middlewa
 
 Route::get('usershop/games/create', 'UserShopController@create_game')->middleware('auth', 'trader');
 Route::post('usershop/games/create', 'UserShopController@store_game')->middleware('auth', 'trader');
+Route::get('usershop/items/create', 'UserShopController@create_item')->middleware('auth', 'trader');
 //---
 //distributions
 Route::get('distributions', 'DistributionsController@index');

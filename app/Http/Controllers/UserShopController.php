@@ -48,4 +48,9 @@ class UserShopController extends Controller
                 'message' => 'Вы успешно добавили игру!'
             ]);
     }
+
+    public function create_item()
+    {
+         return view('shop.users.items.create');
+    }
 }

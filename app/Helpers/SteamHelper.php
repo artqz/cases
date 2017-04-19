@@ -31,6 +31,7 @@ class SteamHelper implements SteamContract
             }
         }
     }  */
+
     public function getAllGames () {
         set_time_limit(5000);
         $url = 'http://api.steampowered.com/ISteamApps/GetAppList/v0001/';

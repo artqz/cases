@@ -14,11 +14,12 @@ require('./jquery.countdown-2.2.0/jquery.countdown');
  * the application, or feel free to tweak this setup for your needs.
  */
 import Vue from 'vue';
-import Profile from './Profile.vue';
+import Inventory from './components/Inventory.vue';
 
 new Vue({
-    el: '#app',
-    components: { Profile }
+    el: '#app-vue',
+    components: { Inventory },
+    props: ['steamid'],
 });
 
 /*
