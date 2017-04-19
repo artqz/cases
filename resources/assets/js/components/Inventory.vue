@@ -23,7 +23,7 @@
         data () { /* ES2015 эквивалент для: `data: function () {` */
             return {
                 items: [],
-                searchTest: '123',
+                searchTest: '',
                 loading: true,
             };
         },
