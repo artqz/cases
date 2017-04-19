@@ -2,6 +2,7 @@
     <div>
         <div class="col-sm-6">
             <div class="inventory row">
+                <input type="text" v-model="keyword" placeholder="Search title...">
                 <div v-for="item in items" class="col-sm-6" v-on:click="selectItem">
                     <div class="item-card">
                         <div class="item-name">{{ item.name }}</div>
