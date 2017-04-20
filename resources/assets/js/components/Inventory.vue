@@ -1,7 +1,12 @@
 <template>
     <div>
+        <div class="col-sm-12">
+            <div v-for="(category, index) in categories">
+                <div :id="index" @click="selectCategory">{{ category.name }}</div>
+            </div>
+        </div>
         <div class="col-sm-6">
-            {{searchText}}
+            {{appid}}
             <input type="text" v-model="searchTest" placeholder="Search title...">
             <div v-if="loading">Загрузка... </div>
             <div class="inventory row">
@@ -22,9 +27,33 @@
     export default {
         data () { /* ES2015 эквивалент для: `data: function () {` */
             return {
+                categories: [
+                    {
+                        name: 'Steam Gifts',
+                        appid: 753,
+                        contextid: 1
+                    },
+                    {
+                        name: 'Steam Card',
+                        appid: 753,
+                        contextid: 6
+                    },
+                    {
+                        name: 'Dota 2',
+                        appid: 570,
+                        contextid: 2
+                    },
+                    {
+                        name: 'CS',
+                        appid: 730,
+                        contextid: 2
+                    }
+                ],
                 items: [],
                 searchTest: '',
                 loading: true,
+                appid: 570,
+                contextid: 2
             };
         },
         created () {
@@ -34,13 +63,19 @@
             selectItem: function (e) {
                 console.log('123')
             },
+            selectCategory: function (e) {
+                var self = this;
+                var id = e.target.id;
+
+                self.appid = self.categories[id].appid;
+                self.contextid = self.categories[id].contextid;
+                self.items = [];
+                self.fetchData();
+            },
             fetchData: function () {
                 var self = this;
                 $.get( {
-                    url: '/api/steam/getInventory?steamid=' + this.steam_id,
-                    headers: {
-
-                    }
+                    url: '/api/steam/getInventory?steamid=' + self.steam_id + '&appid=' + self.appid + '&contextid=' + self.contextid,
                 },
                 function( data ) {
                     self.items = JSON.parse(data).descriptions;
