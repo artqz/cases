@@ -67,6 +67,7 @@
                 var self = this;
                 var id = e.target.id;
 
+                self.loading = true;
                 self.appid = self.categories[id].appid;
                 self.contextid = self.categories[id].contextid;
                 self.items = [];
