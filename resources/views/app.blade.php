@@ -158,6 +158,7 @@
             @yield('sidebar')
         </div>
     </div>
+
 </div>
 @else
     @yield('content')
@@ -169,8 +170,9 @@
             <p>© {{ date('Y') }} Steamclicks.ru - Powered by <a target="_blank" rel="nofollow" href="http://steampowered.com">Steam</a>.</p>
             <p>По всем вопросам писать на webmaster@steamclicks.ru</p>
         </footer>
-    <div>
+    </div>
 </div>
+<div id="tooltip" class="tooltip-steamclicks" style="position: absolute"></div>
 
 </body>
 <script src="/js/app.js"></script>

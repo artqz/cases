@@ -10,22 +10,25 @@
             <input type="text" v-model="searchTest" placeholder="Search title...">
             <div v-if="loading">Загрузка... </div>
             <div class="inventory row">
-                <div v-for="item in filteredItems" class="col-sm-6" v-on:mouseover="selectItem">
-                    <div class="item-card">
+                <div v-for="(item, index) in filteredItems" class="col-sm-6">
+                    <div :id="index" class="item-card"  @mouseenter="mouseenterItem" @mouseleave="mouseleaveItem">
                         <div class="item-name">{{ item.name }}</div>
                         <div class="item-icon"><img :src="'http://steamcommunity-a.akamaihd.net/economy/image/'+item.icon_url" :alt="item.name"></div>
                     </div>
                 </div>
             </div>
         </div>
-        {{ steam_id }}
         <pre>{{ $data }}</pre>
+        <div v-if="tooltip.status" class="shop tooltip" :style="{top: tooltip.position.top, left: tooltip.position.left}">
+            {{ tooltip.data.name }}
+        </div>
     </div>
+
 </template>
 
 <script>
     export default {
-        data () { /* ES2015 эквивалент для: `data: function () {` */
+        data () {
             return {
                 categories: [
                     {
@@ -53,15 +56,43 @@
                 searchTest: '',
                 loading: true,
                 appid: 570,
-                contextid: 2
+                contextid: 2,
+                tooltip:  {
+                    status: false,
+                    data: {},
+                    position: {}
+                }
             };
         },
         created () {
             this.fetchData();
         },
         methods: {
-            selectItem: function (e) {
-                console.log('123')
+            mouseenterItem: function (e) {
+                var self = this;
+                var id = e.target.id;
+                var element = e.target.getBoundingClientRect();
+
+                self.tooltip.status = true;
+                self.tooltip.data.name = self.items[id].name;
+                self.tooltip.data.descriptions = self.items[id].descriptions[0].value;
+                self.tooltip.position = {
+                    left: element.right + "px",
+                    top: element.top + "px"
+                }
+                console.log(element);
+                console.log(element.top + ' - ' + element.right);
+
+                var tooltip = document.getElementById('tooltip');
+                tooltip.innerHTML = self.tooltip.data.name;
+                tooltip.style.top = self.tooltip.position.top;
+                tooltip.style.left = self.tooltip.position.left;
+            },
+            mouseleaveItem (e) {
+                var self = this;
+
+                self.tooltip.status = false;
+                self.tooltip.data = {};
             },
             selectCategory: function (e) {
                 var self = this;
@@ -81,7 +112,6 @@
                 function( data ) {
                     self.items = JSON.parse(data).descriptions;
                     self.loading = false;
-                    console.log(self.items);
                 });
             }
         },
@@ -107,6 +137,15 @@
 
     .inventory .item-card img {
         width: 100px;
+    }
+
+    .shop.tooltip {
+        position:absolute;
+        background-color:#dedede;
+        padding:5px;
+        border:1px solid #fff;
+        width:250px;
+        opacity: 1;
     }
 
 </style>
