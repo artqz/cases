@@ -173,7 +173,6 @@
         </footer>
     </div>
 </div>
-<div id="tooltip" class="tooltip-steamclicks" style="position: absolute"></div>
 
 </body>
 <script src="/js/app.js"></script>

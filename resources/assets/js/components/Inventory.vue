@@ -19,9 +19,7 @@
             </div>
         </div>
         <pre>{{ $data }}</pre>
-        <div v-if="tooltip.status" class="shop tooltip" :style="{top: tooltip.position.top, left: tooltip.position.left}">
-            {{ tooltip.data.name }}
-        </div>
+        <div id="tooltip" ref="tooltip" class="tooltip-steamclicks"></div>
     </div>
 
 </template>
@@ -57,11 +55,7 @@
                 loading: true,
                 appid: 570,
                 contextid: 2,
-                tooltip:  {
-                    status: false,
-                    data: {},
-                    position: {}
-                }
+                tooltip:  {}
             };
         },
         created () {
@@ -70,37 +64,33 @@
         methods: {
             mouseenterItem: function (e) {
                 var self = this;
-                var id = e.target.id;
-                var element = e.target.getBoundingClientRect();
+                var target = e.target;
+                var coords = e.target.getBoundingClientRect();
+                var item = self.items[target.id];
+                var tooltip = self.$refs.tooltip;
 
-                self.tooltip.status = true;
-                self.tooltip.data.name = self.items[id].name;
-                self.tooltip.data.descriptions = self.items[id].descriptions[0].value;
-                self.tooltip.position = {
-                    left: element.right + "px",
-                    top: element.top + "px"
-                }
-                console.log(element);
-                console.log(element.top + ' - ' + element.right);
 
-                var tooltip = document.getElementById('tooltip');
-                tooltip.innerHTML = self.tooltip.data.name;
-                tooltip.style.top = self.tooltip.position.top;
-                tooltip.style.left = self.tooltip.position.left;
+                tooltip.style.display = 'block';
+                tooltip.innerHTML =
+                    '<div style="color:#'+ item.name_color +'">' + item.name + '</div>' +
+                    '<div>' + item.descriptions[0].value + '</div>' +
+                    '<div>' + item.type + '</div>';
+                tooltip.style.top = coords.top + 'px';
+                tooltip.style.left = coords.right + 10 + 'px';
             },
             mouseleaveItem (e) {
                 var self = this;
+                var tooltip = self.$refs.tooltip;
 
-                self.tooltip.status = false;
-                self.tooltip.data = {};
+                tooltip.style.display = 'none';
             },
             selectCategory: function (e) {
                 var self = this;
-                var id = e.target.id;
+                var target = e.target;
 
                 self.loading = true;
-                self.appid = self.categories[id].appid;
-                self.contextid = self.categories[id].contextid;
+                self.appid = self.categories[target.id].appid;
+                self.contextid = self.categories[target.id].contextid;
                 self.items = [];
                 self.fetchData();
             },
@@ -118,7 +108,9 @@
         computed: {
             filteredItems () {
                 var self = this;
-                return self.items.filter(item => item.name.toLowerCase().includes(self.searchTest.toLowerCase()));
+                return self.items
+                    .filter(item => item.name.toLowerCase().includes(self.searchTest.toLowerCase()))
+                    .filter(item => item.tradable == 1);
             },
         },
         props: ['steam_id'],
@@ -139,12 +131,12 @@
         width: 100px;
     }
 
-    .shop.tooltip {
-        position:absolute;
-        background-color:#dedede;
-        padding:5px;
-        border:1px solid #fff;
-        width:250px;
+    .tooltip-steamclicks {
+        position: fixed;
+        background-color: #dedede;
+        padding: 5px;
+        border: 1px solid #fff;
+        width: 250px;
         opacity: 1;
     }
 
