@@ -235,7 +235,6 @@ class AdminController extends Controller
             ->inRandomOrder()
             ->limit(100)
             ->get();
-         dd($users);
         $this->validate($request, [
             'reward' => 'numeric',
         ]);
