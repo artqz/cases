@@ -176,9 +176,17 @@ class AdminController extends Controller
     }
 
 
-    public function index_users ()
+    public function index_users (Request $request)
     {
-        $users = User::paginate(30);
+        if ($request['filter'] == 'clicks') {
+            $users = User::orderBy('clicks', 'desc')->paginate(30);
+        }
+        elseif ($request['filter'] == 'crystals') {
+            $users = User::orderBy('crystals', 'desc')->paginate(30);
+        }
+        else {
+            $users = User::paginate(30);
+        }
 
         return view('admin.users.index', compact('users'));
     }

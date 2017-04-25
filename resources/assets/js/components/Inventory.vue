@@ -23,9 +23,10 @@
                 <div class="last-buy-game-card">
                     <div class="game-image"><img :src="'http://steamcommunity-a.akamaihd.net/economy/image/'+item.icon_url" :alt="item.name"></div>
                     <div class="game-name">{{ item.name }}</div>
-                    <div class="game-buyer"><input type="text" class="price" v-model="searchTest" placeholder="Укажите цену.."></div>
+                    <div class="game-buyer"><input type="text" class="price" v-model="item.price" placeholder="Укажите цену.."></div>
                 </div>
             </div>
+            <div @click="itemsSell">Продать</div>
         </div>
         <div id="tooltip" ref="tooltip" class="tooltip-steamclicks"></div>
     </div>
@@ -72,6 +73,9 @@
             this.fetchData();
         },
         methods: {
+            itemsSell () {
+                console.log(this.itemsOnSale);
+            },
             mouseenterItem: function (e) {
                 var self = this;
                 var target = e.target;
@@ -101,9 +105,9 @@
 
                 self.itemsOnSale.push({
                     name: item.name,
-                    icon_url: item.icon_url
+                    icon_url: item.icon_url,
+                    price: ''
                 });
-                console.log(self.itemsOnSale);
             },
             selectCategory: function (e) {
                 var self = this;
