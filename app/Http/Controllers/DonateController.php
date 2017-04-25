@@ -124,6 +124,7 @@ class DonateController extends Controller
 
     public function get($count)
     {
+
         $user = User::where('id', Auth::id())->first();
         if ($count == 100) {
             $clicks = 100;
@@ -138,25 +139,29 @@ class DonateController extends Controller
             $crystals = 10;
         }
         else return redirect('exchange');
+        if ($user->crystals >= $crystals) {
+            User::where('id', $user->id)->update([
+                'crystals' => $user->crystals - $crystals,
+                'clicks' => $user->clicks + $clicks
+            ]);
 
-        User::where('id', $user->id)->update([
-            'crystals' => $user->crystals - $crystals,
-            'clicks' => $user->clicks + $clicks
+            //event
+            Event::create([
+                'user_id' => $user->id,
+                'image' => url('images/icons/clickcoin.png'),
+                'text' => 'Вы обменяли '.$crystals.' Кристаллов на '.$clicks.' Кликов',
+                'url' => url('exchange'),
+                'type' => 'exchange',
+            ]);
+
+            return redirect('exchange')->with([
+                'flash_message' => 'Вы получили '.$clicks.' Кликов',
+                'flash_message_status' => 'success',
+            ]);
+        }
+        else return redirect('exchange')->with([
+            'flash_message' => 'У Вас не хватает Кристаллов!',
+            'flash_message_status' => 'danger',
         ]);
-
-        //event
-        Event::create([
-            'user_id' => $user->id,
-            'image' => url('images/icons/clickcoin.png'),
-            'text' => 'Вы обменяли '.$crystals.' Кристаллов на '.$clicks.' Кликов',
-            'url' => url('exchange'),
-            'type' => 'exchange',
-        ]);
-
-        return redirect('exchange')->with([
-            'flash_message' => 'Вы получили '.$clicks.' Кликов',
-            'flash_message_status' => 'success',
-        ]);
-
     }
 }
