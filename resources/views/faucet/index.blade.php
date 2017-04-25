@@ -15,6 +15,7 @@
                 <br>
                 <input type="submit" data-time="{{ $finishTime }}" class="btn btn-sm btn-success" value="Получить клики"/>
             </form>
+            <a class="btn btn-sm btn-success" href="{{ url('exchange') }}">Получить Клики за Кристаллы</a>
         </div>
         <div class="col-sm-6 col-md-6">
             <iframe data-aa='496671' src='//ad.a-ads.com/496671?size=336x280' scrolling='no' style='width:336px; height:280px; border:0px; padding:0;overflow:hidden' allowtransparency='true'></iframe>
