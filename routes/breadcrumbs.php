@@ -114,3 +114,9 @@ Breadcrumbs::register('donate', function($breadcrumbs)
     $breadcrumbs->parent('home');
     $breadcrumbs->push('Купить кристаллы', url('donate'));
 });
+
+Breadcrumbs::register('exchange', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Получить клики', url('exchange'));
+});

@@ -116,4 +116,9 @@ class DonateController extends Controller
             'flash_message_status' => 'warning',
         ]);
     }
+
+    public function index_clicks ()
+    {
+        return view('donate.clicks.index');
+    }
 }
