@@ -1,12 +1,17 @@
 <template>
     <div>
         <div class="col-sm-12">
-            <div v-for="(category, index) in categories">
-                <div :id="index" @click="selectCategory">{{ category.name }}</div>
+            <div class="row items-categories">
+                <div class="col-sm-3 col-md-3" v-for="(category, index) in categories">
+                    <div class="category" :class="{ 'active' : category.active}" :id="index" @click="selectCategory">
+                        <img class="category-icon" :src="'http://localhost:8000/images/games/icons/'+category.appid+'_'+category.contextid+'.jpg'" :alt="category.name">
+                        <span class="category-name">{{ category.name }}</span>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-sm-6">
-            {{appid}}
+            <h4>Ваш инвентарь</h4>
             <input type="text" v-model="searchTest" placeholder="Search title...">
             <div v-if="loading">Загрузка... </div>
             <div class="inventory row">
@@ -19,6 +24,7 @@
             </div>
         </div>
         <div class="col-sm-6">
+            <h4>Ваши лоты</h4>
             <div v-for="(item, index) in itemsOnSale" class="last-buy-games-list">
                 <div class="last-buy-game-card">
                     <div class="game-image"><img :src="'http://steamcommunity-a.akamaihd.net/economy/image/'+item.icon_url" :alt="item.name"></div>
@@ -28,7 +34,6 @@
             </div>
             <div @click="itemsSell">Продать</div>
         </div>
-        <pre>{{ $data }}</pre>
         <div id="tooltip" ref="tooltip" class="tooltip-steamclicks"></div>
     </div>
 
@@ -42,22 +47,26 @@
                     {
                         name: 'Steam Gifts',
                         appid: 753,
-                        contextid: 1
+                        contextid: 1,
+                        active: false
                     },
                     {
                         name: 'Steam Card',
                         appid: 753,
-                        contextid: 6
+                        contextid: 6,
+                        active: true
                     },
                     {
                         name: 'Dota 2',
                         appid: 570,
-                        contextid: 2
+                        contextid: 2,
+                        active: false
                     },
                     {
                         name: 'CS',
                         appid: 730,
-                        contextid: 2
+                        contextid: 2,
+                        active: false
                     }
                 ],
                 items: [],
@@ -65,8 +74,8 @@
                 itemsOnSale: [],
                 searchTest: '',
                 loading: true,
-                appid: 570,
-                contextid: 2,
+                appid: 753,
+                contextid: 6,
                 tooltip:  {}
             };
         },
@@ -116,13 +125,18 @@
             },
             selectCategory: function (e) {
                 var self = this;
-                var target = e.target;
+                var target = e.currentTarget;
+
+                self.categories.forEach(function(app, i) {
+                    app.active = false;
+                });
 
                 self.loading = true;
                 self.appid = self.categories[target.id].appid;
                 self.contextid = self.categories[target.id].contextid;
                 self.items = [];
                 self.itemsAssets = [];
+                self.categories[target.id].active = true;
                 self.fetchData();
             },
             fetchData: function () {
