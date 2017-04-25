@@ -11,7 +11,7 @@
             <div v-if="loading">Загрузка... </div>
             <div class="inventory row">
                 <div v-for="(item, index) in filteredItems" class="col-sm-6">
-                    <div :id="index" class="item-card"  @mouseenter="mouseenterItem" @mouseleave="mouseleaveItem" @click="selectItem">
+                    <div :id="index" :data-classid="item.classid" class="item-card"  @mouseenter="mouseenterItem" @mouseleave="mouseleaveItem" @click="selectItem">
                         <div class="item-name">{{ item.name }}</div>
                         <div class="item-icon"><img :src="'http://steamcommunity-a.akamaihd.net/economy/image/'+item.icon_url" :alt="item.name"></div>
                     </div>
@@ -80,8 +80,9 @@
                 var self = this;
                 var target = e.target;
                 var coords = e.target.getBoundingClientRect();
-                var item = self.items[target.id];
-                var itemAssets = self.itemsAssets[target.id];
+                var classid = target.getAttribute('data-classid');
+                var item = self.items.filter(item => item.classid == classid)[0];
+                var itemAssets = self.itemsAssets.filter(item => item.classid == classid)[0];
                 var tooltip = self.$refs.tooltip;
 
                 tooltip.style.display = 'block';
@@ -101,7 +102,10 @@
             selectItem: function (e) {
                 var self = this;
                 var target = e.currentTarget;
-                var item = self.items[target.id];
+                var classid = target.getAttribute('data-classid');
+                var item = self.items.filter(item => item.classid == classid)[0];
+
+                console.log(item);
 
                 self.itemsOnSale.push({
                     name: item.name,
@@ -197,7 +201,7 @@
         color: #0d3625;
     }
 
-    .tooltip-steamclicks .price {
+    .last-buy-game-card .price {
         border: 0;
         margin: 0;
         padding: 0;
