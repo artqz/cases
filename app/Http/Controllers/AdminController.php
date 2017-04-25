@@ -184,9 +184,6 @@ class AdminController extends Controller
         elseif ($request['filter'] == 'crystals') {
             $users = User::orderBy('crystals', 'desc')->paginate(30);
         }
-        elseif ($request['filter'] == 'sell') {
-            $users = User::where('status', 1)->paginate(30);
-        }
         else {
             $users = User::paginate(30);
         }

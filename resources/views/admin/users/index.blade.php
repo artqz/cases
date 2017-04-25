@@ -11,7 +11,6 @@
             <select class="form-control" name="filter">
                 <option value="clicks">Клики</option>
                 <option value="crystals">Кристаллы</option>
-                <option value="sell">В ожидании</option>
             </select>
             <span class="input-group-btn">
                 <button class="btn btn-default" type="submit">Go!</button>
