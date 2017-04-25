@@ -19,12 +19,11 @@
             </div>
         </div>
         <div class="col-sm-6">
-            <div class="inventory row">
-                <div v-for="(item, index) in itemsOnSale" class="col-sm-6">
-                    <div :id="index" class="item-card">
-                        <div class="item-name">{{ item.name }}</div>
-                        <div class="item-icon"><img :src="'http://steamcommunity-a.akamaihd.net/economy/image/'+item.icon_url" :alt="item.name"></div>
-                    </div>
+            <div v-for="(item, index) in itemsOnSale" class="last-buy-games-list">
+                <div class="last-buy-game-card">
+                    <div class="game-image"><img :src="'http://steamcommunity-a.akamaihd.net/economy/image/'+item.icon_url" :alt="item.name"></div>
+                    <div class="game-name">{{ item.name }}</div>
+                    <div class="game-buyer"><input type="text" class="price" v-model="searchTest" placeholder="Укажите цену.."></div>
                 </div>
             </div>
         </div>
@@ -193,6 +192,18 @@
     .tooltip-steamclicks .type {
         font-size: 11px;
         color: #0d3625;
+    }
+
+    .price {
+        border: 0;
+        margin: 0;
+        padding: 0;
+        display: block;
+        width: 100px;
+        line-height: 2;
+        font-size: inherit;
+        border-bottom: 1px solid #eee;
+        text-align: right;
     }
 
 </style>

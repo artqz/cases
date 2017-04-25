@@ -17,9 +17,10 @@
             </form>
         </div>
         <div class="col-sm-6 col-md-6">
-
+            <iframe data-aa='496671' src='//ad.a-ads.com/496671?size=336x280' scrolling='no' style='width:336px; height:280px; border:0px; padding:0;overflow:hidden' allowtransparency='true'></iframe>
         </div>
         <div class="col-sm-12 col-md-12">
+            <br><br>
             <script type='text/javascript' id="s-b92c4c6bdbfe3d42">!function(t,e,n,o,a,c,s){t[a]=t[a]||function(){(t[a].q=t[a].q||[]).push(arguments)},t[a].l=1*new Date,c=e.createElement(n),s=e.getElementsByTagName(n)[0],c.async=1,c.src=o,s.parentNode.insertBefore(c,s)}(window,document,"script","//greeentea.ru/player/","vbm"); vbm('get', {"platformId":79078,"format":2,"align":"top","width":"550","height":"350","sig":"b92c4c6bdbfe3d42"});</script>
         </div>
     </div>
