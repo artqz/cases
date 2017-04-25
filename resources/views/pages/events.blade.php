@@ -11,9 +11,8 @@
                     </div>
                     <div class="col-sm-9">
                         <div class="content">
-                            <div class="text">{{ $event->text }}</div>
+                            <div class="text"><a href="{{ $event->url }}">{{ $event->text }}</a></div>
                             <div class="data" style="color: #0c9f0c"><i>{{ $event->data }}</i></div>
-                            <div class="url">{{ $event->url }}</div>
                             <div class="date">{{ $event->created_at->diffForHumans() }}</div>
                         </div>
                     </div>
