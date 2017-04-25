@@ -8088,6 +8088,41 @@ footer p {
   font-size: 12px;
 }
 
+.click-card {
+  background-color: #fff;
+  padding: 5px 10px;
+  margin-bottom: 15px;
+  border-radius: 3px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  position: relative;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+}
+
+.click-card:hover {
+  text-decoration: none;
+  background-color: #fffcd2;
+}
+
+.click-card:focus {
+  text-decoration: none;
+}
+
+.click-card img {
+  padding: 30px 0;
+}
+
+.click-card .clicks {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.click-card .crystals {
+  margin-top: 10px;
+  color: #4e4e4e;
+}
+
 .crystal-card {
   background-color: #fff;
   padding: 5px 10px;
