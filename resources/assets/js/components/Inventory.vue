@@ -28,6 +28,7 @@
             </div>
             <div @click="itemsSell">Продать</div>
         </div>
+        <pre>{{ $data }}</pre>
         <div id="tooltip" ref="tooltip" class="tooltip-steamclicks"></div>
     </div>
 
