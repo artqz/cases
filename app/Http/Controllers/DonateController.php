@@ -121,4 +121,42 @@ class DonateController extends Controller
     {
         return view('donate.clicks.index');
     }
+
+    public function get($count)
+    {
+        $user = User::where('id', Auth::id())->first();
+        if ($count == 100) {
+            $clicks = 100;
+            $crystals = 1;
+        }
+        elseif ($count == 500) {
+            $clicks = 500;
+            $crystals = 5;
+        }
+        elseif ($count == 1000) {
+            $clicks = 1000;
+            $crystals = 10;
+        }
+        else return redirect('exchange');
+
+        User::where('id', $user->id)->update([
+            'crystals' => $user->crystals - $crystals,
+            'clicks' => $user->clicks + $clicks
+        ]);
+
+        //event
+        Event::create([
+            'user_id' => $user->id,
+            'image' => url('images/icons/clickcoin.png'),
+            'text' => 'Вы обменяли '.$crystals.' Кристаллов на '.$clicks.' Кликов',
+            'url' => url('exchange'),
+            'type' => 'exchange',
+        ]);
+
+        return redirect('exchange')->with([
+            'flash_message' => 'Вы получили '.$clicks.' Кликов',
+            'flash_message_status' => 'success',
+        ]);
+
+    }
 }
