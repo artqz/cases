@@ -205,12 +205,14 @@ class AdminController extends Controller
             'name' => 'required|max:20|min:3',
             'email' => 'required|email|max:255|unique:users,email,'.$user->id,
             'clicks' => 'numeric',
+            'crystals' => 'numeric',
         ]);
 
         User::where('id', $user->id)->update([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'clicks' => $request->input('clicks'),
+            'crystals' => $request->input('crystals'),
             'isBanned' => $request->input('isBanned'),
             'isTrader' => $request->input('isTrader'),
             'isSpamer' => $request->input('isSpamer'),

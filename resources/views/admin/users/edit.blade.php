@@ -52,6 +52,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('crystals') ? ' has-error' : '' }}">
+                            <label for="crystals" class="col-md-4 control-label">Кристаллы</label>
+
+                            <div class="col-md-6">
+                                <input id="clicks" type="crystals" class="form-control" name="crystals" value="{{ $user->crystals }}" required>
+
+                                @if ($errors->has('crystals'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('crystals') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
