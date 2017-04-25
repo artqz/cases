@@ -198,7 +198,7 @@
         color: #0d3625;
     }
 
-    .price {
+    .tooltip-steamclicks .price {
         border: 0;
         margin: 0;
         padding: 0;
