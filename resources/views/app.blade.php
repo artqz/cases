@@ -65,7 +65,6 @@
                 'csrfToken' => csrf_token(),
         ]); ?>
     </script>
-    <script type="text/javascript" async src="https://relap.io/api/v6/head.js?token=xr7GgQWBchTp6k9K"></script>
 </head>
 <body>
 
