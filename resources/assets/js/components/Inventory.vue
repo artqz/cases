@@ -132,8 +132,8 @@
                     url: '/api/steam/getInventory?steamid=' + self.steam_id + '&appid=' + self.appid + '&contextid=' + self.contextid,
                 },
                 function( data ) {
-                    self.items = JSON.parse(data).descriptions.filter(item => item.tradable == 1);
-                    self.itemsAssets = JSON.parse(data).assets;
+                    self.items = JSON.parse(data).descriptions.filter(item => item.tradable == 1).filter(item => item.classid != '667924416');
+                    self.itemsAssets = JSON.parse(data).assets.filter(item => item.classid != '667924416');
                     self.loading = false;
                 });
             }
