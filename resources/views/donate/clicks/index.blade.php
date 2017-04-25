@@ -15,26 +15,26 @@
         @include('layouts.flash')
         {!! Breadcrumbs::render('exchange') !!}
         <h1>Купить кристаллы</h1>
-        <div class="crystals-list row">
+        <div class="clicks-list row">
             <div class="col-sm-4">
-                <a href="{{ url('donate/buy/1') }}" class="crystal-card">
-                   <img src="{{ url('images/icons/clickcrystal.png') }}" alt="Кристалл">
-                    <div class="crystals">Купить 1 кристалл</div>
-                    <div class="ruble">За 15 Рублей <span class="economy">экономия 0 рублей</span></div>
+                <a href="{{ url('donate/buy/1') }}" class="click-card">
+                   <img src="{{ url('images/icons/clickcoin.png') }}" alt="Клик">
+                    <div class="crystals">Получить 100 кликов</div>
+                    <div class="clicks">За 1 Кристалл</div>
                 </a>
             </div>
             <div class="col-sm-4">
-                <a href="{{ url('donate/buy/5') }}" class="crystal-card">
-                    <img src="{{ url('images/icons/clickcrystal.png') }}" alt="Кристалл">
-                    <div class="crystals">Купить 5 кристаллов</div>
-                    <div class="ruble">За 70 Рублей <span class="economy">экономия 5 рублей</span></div>
+                <a href="{{ url('donate/buy/5') }}" class="click-card">
+                    <img src="{{ url('images/icons/clickcoin.png') }}" alt="Клик">
+                    <div class="crystals">Получить 500 кликов</div>
+                    <div class="clicks">За 5 Кристаллов</div>
                 </a>
             </div>
             <div class="col-sm-4">
-                <a href="{{ url('donate/buy/10') }}" class="crystal-card">
-                    <img src="{{ url('images/icons/clickcrystal.png') }}" alt="Кристалл">
-                    <div class="crystals">Купить 10 кристаллов</div>
-                    <div class="ruble">За 110 Рублей <span class="economy">экономия 40 рублей</span></div>
+                <a href="{{ url('donate/buy/10') }}" class="click-card">
+                    <img src="{{ url('images/icons/clickcoin.png') }}" alt="Клик">
+                    <div class="crystals">Получить 1000 кликов</div>
+                    <div class="clicks">За 10 Кристаллов</div>
                 </a>
             </div>
         </div>

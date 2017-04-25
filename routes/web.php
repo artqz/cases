@@ -154,7 +154,7 @@ Route::get('payment/result', 'DonateController@result');
 Route::get('payment/success', 'DonateController@success')->middleware('auth');
 Route::get('payment/fail', 'DonateController@fail')->middleware('auth');
 
-Route::get('exchange', 'DonateController@index_click');
+Route::get('exchange', 'DonateController@index_clicks');
 
 Route::get('events', 'EventsController@index')->middleware('auth');
 //---
