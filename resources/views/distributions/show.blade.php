@@ -28,7 +28,7 @@
                         <div class="distribution-players">Участников: {{ $distribution->joined_players }} из {{ $distribution->players }} </div>
                         <div class="distribution-price">Ставка: <span class="price {{ ($distribution->level == 2) ? 'crystal' : '' }}">{{ $distribution->price }}</span></div>
                         @if($distribution->description)
-                            <div class="distribution-price">Описание: {{ $distribution->description }}</div>
+                            <div class="distribution-price">Описание: {!! nl2br(strip_tags($distribution->description)) !!}</div>
                         @endif
                         <div class="distribution-region">Регион: {{ region($distribution->data_region) }}</div>
                         <div class="distribution-share">
