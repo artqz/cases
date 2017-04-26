@@ -17,7 +17,7 @@
             <div class="inventory row">
                 <div v-for="(item, index) in filteredItems" class="col-sm-6">
                     <div :id="index" :data-classid="item.classid" class="item-card"  @mouseenter="mouseenterItem" @mouseleave="mouseleaveItem" @click="selectItem">
-                        <div class="item-name">{{ item.name }}</div>
+                        <div class="item-name" :style="{ color: '#' + item.name_color }">{{ item.name }}</div>
                         <div class="item-icon"><img :src="'http://steamcommunity-a.akamaihd.net/economy/image/'+item.icon_url" :alt="item.name"></div>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
             <div v-for="(item, index) in itemsOnSale" class="last-buy-games-list">
                 <div class="last-buy-game-card">
                     <div class="game-image"><img :src="'http://steamcommunity-a.akamaihd.net/economy/image/'+item.icon_url" :alt="item.name"></div>
-                    <div class="game-name">{{ item.name }}</div>
+                    <div class="game-name" :style="{ color: '#' + item.name_color }">{{ item.name }}</div>
                     <div class="game-buyer"><input type="text" class="price" v-model="item.price" placeholder="Укажите цену.."></div>
                 </div>
             </div>
