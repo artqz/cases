@@ -4,13 +4,19 @@
 
 @section('content')
     <h1>FAQ Steam Clicks</h1>
-
-    <ul class="faq-menu">
-        @foreach($helps as $key => $help)
-            <li><a href="#{{ $help->id }}">{{ $key+1 }}. {{ $help->name }}</a></li>
-        @endforeach
-    </ul>
-    <div>Хотите почитать <a href="{{ url('rules') }}">правила Steam Clicks</a>?</div>
+    <div class="row">
+        <div class="col-sm-6 col-md-6">
+            <ul class="faq-menu">
+                @foreach($helps as $key => $help)
+                    <li><a href="#{{ $help->id }}">{{ $key+1 }}. {{ $help->name }}</a></li>
+                @endforeach
+            </ul>
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <iframe data-aa='499199' src='//ad.a-ads.com/499199?size=336x280' scrolling='no' style='width:336px; height:280px; border:0px; padding:0;overflow:hidden' allowtransparency='true'></iframe>
+        </div>
+        <div>Хотите почитать <a href="{{ url('rules') }}">правила Steam Clicks</a>?</div>
+    </div>
     <br>
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- adaptiv_help -->
