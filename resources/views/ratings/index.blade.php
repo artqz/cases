@@ -47,6 +47,9 @@
                 </table>
             </div>
         </div>
+        <br>
+        <div style="text-align: center"><iframe data-aa='499195' src='//ad.a-ads.com/499195?size=728x90' scrolling='no' style='width:728px; height:90px; border:0px; padding:0;overflow:hidden' allowtransparency='true'></iframe></div>
+        <br>
 
     </div>
 @endsection
