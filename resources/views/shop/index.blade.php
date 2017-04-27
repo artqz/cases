@@ -48,6 +48,8 @@
             </div>
         </div>
         <br>
+        <iframe data-aa='499195' src='//ad.a-ads.com/499195?size=728x90' scrolling='no' style='width:728px; height:90px; border:0px; padding:0;overflow:hidden' allowtransparency='true'></iframe>
+        <br>
         <div class="row">
             <div class="col-md-6">
                 <ul class="last-buy-games-list">
