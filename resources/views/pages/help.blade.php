@@ -15,8 +15,8 @@
         <div class="col-sm-6 col-md-6">
             <iframe data-aa='499199' src='//ad.a-ads.com/499199?size=336x280' scrolling='no' style='width:336px; height:280px; border:0px; padding:0;overflow:hidden' allowtransparency='true'></iframe>
         </div>
-        <div>Хотите почитать <a href="{{ url('rules') }}">правила Steam Clicks</a>?</div>
     </div>
+    <div>Хотите почитать <a href="{{ url('rules') }}">правила Steam Clicks</a>?</div>
     <br>
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- adaptiv_help -->
