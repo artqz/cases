@@ -19,7 +19,7 @@
             <a class="btn btn-sm btn-primary" href="{{ url('exchange') }}">Получить Клики за Кристаллы</a>
         </div>
         <div class="col-sm-6 col-md-6">
-            <iframe data-aa='499199' src='//ad.a-ads.com/499199?size=336x280' scrolling='no' style='width:336px; height:280px; border:0px; padding:0;overflow:hidden' allowtransparency='true'></iframe>
+            <iframe data-aa='494990' src='//ad.a-ads.com/494990?size=300x250' scrolling='no' style='width:300px; height:250px; border:0px; padding:0;overflow:hidden' allowtransparency='true'></iframe>
         </div>
         <div class="col-sm-12 col-md-12">
             <br><br>

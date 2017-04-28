@@ -6,6 +6,16 @@
     @include('layouts.flash')
     {!! Breadcrumbs::render('admin.items') !!}
     <h1>Предметы</h1>
+    <form action="{{ url('admin/users') }}" method="get">
+        <div class="input-group">
+            <select class="form-control" name="filter">
+                <option value="pending">Ожидают выдачи</option>
+            </select>
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">Go!</button>
+            </span>
+        </div>
+    </form>
     <div class="panel panel-default">
 
         <!-- Table -->

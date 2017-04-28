@@ -29,9 +29,14 @@ class AdminController extends Controller
         return view('admin.index', compact('items'));
     }
 
-    public function index_items ()
+    public function index_items (Request $request)
     {
-        $items = Item::paginate(30);
+        if ($request['filter'] == 'pending') {
+            $users = User::where('status', 1)->paginate(30);
+        }
+        else {
+            $items = Item::paginate(30);
+        }
 
         return view('admin.items.index', compact('items'));
     }
