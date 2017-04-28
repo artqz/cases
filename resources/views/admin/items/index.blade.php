@@ -6,7 +6,7 @@
     @include('layouts.flash')
     {!! Breadcrumbs::render('admin.items') !!}
     <h1>Предметы</h1>
-    <form action="{{ url('admin/users') }}" method="get">
+    <form action="{{ url('admin/items') }}" method="get">
         <div class="input-group">
             <select class="form-control" name="filter">
                 <option value="pending">Ожидают выдачи</option>
@@ -16,6 +16,7 @@
             </span>
         </div>
     </form>
+    <br>
     <div class="panel panel-default">
 
         <!-- Table -->
