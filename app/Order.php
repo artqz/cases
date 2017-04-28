@@ -13,4 +13,9 @@ class Order extends Model
         'crystals',
         'status',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

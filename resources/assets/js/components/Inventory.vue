@@ -26,10 +26,11 @@
         <div class="col-sm-6">
             <h4>Ваши лоты</h4>
             <div v-for="(item, index) in itemsOnSale" class="last-buy-games-list">
-                <div class="last-buy-game-card">
+                <div :id="index" class="last-buy-game-card" @click="deleteItem">
                     <div class="game-image"><img :src="'http://steamcommunity-a.akamaihd.net/economy/image/'+item.icon_url" :alt="item.name"></div>
                     <div class="game-name" :style="{ color: '#' + item.name_color }">{{ item.name }}</div>
                     <div class="game-buyer"><input type="text" class="price" v-model="item.price" placeholder="Укажите цену.."></div>
+                    <div class="game-delete"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
                 </div>
             </div>
             <div @click="itemsSell">Продать</div>
@@ -109,7 +110,7 @@
 
                 tooltip.style.display = 'none';
             },
-            selectItem: function (e) {
+            selectItem (e) {
                 var self = this;
                 var target = e.currentTarget;
                 var classid = target.getAttribute('data-classid');
@@ -120,8 +121,15 @@
                 self.itemsOnSale.push({
                     name: item.name,
                     icon_url: item.icon_url,
+                    color_name: item.color_name,
                     price: ''
                 });
+            },
+            deleteItem (e) {
+                var self = this;
+                var target = e.currentTarget;
+
+                self.itemsOnSale.splice(target.id, 1);
             },
             selectCategory: function (e) {
                 var self = this;

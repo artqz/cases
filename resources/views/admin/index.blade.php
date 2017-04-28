@@ -27,3 +27,9 @@
         </li>
     </ul>
 @endsection
+
+@section('sidebar')
+
+    @widget('TopDonate')
+
+@endsection
