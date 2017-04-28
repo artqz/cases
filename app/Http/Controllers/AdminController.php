@@ -32,7 +32,7 @@ class AdminController extends Controller
     public function index_items (Request $request)
     {
         if ($request['filter'] == 'pending') {
-            $users = User::where('status', 1)->paginate(30);
+            $items = Item::where('status', 1)->paginate(30);
         }
         else {
             $items = Item::paginate(30);
