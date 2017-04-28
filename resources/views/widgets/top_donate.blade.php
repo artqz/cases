@@ -1,7 +1,7 @@
 @if(count($orders))
-    <div class="panel panel-primary">
+    <div class="panel panel-default">
         <div class="panel-heading">
-            Последние ответы
+            Последние донаты
         </div>
         <div class="panel-body">
             <ul class="widget-themes-list">
