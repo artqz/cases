@@ -20,7 +20,7 @@ class TopDonate extends AbstractWidget
      */
     public function run()
     {
-        $orders = Order::where('status', 1)->orderBy('update_at', 'desc')->limit(10)->get();
+        $orders = Order::where('status', 1)->orderBy('updated_at', 'desc')->limit(10)->get();
 
 
         return view("widgets.top_donate", [
