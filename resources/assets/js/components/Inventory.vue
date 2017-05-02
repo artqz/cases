@@ -25,12 +25,12 @@
         </div>
         <div class="col-sm-6">
             <h4>Ваши лоты</h4>
-            <div v-for="(item, index) in itemsOnSale" class="last-buy-games-list">
-                <div :id="index" class="last-buy-game-card" @click="deleteItem">
+            <div class="last-buy-games-list">
+                <div v-for="(item, index) in itemsOnSale" :id="index" class="last-buy-game-card" >
                     <div class="game-image"><img :src="'http://steamcommunity-a.akamaihd.net/economy/image/'+item.icon_url" :alt="item.name"></div>
                     <div class="game-name" :style="{ color: '#' + item.name_color }">{{ item.name }}</div>
                     <div class="game-buyer"><input type="text" class="price" v-model="item.price" placeholder="Укажите цену.."></div>
-                    <div class="game-delete"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
+                    <div class="game-delete"><span :id="index" @click="deleteItem(item)"><i class="fa fa-trash-o" aria-hidden="true"></i> Удалить лот</span></div>
                 </div>
             </div>
             <div @click="itemsSell">Продать</div>
@@ -121,15 +121,13 @@
                 self.itemsOnSale.push({
                     name: item.name,
                     icon_url: item.icon_url,
-                    color_name: item.color_name,
+                    name_color: item.name_color,
                     price: ''
                 });
             },
-            deleteItem (e) {
-                var self = this;
-                var target = e.currentTarget;
-
-                self.itemsOnSale.splice(target.id, 1);
+            deleteItem (item) {
+                console.log(item);
+                self.itemsOnSale.$remove(item);
             },
             selectCategory: function (e) {
                 var self = this;
@@ -149,7 +147,7 @@
             },
             fetchData: function () {
                 var self = this;
-
+                /*
                 $.get( {
                     url: '/api/steam/getInventory?steamid=' + self.steam_id + '&appid=' + self.appid + '&contextid=' + self.contextid,
                 },
@@ -157,6 +155,18 @@
                     self.items = JSON.parse(data).descriptions.filter(item => item.tradable == 1).filter(item => item.classid != '667924416');
                     self.itemsAssets = JSON.parse(data).assets.filter(item => item.classid != '667924416');
                     self.loading = false;
+                }); */
+
+                this.$http.get('/api/steam/getInventory?steamid=' + self.steam_id + '&appid=' + self.appid + '&contextid=' + self.contextid).then(response => {
+
+                    // get body data
+                    var data = response.body;
+                self.items = data.descriptions.filter(item => item.tradable == 1).filter(item => item.classid != '667924416');
+                self.itemsAssets = data.assets.filter(item => item.classid != '667924416');
+                self.loading = false;
+
+                }, response => {
+                    // error callback
                 });
             }
         },
