@@ -12,9 +12,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="propeller" content="edeeb3399f1f35fc792f5422a805ac0d" />
-
+    <meta name='advmaker-verification' content='b862e53bdb75615994204cfdc04245b8'/>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
     @yield('meta')
     <title>@yield('title'){{ config('app.name', 'Laravel') }}</title>
 
