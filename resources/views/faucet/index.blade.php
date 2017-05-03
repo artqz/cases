@@ -23,7 +23,19 @@
         </div>
         <div class="col-sm-12 col-md-12">
             <br><br>
-            <script type='text/javascript' id="s-b92c4c6bdbfe3d42">!function(t,e,n,o,a,c,s){t[a]=t[a]||function(){(t[a].q=t[a].q||[]).push(arguments)},t[a].l=1*new Date,c=e.createElement(n),s=e.getElementsByTagName(n)[0],c.async=1,c.src=o,s.parentNode.insertBefore(c,s)}(window,document,"script","//greeentea.ru/player/","vbm"); vbm('get', {"platformId":79078,"format":2,"align":"top","width":"550","height":"350","sig":"b92c4c6bdbfe3d42"});</script>
+            <script type="text/javascript">
+                var moevideo = moevideo || {};
+                moevideo.queue = moevideo.queue || [];
+                (function() {
+                    var mvads = document.createElement("script");
+                    mvads.async = true;
+                    mvads.type = "text/javascript";
+                    var useSSL = "https:" == document.location.protocol;
+                    mvads.src = (useSSL ? "https:" : "http:") + "//moevideo.biz/embed/js/mvpt.min.js";
+                    var node =document.getElementsByTagName("head")[0];
+                    node.appendChild(mvads, node);
+                })();
+            </script>
         </div>
     </div>
 @endsection
