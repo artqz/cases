@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Event;
 use App\Game;
 use Illuminate\Http\Request;
 
@@ -47,6 +48,11 @@ class UserShopController extends Controller
                 'id' => $game->id,
                 'message' => 'Вы успешно добавили игру!'
             ]);
+    }
+
+    public function addItems(Request $request)
+    {
+        return \Response::json(['success'=>true]);
     }
 
     public function create_item()

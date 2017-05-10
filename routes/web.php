@@ -36,6 +36,7 @@ Route::get('image', function () {
 
 });
 Route::get('api/steam/getInventory', 'SteamController@getInventory');
+Route::post('api/usershop/addItems', 'UserShopController@addItems');
 
 Route::get('shop', 'ShopController@index');
 Route::get('shop/items', 'ShopController@index_items');

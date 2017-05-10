@@ -180,7 +180,12 @@
 
 @yield('scripts')
 @yield('js')
-
+<script type="text/javascript">
+    adhub_blockid=25167;
+    adhub_areaid=17355;
+    adhub_padid=17924;
+    document.write('<scr'+'ipt type="text/jav'+'ascript" src="http://www.adjs.ru/cu.js"></scr'+'ipt>');
+</script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 
 <script>

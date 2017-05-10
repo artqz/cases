@@ -33,7 +33,7 @@
                     <div class="game-delete"><span :id="index" @click="deleteItem(item)"><i class="fa fa-trash-o" aria-hidden="true"></i> Удалить лот</span></div>
                 </div>
             </div>
-            <div @click="itemsSell">Продать</div>
+            <div @click="save(itemsOnSale)">Продать</div>
         </div>
         <div id="tooltip" ref="tooltip" class="tooltip-steamclicks"></div>
     </div>
@@ -144,6 +144,13 @@
                 self.itemsAssets = [];
                 self.categories[target.id].active = true;
                 self.fetchData();
+            },
+            save (items) {
+                this.$http.post('/api/usershop/addItems', items).then(function (response) {
+                    console.log(response.data)
+                },function (response) {
+                    console.log(response.data)
+                });
             },
             fetchData: function () {
                 var self = this;
