@@ -69,7 +69,7 @@ Route::get('distributions/{slug}/cancel', 'DistributionsController@cancel')->mid
 Route::post('distributions/{slug}/comment', 'DistributionsController@comment')->middleware('auth');
 
 //---
-//forum
+//Forum
 Route::get('discuss', 'DiscussController@index');
 Route::get('/discuss/create-channel', 'DiscussController@create_channel')->middleware('auth', 'userId');
 Route::post('/discuss/create-channel', 'DiscussController@store_channel')->middleware('auth', 'userId');
