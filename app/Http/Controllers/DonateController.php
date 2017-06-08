@@ -207,7 +207,7 @@ class DonateController extends Controller
                 'flash_message_status' => 'success',
             ]);
         }
-        else return redirect('exchange')->with([
+        else return redirect('donate')->with([
             'flash_message' => 'У Вас не хватает Кликов!',
             'flash_message_status' => 'danger',
         ]);
