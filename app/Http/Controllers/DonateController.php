@@ -164,4 +164,52 @@ class DonateController extends Controller
             'flash_message_status' => 'danger',
         ]);
     }
+
+    public function index_crystals ()
+    {
+        return view('donate.crystals.index');
+    }
+
+    public function get_crystals($count)
+    {
+
+        $user = User::where('id', Auth::id())->first();
+        if ($count == 1) {
+            $clicks = 160;
+            $crystals = 1;
+        }
+        elseif ($count == 5) {
+            $clicks = 800;
+            $crystals = 5;
+        }
+        elseif ($count == 10) {
+            $clicks = 1600;
+            $crystals = 10;
+        }
+        else return redirect('donate');
+        if ($user->clicks >= $clicks) {
+            User::where('id', $user->id)->update([
+                'crystals' => $user->crystals + $crystals,
+                'clicks' => $user->clicks - $clicks
+            ]);
+
+            //event
+            Event::create([
+                'user_id' => $user->id,
+                'image' => url('images/icons/clickcoin.png'),
+                'text' => 'Вы обменяли '.$clicks.' Кликов на '.$crystals.' Кристаллов',
+                'url' => url('donate'),
+                'type' => 'exchange',
+            ]);
+
+            return redirect('donate')->with([
+                'flash_message' => 'Вы получили '.$crystals.' Кристаллов',
+                'flash_message_status' => 'success',
+            ]);
+        }
+        else return redirect('exchange')->with([
+            'flash_message' => 'У Вас не хватает Кликов!',
+            'flash_message_status' => 'danger',
+        ]);
+    }
 }

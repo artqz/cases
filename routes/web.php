@@ -151,6 +151,7 @@ Route::post('chat/create-message', 'ChatController@store_message');
 
 Route::get('donate', 'DonateController@index');
 Route::get('donate/buy/{count}', 'DonateController@buy')->middleware('auth');
+Route::get('donate/exchange/{count}', 'DonateController@get_crystals')->middleware('auth');
 Route::get('payment/result', 'DonateController@result');
 Route::get('payment/success', 'DonateController@success')->middleware('auth');
 Route::get('payment/fail', 'DonateController@fail')->middleware('auth');
