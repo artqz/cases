@@ -196,7 +196,7 @@ class DonateController extends Controller
             //event
             Event::create([
                 'user_id' => $user->id,
-                'image' => url('images/icons/clickcoin.png'),
+                'image' => url('images/icons/clickcrystal.png'),
                 'text' => 'Вы обменяли '.$clicks.' Кликов на '.$crystals.' Кристаллов',
                 'url' => url('donate'),
                 'type' => 'exchange',
