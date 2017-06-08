@@ -56,7 +56,7 @@
                 <a href="{{ url('donate/exchange/5') }}" class="crystal-card">
                     <img src="{{ url('images/icons/clickcrystal.png') }}" alt="Кристалл">
                     <div class="crystals">Купить 5 кристаллов</div>
-                    <div class="ruble">За 800 Кликов <span class="economy">экономия 5 Кликов</span></div>
+                    <div class="ruble">За 800 Кликов <span class="economy">экономия 0 Кликов</span></div>
                 </a>
             </div>
             <div class="col-sm-4">
