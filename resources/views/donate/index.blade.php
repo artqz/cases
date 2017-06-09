@@ -49,21 +49,21 @@
                 <a href="{{ url('donate/exchange/1') }}" class="crystal-card">
                     <img src="{{ url('images/icons/clickcrystal.png') }}" alt="Кристалл">
                     <div class="crystals">Купить 1 кристалл</div>
-                    <div class="ruble">За 160 Кликов <span class="economy">экономия 0 Кликов</span></div>
+                    <div class="ruble">За 260 Кликов <span class="economy">экономия 0 Кликов</span></div>
                 </a>
             </div>
             <div class="col-sm-4">
                 <a href="{{ url('donate/exchange/5') }}" class="crystal-card">
                     <img src="{{ url('images/icons/clickcrystal.png') }}" alt="Кристалл">
                     <div class="crystals">Купить 5 кристаллов</div>
-                    <div class="ruble">За 800 Кликов <span class="economy">экономия 0 Кликов</span></div>
+                    <div class="ruble">За 1179 Кликов <span class="economy">экономия 130 Кликов</span></div>
                 </a>
             </div>
             <div class="col-sm-4">
                 <a href="{{ url('donate/exchange/10') }}" class="crystal-card">
                     <img src="{{ url('images/icons/clickcrystal.png') }}" alt="Кристалл">
                     <div class="crystals">Купить 10 кристаллов</div>
-                    <div class="ruble">За 1600 Кликов <span class="economy">экономия 0 Кликов</span></div>
+                    <div class="ruble">За 2210 Кликов <span class="economy">экономия 390 Кликов</span></div>
                 </a>
             </div>
         </div>

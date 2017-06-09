@@ -175,15 +175,15 @@ class DonateController extends Controller
 
         $user = User::where('id', Auth::id())->first();
         if ($count == 1) {
-            $clicks = 160;
+            $clicks = 260;
             $crystals = 1;
         }
         elseif ($count == 5) {
-            $clicks = 800;
+            $clicks = 1170;
             $crystals = 5;
         }
         elseif ($count == 10) {
-            $clicks = 1600;
+            $clicks = 2210;
             $crystals = 10;
         }
         else return redirect('donate');
