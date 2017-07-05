@@ -173,20 +173,7 @@
         </footer>
     </div>
 </div>
-<!-- SliderBanner Advertur.ru start -->
-<div id="advertur_148855"></div><script type="text/javascript">
-    (function(w, d, n) {
-        w[n] = w[n] || [];
-        w[n].push({
-            section_id: 148855,
-            place: "advertur_148855",
-            width: 300,
-            height: 250
-        });
-    })(window, document, "advertur_sections");
-</script>
-<script type="text/javascript" src="//ddnk.advertur.ru/v1/s/loader.js" async></script>
-<!-- SliderBanner Advertur.ru end -->
+
 </body>
 
 <script src="/js/app.js"></script>
