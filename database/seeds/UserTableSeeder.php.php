@@ -17,7 +17,7 @@ class UserTableSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'holyshit@steamclicks.ru',
             'email_hash' => md5('holyshit@steamclicks.ru'),
-            'password' => bcrypt('SlojniyPar0l'),
+            'password' => bcrypt('123456'),
         ]);
 
     User::create(
@@ -33,7 +33,7 @@ class UserTableSeeder extends Seeder
             'name' => 'Opasniy',
             'email' => 'djoctuk@yandex.ru',
             'email_hash' => md5('djoctuk@yandex.ru'),
-            'password' => bcrypt('110789'),
+            'password' => bcrypt('123456'),
         ]);
 }
 }
