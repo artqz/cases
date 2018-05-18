@@ -7,5 +7,5 @@ return array(
     'from' => array('address' => 'robot@steamclicks.ru', 'name' => 'Steam Clicks'),
     'encryption' => 'ssl',
     'username' => 'robot@steamclicks.ru',//ваш логин
-    'password' => 'Art110789Kuz',//ваш пароль
+    'password' => '',//ваш пароль
 );
